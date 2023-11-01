@@ -3237,3 +3237,43 @@ function countPalindromes(s) {
 const testString = 'abccba';
 console.log('Total Palindromes:', countPalindromes(testString)); //Total Palindromes: 9
 ```
+
+**85. String Permutations:**
+
+```js
+function stringPermutations(str, currentIndex = 0, currentStr = '') {
+  if (currentIndex === str.length) {
+    // we traversed through the string if this condition is true
+    console.log(currentStr);
+    return;
+  }
+
+  if (str[currentIndex].match(/[a-zA-Z]/)) {
+    // If it's an alphabetical character
+    // Change to uppercase for each and every character (ex: a1b2 is input, A1B2 is output)
+    stringPermutations(
+      str,
+      currentIndex + 1,
+      currentStr + str[currentIndex].toUpperCase()
+    );
+    // Change to lowercase
+    stringPermutations(
+      str,
+      currentIndex + 1,
+      currentStr + str[currentIndex].toLowerCase()
+    );
+  } else {
+    stringPermutations(str, currentIndex + 1, currentStr + str[currentIndex]);
+  }
+}
+
+const inputString = 'a1b2';
+console.log('Permutations by changing case:');
+stringPermutations(inputString);
+
+// Permutations by changing case:
+// A1B2
+// A1b2
+// a1B2
+// a1b2
+```

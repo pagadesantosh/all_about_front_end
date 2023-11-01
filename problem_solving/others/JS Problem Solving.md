@@ -5,15 +5,15 @@
 
 ```js
 function reverseString(str) {
-  return str.split('').reverse().join('')
+  return str.split('').reverse().join('');
 }
 ```
 
 ```js
 // Example usage:
-let original = 'Hello, World!'
-let reversed = reverseString(original)
-console.log(reversed) // Outputs: "!dlroW ,olleH"
+let original = 'Hello, World!';
+let reversed = reverseString(original);
+console.log(reversed); // Outputs: "!dlroW ,olleH"
 ```
 
 </details>
@@ -33,12 +33,12 @@ console.log(reversed) // Outputs: "!dlroW ,olleH"
 ```js
 // Using a Set:
 function hasAllUniqueCharsSet(str) {
-  return new Set(str).size === str.length
+  return new Set(str).size === str.length;
 }
 
 // Example:
-console.log(hasAllUniqueCharsSet('hello')) // false
-console.log(hasAllUniqueCharsSet('abcde')) // true
+console.log(hasAllUniqueCharsSet('hello')); // false
+console.log(hasAllUniqueCharsSet('abcde')); // true
 ```
 
 - <strong>Approach Taken for indexOf:</strong>
@@ -54,15 +54,15 @@ console.log(hasAllUniqueCharsSet('abcde')) // true
 function hasAllUniqueCharsIndexOf(str) {
   for (let char of str) {
     if (str.indexOf(char) !== str.lastIndexOf(char)) {
-      return false
+      return false;
     }
   }
-  return true
+  return true;
 }
 
 // Example:
-console.log(hasAllUniqueCharsIndexOf('hello')) // false
-console.log(hasAllUniqueCharsIndexOf('abcde')) // true
+console.log(hasAllUniqueCharsIndexOf('hello')); // false
+console.log(hasAllUniqueCharsIndexOf('abcde')); // true
 ```
 
 </details>
@@ -83,18 +83,18 @@ console.log(hasAllUniqueCharsIndexOf('abcde')) // true
 ```js
 function areAnagrams(str1, str2) {
   // Convert to lowercase and remove non-alphanumeric characters
-  let cleanStr1 = str1.toLowerCase().replace(/[^a-z0-9]/g, '')
-  let cleanStr2 = str2.toLowerCase().replace(/[^a-z0-9]/g, '')
+  let cleanStr1 = str1.toLowerCase().replace(/[^a-z0-9]/g, '');
+  let cleanStr2 = str2.toLowerCase().replace(/[^a-z0-9]/g, '');
 
   // Sort and compare
   return (
     cleanStr1.split('').sort().join('') === cleanStr2.split('').sort().join('')
-  )
+  );
 }
 
 // Example usage:
-console.log(areAnagrams('listen', 'silent')) // true
-console.log(areAnagrams('hello', 'world')) // false
+console.log(areAnagrams('listen', 'silent')); // true
+console.log(areAnagrams('hello', 'world')); // false
 ```
 
 - <strong>Approach Taken using for loop :</strong>
@@ -109,27 +109,27 @@ console.log(areAnagrams('hello', 'world')) // false
 
 ```js
 function areAnagrams(str1, str2) {
-  if (str1.length !== str2.length) return false
+  if (str1.length !== str2.length) return false;
 
-  const charCount = {}
+  const charCount = {};
 
   // Count characters for the first string
   for (let char of str1) {
-    charCount[char] = (charCount[char] || 0) + 1
+    charCount[char] = (charCount[char] || 0) + 1;
   }
 
   // Decrease the count based on the second string
   for (let char of str2) {
-    if (!charCount[char]) return false // If the character is not in the first string or its count has gone to zero
-    charCount[char]--
+    if (!charCount[char]) return false; // If the character is not in the first string or its count has gone to zero
+    charCount[char]--;
   }
 
-  return true
+  return true;
 }
 
 // Example usage:
-console.log(areAnagrams('listen', 'silent')) // true
-console.log(areAnagrams('hello', 'world')) // false
+console.log(areAnagrams('listen', 'silent')); // true
+console.log(areAnagrams('hello', 'world')); // false
 ```
 
 - **Solution for n number of arguments instead of 2**
@@ -144,34 +144,34 @@ console.log(areAnagrams('hello', 'world')) // false
 
 ```js
 function customSort(str) {
-  let arr = [...str] // Convert string to array
+  let arr = [...str]; // Convert string to array
 
   for (let i = 1; i < arr.length; i++) {
     for (let j = i; j > 0; j--) {
       if (arr[j] < arr[j - 1]) {
         // Swap the characters without using any additional data structure
-        ;[arr[j], arr[j - 1]] = [arr[j - 1], arr[j]]
+        [arr[j], arr[j - 1]] = [arr[j - 1], arr[j]];
       } else {
         // If the left character is not greater than the right, then break
-        break
+        break;
       }
     }
   }
 
-  return arr.join('') // Convert array back to string
+  return arr.join(''); // Convert array back to string
 }
 
 function identifyAnagrams(...strings) {
-  const groups = {}
+  const groups = {};
 
   for (let str of strings) {
-    const key = customSort(str)
+    const key = customSort(str);
     if (!groups[key]) {
-      groups[key] = []
+      groups[key] = [];
     }
-    groups[key].push(str)
+    groups[key].push(str);
   }
-  return Object.values(groups)
+  return Object.values(groups);
 }
 
 // Example usage:
@@ -187,7 +187,7 @@ console.log(
     'drawer',
     'reward'
   )
-)
+);
 ```
 
 </details>
@@ -211,25 +211,25 @@ console.log(
 ```js
 function basicCalculator(expression) {
   // Enhanced regex to handle numbers with a leading minus sign correctly
-  const numbers = expression.split(/[+-]/).map(Number)
-  const operators = expression.match(/[+-]/g) || []
+  const numbers = expression.split(/[+-]/).map(Number);
+  const operators = expression.match(/[+-]/g) || [];
 
-  let result = numbers[0]
+  let result = numbers[0];
 
   for (let i = 0; i < operators.length; i++) {
     if (operators[i] === '+') {
-      result += numbers[i + 1]
+      result += numbers[i + 1];
     } else if (operators[i] === '-') {
-      result -= numbers[i + 1]
+      result -= numbers[i + 1];
     }
   }
 
-  return result
+  return result;
 }
 
-console.log(basicCalculator('5+4-3-2')) // 4
-console.log(basicCalculator('-5+4-3-2')) // -6
-console.log(basicCalculator('5-4-3-2')) // -4
+console.log(basicCalculator('5+4-3-2')); // 4
+console.log(basicCalculator('-5+4-3-2')); // -6
+console.log(basicCalculator('5-4-3-2')); // -4
 ```
 
 </details>
@@ -248,16 +248,16 @@ console.log(basicCalculator('5-4-3-2')) // -4
 ```js
 function isValidJSON(jsonString) {
   try {
-    JSON.parse(jsonString)
-    return true
+    JSON.parse(jsonString);
+    return true;
   } catch (e) {
-    return false
+    return false;
   }
 }
 
 // Testing the function
-console.log(isValidJSON('{"name": "John", "age": 30}')) // true
-console.log(isValidJSON('{"name": "John", "age": }')) // false
+console.log(isValidJSON('{"name": "John", "age": 30}')); // true
+console.log(isValidJSON('{"name": "John", "age": }')); // false
 ```
 
 </details>
@@ -280,21 +280,21 @@ console.log(isValidJSON('{"name": "John", "age": }')) // false
 ```js
 function deepClone(obj) {
   // Handle primitive types and null
-  if (obj === null || typeof obj !== 'object') return obj
+  if (obj === null || typeof obj !== 'object') return obj;
 
   // Handle arrays
   if (Array.isArray(obj)) {
-    return obj.map((item) => deepClone(item))
+    return obj.map((item) => deepClone(item));
   }
 
   // Handle objects
-  const copy = {}
+  const copy = {};
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
-      copy[key] = deepClone(obj[key])
+      copy[key] = deepClone(obj[key]);
     }
   }
-  return copy
+  return copy;
 }
 
 // Example usage:
@@ -307,11 +307,11 @@ const obj = {
     },
   },
   f: [4, 5, { g: 6 }],
-}
+};
 
-const clonedObj = deepClone(obj)
-console.log(clonedObj) // { a: 1, b: { c: 2, d: { e: 3 } }, f: [ 4, 5, { g: 6 } ] }
-console.log(clonedObj.b === obj.b) // false, indicating a deep clone
+const clonedObj = deepClone(obj);
+console.log(clonedObj); // { a: 1, b: { c: 2, d: { e: 3 } }, f: [ 4, 5, { g: 6 } ] }
+console.log(clonedObj.b === obj.b); // false, indicating a deep clone
 ```
 
 </details>
@@ -330,19 +330,19 @@ console.log(clonedObj.b === obj.b) // false, indicating a deep clone
 
 ```js
 const throttle = (func, limit) => {
-  let inThrottle
+  let inThrottle;
   return (...args) => {
     if (!inThrottle) {
-      func(...args)
-      inThrottle = true
-      setTimeout(() => (inThrottle = false), limit)
+      func(...args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
     }
-  }
-}
+  };
+};
 
 // Usage:
-const throttledFunction = throttle(() => console.log('Throttled!'), 300)
-window.addEventListener('scroll', throttledFunction)
+const throttledFunction = throttle(() => console.log('Throttled!'), 300);
+window.addEventListener('scroll', throttledFunction);
 ```
 
 **Debouncing**
@@ -353,16 +353,16 @@ window.addEventListener('scroll', throttledFunction)
 
 ```js
 const debounce = (func, delay) => {
-  let inDebounce
+  let inDebounce;
   return (...args) => {
-    clearTimeout(inDebounce)
-    inDebounce = setTimeout(() => func(...args), delay)
-  }
-}
+    clearTimeout(inDebounce);
+    inDebounce = setTimeout(() => func(...args), delay);
+  };
+};
 
 // Usage:
-const debouncedFunction = debounce(() => console.log('Debounced!'), 300)
-window.addEventListener('resize', debouncedFunction)
+const debouncedFunction = debounce(() => console.log('Debounced!'), 300);
+window.addEventListener('resize', debouncedFunction);
 ```
 
 </details>
@@ -376,20 +376,20 @@ window.addEventListener('resize', debouncedFunction)
 
 ```js
 function flattenRecursive(arr) {
-  let result = []
+  let result = [];
   for (let item of arr) {
     if (Array.isArray(item)) {
-      result.push(...flattenRecursive(item))
+      result.push(...flattenRecursive(item));
     } else {
-      result.push(item)
+      result.push(item);
     }
   }
-  return result
+  return result;
 }
 
 // Test
-const nestedArray = [1, [2, 3, [4, 5]], 6, [[7], [8, 9]]]
-console.log(flattenRecursive(nestedArray)) // Expected output: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+const nestedArray = [1, [2, 3, [4, 5]], 6, [[7], [8, 9]]];
+console.log(flattenRecursive(nestedArray)); // Expected output: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
 </details>
@@ -409,68 +409,68 @@ function.call(thisArg, arg1, arg2, ...);
 ```js
 Function.prototype.myCall = function (context, ...args) {
   // Both globalThis and window are same
-  context = context || globalThis // Use the global object if no context is provided.
+  context = context || globalThis; // Use the global object if no context is provided.
 
   // Create a unique temporary function name using Symbol
-  const tempFn = Symbol('temp')
+  const tempFn = Symbol('temp');
 
   // Temporarily assign the function to the context
-  context[tempFn] = this
+  context[tempFn] = this;
 
   // Invoke the function using the context
-  const result = context[tempFn](...args)
+  const result = context[tempFn](...args);
 
   // Clean up by deleting the temporary function reference
-  delete context[tempFn]
+  delete context[tempFn];
 
-  return result
-}
+  return result;
+};
 
 // Example:
 function introduce(name, age) {
-  console.log(`Hi, I am ${name}, ${age} years old from ${this.city}.`)
+  console.log(`Hi, I am ${name}, ${age} years old from ${this.city}.`);
 }
 
 const person = {
   city: 'Los Angeles',
-}
+};
 
-introduce.myCall(person, 'John', 30)
+introduce.myCall(person, 'John', 30);
 // Outputs: Hi, I am John, 30 years old from Los Angeles.
 ```
 
 ```js
 Function.prototype.myApply = function (context, args) {
-  context = context || window // Use the global object if no context is provided.
+  context = context || window; // Use the global object if no context is provided.
 
   // Create a unique temporary function name to avoid overriding existing properties
-  const tempFn = Symbol('temp')
+  const tempFn = Symbol('temp');
 
   // Temporarily assign the function to the context
-  context[tempFn] = this
+  context[tempFn] = this;
 
   // Invoke the function using the context
   // We're using the spread operator here to spread the elements of the args array
-  const result = context[tempFn](...args)
+  const result = context[tempFn](...args);
 
   // Clean up by deleting the temporary function reference
-  delete context[tempFn]
+  delete context[tempFn];
 
-  return result
-}
+  return result;
+};
 
 //Example
 function greet(name, age) {
   console.log(
     `Hello, my name is ${name} and I am ${age} years old, and I live in ${this.city}.`
-  )
+  );
 }
 
 const person = {
   city: 'New York',
-}
+};
 
-greet.myApply(person, ['Alice', 25]) // Outputs: Hello, my name is Alice and I am 25 years old, and I live in New York.
+greet.myApply(person, ['Alice', 25]); // Outputs: Hello, my name is Alice and I am 25 years old, and I live in New York.
 ```
 
 </details>
@@ -481,21 +481,21 @@ greet.myApply(person, ['Alice', 25]) // Outputs: Hello, my name is Alice and I a
 
 ```js
 function getSumPairZero(array) {
-  let left = 0
-  let right = array.length - 1
+  let left = 0;
+  let right = array.length - 1;
   while (left < right) {
-    sum = array[left] + array[right]
+    sum = array[left] + array[right];
     if (sum === 0) {
-      return [array[left], array[right]]
+      return [array[left], array[right]];
     } else if (sum > 0) {
-      right--
+      right--;
     } else {
-      left++
+      left++;
     }
   }
 }
-const result = getSumPairZero([-5, -4, -3, -2, -1, 0, 2, 4, 6, 8])
-console.log(result)
+const result = getSumPairZero([-5, -4, -3, -2, -1, 0, 2, 4, 6, 8]);
+console.log(result);
 ```
 
 ---
@@ -504,19 +504,19 @@ console.log(result)
 
 ```js
 function findLargestElement(matrix) {
-  if (!matrix.length || !matrix[0].length) return null // If empty array
+  if (!matrix.length || !matrix[0].length) return null; // If empty array
 
-  let max = matrix[0][0] // Assume the first element is the largest
+  let max = matrix[0][0]; // Assume the first element is the largest
 
   for (let i = 0; i < matrix.length; i++) {
     for (let j = 0; j < matrix[i].length; j++) {
       if (matrix[i][j] > max) {
-        max = matrix[i][j]
+        max = matrix[i][j];
       }
     }
   }
 
-  return max
+  return max;
 }
 
 // Test
@@ -524,8 +524,8 @@ const arr = [
   [1, 2, 3],
   [4, 5, 6],
   [7, 8, 9],
-]
-console.log(findLargestElement(arr)) // Output: 9
+];
+console.log(findLargestElement(arr)); // Output: 9
 ```
 
 ---
@@ -547,7 +547,7 @@ console.log(findLargestElement(arr)) // Output: 9
 ```js
 function deepEqual(a, b) {
   // If both are the exact same value (strict equality), they are equal
-  if (a === b) return true
+  if (a === b) return true;
 
   // If either of them is null or not an object, they aren't deep equal
   if (
@@ -556,26 +556,26 @@ function deepEqual(a, b) {
     typeof a !== 'object' ||
     typeof b !== 'object'
   )
-    return false
+    return false;
 
   // Get the keys of both objects
   let keysA = Object.keys(a),
-    keysB = Object.keys(b)
+    keysB = Object.keys(b);
 
   // If they have a different number of keys, they are not deep equal
-  if (keysA.length !== keysB.length) return false
+  if (keysA.length !== keysB.length) return false;
 
   // Check if every key-value pair in `a` matches that in `b`
   for (let key of keysA) {
-    if (!keysB.includes(key) || !deepEqual(a[key], b[key])) return false
+    if (!keysB.includes(key) || !deepEqual(a[key], b[key])) return false;
   }
 
-  return true
+  return true;
 }
 
-let obj1 = { a: 1, b: [1, 2, 3], c: { d: 4, e: 5 } }
-let obj2 = { a: 1, b: [1, 2, 3], c: { d: 4, e: 6 } }
-console.log(deepEqual(obj1, obj2))
+let obj1 = { a: 1, b: [1, 2, 3], c: { d: 4, e: 5 } };
+let obj2 = { a: 1, b: [1, 2, 3], c: { d: 4, e: 6 } };
+console.log(deepEqual(obj1, obj2));
 ```
 
 </details>
@@ -598,23 +598,23 @@ console.log(deepEqual(obj1, obj2))
 class EventEmitter {
   constructor() {
     // Object to manage events and callbacks
-    this.events = {}
+    this.events = {};
   }
 
   // Register an event with a callback
   on(eventName, callback) {
     if (!this.events[eventName]) {
-      this.events[eventName] = []
+      this.events[eventName] = [];
     }
-    this.events[eventName].push(callback)
+    this.events[eventName].push(callback);
   }
 
   // Trigger an event
   emit(eventName, ...args) {
     if (this.events[eventName]) {
       this.events[eventName].forEach((callback) => {
-        callback(...args)
-      })
+        callback(...args);
+      });
     }
   }
 
@@ -623,31 +623,31 @@ class EventEmitter {
     if (this.events[eventName]) {
       this.events[eventName] = this.events[eventName].filter(
         (cb) => cb !== callback
-      )
+      );
     }
   }
 
   // Remove all callbacks for an event
   removeAllListeners(eventName) {
     if (this.events[eventName]) {
-      delete this.events[eventName]
+      delete this.events[eventName];
     }
   }
 }
 
 // Example usage:
-const emitter = new EventEmitter()
+const emitter = new EventEmitter();
 emitter.on('data', (data) => {
-  console.log('Received data:', data)
-})
+  console.log('Received data:', data);
+});
 emitter.on('userJoined', (...usernames) => {
   usernames.forEach((userName) => {
-    console.log(`${userName} has joined the chat.`)
-  })
-})
+    console.log(`${userName} has joined the chat.`);
+  });
+});
 
-emitter.emit('data', { test: 123 }) // Outputs: Received data: { test: 123 }
-emitter.emit('userJoined', 'Alice', 'Blice', 'Clice')
+emitter.emit('data', { test: 123 }); // Outputs: Received data: { test: 123 }
+emitter.emit('userJoined', 'Alice', 'Blice', 'Clice');
 // Outputs:
 // Alice has joined the chat.
 // Blice has joined the chat.
@@ -665,60 +665,60 @@ emitter.emit('userJoined', 'Alice', 'Blice', 'Clice')
 
 ```js
 // Callback code
-const request = require('request')
+const request = require('request');
 
 function fetchUserData(userId, callback) {
-  const url = `https://api.example.com/user/${userId}`
+  const url = `https://api.example.com/user/${userId}`;
 
   request(url, (error, response, body) => {
     if (error) {
-      callback(error, null)
+      callback(error, null);
     } else if (response.statusCode !== 200) {
-      callback(new Error(`Received status code ${response.statusCode}`), null)
+      callback(new Error(`Received status code ${response.statusCode}`), null);
     } else {
-      callback(null, JSON.parse(body))
+      callback(null, JSON.parse(body));
     }
-  })
+  });
 }
 
 // Usage:
 fetchUserData(123, (error, data) => {
   if (error) {
-    console.error(error)
+    console.error(error);
   } else {
-    console.log(data)
+    console.log(data);
   }
-})
+});
 ```
 
 ```js
 // Promise Conversion
-const request = require('request')
+const request = require('request');
 
 function fetchUserData(userId) {
   return new Promise((resolve, reject) => {
-    const url = `https://api.example.com/user/${userId}`
+    const url = `https://api.example.com/user/${userId}`;
 
     request(url, (error, response, body) => {
       if (error) {
-        reject(error)
+        reject(error);
       } else if (response.statusCode !== 200) {
-        reject(new Error(`Received status code ${response.statusCode}`))
+        reject(new Error(`Received status code ${response.statusCode}`));
       } else {
-        resolve(JSON.parse(body))
+        resolve(JSON.parse(body));
       }
-    })
-  })
+    });
+  });
 }
 
 // Usage:
 fetchUserData(123)
   .then((data) => {
-    console.log(data)
+    console.log(data);
   })
   .catch((error) => {
-    console.error(error)
-  })
+    console.error(error);
+  });
 ```
 
 </details>
@@ -729,49 +729,49 @@ fetchUserData(123)
 
 ```js
 //Example
-uncompress('3(ab)') // 'ababab'
-uncompress('3(ab2(c))') // 'abccabccabcc'
+uncompress('3(ab)'); // 'ababab'
+uncompress('3(ab2(c))'); // 'abccabccabcc'
 ```
 
 ```js
 function uncompress(s) {
-  let i = 0
+  let i = 0;
 
   function helper() {
-    let result = ''
-    let num = 0
+    let result = '';
+    let num = 0;
 
     while (i < s.length) {
       if (s[i].match(/[0-9]/)) {
-        num = num * 10 + parseInt(s[i])
-        i++
+        num = num * 10 + parseInt(s[i]);
+        i++;
       } else if (s[i] === '(') {
-        i++ // Move past '('
-        const substring = helper()
+        i++; // Move past '('
+        const substring = helper();
 
         //this below repeat line will be called at last after executing everything inside the brackets
-        result += substring.repeat(num)
+        result += substring.repeat(num);
 
-        num = 0 // Reset num for next sequence
+        num = 0; // Reset num for next sequence
       } else if (s[i] === ')') {
-        i++ // Move past ')'
-        return result
+        i++; // Move past ')'
+        return result;
       } else {
-        result += s[i]
-        i++
+        result += s[i];
+        i++;
       }
     }
 
-    return result
+    return result;
   }
 
-  return helper()
+  return helper();
 }
 
 // Test
-console.log(uncompress('3(ab)')) // 'ababab'
-console.log(uncompress('3(ab2(c))')) // 'abccabccabcc'
-console.log(uncompress('5(5(ab)2(c)))')) // 'abababababccabababababccabababababccabababababccabababababcc'
+console.log(uncompress('3(ab)')); // 'ababab'
+console.log(uncompress('3(ab2(c))')); // 'abccabccabcc'
+console.log(uncompress('5(5(ab)2(c)))')); // 'abababababccabababababccabababababccabababababccabababababcc'
 ```
 
 ---
@@ -780,16 +780,16 @@ console.log(uncompress('5(5(ab)2(c)))')) // 'abababababccabababababccabababababc
 
 ```js
 function sumArray(ar) {
-  var sum = 0
+  var sum = 0;
   for (var el of ar) {
     if (Array.isArray(el)) {
-      el = sumArray(el) //recursion
+      el = sumArray(el); //recursion
     }
-    sum += el
+    sum += el;
   }
-  return sum
+  return sum;
 }
-console.log(sumArray([1, 2, [3, [4], [5, 6]], [7]])) //28
+console.log(sumArray([1, 2, [3, [4], [5, 6]], [7]])); //28
 ```
 
 ---
@@ -811,31 +811,31 @@ console.log(sumArray([1, 2, [3, [4], [5, 6]], [7]])) //28
 
 ```js
 const memoize = (func) => {
-  const cache = {}
+  const cache = {};
 
   return (...args) => {
-    const key = JSON.stringify(args)
+    const key = JSON.stringify(args);
     if (cache[key] !== undefined) {
-      return cache[key]
+      return cache[key];
     }
-    const result = func(...args)
-    cache[key] = result
-    return result
-  }
-}
+    const result = func(...args);
+    cache[key] = result;
+    return result;
+  };
+};
 
 // Example: Recursive Fibonacci with memoization
 const fib = (n) => {
   // if n = 0 or 1, it will return 0 or 1
   if (n <= 1) {
-    return n
+    return n;
   }
-  return fib(n - 1) + fib(n - 2)
-}
+  return fib(n - 1) + fib(n - 2);
+};
 
-const memoizedFib = memoize(fib)
-console.log(memoizedFib(12)) // Output: 144
-console.log(memoizedFib(12)) // Output: 144
+const memoizedFib = memoize(fib);
+console.log(memoizedFib(12)); // Output: 144
+console.log(memoizedFib(12)); // Output: 144
 ```
 
 </details>
@@ -849,20 +849,20 @@ console.log(memoizedFib(12)) // Output: 144
 
 ```js
 const isEmptyObj = (obj) => {
-  return Object.keys(obj).length === 0
-}
+  return Object.keys(obj).length === 0;
+};
 ```
 
 Ex:
 
 ```js
-const obj1 = {}
-console.log(isEmptyObj(obj)) //true
+const obj1 = {};
+console.log(isEmptyObj(obj)); //true
 ```
 
 ```js
-const obj2 = { name: 'John' }
-console.log(isEmpty(obj2)) // false
+const obj2 = { name: 'John' };
+console.log(isEmpty(obj2)); // false
 ```
 
 </details>
@@ -886,18 +886,18 @@ console.log(isEmpty(obj2)) // false
 
 ```js
 const getQueryParams = (url) => {
-  const urlObj = new URL(url)
-  const params = new URLSearchParams(urlObj.search)
-  const result = {}
+  const urlObj = new URL(url);
+  const params = new URLSearchParams(urlObj.search);
+  const result = {};
 
   for (const [key, value] of params.entries()) {
-    result[key] = value
+    result[key] = value;
   }
-  return result
-}
+  return result;
+};
 
-const queryParams = getQueryParams('https://example.com/page?name=John&age=25')
-console.log(queryParams)
+const queryParams = getQueryParams('https://example.com/page?name=John&age=25');
+console.log(queryParams);
 ```
 
 </details>
@@ -910,12 +910,12 @@ console.log(queryParams)
 <summary>View Answer</summary>
 
 ```js
-const isTruthy = (value) => !!value
+const isTruthy = (value) => !!value;
 
-console.log(isTruthyTernary(1)) // true
-console.log(isTruthyTernary(0)) // false
-console.log(isTruthyTernary('hello')) // true
-console.log(isTruthyTernary('')) // false
+console.log(isTruthyTernary(1)); // true
+console.log(isTruthyTernary(0)); // false
+console.log(isTruthyTernary('hello')); // true
+console.log(isTruthyTernary('')); // false
 ```
 
 </details>
@@ -928,14 +928,14 @@ console.log(isTruthyTernary('')) // false
 <summary>View Answer</summary>
 
 ```js
-const words = ['apple', 'banana', 'cherry', 'dragonfruit', 'elderberry']
+const words = ['apple', 'banana', 'cherry', 'dragonfruit', 'elderberry'];
 
 const longestWordLength = words.reduce((maxLength, word) => {
-  const currentLength = word.length
-  return currentLength > maxLength ? currentLength : maxLength
-}, 0)
+  const currentLength = word.length;
+  return currentLength > maxLength ? currentLength : maxLength;
+}, 0);
 
-console.log(longestWordLength) // Output: 11
+console.log(longestWordLength); // Output: 11
 ```
 
 </details>
@@ -956,21 +956,21 @@ console.log(longestWordLength) // Output: 11
 
 ```js
 const flattenArray = (arr) => {
-  let result = []
+  let result = [];
 
   for (const item of arr) {
     if (Array.isArray(item)) {
-      result.push(...flattenArray(item)) //push method, using the spread operator allows us to push each individual element of the array returned by the recursive call into the result array.
+      result.push(...flattenArray(item)); //push method, using the spread operator allows us to push each individual element of the array returned by the recursive call into the result array.
     } else {
-      result.push(item)
+      result.push(item);
     }
   }
 
-  return result
-}
+  return result;
+};
 
-const nestedArray = [1, [2, [3, [4, 5], 6], 7], 8]
-console.log(flattenArray(nestedArray)) // [1, 2, 3, 4, 5, 6, 7, 8]
+const nestedArray = [1, [2, [3, [4, 5], 6], 7], 8];
+console.log(flattenArray(nestedArray)); // [1, 2, 3, 4, 5, 6, 7, 8]
 ```
 
 </details>
@@ -992,10 +992,10 @@ console.log(flattenArray(nestedArray)) // [1, 2, 3, 4, 5, 6, 7, 8]
 
 ```js
 function captilizeFirstOccurrence(str) {
-  return str.replace(/\b\w/g, (char) => char.toUpperCase())
+  return str.replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
-console.log(captilizeFirstOccurrence('hello world! this is a test string.'))
+console.log(captilizeFirstOccurrence('hello world! this is a test string.'));
 ```
 
 </details>
@@ -1006,20 +1006,20 @@ console.log(captilizeFirstOccurrence('hello world! this is a test string.'))
 
 ```js
 function is_perfect(number) {
-  var temp = 0
+  var temp = 0;
   for (var i = 1; i <= number / 2; i++) {
     if (number % i === 0) {
-      console.log(i) //1,2,4,7,14
-      temp += i
+      console.log(i); //1,2,4,7,14
+      temp += i;
     }
   }
   if (temp === number && temp !== 0) {
-    console.log('It is a perfect number.')
+    console.log('It is a perfect number.');
   } else {
-    console.log('It is not a perfect number.')
+    console.log('It is not a perfect number.');
   }
 }
-is_perfect(28)
+is_perfect(28);
 ```
 
 ---
@@ -1031,10 +1031,10 @@ is_perfect(28)
 
 ```js
 const longestWord = words.reduce((longestWord, word) => {
-  return word.length > longestWord.length ? word : longestWord
-}, '')
+  return word.length > longestWord.length ? word : longestWord;
+}, '');
 
-console.log(longestWord) // Output: 'dragonfruit'
+console.log(longestWord); // Output: 'dragonfruit'
 ```
 
 </details>
@@ -1046,25 +1046,25 @@ console.log(longestWord) // Output: 'dragonfruit'
 ```js
 function stringCompression(str) {
   if (str.length == 0) {
-    console.log('Please enter valid string.')
-    return
+    console.log('Please enter valid string.');
+    return;
   }
-  var output = ''
-  var count = 0
+  var output = '';
+  var count = 0;
   for (var i = 0; i < str.length; i++) {
-    count++
+    count++;
     if (str[i] != str[i + 1]) {
       //if a is not equal to b
-      output += str[i] + count //a+4
-      count = 0 //for b it will start from zero
+      output += str[i] + count; //a+4
+      count = 0; //for b it will start from zero
     }
   }
-  console.log(output)
+  console.log(output);
 }
-stringCompression('') //Please enter valid string.
-stringCompression('aaaa') //a4
-stringCompression('aaaabbc') //a4b2c1
-stringCompression('aaaabbcaabb') //a4b2c1a2b2
+stringCompression(''); //Please enter valid string.
+stringCompression('aaaa'); //a4
+stringCompression('aaaabbc'); //a4b2c1
+stringCompression('aaaabbcaabb'); //a4b2c1a2b2
 ```
 
 ---
@@ -1075,12 +1075,12 @@ stringCompression('aaaabbcaabb') //a4b2c1a2b2
 <summary>View Answer</summary>
 
 ```js
-const arr = [1, 2, 3]
+const arr = [1, 2, 3];
 
 if (Array.isArray(arr) && arr instanceof Array) {
-  console.log('The variable is an array.')
+  console.log('The variable is an array.');
 } else {
-  console.log('The variable is not an array.')
+  console.log('The variable is not an array.');
 }
 ```
 
@@ -1095,12 +1095,12 @@ if (Array.isArray(arr) && arr instanceof Array) {
 
 ```js
 function camelToSnakeCase(str) {
-  return str.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1_$2').toLowerCase()
+  return str.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, '$1_$2').toLowerCase();
 }
 
-const camelCaseStr = 'saitejaGatadiIsGoodBoy'
-const snakeCaseStr = camelToSnakeCase(camelCaseStr)
-console.log(snakeCaseStr)
+const camelCaseStr = 'saitejaGatadiIsGoodBoy';
+const snakeCaseStr = camelToSnakeCase(camelCaseStr);
+console.log(snakeCaseStr);
 ```
 
 </details>
@@ -1146,47 +1146,47 @@ console.log(currencyString) // Outputs: "$1,234.56"
 
 ```js
 const createPubSub = () => {
-  const topics = {}
+  const topics = {};
 
   const subscribe = (topic, listener) => {
-    if (!topics[topic]) topics[topic] = []
+    if (!topics[topic]) topics[topic] = [];
 
     // push returns 1, so it looks like 1 - 1 = 0
-    const index = topics[topic].push(listener) - 1
+    const index = topics[topic].push(listener) - 1;
 
     return {
       remove: () => {
-        delete topics[topic][index]
+        delete topics[topic][index];
       },
-    }
-  }
+    };
+  };
 
   const publish = (topic, info) => {
-    if (!topics[topic] || topics[topic].length < 1) return
+    if (!topics[topic] || topics[topic].length < 1) return;
 
     // during looping, each and every item or listener is the callback function that is passed as a 2nd argument
     topics[topic].forEach((listener) =>
       listener(info !== undefined ? info : {})
-    )
-  }
+    );
+  };
 
   return {
     subscribe,
     publish,
-  }
-}
+  };
+};
 
 // Example Usage
-const pubSub = createPubSub()
+const pubSub = createPubSub();
 
 const subscription = pubSub.subscribe('example', (data) => {
-  console.log(`Received data: ${JSON.stringify(data)}`)
-})
+  console.log(`Received data: ${JSON.stringify(data)}`);
+});
 
-pubSub.publish('example', { message: 'Hello, World!' })
+pubSub.publish('example', { message: 'Hello, World!' });
 
 // To unsubscribe
-subscription.remove()
+subscription.remove();
 ```
 
 </details>
@@ -1197,35 +1197,35 @@ subscription.remove()
 
 ```js
 //Example Inputs
-detectType(1) // 'number'
-detectType(new Map()) // 'map'
-detectType([]) // 'array'
-detectType(null) // 'null'
+detectType(1); // 'number'
+detectType(new Map()); // 'map'
+detectType([]); // 'array'
+detectType(null); // 'null'
 ```
 
 ```js
 function detectType(value) {
-  if (value === null) return 'null'
+  if (value === null) return 'null';
 
   // Use the 'typeof' operator for primitive types
-  const type = typeof value
-  if (type !== 'object' && type !== 'function') return type
+  const type = typeof value;
+  if (type !== 'object' && type !== 'function') return type;
 
   // Use the Object.prototype.toString.call() method for complex types
-  const objectType = Object.prototype.toString.call(value)
+  const objectType = Object.prototype.toString.call(value);
 
-  if (objectType === '[object Array]') return 'array'
-  if (objectType === '[object Map]') return 'map'
+  if (objectType === '[object Array]') return 'array';
+  if (objectType === '[object Map]') return 'map';
   //... add more detections as needed
 
-  return 'unknown'
+  return 'unknown';
 }
 
 // Test the function
-console.log(detectType(1)) // 'number'
-console.log(detectType(new Map())) // 'map'
-console.log(detectType([])) // 'array'
-console.log(detectType(null)) // 'null'
+console.log(detectType(1)); // 'number'
+console.log(detectType(new Map())); // 'map'
+console.log(detectType([])); // 'array'
+console.log(detectType(null)); // 'null'
 ```
 
 ---
@@ -1237,16 +1237,16 @@ console.log(detectType(null)) // 'null'
 
 ```js
 // contains
-const isChildOf = (child, parent) => parent.contains(child)
+const isChildOf = (child, parent) => parent.contains(child);
 
 //closest
-const isChildOf = (child, parent) => child.closest(parent.tagName) === parent
+const isChildOf = (child, parent) => child.closest(parent.tagName) === parent;
 
 // Ex:
-const parent = document.getElementById('parent')
-const child = document.getElementById('child')
+const parent = document.getElementById('parent');
+const child = document.getElementById('child');
 
-console.log(isChildOf(child, parent)) // It will log true if child is a descendant of parent, otherwise false
+console.log(isChildOf(child, parent)); // It will log true if child is a descendant of parent, otherwise false
 ```
 
 </details>
@@ -1262,27 +1262,27 @@ console.log(isChildOf(child, parent)) // It will log true if child is a descenda
 ```js
 function newOperator(Constructor, ...args) {
   // Step 1: Create a new object with the constructor's prototype
-  const obj = Object.create(Constructor.prototype)
+  const obj = Object.create(Constructor.prototype);
 
   // Step 2: Apply the constructor to the new object using call() instead of apply()
-  const result = Constructor.call(obj, ...args)
+  const result = Constructor.call(obj, ...args);
 
   // Step 3: Return the object, unless the constructor returns an object
-  return result && typeof result === 'object' ? result : obj
+  return result && typeof result === 'object' ? result : obj;
 }
 
 // Example usage:
 function Person(name, age) {
-  this.name = name
-  this.age = age
+  this.name = name;
+  this.age = age;
 }
 
 Person.prototype.sayHello = function () {
-  console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`)
-}
+  console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+};
 
-const john = newOperator(Person, 'John', 30)
-john.sayHello() // Output: Hello, my name is John and I am 30 years old.
+const john = newOperator(Person, 'John', 30);
+john.sayHello(); // Output: Hello, my name is John and I am 30 years old.
 ```
 
 </details>
@@ -1298,13 +1298,13 @@ john.sayHello() // Output: Hello, my name is John and I am 30 years old.
 
 ```js
 function convertNodeListIntoArray(nodeList) {
-  return [...nodeList]
+  return [...nodeList];
   // return Array.from(nodeList)
 }
 
-const divs = document.querySelectorAll('div') // NodeList
-const divsArray = convertNodeListIntoArray(divs)
-console.log('divsInArray', divsArray)
+const divs = document.querySelectorAll('div'); // NodeList
+const divsArray = convertNodeListIntoArray(divs);
+console.log('divsInArray', divsArray);
 ```
 
 </details>
@@ -1328,8 +1328,8 @@ const deepValueInObj = (obj, path) => {
           ? accumulator[currentValue]
           : null,
       obj
-    )
-}
+    );
+};
 // Example usage:
 const obj = {
   a: {
@@ -1337,10 +1337,10 @@ const obj = {
       c: 42,
     },
   },
-}
+};
 
-console.log(deepValueInObj(obj, 'a.b.c')) // Output: 42
-console.log(deepValueInObj(obj, 'a.b.x')) // Output: null
+console.log(deepValueInObj(obj, 'a.b.c')); // Output: 42
+console.log(deepValueInObj(obj, 'a.b.x')); // Output: null
 ```
 
 </details>
@@ -1363,18 +1363,18 @@ console.log(deepValueInObj(obj, 'a.b.x')) // Output: null
 function supportsES6() {
   try {
     // Test let/const
-    eval('let foo = null; const bar = null;')
+    eval('let foo = null; const bar = null;');
 
     // Test arrow function
-    eval('() => {};')
+    eval('() => {};');
 
-    return true
+    return true;
   } catch (e) {
-    return false
+    return false;
   }
 }
 
-console.log(supportsES6()) // Output: true if ES6 is supported, false otherwise
+console.log(supportsES6()); // Output: true if ES6 is supported, false otherwise
 ```
 
 </details>
@@ -1388,49 +1388,49 @@ console.log(supportsES6()) // Output: true if ES6 is supported, false otherwise
 ```js
 function parse(str) {
   if (str === '') {
-    throw Error()
+    throw Error();
   }
   if (str[0] === "'") {
-    throw Error()
+    throw Error();
   }
   if (str === 'null') {
-    return null
+    return null;
   }
   if (str === '{}') {
-    return {}
+    return {};
   }
   if (str === '[]') {
-    return []
+    return [];
   }
   if (str === 'true') {
-    return true
+    return true;
   }
   if (str === 'false') {
-    return false
+    return false;
   }
   if (str[0] === '"') {
-    return str.slice(1, -1)
+    return str.slice(1, -1);
   }
   if (+str === +str) {
-    return Number(str)
+    return Number(str);
   }
   if (str[0] === '{') {
     return str
       .slice(1, -1)
       .split(',')
       .reduce((acc, item) => {
-        const index = item.indexOf(':')
-        const key = item.slice(0, index)
-        const value = item.slice(index + 1)
-        acc[parse(key)] = parse(value)
-        return acc
-      }, {})
+        const index = item.indexOf(':');
+        const key = item.slice(0, index);
+        const value = item.slice(index + 1);
+        acc[parse(key)] = parse(value);
+        return acc;
+      }, {});
   }
   if (str[0] === '[') {
     return str
       .slice(1, -1)
       .split(',')
-      .map((value) => parse(value))
+      .map((value) => parse(value));
   }
 }
 ```
@@ -1446,17 +1446,19 @@ function parse(str) {
 
 ```js
 function transpose(matrix) {
-  const rows = matrix.length
-  const cols = matrix[0].length
-  const transposed = Array.from({ length: cols }).map(() => Array(rows).fill(0))
+  const rows = matrix.length;
+  const cols = matrix[0].length;
+  const transposed = Array.from({ length: cols }).map(() =>
+    Array(rows).fill(0)
+  );
 
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
-      transposed[j][i] = matrix[i][j]
+      transposed[j][i] = matrix[i][j];
     }
   }
 
-  return transposed
+  return transposed;
 }
 
 // Example usage:
@@ -1464,21 +1466,21 @@ const matrix = [
   [1, 2, 3],
   [4, 5, 6],
   [7, 8, 9],
-]
+];
 
-const transposedMatrix = transpose(matrix)
-console.log(transposedMatrix)
+const transposedMatrix = transpose(matrix);
+console.log(transposedMatrix);
 ```
 
 ```js
 //shorter syntax:
 function transpose(matrix) {
-  const rows = matrix.length
-  const cols = matrix[0].length
+  const rows = matrix.length;
+  const cols = matrix[0].length;
   const transposed = Array.from({ length: cols }, (_, i) =>
     Array.from({ length: rows }, (_, j) => matrix[j][i])
-  )
-  return transposed
+  );
+  return transposed;
 }
 
 // Example usage:
@@ -1486,10 +1488,10 @@ const matrix = [
   [1, 2, 3],
   [4, 5, 6],
   [7, 8, 9],
-]
+];
 
-const transposedMatrix = transpose(matrix)
-console.log(transposedMatrix)
+const transposedMatrix = transpose(matrix);
+console.log(transposedMatrix);
 ```
 
 </details>
@@ -1518,27 +1520,27 @@ function curry(fn) {
     if (args.length >= fn.length) {
       // invokes the function sum with those arguments using the apply method and returns the result
       // below will be called at final, ex: else condition does the job to concatenate the provided args with all the left over arguments until it matches with the sum function in our case
-      return fn.apply(this, args)
+      return fn.apply(this, args);
     } else {
       // if curriedSum doesn't have enough arguments, it returns a new function that expects the remaining arguments.
       // This new function when invoked calls `curried` with both the original and new arguments concatenated together
       return function (...remainingArgs) {
-        return curried.apply(this, args.concat(remainingArgs))
-      }
+        return curried.apply(this, args.concat(remainingArgs));
+      };
     }
-  }
+  };
 }
 
 // Example usage:
 function sum(a, b, c) {
-  return a + b + c
+  return a + b + c;
 }
 
-const curriedSum = curry(sum)
+const curriedSum = curry(sum);
 
-console.log(curriedSum(1)(2)(3)) // Output: 6
-console.log(curriedSum(1, 2)(3)) // Output: 6
-console.log(curriedSum(1, 2, 3)) // Output: 6
+console.log(curriedSum(1)(2)(3)); // Output: 6
+console.log(curriedSum(1, 2)(3)); // Output: 6
+console.log(curriedSum(1, 2, 3)); // Output: 6
 ```
 
 </details>
@@ -1560,17 +1562,17 @@ console.log(curriedSum(1, 2, 3)) // Output: 6
 
 ```js
 async function batchProcessPromises(tasks, batchSize) {
-  let result = []
+  let result = [];
 
   for (let i = 0; i < tasks.length; i += batchSize) {
-    console.log('i', i)
-    const batch = tasks.slice(i, i + batchSize) // ex: [f, f,f ] sliced to [f, f]
+    console.log('i', i);
+    const batch = tasks.slice(i, i + batchSize); // ex: [f, f,f ] sliced to [f, f]
     // mapping over batch sliced functions and calling each function to get the promises they return
     // result at first has the first batch and then it concatenates with following batch, similarly batch.map in this batch is the updated slice function
-    result = result.concat(await Promise.all(batch.map((task) => task())))
+    result = result.concat(await Promise.all(batch.map((task) => task())));
   }
 
-  return result
+  return result;
 }
 
 // Real-time example usage:
@@ -1579,19 +1581,19 @@ const urls = [
   'https://jsonplaceholder.typicode.com/posts/2',
   'https://jsonplaceholder.typicode.com/posts/3',
   // ... add more URLs as needed
-]
+];
 
 const fetchPromises = urls.map(
   (url) => () => fetch(url).then((response) => response.json()) // [f, f, f]
-)
+);
 
 batchProcessPromises(fetchPromises, 2)
   .then((results) => {
-    console.log('All data fetched in batches:', results)
+    console.log('All data fetched in batches:', results);
   })
   .catch((error) => {
-    console.error('An error occurred:', error)
-  })
+    console.error('An error occurred:', error);
+  });
 ```
 
 </details>
@@ -1615,24 +1617,24 @@ Certainly! You can achieve this by returning a function from each invocation tha
 
 ```javascript
 function add(n) {
-  let sum = n
+  let sum = n;
 
   const addNext = (next) => {
     if (next !== undefined) {
-      sum += next
-      return addNext
+      sum += next;
+      return addNext;
     }
-    return sum
-  }
+    return sum;
+  };
 
-  addNext.toString = () => sum
+  addNext.toString = () => sum;
 
-  return addNext
+  return addNext;
 }
 
 // Test
-console.log(add(1)(2)(3)()) // Output: 6
-console.log(add(1)(2)(3)(4)(5)()) // Output: 15
+console.log(add(1)(2)(3)()); // Output: 6
+console.log(add(1)(2)(3)(4)(5)()); // Output: 15
 ```
 
 Explanation:
@@ -1654,12 +1656,12 @@ Explanation:
 
 ```js
 function getLastNElements(array, n) {
-  return n >= 0 ? array.slice(Math.max(0, array.length - n)) : []
+  return n >= 0 ? array.slice(Math.max(0, array.length - n)) : [];
 }
 
 // Test
-const myArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-console.log(getLastNElements(myArray, 5)) // Output: [6, 7, 8, 9, 10]
+const myArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+console.log(getLastNElements(myArray, 5)); // Output: [6, 7, 8, 9, 10]
 ```
 
 </details>
@@ -1675,10 +1677,10 @@ console.log(getLastNElements(myArray, 5)) // Output: [6, 7, 8, 9, 10]
 
 ```js
 const factorial = (n) => {
-  n === 0 ? 1 : n * factorial(n - 1)
-}
+  n === 0 ? 1 : n * factorial(n - 1);
+};
 
-console.log(factorial(5))
+console.log(factorial(5));
 ```
 
 </details>
@@ -1692,14 +1694,14 @@ console.log(factorial(5))
 
 ```js
 function looksLikeJSON(str) {
-  if (typeof str !== 'string') return false
+  if (typeof str !== 'string') return false;
 
-  const trimmed = str.trim()
+  const trimmed = str.trim();
 
   const patterns = [
     { starts: '{', ends: '}' },
     { starts: '[', ends: ']' },
-  ]
+  ];
 
   if (
     !patterns.some(
@@ -1707,16 +1709,16 @@ function looksLikeJSON(str) {
         trimmed.startsWith(pattern.starts) && trimmed.endsWith(pattern.ends)
     )
   ) {
-    return false
+    return false;
   }
 
-  return true
+  return true;
 }
 
 // Test
-console.log(looksLikeJSON('{"name": "Alice"}')) // Should log true
-console.log(looksLikeJSON('[1, 2, 3]')) // Should log true
-console.log(looksLikeJSON('Just a regular string')) // Should log false
+console.log(looksLikeJSON('{"name": "Alice"}')); // Should log true
+console.log(looksLikeJSON('[1, 2, 3]')); // Should log true
+console.log(looksLikeJSON('Just a regular string')); // Should log false
 ```
 
 </details>
@@ -1739,13 +1741,13 @@ console.log(looksLikeJSON('Just a regular string')) // Should log false
 ```js
 function* rangeGenerator(start, end) {
   for (let i = start; i <= end; i++) {
-    yield i
+    yield i;
   }
 }
-const range = rangeGenerator(1, 5)
+const range = rangeGenerator(1, 5);
 
 for (let number of range) {
-  console.log(number)
+  console.log(number);
 }
 ```
 
@@ -1758,47 +1760,47 @@ for (let number of range) {
 ```js
 //Ex
 
-setTimeout(func1, 10000)
-setTimeout(func2, 10000)
-setTimeout(func3, 10000)
+setTimeout(func1, 10000);
+setTimeout(func2, 10000);
+setTimeout(func3, 10000);
 
 // all 3 functions are scheduled 10 seconds later
-clearAllTimeout()
+clearAllTimeout();
 
 // all scheduled tasks are cancelled.
 ```
 
 ```js
-let timeouts = []
+let timeouts = [];
 
 // Override the native setTimeout function
 // This is done so that we can later use the original setTimeout function while still overriding it with our custom behavior.
-const originalSetTimeout = window.setTimeout
+const originalSetTimeout = window.setTimeout;
 
 // Any subsequent calls to setTimeout will now use this new function.
 window.setTimeout = function (fn, delay) {
-  const timeoutId = originalSetTimeout(fn, delay)
-  timeouts.push(timeoutId)
-  return timeoutId
-}
+  const timeoutId = originalSetTimeout(fn, delay);
+  timeouts.push(timeoutId);
+  return timeoutId;
+};
 
 function clearAllTimeout() {
   for (const timeoutId of timeouts) {
-    clearTimeout(timeoutId)
+    clearTimeout(timeoutId);
   }
-  timeouts = [] // Reset the timeouts array
+  timeouts = []; // Reset the timeouts array
 }
 
 // Example usage:
 const id1 = setTimeout(() => {
-  console.log('Timeout 1')
-}, 1000)
+  console.log('Timeout 1');
+}, 1000);
 
 const id2 = setTimeout(() => {
-  console.log('Timeout 2')
-}, 2000)
+  console.log('Timeout 2');
+}, 2000);
 
-clearAllTimeout() // This will prevent both timeouts from executing
+clearAllTimeout(); // This will prevent both timeouts from executing
 ```
 
 ---
@@ -1809,17 +1811,17 @@ clearAllTimeout() // This will prevent both timeouts from executing
 <summary>View Answer</summary>
 
 ```js
-const numbers = [5, 2, 8, 4, 3]
+const numbers = [5, 2, 8, 4, 3];
 
 const largestFactorial = numbers.reduce((largest, num) => {
   const currentFactorial = Array.from({ length: num })
     .map((_, i) => i + 1)
-    .reduce((fact, val) => fact * val, 1)
+    .reduce((fact, val) => fact * val, 1);
 
-  return currentFactorial > largest ? currentFactorial : largest
-}, 1)
+  return currentFactorial > largest ? currentFactorial : largest;
+}, 1);
 
-console.log(largestFactorial) // Output: 40320 (8!)
+console.log(largestFactorial); // Output: 40320 (8!)
 ```
 
 </details>
@@ -1840,29 +1842,29 @@ console.log(largestFactorial) // Output: 40320 (8!)
 
 ```js
 function getMaxOccurringCharWithCount(str) {
-  let maxCount = 0
-  let maxChar = ''
-  const charCountMap = {}
+  let maxCount = 0;
+  let maxChar = '';
+  const charCountMap = {};
 
   for (let char of str) {
-    charCountMap[char] = (charCountMap[char] || 0) + 1
+    charCountMap[char] = (charCountMap[char] || 0) + 1;
   }
 
   for (let char in charCountMap) {
     if (charCountMap[char] > maxCount) {
-      maxCount = charCountMap[char]
-      maxChar = char
+      maxCount = charCountMap[char];
+      maxChar = char;
     }
   }
 
   return {
     maxChar,
     maxCount,
-  }
+  };
 }
 
-const output = getMaxOccurringCharWithCount('saiteja')
-console.log('output', output) // { "maxChar": "a","maxCount": 2}
+const output = getMaxOccurringCharWithCount('saiteja');
+console.log('output', output); // { "maxChar": "a","maxCount": 2}
 ```
 
 </details>
@@ -1885,37 +1887,37 @@ console.log('output', output) // { "maxChar": "a","maxCount": 2}
 ```js
 function daysBetweenDates(date1, date2) {
   // Convert both dates to milliseconds
-  const time1 = date1.getTime()
-  const time2 = date2.getTime()
+  const time1 = date1.getTime();
+  const time2 = date2.getTime();
 
   // Find the difference in milliseconds
-  const differenceInMilliseconds = Math.abs(time1 - time2)
+  const differenceInMilliseconds = Math.abs(time1 - time2);
 
   // Convert the difference to days
-  const differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24)
+  const differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
 
-  return differenceInDays
+  return differenceInDays;
 }
 
 // Test the function with two dates
-const date1 = new Date('2023-10-01')
-const date2 = new Date('2023-10-09')
-const numberOfDays = daysBetweenDates(date1, date2)
-console.log('Number of days between the two dates:', numberOfDays)
+const date1 = new Date('2023-10-01');
+const date2 = new Date('2023-10-09');
+const numberOfDays = daysBetweenDates(date1, date2);
+console.log('Number of days between the two dates:', numberOfDays);
 ```
 
 ```js
 // solution 2- shorter syntax
 
 function daysBetweenDates(...dates) {
-  const [time1, time2] = dates.map((date) => new Date(date).getTime())
-  const differenceInMilliseconds = Math.abs(time1 - time2)
-  return differenceInMilliseconds / (1000 * 60 * 60 * 24)
+  const [time1, time2] = dates.map((date) => new Date(date).getTime());
+  const differenceInMilliseconds = Math.abs(time1 - time2);
+  return differenceInMilliseconds / (1000 * 60 * 60 * 24);
 }
 
 // Test the function with two dates
-const numberOfDays = daysBetweenDates('2023-10-01', '2023-10-09')
-console.log('Number of days between the two dates:', numberOfDays)
+const numberOfDays = daysBetweenDates('2023-10-01', '2023-10-09');
+console.log('Number of days between the two dates:', numberOfDays);
 ```
 
 </details>
@@ -1935,21 +1937,21 @@ console.log('Number of days between the two dates:', numberOfDays)
 
 ```js
 const toFindDuplicates = (duplicatesArray) => {
-  const uniqueArrayElements = new Set(duplicatesArray)
-  console.log('find', uniqueArrayElements) // Set {1, 2, undefined, 5, 3, 4}
+  const uniqueArrayElements = new Set(duplicatesArray);
+  console.log('find', uniqueArrayElements); // Set {1, 2, undefined, 5, 3, 4}
 
   const filteredElements = duplicatesArray.filter((item) => {
     if (uniqueArrayElements.has(item)) {
-      uniqueArrayElements.delete(item)
+      uniqueArrayElements.delete(item);
     } else {
-      return item
+      return item;
     }
-  })
-  console.log('find filteredElements', filteredElements) // [1, 3, 5]
-}
+  });
+  console.log('find filteredElements', filteredElements); // [1, 3, 5]
+};
 
-const newArray = [1, 2, 1, , 5, 3, 4, 3, 5]
-const duplicateElements = toFindDuplicates(newArray)
+const newArray = [1, 2, 1, , 5, 3, 4, 3, 5];
+const duplicateElements = toFindDuplicates(newArray);
 ```
 
 </details>
@@ -1971,23 +1973,23 @@ const duplicateElements = toFindDuplicates(newArray)
 6. Due to this reason, you have append your word to your result and return it
 
 ```js
-let a = 'I am SaiTeja'
+let a = 'I am SaiTeja';
 const reverseWords = (str) => {
   let result = '',
-    word = ''
+    word = '';
   for (let i = str.length - 1; i >= 0; i--) {
     if (str[i] !== ' ') {
-      word = str[i] + word
+      word = str[i] + word;
     } else {
-      result += word + ' '
-      word = ''
+      result += word + ' ';
+      word = '';
     }
   }
-  result += word // append the last word
-  return result
-}
+  result += word; // append the last word
+  return result;
+};
 
-console.log(reverseWords(a)) // "SaiTeja am I"
+console.log(reverseWords(a)); // "SaiTeja am I"
 ```
 
 </details>
@@ -2012,23 +2014,23 @@ _You can achieve this by following these steps:_
 Here's the code for the above logic:
 
 ```javascript
-let inputString = 'saitejaisgoodboy'
-let result = ''
+let inputString = 'saitejaisgoodboy';
+let result = '';
 
 for (let i = 0; i < inputString.length; i++) {
-  let isDuplicate = false
+  let isDuplicate = false;
   for (let j = 0; j < result.length; j++) {
     if (inputString[i] === result[j]) {
-      isDuplicate = true
-      break
+      isDuplicate = true;
+      break;
     }
   }
   if (!isDuplicate) {
-    result += inputString[i]
+    result += inputString[i];
   }
 }
 
-console.log(result) // Outputs: "saitejgodby"
+console.log(result); // Outputs: "saitejgodby"
 ```
 
 This solution iteratively checks each character of the string `a` against every character in the `result` string. If the character is not in the `result`, it is appended. Otherwise, it is skipped.
@@ -2038,9 +2040,9 @@ This solution iteratively checks each character of the string `a` against every 
 - The Set-based solution is the most performant with a time complexity of O(n).
 
 ```js
-let a = 'saitejaisgoodboy'
-let result = [...new Set(a)].join('')
-console.log(result) // Outputs: "saitejgodby"
+let a = 'saitejaisgoodboy';
+let result = [...new Set(a)].join('');
+console.log(result); // Outputs: "saitejgodby"
 ```
 
 ##### Solution 3: Using indexOf (O(n2))
@@ -2048,16 +2050,16 @@ console.log(result) // Outputs: "saitejgodby"
 - The outer loop runs n times. The indexOf method has a linear search which in the worst case is O(n). Hence, this method can also be O(n^2) in the worst case.
 
 ```js
-let a = 'saitejaisgoodboy'
-let result = ''
+let a = 'saitejaisgoodboy';
+let result = '';
 
 for (let i = 0; i < a.length; i++) {
   if (result.indexOf(a[i]) === -1) {
-    result += a[i]
+    result += a[i];
   }
 }
 
-console.log(result) // Outputs: "saitejgodby"
+console.log(result); // Outputs: "saitejgodby"
 ```
 
 ##### Solution 4: Using reduce (O(n2))
@@ -2065,15 +2067,15 @@ console.log(result) // Outputs: "saitejgodby"
 - The reduce function runs the callback for each element in the array, which is n times. The includes method also takes O(n) time in the worst case. Thus, this method is O(n^2) in the worst case.
 
 ```js
-let a = 'saitejaisgoodboy'
+let a = 'saitejaisgoodboy';
 let result = a.split('').reduce((acc, curr) => {
   if (!acc.includes(curr)) {
-    acc += curr
+    acc += curr;
   }
-  return acc
-}, '')
+  return acc;
+}, '');
 
-console.log(result) // Outputs: "saitejgodby"
+console.log(result); // Outputs: "saitejgodby"
 ```
 
 </details>
@@ -2093,20 +2095,20 @@ console.log(result) // Outputs: "saitejgodby"
 Here's the code for the above logic:
 
 ```javascript
-let a = 'saiteja'
-let vowels = 'aeiouAEIOU' // considering both lowercase and uppercase vowels
-let count = 0
+let a = 'saiteja';
+let vowels = 'aeiouAEIOU'; // considering both lowercase and uppercase vowels
+let count = 0;
 
 for (let i = 0; i < a.length; i++) {
   for (let j = 0; j < vowels.length; j++) {
     if (a[i] === vowels[j]) {
-      count++
-      break
+      count++;
+      break;
     }
   }
 }
 
-console.log(count) // Outputs: 3
+console.log(count); // Outputs: 3
 ```
 
 This solution iteratively checks each character of the string `a` to see if it's a vowel by comparing it against each character in the `vowels` string. If it's a vowel, the counter is incremented.
@@ -2123,23 +2125,23 @@ This solution iteratively checks each character of the string `a` to see if it's
 Here's the code for the above logic:
 
 ```javascript
-let a = 'saiteja'
-let vowels = 'aeiouAEIOU'
-let usedVowels = ''
+let a = 'saiteja';
+let vowels = 'aeiouAEIOU';
+let usedVowels = '';
 
 for (let i = 0; i < a.length; i++) {
   for (let j = 0; j < vowels.length; j++) {
     if (a[i] === vowels[j]) {
       // Check if the vowel is already identified
       if (usedVowels.indexOf(a[i]) === -1) {
-        usedVowels += a[i]
+        usedVowels += a[i];
       }
-      break
+      break;
     }
   }
 }
 
-console.log(usedVowels) // Outputs: "aie"
+console.log(usedVowels); // Outputs: "aie"
 ```
 
 In this solution, the `usedVowels` string keeps track of which vowels have been identified. The `indexOf` method is used to check if a vowel is already in the `usedVowels` string. If it's not, it's added to the `usedVowels` string.
@@ -2147,17 +2149,17 @@ In this solution, the `usedVowels` string keeps track of which vowels have been 
 ##### Solution 2
 
 ```js
-let a = 'saiteja'
-let vowels = new Set('aeiouAEIOU')
-let usedVowels = new Set()
+let a = 'saiteja';
+let vowels = new Set('aeiouAEIOU');
+let usedVowels = new Set();
 
 for (let char of a) {
   if (vowels.has(char)) {
-    usedVowels.add(char)
+    usedVowels.add(char);
   }
 }
 
-console.log([...usedVowels].join('')) // Outputs: "aie"
+console.log([...usedVowels].join('')); // Outputs: "aie"
 ```
 
 </details>
@@ -2171,18 +2173,18 @@ console.log([...usedVowels].join('')) // Outputs: "aie"
 
 ```javascript
 function debounce(func, delay) {
-  let timeout
+  let timeout;
   return (...args) => {
-    clearTimeout(timeout)
+    clearTimeout(timeout);
     timeout = setTimeout(() => {
-      console.log('Executing the actual function after delay')
-      func(...args)
-    }, delay)
-  }
+      console.log('Executing the actual function after delay');
+      func(...args);
+    }, delay);
+  };
 }
 
-const debouncedLog = debounce(() => console.log('Hello after delay'), 1000)
-debouncedLog()
+const debouncedLog = debounce(() => console.log('Hello after delay'), 1000);
+debouncedLog();
 ```
 
 </details>
@@ -2196,18 +2198,18 @@ debouncedLog()
 
 ```javascript
 function deepClone(obj) {
-  if (obj === null) return null
-  if (typeof obj !== 'object') return obj
+  if (obj === null) return null;
+  if (typeof obj !== 'object') return obj;
 
   if (Array.isArray(obj)) {
-    return obj.map((item) => deepClone(item))
+    return obj.map((item) => deepClone(item));
   }
 
-  const clonedObj = {}
+  const clonedObj = {};
   for (const key in obj) {
-    clonedObj[key] = deepClone(obj[key])
+    clonedObj[key] = deepClone(obj[key]);
   }
-  return clonedObj
+  return clonedObj;
 }
 ```
 
@@ -2225,8 +2227,8 @@ function flattenArray(arr) {
   return arr.reduce((acc, item) => {
     return Array.isArray(item)
       ? acc.concat(flattenArray(item))
-      : acc.concat(item)
-  }, [])
+      : acc.concat(item);
+  }, []);
 }
 ```
 
@@ -2242,16 +2244,16 @@ function flattenArray(arr) {
 This example uses the Fetch API to handle multiple calls.
 
 ```javascript
-const urls = ['https://api.example1.com', 'https://api.example2.com']
+const urls = ['https://api.example1.com', 'https://api.example2.com'];
 
 Promise.all(urls.map((url) => fetch(url)))
   .then((responses) =>
     Promise.all(responses.map((response) => response.json()))
   )
   .then((data) => {
-    console.log(data) // Array of results from each API call
+    console.log(data); // Array of results from each API call
   })
-  .catch((error) => console.error('Error in API calls:', error))
+  .catch((error) => console.error('Error in API calls:', error));
 ```
 
 </details>
@@ -2268,7 +2270,7 @@ const students = [
   { name: 'Michael', score: 88 },
   { name: 'Emma', score: 95 },
   { name: 'Daniel', score: 90 },
-]
+];
 
 // Expected output should be average of 95 and 92
 ```
@@ -2279,9 +2281,9 @@ const students = [
 ```js
 const above90StudentsAverage = students
   .filter((student) => student.score > 90)
-  .reduce((acc, student, i, arr) => acc + student.score / arr.length, 0)
+  .reduce((acc, student, i, arr) => acc + student.score / arr.length, 0);
 
-console.log(above90StudentsAverage) // Output: 93.5 (average of 95 and 92)
+console.log(above90StudentsAverage); // Output: 93.5 (average of 95 and 92)
 ```
 
 </details>
@@ -2292,7 +2294,7 @@ console.log(above90StudentsAverage) // Output: 93.5 (average of 95 and 92)
 
 ```js
 // Input
-const strings = ['hello world', 'i am openai', 'welcome to javascript']
+const strings = ['hello world', 'i am openai', 'welcome to javascript'];
 // Expected Output: ['Hello World', 'I Am Openai', 'Welcome To Javascript']
 ```
 
@@ -2302,9 +2304,9 @@ const strings = ['hello world', 'i am openai', 'welcome to javascript']
 ```js
 const newArr = strings.map((item) =>
   item.replace(/\b\w/g, (char) => char.toUpperCase())
-)
+);
 
-console.log(newArr) // ["Hello World", "I Am Openai", "Welcome To Javascript"]
+console.log(newArr); // ["Hello World", "I Am Openai", "Welcome To Javascript"]
 ```
 
 </details>
@@ -2331,12 +2333,12 @@ function formatString(input) {
         word // Capitalize the first letter of each word.
       ) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
     )
-    .join(' ') // Join the words with spaces.
+    .join(' '); // Join the words with spaces.
 }
 
-const input = 'ui_dev_guide'
-const output = formatString(input)
-console.log(output) // Outputs: "Ui Dev Guide"
+const input = 'ui_dev_guide';
+const output = formatString(input);
+console.log(output); // Outputs: "Ui Dev Guide"
 ```
 
 ---
@@ -2361,22 +2363,22 @@ Output:
 
 ```js
 function countOccurrences(arr) {
-  const occurrences = {}
+  const occurrences = {};
 
   for (let num of arr) {
     if (!occurrences[num]) {
-      occurrences[num] = 1 // If the number hasn't been counted yet, initialize it with 1
+      occurrences[num] = 1; // If the number hasn't been counted yet, initialize it with 1
     } else {
-      occurrences[num]++ // Otherwise, increment the count
+      occurrences[num]++; // Otherwise, increment the count
     }
   }
 
-  return occurrences
+  return occurrences;
 }
 
-const input = [5, 5, 5, 2, 2, 2, 2, 2, 9, 4]
-const output = countOccurrences(input)
-console.log(output)
+const input = [5, 5, 5, 2, 2, 2, 2, 2, 9, 4];
+const output = countOccurrences(input);
+console.log(output);
 ```
 
 ---
@@ -2388,19 +2390,19 @@ console.log(output)
 
 ```js
 function componentToHex(c) {
-  var hex = c.toString(16)
-  return hex.length == 1 ? '0' + hex : hex
+  var hex = c.toString(16);
+  return hex.length == 1 ? '0' + hex : hex;
 }
 
 function rgbToHex(r, g, b) {
   if (r > 255 || g > 255 || b > 255 || r < 0 || g < 0 || b < 0) {
-    throw new Error('Invalid color component')
+    throw new Error('Invalid color component');
   }
-  return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b)
+  return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }
 
 // Test the function with RGB color (255, 99, 71)
-console.log(rgbToHex(255, 99, 71)) // Output: "#FF6347"
+console.log(rgbToHex(255, 99, 71)); // Output: "#FF6347"
 ```
 
 </details>
@@ -2419,7 +2421,7 @@ let people = [
   { name: 'Bill', gender: 'boy' },
   { name: 'Maklatura', gender: 'girl' },
   { name: 'Sara', gender: 'girl' },
-]
+];
 
 // Output
 // boys: 3
@@ -2427,17 +2429,17 @@ let people = [
 
 ```js
 function countGender(people) {
-  const genderCount = {}
+  const genderCount = {};
 
   for (let person of people) {
     if (!genderCount[person.gender]) {
-      genderCount[person.gender] = 1 // If the gender hasn't been counted yet, initialize it with 1
+      genderCount[person.gender] = 1; // If the gender hasn't been counted yet, initialize it with 1
     } else {
-      genderCount[person.gender]++ // Otherwise, increment the count
+      genderCount[person.gender]++; // Otherwise, increment the count
     }
   }
 
-  return genderCount
+  return genderCount;
 }
 
 const people = [
@@ -2448,10 +2450,10 @@ const people = [
   { name: 'Bill', gender: 'boy' },
   { name: 'Maklatura', gender: 'girl' },
   { name: 'Sara', gender: 'girl' },
-]
+];
 
-const output = countGender(people)
-console.log('boys:', output.boy) // Outputs: "boys: 3"
+const output = countGender(people);
+console.log('boys:', output.boy); // Outputs: "boys: 3"
 ```
 
 ---
@@ -2460,28 +2462,28 @@ console.log('boys:', output.boy) // Outputs: "boys: 3"
 
 ```js
 function hexToRgba(hex, alpha = 1) {
-  let cleanHex = hex.charAt(0) === '#' ? hex.slice(1) : hex
+  let cleanHex = hex.charAt(0) === '#' ? hex.slice(1) : hex;
 
   if (cleanHex.length === 3) {
     cleanHex = cleanHex
       .split('')
       .map((char) => char + char)
-      .join('')
+      .join('');
   }
 
   if (cleanHex.length !== 6) {
-    throw new Error('Invalid HEX color.')
+    throw new Error('Invalid HEX color.');
   }
 
-  const r = parseInt(cleanHex.substring(0, 2), 16)
-  const g = parseInt(cleanHex.substring(2, 4), 16)
-  const b = parseInt(cleanHex.substring(4, 6), 16)
+  const r = parseInt(cleanHex.substring(0, 2), 16);
+  const g = parseInt(cleanHex.substring(2, 4), 16);
+  const b = parseInt(cleanHex.substring(4, 6), 16);
 
-  return `rgba(${r},${g},${b},${alpha})`
+  return `rgba(${r},${g},${b},${alpha})`;
 }
 
-console.log(hexToRgba('#03F', 0.5)) // Outputs: "rgba(0,51,255,0.5)"
-console.log(hexToRgba('#0033FF', 0.5)) // Outputs the same value
+console.log(hexToRgba('#03F', 0.5)); // Outputs: "rgba(0,51,255,0.5)"
+console.log(hexToRgba('#0033FF', 0.5)); // Outputs the same value
 ```
 
 ---
@@ -2492,16 +2494,16 @@ console.log(hexToRgba('#0033FF', 0.5)) // Outputs the same value
 function addComma(num) {
   if (Math.floor(num) !== num) {
     // If the number has a decimal part
-    let parts = num.toString().split('.')
-    return parts[0].toLocaleString('en-US') + '.' + parts[1]
+    let parts = num.toString().split('.');
+    return parts[0].toLocaleString('en-US') + '.' + parts[1];
   }
-  return num.toLocaleString('en-US')
+  return num.toLocaleString('en-US');
 }
 
-console.log(addComma(1)) // '1'
-console.log(addComma(1000)) // '1,000'
-console.log(addComma(-12345678)) // '-12,345,678'
-console.log(addComma(12345678.12345)) // '12,345,678.12345'
+console.log(addComma(1)); // '1'
+console.log(addComma(1000)); // '1,000'
+console.log(addComma(-12345678)); // '-12,345,678'
+console.log(addComma(12345678.12345)); // '12,345,678.12345'
 ```
 
 ---
@@ -2511,27 +2513,27 @@ console.log(addComma(12345678.12345)) // '12,345,678.12345'
 ```js
 //Example Inputs:
 
-validate('{}[]()')
+validate('{}[]()');
 // true
 
-validate('{[()]}')
+validate('{[()]}');
 // true
 
-validate('{[}]')
+validate('{[}]');
 // false, they are not in the right order
 
-validate('{}}')
+validate('{}}');
 // false, last `}` is not paired with `{`
 ```
 
 ```js
 function validate(s) {
-  const stack = []
+  const stack = [];
   const pairs = {
     ')': '(',
     ']': '[',
     '}': '{',
-  }
+  };
 
   for (let char of s) {
     //first if condition gets satisfy if your traversing character matches with the keys only ex: },],)
@@ -2539,20 +2541,20 @@ function validate(s) {
       // If the character is a closing parenthesis
       if (stack.pop() !== pairs[char]) {
         // The popped value from the stack should match the corresponding opening parenthesis (to get true)
-        return false
+        return false;
       }
     } else {
-      stack.push(char)
+      stack.push(char);
     }
   }
 
-  return stack.length === 0 // The stack should be empty for a valid string
+  return stack.length === 0; // The stack should be empty for a valid string
 }
 
-console.log(validate('{}[]()')) // true
-console.log(validate('{[()]}')) // true
-console.log(validate('{[}]')) // false
-console.log(validate('{}}')) // false
+console.log(validate('{}[]()')); // true
+console.log(validate('{[()]}')); // true
+console.log(validate('{[}]')); // false
+console.log(validate('{}}')); // false
 ```
 
 ---
@@ -2563,17 +2565,17 @@ console.log(validate('{}}')) // false
 class A {}
 class B extends A {}
 
-const b = new B()
-myInstanceOf(b, B) // true
-myInstanceOf(b, A) // true
-myInstanceOf(b, Object) // true
+const b = new B();
+myInstanceOf(b, B); // true
+myInstanceOf(b, A); // true
+myInstanceOf(b, Object); // true
 
 function C() {}
-myInstanceOf(b, C) // false
-C.prototype = B.prototype
-myInstanceOf(b, C) // true
-C.prototype = {}
-myInstanceOf(b, C) // false
+myInstanceOf(b, C); // false
+C.prototype = B.prototype;
+myInstanceOf(b, C); // true
+C.prototype = {};
+myInstanceOf(b, C); // false
 ```
 
 ```js
@@ -2583,37 +2585,37 @@ function myInstanceOf(obj, constructor) {
     typeof constructor !== 'function' ||
     constructor.prototype === undefined
   ) {
-    return false
+    return false;
   }
 
   // Loop through the prototype chain of the object
-  let proto = Object.getPrototypeOf(obj)
+  let proto = Object.getPrototypeOf(obj);
   while (proto !== null) {
     if (proto === constructor.prototype) {
-      return true // Found the constructor's prototype in the prototype chain
+      return true; // Found the constructor's prototype in the prototype chain
     }
     //checks inside prototype chain and goes back to while loop
-    proto = Object.getPrototypeOf(proto)
+    proto = Object.getPrototypeOf(proto);
   }
 
-  return false // Didn't find the constructor's prototype in the prototype chain
+  return false; // Didn't find the constructor's prototype in the prototype chain
 }
 
 // Test cases
 class A {}
 class B extends A {}
 
-const b = new B()
-console.log(myInstanceOf(b, B)) // true
-console.log(myInstanceOf(b, A)) // true
-console.log(myInstanceOf(b, Object)) // true
+const b = new B();
+console.log(myInstanceOf(b, B)); // true
+console.log(myInstanceOf(b, A)); // true
+console.log(myInstanceOf(b, Object)); // true
 
 function C() {}
-console.log(myInstanceOf(b, C)) // false
-C.prototype = B.prototype
-console.log(myInstanceOf(b, C)) // true
-C.prototype = {}
-console.log(myInstanceOf(b, C)) // false
+console.log(myInstanceOf(b, C)); // false
+C.prototype = B.prototype;
+console.log(myInstanceOf(b, C)); // true
+C.prototype = {};
+console.log(myInstanceOf(b, C)); // false
 ```
 
 ---
@@ -2642,17 +2644,17 @@ By running above code, at any time, no more than 5 APIs are requested, so low sp
 ```js
 function throttleAsync(tasks, maxConcurrent) {
   // Array to hold results
-  let results = []
+  let results = [];
 
   // Recursive function to execute tasks
   function executeTasks(startIndex = 0) {
     // If all tasks have been started, return
     if (startIndex >= tasks.length) {
-      return Promise.resolve()
+      return Promise.resolve();
     }
 
     // Slice tasks for concurrent execution
-    let currentTasks = tasks.slice(startIndex, startIndex + maxConcurrent)
+    let currentTasks = tasks.slice(startIndex, startIndex + maxConcurrent);
 
     // Execute current set of tasks and store results/errors
     return Promise.allSettled(currentTasks.map((task) => task())).then(
@@ -2660,20 +2662,20 @@ function throttleAsync(tasks, maxConcurrent) {
         // Extract results from the settled promises
         values.forEach((value) => {
           if (value.status === 'fulfilled') {
-            results.push(value.value)
+            results.push(value.value);
           } else {
             // If any task rejects, we reject the main promise
-            throw value.reason
+            throw value.reason;
           }
-        })
+        });
 
         // Recursively call the next set of tasks
-        return executeTasks(startIndex + maxConcurrent)
+        return executeTasks(startIndex + maxConcurrent);
       }
-    )
+    );
   }
 
-  return executeTasks().then(() => results)
+  return executeTasks().then(() => results);
 }
 
 // Scenario
@@ -2681,21 +2683,21 @@ function createTask(id) {
   return () =>
     new Promise((resolve) => {
       setTimeout(() => {
-        console.log(`API ${id} finished`)
-        resolve(`Data from API ${id}`)
-      }, Math.random() * 1000) // Random timeout to simulate different API response times
-    })
+        console.log(`API ${id} finished`);
+        resolve(`Data from API ${id}`);
+      }, Math.random() * 1000); // Random timeout to simulate different API response times
+    });
 }
 
-let callApis = Array.from({ length: 100 }, (_, i) => createTask(i + 1))
+let callApis = Array.from({ length: 100 }, (_, i) => createTask(i + 1));
 
 throttleAsync(callApis, 5)
   .then((data) => {
-    console.log('All data:', data)
+    console.log('All data:', data);
   })
   .catch((err) => {
-    console.error(err)
-  })
+    console.error(err);
+  });
 ```
 
 ---
@@ -2705,39 +2707,39 @@ throttleAsync(callApis, 5)
 ```js
 // Example Input
 
-findTwo([1, 2, 3, -1])
+findTwo([1, 2, 3, -1]);
 // [0,3]
 
-findTwo([1, 2, 3, -1, -2, 0])
+findTwo([1, 2, 3, -1, -2, 0]);
 // [0,3] or [1,4] or [5, 5]
 
-findTwo([1, 2, 3, 4])
+findTwo([1, 2, 3, 4]);
 // null
 ```
 
 ```js
 function findTwo(nums) {
   // Create a set to store numbers
-  let numSet = new Set()
+  let numSet = new Set();
 
   for (let i = 0; i < nums.length; i++) {
     if (numSet.has(-nums[i])) {
       //nums[i] is -1 as per the iteration i=3, so -nums[i] at iteration 3 will be positive 3
-      return [nums.indexOf(-nums[i]), i] //indexOf positive 3, indexOf iteration will be the returned output
+      return [nums.indexOf(-nums[i]), i]; //indexOf positive 3, indexOf iteration will be the returned output
     }
     // Add the current number to the set
-    numSet.add(nums[i])
+    numSet.add(nums[i]);
   }
 
   // If no such pair exists, return null
-  return null
+  return null;
 }
 
 // Test cases
-console.log(findTwo([1, 2, 3, -1])) // [0,3]
-console.log(findTwo([1, 2, 3, -1, -2, 0])) // [0,3] (it may vary based on which pair is found first)
-console.log(findTwo([1, 2, 3, 4])) // null
-console.log(findTwo([0, 1, 0, 4])) // [0, 2]
+console.log(findTwo([1, 2, 3, -1])); // [0,3]
+console.log(findTwo([1, 2, 3, -1, -2, 0])); // [0,3] (it may vary based on which pair is found first)
+console.log(findTwo([1, 2, 3, 4])); // null
+console.log(findTwo([0, 1, 0, 4])); // [0, 2]
 ```
 
 ---
@@ -2745,13 +2747,13 @@ console.log(findTwo([0, 1, 0, 4])) // [0, 2]
 **71. Find the largest difference**
 
 ```js
-largestDiff([-1, 2, 3, 10, 9])
+largestDiff([-1, 2, 3, 10, 9]);
 // 11,  obviously Math.abs(-1 - 10) is the largest
 
-largestDiff([])
+largestDiff([]);
 // 0
 
-largestDiff([1])
+largestDiff([1]);
 // 0
 ```
 
@@ -2759,21 +2761,21 @@ largestDiff([1])
 function largestDiff(nums) {
   // If the array has 0 or 1 elements, return 0
   if (nums.length <= 1) {
-    return 0
+    return 0;
   }
 
   // Find the max and min values in the array
-  let max = Math.max(...nums)
-  let min = Math.min(...nums)
+  let max = Math.max(...nums);
+  let min = Math.min(...nums);
 
   // Return the absolute difference between max and min
-  return Math.abs(max - min)
+  return Math.abs(max - min);
 }
 
 // Test cases
-console.log(largestDiff([-1, 2, 3, 17, 9])) // 18
-console.log(largestDiff([])) // 0
-console.log(largestDiff([1])) // 0
+console.log(largestDiff([-1, 2, 3, 17, 9])); // 18
+console.log(largestDiff([])); // 0
+console.log(largestDiff([1])); // 0
 ```
 
 ---
@@ -2796,36 +2798,36 @@ Default equality check function should be a shallow comparison on array items wi
 ```js
 function classNames(...args) {
   //ex: ["class1", "class2"].flat
-  const flattenedArgs = args.flat(Infinity) //is useful when array has nested arrays
-  console.log('args.flat', flattenedArgs)
-  console.log('args', args)
+  const flattenedArgs = args.flat(Infinity); //is useful when array has nested arrays
+  console.log('args.flat', flattenedArgs);
+  console.log('args', args);
   return flattenedArgs
     .reduce((result, item) => {
-      if (item === null) return result
+      if (item === null) return result;
       switch (typeof item) {
         case 'string':
         case 'number':
-          result.push(item)
-          break
+          result.push(item);
+          break;
         case 'object':
           for (let [key, value] of Object.entries(item)) {
             if (!!value) {
-              result.push(key)
+              result.push(key);
             }
           }
-          break
+          break;
       }
 
-      return result
+      return result;
     }, [])
-    .join(' ')
+    .join(' ');
 }
 
 // Test cases
-console.log(classNames('class1', 'class2')) // "class1 class2"
-console.log(classNames('class1', { class2: true, class3: false })) // "class1 class2"
-console.log(classNames('class1', { class2: true, class3: false }, 'class4')) // "class1 class2 class4"
-console.log(classNames(['class1', 'class2', ['class3', 'class4']])) // "class1 class2 class3 class4"
+console.log(classNames('class1', 'class2')); // "class1 class2"
+console.log(classNames('class1', { class2: true, class3: false })); // "class1 class2"
+console.log(classNames('class1', { class2: true, class3: false }, 'class4')); // "class1 class2 class4"
+console.log(classNames(['class1', 'class2', ['class3', 'class4']])); // "class1 class2 class3 class4"
 ```
 
 ---
@@ -2834,19 +2836,19 @@ console.log(classNames(['class1', 'class2', ['class3', 'class4']])) // "class1 c
 
 ```js
 //Example: chunk splits array into groups with the specific size.
-chunk([1, 2, 3, 4, 5], 1)
+chunk([1, 2, 3, 4, 5], 1);
 // [[1], [2], [3], [4], [5]]
 
-chunk([1, 2, 3, 4, 5], 2)
+chunk([1, 2, 3, 4, 5], 2);
 // [[1, 2], [3, 4], [5]]
 
-chunk([1, 2, 3, 4, 5], 3)
+chunk([1, 2, 3, 4, 5], 3);
 // [[1, 2, 3], [4, 5]]
 
-chunk([1, 2, 3, 4, 5], 4)
+chunk([1, 2, 3, 4, 5], 4);
 // [[1, 2, 3, 4], [5]]
 
-chunk([1, 2, 3, 4, 5], 5)
+chunk([1, 2, 3, 4, 5], 5);
 // [[1, 2, 3, 4, 5]]
 ```
 
@@ -2861,30 +2863,30 @@ chunk([1, 2, 3, 4, 5], 5)
 
 ```js
 //Examples:
-document.myCookie = 'bfe=dev; max-age=1'
+document.myCookie = 'bfe=dev; max-age=1';
 // "bfe=dev; max-age=1"
 
-document.myCookie
+document.myCookie;
 // "bfe=dev"
 
 // after 1 second
-document.myCookie
+document.myCookie;
 // ""
 ```
 
 ```js
-;(function () {
-  let cookies = {}
+(function () {
+  let cookies = {};
 
   // Helper to parse cookie string
   function parseCookie(cookieStr) {
-    let parts = cookieStr.split(';')
-    let cookie = {}
+    let parts = cookieStr.split(';');
+    let cookie = {};
     parts.forEach((part) => {
-      let [key, value] = part.trim().split('=')
-      cookie[key] = value
-    })
-    return cookie
+      let [key, value] = part.trim().split('=');
+      cookie[key] = value;
+    });
+    return cookie;
   }
 
   // Custom property definition
@@ -2894,37 +2896,37 @@ document.myCookie
       return Object.entries(cookies)
         .filter(([key]) => key !== 'max-age')
         .map(([key, value]) => `${key}=${value}`)
-        .join('; ')
+        .join('; ');
     },
     set: function (value) {
-      let newCookie = parseCookie(value)
+      let newCookie = parseCookie(value);
 
       if (newCookie['max-age']) {
-        let maxAge = parseInt(newCookie['max-age'], 10)
+        let maxAge = parseInt(newCookie['max-age'], 10);
         setTimeout(() => {
           for (let key in newCookie) {
             if (cookies[key]) {
-              delete cookies[key]
+              delete cookies[key];
             }
           }
-        }, maxAge * 1000)
-        delete newCookie['max-age']
+        }, maxAge * 1000);
+        delete newCookie['max-age'];
       }
 
-      cookies = { ...cookies, ...newCookie }
+      cookies = { ...cookies, ...newCookie };
     },
-  })
-})()
+  });
+})();
 
 // Test
-document.myCookie = 'bfe=dev; max-age=1'
-console.log(document.myCookie) // "bfe=dev"
+document.myCookie = 'bfe=dev; max-age=1';
+console.log(document.myCookie); // "bfe=dev"
 setTimeout(() => {
   console.log(
     'deleted the cookie as per the max-age setting',
     document.myCookie
-  ) // ""
-}, 1100)
+  ); // ""
+}, 1100);
 ```
 
 ---
@@ -2932,12 +2934,12 @@ setTimeout(() => {
 **76.create a localStorage wrapper with expiration support**
 
 ```js
-myLocalStorage.setItem('bfe', 'dev', 1000)
-myLocalStorage.getItem('bfe')
+myLocalStorage.setItem('bfe', 'dev', 1000);
+myLocalStorage.getItem('bfe');
 // 'dev'
 
 //after 1 second
-myLocalStorage.getItem('bfe')
+myLocalStorage.getItem('bfe');
 // null
 ```
 
@@ -2951,20 +2953,20 @@ const callback = (error, data) => {
   } else {
     // handle the data
   }
-}
+};
 
 // Now think about async functions that takes above error-first callback as last argument.
 const func = (arg1, arg2, callback) => {
   // some async logic
   if (hasError) {
-    callback(someError)
+    callback(someError);
   } else {
-    callback(null, someData)
+    callback(null, someData);
   }
-}
+};
 
 // You see what needs to be done now. Please implement promisify() to make the code better.
-const promisedFunc = promisify(func)
+const promisedFunc = promisify(func);
 
 promisedFunc()
   .then((data) => {
@@ -2972,16 +2974,16 @@ promisedFunc()
   })
   .catch((error) => {
     // handles error
-  })
+  });
 ```
 
 **78. implement undefinedToNull() to return a copy that has all undefined replaced with null.**
 
 ```js
-undefinedToNull({ a: undefined, b: 'BFE.dev' })
+undefinedToNull({ a: undefined, b: 'BFE.dev' });
 // {a: null, b: 'BFE.dev'}
 
-undefinedToNull({ a: ['BFE.dev', undefined, 'bigfrontend.dev'] })
+undefinedToNull({ a: ['BFE.dev', undefined, 'bigfrontend.dev'] });
 // {a: ['BFE.dev', null, 'bigfrontend.dev']}
 ```
 
@@ -2989,31 +2991,31 @@ undefinedToNull({ a: ['BFE.dev', undefined, 'bigfrontend.dev'] })
 function undefinedToNull(obj) {
   // Base case: if the input is not an object, return it as-is.
   if (obj === null || typeof obj !== 'object') {
-    return obj
+    return obj;
   }
 
   // Handle arrays
   if (Array.isArray(obj)) {
-    return obj.map((item) => undefinedToNull(item))
+    return obj.map((item) => undefinedToNull(item));
   }
 
   // Handle objects
-  let result = {}
+  let result = {};
   for (let key in obj) {
     if (obj[key] === undefined) {
-      result[key] = null
+      result[key] = null;
     } else {
-      result[key] = undefinedToNull(obj[key])
+      result[key] = undefinedToNull(obj[key]);
     }
   }
-  return result
+  return result;
 }
 
 // Test cases
-console.log(undefinedToNull({ a: undefined, b: 'BFE.dev' }))
+console.log(undefinedToNull({ a: undefined, b: 'BFE.dev' }));
 // {a: null, b: 'BFE.dev'}
 
-console.log(undefinedToNull({ a: ['BFE.dev', undefined, 'bigfrontend.dev'] }))
+console.log(undefinedToNull({ a: ['BFE.dev', undefined, 'bigfrontend.dev'] }));
 // {a: ['BFE.dev', null, 'bigfrontend.dev']}
 ```
 
@@ -3107,20 +3109,20 @@ const fetchList = (since?: number) =>
 
 ```js
 const fetchListWithAmount = async (amount = 5) => {
-  const result = []
+  const result = [];
 
   while (result.length <= amount) {
-    const lastItem = result[result.length - 1]
+    const lastItem = result[result.length - 1];
     //If it's the first iteration and there's no lastItem, it fetches from the beginning.
-    const { items } = await fetchList(lastItem?.id)
-    result.push(...items)
+    const { items } = await fetchList(lastItem?.id);
+    result.push(...items);
     if (!items.length) {
-      break
+      break;
     }
   }
 
-  return result.slice(0, amount)
-}
+  return result.slice(0, amount);
+};
 ```
 
 ---
@@ -3138,7 +3140,7 @@ const arr = [
   { name: 'Prathi', age: 32, place: 'Pune' },
   { name: 'Raj', age: 26, place: 'Mumbai' },
   { name: 'Arun', age: 28, place: 'Delhi' },
-]
+];
 //Output: [26,28,32]
 ```
 
@@ -3147,26 +3149,26 @@ const arr = [
   { name: 'Prathi', age: 32, place: 'Pune' },
   { name: 'Raj', age: 26, place: 'Mumbai' },
   { name: 'Arun', age: 28, place: 'Delhi' },
-]
+];
 
 // Implement a basic bubble sort
 for (let i = 0; i < arr.length; i++) {
   for (let j = 0; j < arr.length - 1 - i; j++) {
     if (arr[j].age > arr[j + 1].age) {
-      const temp = arr[j]
-      arr[j] = arr[j + 1]
-      arr[j + 1] = temp
+      const temp = arr[j];
+      arr[j] = arr[j + 1];
+      arr[j + 1] = temp;
     }
   }
 }
 
 // Extract the ages to a separate array
-const sortedAges = []
+const sortedAges = [];
 for (let i = 0; i < arr.length; i++) {
-  sortedAges.push(arr[i].age)
+  sortedAges.push(arr[i].age);
 }
 
-console.log(sortedAges) // [26, 28, 32]
+console.log(sortedAges); // [26, 28, 32]
 ```
 
 ---
@@ -3176,19 +3178,62 @@ console.log(sortedAges) // [26, 28, 32]
 ```js
 // Input
 
-const arr = ['23-43-65', '98-12-100', '12-23-239']
+const arr = ['23-43-65', '98-12-100', '12-23-239'];
 //Output: [65,100,239]
 ```
 
 ```js
-const arr = ['23-43-65', '98-12-100', '12-23-239']
+const arr = ['23-43-65', '98-12-100', '12-23-239'];
 
 const result = arr.map((str) => {
-  console.log('str', str) //ex: 23-43-65 in string format
-  return Math.max(...str.split('-').map((num) => parseInt(num, 10)))
-})
+  console.log('str', str); //ex: 23-43-65 in string format
+  return Math.max(...str.split('-').map((num) => parseInt(num, 10)));
+});
 
-console.log(result) // [65, 100, 239]
+console.log(result); // [65, 100, 239]
 ```
 
 ---
+
+**84. Count the palindromes in a string**
+
+```js
+function isPalindrome(str) {
+  let left = 0;
+  let right = str.length - 1;
+  while (left < right) {
+    //if returns false then j iteration increases by 1
+    if (str[left] !== str[right]) {
+      return false;
+    }
+    //if the above IF condition fails then while condition will be continuously called
+    left++;
+    right--;
+  }
+  //at first iteration, it is 0<0 and it directly return true
+  return true;
+}
+
+function countPalindromes(s) {
+  let count = 0;
+  let palindromes = []; // Array to keep track of the palindromic substrings
+
+  for (let i = 0; i < s.length; i++) {
+    for (let j = i + 1; j <= s.length; j++) {
+      //starts with i=0, j=1
+      let subStr = s.substring(i, j);
+      if (isPalindrome(subStr)) {
+        //at first iteration, it directly returns true and pushes (ex: a is the first character will be pushed)
+        palindromes.push(subStr);
+        count++;
+      }
+    }
+  }
+
+  console.log('Palindromes:', palindromes); // Palindromes: (9) ['a', 'abccba', 'b', 'bccb', 'c', 'cc', 'c', 'b', 'a']
+  return count;
+}
+
+const testString = 'abccba';
+console.log('Total Palindromes:', countPalindromes(testString)); //Total Palindromes: 9
+```

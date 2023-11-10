@@ -10,6 +10,12 @@ findIndex(callbackFn, thisArg);
 
 <strong>Approach Taken:</strong>
 
+1. const findIndexArr = Object(this)
+2. const findIndexLength = Number(findIndexArr.length) || 0
+3. Initialize the let index = 0
+4. perform a loop using while (ex: while(index < findIndexLength))
+5. if(callbackFunctionParam.call(thisArg, findIndexArr[index], index, findIndexArr )) is true then return index
+6. outside the while loop return -1
 
 ```js
 if (!Array.prototype.customFindIndex) {

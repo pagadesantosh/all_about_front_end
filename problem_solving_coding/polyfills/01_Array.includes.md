@@ -1,6 +1,6 @@
 ### Array.prototype.includes
 
-**Definition**: Determines whether an array includes a certain value among its entries, returning true or false.
+**Definition**: Determines whether an array includes a certain value among its entries, returning true or false. If the user provided index is less than or equal to 0, the entire array will be searched(because of while loop runs from 0 to length of array).
 
 ```js
 //Syntax:
@@ -8,6 +8,17 @@ includes(searchElement, fromIndex);
 ```
 
 <strong>Approach Taken:</strong>
+
+First two lines are core logics
+
+1. const includesArr = Object(this) is your array
+2. includesArr[yourIndex] === searchElement return true
+3. Way1: use while loop to iterate using length of array and index (ex: while(index<lengthOfArr))
+4. inside while, check if the includes[iterationIndex] === searchElement (if yes return true)
+5. outside the while loop, return false (because none of the condition is matched inside while loop)
+6. extra conditions to check if array inclues NaN, this can be done with the help of isNaN(searchElement) && isNaN(includesArr[iterationIndex])
+7. if index is passed by the user, simply take that into consideration (ex: var index = indexProvided || 0)
+8. check if index is in negative condition (ex: const finalIndex = Math.max(index >=0 ? 0 : arrayLength - Math.abs(index), 0))
 
 ```javascript
 if (!Array.prototype.customIncludes) {

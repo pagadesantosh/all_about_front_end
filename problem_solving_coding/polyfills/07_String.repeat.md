@@ -9,6 +9,14 @@ repeat(count);
 
 <strong>Approach Taken:</strong>
 
+1. you have string that you pass (ex: this.valueOf())
+2. you know the count number which is passed as param
+3. now you check this count number is greater than 0 in the while loop
+4. condition 1: if count is odd number then result = result + pattern (pov: result is an empty string)
+5. Now half the count (ex: count = Math.floor(count / 2))
+6. after that condition you `again` check if the count is greater than 0, if it is yes then pattern = pattern + pattern (Ex: pattern is nothing but let pattern = this.valueOf()).
+7. outside the while loop, return result
+
 ```js
 String.prototype.customRepeat = function (count) {
   if (typeof count !== 'number' || count < 0 || count === Infinity) {

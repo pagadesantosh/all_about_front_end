@@ -9,7 +9,7 @@ startsWith(searchString, position);
 
 <strong>Approach Taken:</strong>
 
-- String prototype is equal to a function that accepts two arguments, first one is what you want to search and second arg is from which position you want to start ex: 0 or 1 or 10...
+- String.prototype is equal to a function that accepts two arguments, first one is what you want to search and second arg is from which position you want to start ex: 0 or 1 or 10...
 - if no position is passed, consider it as 0, else consider whatever is passed (ex: ternay operator)
 - this keyword points to the complete string and we can do .substring to this with pos, pos+ search.length and do triple equal check with the passed argument
 

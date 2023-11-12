@@ -1,7 +1,14 @@
 ## Array.prototype.every
 
-<strong>Approach Taken:</strong>
+**Definition**: whether all elements in the array pass the test implemented by the provided function. It returns a Boolean value.
 
+**Approach Taken**:
+
+1. Object(this) is array and so as its length (ex: var len = array.length)
+2. basic for loop with the help of arrayLength
+3. if condition has the following, if the iterationVariable (Ex: for(var i=0)) of the for loop is in the array && !callback.call(thisArg, arrayElement, iterationVariable, originalArrayItself) (ex: thisArg, arr[i], i, arr )
+4. So if both are true then return false else outside the for loop return true. (ex: check from negative point of view, if at least one element is not in array then return false).
+5. you can achieve this 4th point with the help of (!callback.call(thisArg, arr[i], i , arr))
 
 ```js
 if (!Array.prototype.customEvery) {

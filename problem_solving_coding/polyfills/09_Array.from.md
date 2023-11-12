@@ -1,8 +1,21 @@
 ## Array.from:
 
-#### Convert iterable objects or array-like objects into arrays.
+**Definition**: creates a `new, shallow-copied array instance` from an `iterable` or `array-like` object
+
+**Syntax**
+
+```js
+Array.from(arrayLike, mapFn, thisArg);
+```
 
 <strong>Approach Taken:</strong>
+
+1. we need write a separate logic for `iterators` like (Strings, Set, Map, Array)
+2. A separate logic for `Objects` (`or not iterables`)
+3. For iterators, `simply spread your inputArr`, if mapFn is provided then spreadArr.map(mapFn, thisArg) else spreadArr will be returned
+4. for non-iterator, `create a dummy arr with the length` (ex: Array(length))
+5. you can get length of inputArrayLike object with .length property (ex: Math.floor(inputArr.length))
+6. do a basic for loop and at the end we need that dummyArr to be mapped with the providedParamInputArray (ex: `dummyArr[eachIteration] = providedParamInputArr[i]`)
 
 ```js
 if (!Array.customFrom) {
@@ -15,7 +28,7 @@ if (!Array.customFrom) {
       throw new TypeError('The map function must be a function');
     }
 
-    // if conditon is true only for the iterables like Strings, Set, Map, Array (More examples are added in the separate code block)
+    // if condition is true only for the iterables like Strings, Set, Map, Array (More examples are added in the separate code block)
     if (typeof Symbol === 'function' && inputArr[Symbol.iterator]) {
       const arr = [...inputArr]; // this will simply convert into an array ex: Set[ArrayYouProvide] ===> [ArrayYouProvide]
       return mapFn ? arr.map(mapFn, thisArg) : arr; //if mapFn is provided as per the syntax, then map it otherwise as it is.
@@ -50,34 +63,15 @@ const set = new Set([1, 2, 3, 4, 5]);
 const setArray = Array.customFrom(set);
 
 console.log(setArray); // Should log [1, 2, 3, 4, 5]
-```
 
-```js
-// Example 1: Strings are iterable objects.
-const inputArr = 'Hello';
-const newArray = Array.customFrom(inputArr);
-console.log(newArray); // Logs ["H", "e", "l", "l", "o"]
-```
+// Example 3:
+console.log('foo', Array.customFrom('foo')); // ['f', 'o', 'o']
 
-```js
-// Example 2: Sets are also iterable
-const inputArr = new Set([1, 2, 3, 4, 5]);
-const newArray = Array.customFrom(inputArr);
-console.log(newArray); // Logs [1, 2, 3, 4, 5]
-```
-
-```js
-// Example 3: Maps are iterable too
-const inputArr = new Map([
-  ['one', 1],
-  ['two', 2],
+//Example 4
+const map = new Map([
+  [1, 2],
+  [2, 4],
+  [4, 8],
 ]);
-const newArray = Array.customFrom(inputArr);
-console.log(newArray); // Logs [["one", 1], ["two", 2]]
-```
-
-```js
-// Example 4: Array like object not a true iterable
-// Array-like objects have a length property and indexed elements, but they do not have the [Symbol.iterator] property, which true iterables like arrays, strings, maps, and sets have.
-const arrayLike = { 0: 'zero', 1: 'one', 2: 'two', length: 3 };
+console.log('foo', Array.customFrom(map)); // [[1, 2], [2, 4], [4, 8]]
 ```

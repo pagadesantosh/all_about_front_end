@@ -1419,7 +1419,7 @@ if (!String.prototype.customSplit) {
     const result = [];
     let startIndex = 0;
 
-    //separatorIndex logs the index of first comma in the string, ex: for 'Hello,World' it will log as 5
+    //separatorIndex logs the index of first comma/separator in the string, ex: for 'Hello,World' it will log as 5
     let separatorIndex = this.indexOf(separator);
 
     // While the separator is found in the string

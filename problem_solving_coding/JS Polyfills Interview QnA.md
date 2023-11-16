@@ -248,7 +248,7 @@ function createObject(proto) {
     throw new Error('Argument must be the object, or null');
   }
 
-//empty function
+  //empty function
   function F() {}
   //prototype chaining with proto as the value
   F.prototype = proto;
@@ -1774,7 +1774,7 @@ function greet(name, age, occupation) {
 }
 const person = { city: 'New York' };
 const boundGreet = greet.customBind(person, 'Alice', 30);
-boundGreet('Inner arguments'); // Output: Hello, my name is Alice and I am 30 years old. I live in New York.
+boundGreet('Inner arguments'); // Output: Hello, my name is Alice and I am 30 years old. These are Inner arguments and I live in New York.
 ```
 
 </details>
@@ -1794,21 +1794,18 @@ boundGreet('Inner arguments'); // Output: Hello, my name is Alice and I am 30 ye
 4. push the callback function into the result (ex: result.push(callback(three_params)))
 
 ```js
-function customMap(arr, callback) {
-  const result = [];
-
-  for (let i = 0; i < arr.length; i++) {
-    result.push(callback(arr[i], i, arr));
+Array.prototype.myMap = function (callbackFn) {
+  var arr = [];
+  for (var i = 0; i < this.length; i++) {
+    /* call the callback function for every value of this array and       push the returned value into our resulting array
+     */
+    arr.push(callbackFn(this[i], i, this));
   }
-  return result;
-}
-```
-
-```js
+  return arr;
+};
 const arr = [1, 2, 3, 4];
-const doubleNums = customMap(arr, (element, index, originalArray) => {
-  return element * 2;
-});
+const doubleNums = arr.myMap((item) => item * 2);
+console.log('doubleNums', doubleNums);
 ```
 
 </details>
@@ -1828,23 +1825,20 @@ const doubleNums = customMap(arr, (element, index, originalArray) => {
 4. push the element into the result array only if the callback(three_params) is true (ex: result.push(callback(three_params)))
 
 ```js
-function customFilter(arr, callback) {
-  const result = [];
-
-  for (let i = 0; i < arr.length; i++) {
-    if (callback(arr[i], i, arr)) {
-      result.push(arr[i]);
+Array.prototype.myFilter = function (callbackFn) {
+  var arr = [];
+  for (var i = 0; i < this.length; i++) {
+    if (callbackFn.call(this, this[i], i, this)) {
+      arr.push(this[i]);
     }
   }
-  return result;
-}
-```
+  return arr;
+};
 
-```js
-const arr = [1, 2, 3, 4];
-const evenNums = customFilter(arr, (element, index, originalArray) => {
-  return element % 2 === 0;
-});
+const arr = [2, 3, 4, 5, 6];
+
+const filteredArr = arr.myFilter((item) => item > 5);
+console.log('filteredArr', filteredArr);
 ```
 
 </details>

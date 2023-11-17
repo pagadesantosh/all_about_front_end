@@ -1,25 +1,3 @@
-1. **Reverse a string** Use `split('')`, `reverse()`, and `join('')`.
-
-<details>
-<summary>View Answer</summary>
-
-```js
-function reverseString(str) {
-  return str.split('').reverse().join('');
-}
-```
-
-```js
-// Example usage:
-let original = 'Hello, World!';
-let reversed = reverseString(original);
-console.log(reversed); // Outputs: "!dlroW ,olleH"
-```
-
-</details>
-
----
-
 2. **Check if a string has all unique characters using only JavaScript methods** Use a set or `indexOf()` and `lastIndexOf()` comparison.
 
 <details>
@@ -105,7 +83,7 @@ console.log(areAnagrams('hello', 'world')); // false
 4. 2nd for loop will iterate and see if this each and every character is already in the stored object or not
 5. Ex: if 'w' character is part of str2 but not in the already stored object then directly return false.
 6. if the above condition is false then keep on decrementing the char stored length (ex: 's': 1 to 's': 0)
-7. atlast return true saying that passed args are anagrams.
+7. at last return true saying that passed args are anagrams.
 
 ```js
 function areAnagrams(str1, str2) {
@@ -204,7 +182,7 @@ console.log(
 1. split your numbers
 2. match your + and - operators
 3. take first number as default
-4. if conditon for + and else if condtion for -
+4. if condition for + and else if condition for -
 5. if true then result = result + successive number
 6. else if true then result = result - successive number
 
@@ -275,7 +253,7 @@ console.log(isValidJSON('{"name": "John", "age": }')); // false
 2. Write three conditions, one for handling objects, arrays, (null and not object)
 3. If it is not object (ex: a: 6), then return as it is (i.e the obj passed)
 4. If it is array, map with each and every item and pass that item into the function (Which will satisfy one of the three conditions)
-5. If it is an object, use a for loop to iterate inside the object and for each property of the source object (obj), it calls the deepClone function recursively
+5. If it is an object, use a `for-in` loop to iterate inside the object and for each property of the source object (obj), it calls the deepClone function recursively
 
 ```js
 function deepClone(obj) {
@@ -326,7 +304,7 @@ console.log(clonedObj.b === obj.b); // false, indicating a deep clone
 **Throttling**
 
 - A function doesn't get called more often than a specified interval, even it's invoked multiple times.
-- Ex: If you throttle a function to be called at most once every 300 ms, it will ignore any additional calls that happen before the 300 ms have passed.
+- ex: execute this function at most once every 100 milliseconds
 
 ```js
 const throttle = (func, limit) => {
@@ -342,27 +320,28 @@ const throttle = (func, limit) => {
 
 // Usage:
 const throttledFunction = throttle(() => console.log('Throttled!'), 300);
-window.addEventListener('scroll', throttledFunction);
 ```
 
 **Debouncing**
 
 - A function doesn't get called until after a specified amount of time has passed since it was last invoked.
 
-- Ex: the function won't be called unless 300 ms have passed since the last time it was invoked.
+- Ex: execute this function only if 100 milliseconds have passed without it being called
 
 ```js
-const debounce = (func, delay) => {
-  let inDebounce;
-  return (...args) => {
-    clearTimeout(inDebounce);
-    inDebounce = setTimeout(() => func(...args), delay);
+const debounceFunc = (func, delay) => {
+  let timer;
+  return function (...args) {
+    const context = this;
+    clearTimeOut(timer);
+    timer = setTimeOut(() => {
+      func.apply(context, args);
+    }, delay);
   };
 };
 
 // Usage:
 const debouncedFunction = debounce(() => console.log('Debounced!'), 300);
-window.addEventListener('resize', debouncedFunction);
 ```
 
 </details>

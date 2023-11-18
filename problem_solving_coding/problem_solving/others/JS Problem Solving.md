@@ -520,7 +520,7 @@ console.log(findLargestElement(arr)); // Output: 9
 2. if obj1 or obj2 are null or not an object return false
 3. We need keys of the object and object always changes due to recursion
    ex: Object.keys(obj1) returns an array
-4. now do for of loop of keys array
+4. now do `for of` loop of keys array
 5. Each and every key will be passed inside the recursive function ex: obj1(key)
 
 ```js
@@ -552,8 +552,9 @@ function deepEqual(a, b) {
   return true;
 }
 
-let obj1 = { a: 1, b: [1, 2, 3], c: { d: 4, e: 5 } };
-let obj2 = { a: 1, b: [1, 2, 3], c: { d: 4, e: 6 } };
+const obj1 = { a: 1, b: [1, 2, 3], c: { d: 4, e: { f: 5, g: 6, h: 7 } } };
+const obj2 = { a: 1, b: [1, 2, 3], c: { d: 4, e: { f: 5, g: 6, h: 9 } } };
+
 console.log(deepEqual(obj1, obj2));
 ```
 
@@ -644,54 +645,87 @@ emitter.emit('userJoined', 'Alice', 'Blice', 'Clice');
 
 ```js
 // Callback code
-const request = require('request');
+var students = [
+  {
+    id: 101,
+    name: 'Geek A',
+  },
+  {
+    id: 102,
+    name: 'Geek B',
+  },
+  {
+    id: 103,
+    name: 'Geek C',
+  },
+  {
+    id: 104,
+    name: 'Geek D',
+  },
+];
 
-function fetchUserData(userId, callback) {
-  const url = `https://api.example.com/user/${userId}`;
-
-  request(url, (error, response, body) => {
-    if (error) {
-      callback(error, null);
-    } else if (response.statusCode !== 200) {
-      callback(new Error(`Received status code ${response.statusCode}`), null);
-    } else {
-      callback(null, JSON.parse(body));
-    }
-  });
-}
-
-// Usage:
-fetchUserData(123, (error, data) => {
-  if (error) {
-    console.error(error);
+const callback = (err, student) => {
+  if (err) {
+    console.log(`Student with given id ${err} not found`);
   } else {
-    console.log(data);
+    console.log('Here is the student: ' + student.name);
   }
-});
+};
+
+// Passing studentid and callback function as parameter
+const findName = (studentId, callbackFunction) => {
+  let student = students.find(function (studentValue) {
+    return studentValue.id == studentId;
+  });
+
+  // Student not found
+  if (typeof student === 'undefined') {
+    return callbackFunction(studentId, false);
+  } else {
+    // Student found
+    return callbackFunction(null, student);
+  }
+};
+
+findName(101, callback);
 ```
 
 ```js
 // Promise Conversion
-const request = require('request');
+var students = [
+  {
+    id: 101,
+    name: 'Geek A',
+  },
+  {
+    id: 102,
+    name: 'Geek B',
+  },
+  {
+    id: 103,
+    name: 'Geek C',
+  },
+  {
+    id: 104,
+    name: 'Geek D',
+  },
+];
 
-function fetchUserData(userId) {
-  return new Promise((resolve, reject) => {
-    const url = `https://api.example.com/user/${userId}`;
-
-    request(url, (error, response, body) => {
-      if (error) {
-        reject(error);
-      } else if (response.statusCode !== 200) {
-        reject(new Error(`Received status code ${response.statusCode}`));
-      } else {
-        resolve(JSON.parse(body));
-      }
+const findName = (studentId) => {
+  return new Promise(function (resolve, reject) {
+    let student = students.find(function (studentValue) {
+      return studentValue.id == studentId;
     });
+    if (student) {
+      resolve(student);
+    } else {
+      reject(id);
+    }
   });
-}
+};
 
 // Usage:
-fetchUserData(123)
+findName(101)
   .then((data) => {
     console.log(data);
   })
@@ -781,12 +815,13 @@ console.log(sumArray([1, 2, [3, [4], [5, 6]], [7]])); //28
 <strong>Approach Taken:</strong>
 
 1. write a fibonacci function which will be our example for memoization
-2. fiboannci using recursion is simple, one condition checks if n<=1 then return n
+2. fibonacci using recursion is simple, one condition checks if n<=1 then return n
 3. in other scenarios it would return fib(n-1)+fib(n-2)
 4. Memoization function requires cache object and a key
 5. generate a key based on the number (ex: 12)
 6. if cache[key]!==undefined then cache[key]= result and return the result
-7. result is fib function which takes args
+7. result is fib function which takes args (ex: const result = func(...args))
+8. cache[key] = result and return result
 
 ```js
 const memoize = (func) => {
@@ -857,6 +892,7 @@ console.log(isEmpty(obj2)); // false
 
 1. whatever the url you are getting as a argument, pass that inside new URL(passed_argument)
 2. once you log the above stored variable you would see different fields in the object. (ex: below image)
+
    ![image](https://github.com/saiteja-gatadi1996/notes/assets/42731246/25b1c75c-ab75-4efb-bd33-af45edce27b8)
 
 3. take the `search` field using `.search` notation and pass that inside URLSearchParams and store this in a another variable called params or anything
@@ -964,7 +1000,7 @@ console.log(flattenArray(nestedArray)); // [1, 2, 3, 4, 5, 6, 7, 8]
 <strong>Approach Taken:</strong>
 
 - Using regex pattern we can achieve this
-- backslash (/) says that it is starting or ending your code
+- forwardSlash (/) says that it is starting or ending your code
 - \b matches the position where a new word starts
 - \w matches the first word character immediately after the word boundary
 - g is a global flag, meaning the above pattern will be searched for throughout the entire string (not just the first occurrence).

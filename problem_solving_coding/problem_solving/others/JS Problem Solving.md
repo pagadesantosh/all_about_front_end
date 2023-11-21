@@ -1531,7 +1531,7 @@ console.log(transposedMatrix);
 function curry(fn) {
   //fn is the sum function which has 3 arguments, so fn.length = 3
   return function curried(...args) {
-    //args are the curriedSum provided arguments, in the first example it is 1, so it fails if conditon
+    //args are the curriedSum provided arguments, in the first example it is 1, so it fails if condition
     if (args.length >= fn.length) {
       // invokes the function sum with those arguments using the apply method and returns the result
       // below will be called at final, ex: else condition does the job to concatenate the provided args with all the left over arguments until it matches with the sum function in our case
@@ -1853,7 +1853,7 @@ console.log(largestFactorial); // Output: 40320 (8!)
 - now do another for in loop (for keys) on the object that you have stored and check that char in that object is greater than the maxCount (by default it is zero)
 - if it is greater then maxCount will be the that value
 - and maxChar is that char which you are traversing
-- atlast retur the object
+- at last return the object
 
 ```js
 function getMaxOccurringCharWithCount(str) {

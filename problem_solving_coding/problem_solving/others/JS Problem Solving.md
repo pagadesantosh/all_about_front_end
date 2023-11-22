@@ -2022,8 +2022,8 @@ _You can achieve this by following these steps:_
 
 1. Put a for loop for the given input string to traverses each and every string Ex: `a[i]`
 2. Put another for loop for `result` string to check if `inputString[i] === result[j]`
-3. If yes, maintain a state to print `isDuplicate = true` and break
-4. Outside to 2nd for loop, inside the first for loop (write the if condtion to check isDuplicate is true or false)
+3. If yes, maintain a variable to print `isDuplicate = true` and break
+4. Outside to 2nd for loop, inside the first for loop (write the if condition to check isDuplicate is true or false)
 5. If it is not duplicate then result will be added with the inputString[i]
 
 Here's the code for the above logic:

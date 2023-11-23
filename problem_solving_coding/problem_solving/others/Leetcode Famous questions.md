@@ -2,20 +2,20 @@
 
 ```js
 // Example 1
-Input: (nums = [2, 7, 11, 15]), (target = 9)
-Output: [0, 1]
+Input: (nums = [2, 7, 11, 15]), (target = 9);
+Output: [0, 1];
 ```
 
 ```js
 // Example 2
-Input: (nums = [3, 2, 4]), (target = 6)
-Output: [1, 2]
+Input: (nums = [3, 2, 4]), (target = 6);
+Output: [1, 2];
 ```
 
 ```js
 // Example 3
-Input: (nums = [3, 3]), (target = 6)
-Output: [0, 1]
+Input: (nums = [3, 3]), (target = 6);
+Output: [0, 1];
 ```
 
 <details>
@@ -52,6 +52,27 @@ Output: 2
 Example 1:
 Input: nums = [0,1,0,3,12]
 Output: [1,3,12,0,0]
+```
+
+```js
+function moveZeroes(nums) {
+  let lastNonZeroFoundAt = 0;
+
+  // Move all the non-zero elements to the beginning of the array
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== 0) {
+      let temp = nums[i];
+      nums[i] = nums[lastNonZeroFoundAt];
+      nums[lastNonZeroFoundAt] = temp;
+      lastNonZeroFoundAt++;
+    }
+  }
+}
+
+// Example usage
+const nums = [1, 0, 0, 2, 3];
+moveZeroes(nums);
+console.log(nums); // [1, 2, 3, 0, 0]
 ```
 
 ---
@@ -123,7 +144,7 @@ const data = {
       },
     },
   },
-}
+};
 ```
 
 <details>
@@ -132,23 +153,23 @@ const data = {
 ```js
 const playerCount = (data) => {
   if (data === null) {
-    return {}
+    return {};
   }
 
-  let countPlayer = {}
+  let countPlayer = {};
   for (let player of data.name) {
-    countPlayer[player] = (countPlayer[player] || 0) + 1
+    countPlayer[player] = (countPlayer[player] || 0) + 1;
   }
-  const nextPlayerCount = playerCount(data.next)
+  const nextPlayerCount = playerCount(data.next);
 
   for (let key in nextPlayerCount) {
-    countPlayer[key] = (countPlayer[key] || 0) + nextPlayerCount[key]
+    countPlayer[key] = (countPlayer[key] || 0) + nextPlayerCount[key];
   }
-  return countPlayer
-}
+  return countPlayer;
+};
 
-const countPlayer = playerCount(data)
-console.log(countPlayer) // {p1: 2, p4: 3, p3: 3, p2: 2: p5: 2}
+const countPlayer = playerCount(data);
+console.log(countPlayer); // {p1: 2, p4: 3, p3: 3, p2: 2: p5: 2}
 ```
 
 </details>

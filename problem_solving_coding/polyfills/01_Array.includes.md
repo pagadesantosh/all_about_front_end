@@ -28,35 +28,40 @@ if (!Array.prototype.customIncludes) {
     }
 
     // ex: [1, 2, 3]
-    var o = Object(this);
+    var inputArr = Object(this);
 
     //ex: 3 is the length of the array in Number format
-    var len = Number(o.length) || 0;
+    var inputArrLength = Number(inputArr.length) || 0;
 
     //if array length is 0
-    if (len === 0) {
+    if (inputArrLength === 0) {
       return false;
     }
 
     // this pipe is bitwise OR, handles lot of edge scenarios, provided few examples at the bottom
-    var n = fromIndex | 0;
+    // var newIndex = fromIndex | 0;
+
+    var newIndex = Math.floor(fromIndex) || 0;
 
     //if index is -100, due to Math.max we will consider it to 0
-    var k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+    var finalIndex = Math.max(
+      newIndex >= 0 ? newIndex : inputArrLength - Math.abs(newIndex),
+      0
+    );
 
     // ex: 0 < 3
-    while (k < len) {
+    while (finalIndex < inputArrLength) {
       if (
         typeof searchElement === 'number' &&
         isNaN(searchElement) &&
-        isNaN(o[k])
+        isNaN(inputArr[finalIndex])
       ) {
         return true; // Both are NaN
       }
-      if (o[k] === searchElement) {
+      if (inputArr[finalIndex] === searchElement) {
         return true; // Direct comparison
       }
-      k++; // Important: Increment the index to avoid an infinite loop
+      finalIndex++; // Important: Increment the index to avoid an infinite loop
     }
 
     return false;
@@ -81,10 +86,22 @@ console.log(arr.customIncludes('c', -100)); // true
 console.log(arr.customIncludes('a', -2)); // false
 console.log('----------------------------------------');
 console.log([1, , 3].customIncludes(undefined)); // true
+console.log('----------------------------------------');
+const arrayLike = {
+  length: 3,
+  0: 2,
+  1: 3,
+  2: 4,
+  3: 1, // ignored by includes() since length is 3
+};
+console.log(Array.prototype.customIncludes.call(arrayLike, 2));
+// true
+console.log(Array.prototype.customIncludes.call(arrayLike, 1));
+// false
 ```
 
 ```js
-//bitwise OR examples
+//bitwise OR examples, it converts nonIntegers, undefined to Integers
 4.7 | 0; // Result: 4
 ```
 

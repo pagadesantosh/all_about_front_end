@@ -44,40 +44,7 @@ Output: 2
 
 ---
 
-**3. Move Zeroes - move all 0's to the end of it while maintaining the relative order of the non-zero elements.**
-
-<b>Note:</b> you must do this in-place without making a copy of the array.
-
-```js
-Example 1:
-Input: nums = [0,1,0,3,12]
-Output: [1,3,12,0,0]
-```
-
-```js
-function moveZeroes(nums) {
-  let lastNonZeroFoundAt = 0;
-
-  // Move all the non-zero elements to the beginning of the array
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] !== 0) {
-      let temp = nums[i];
-      nums[i] = nums[lastNonZeroFoundAt];
-      nums[lastNonZeroFoundAt] = temp;
-      lastNonZeroFoundAt++;
-    }
-  }
-}
-
-// Example usage
-const nums = [1, 0, 0, 2, 3];
-moveZeroes(nums);
-console.log(nums); // [1, 2, 3, 0, 0]
-```
-
----
-
-**4. Max Consecutive Ones - return the max number of consecutive 1's in the array**
+**3. Max Consecutive Ones - return the max number of consecutive 1's in the array**
 
 ```js
 Example 1:
@@ -94,89 +61,7 @@ Output: 2
 
 ---
 
-**5. Missing Number in an Array**
-
-<details>
-<summary>View Answer</summary>
-
-```js
-let missingNumber = function (nums) {
-  let sum = 0
-  for (let i = 0; i < nums.length; i++) {
-    sum += nums[i]
-  }
-  return (nums.length * (nums.length + 1)) / 2 - sum
-}
-
-// One Line Solution:
-let missingNumber = (nums) =>
-(nums.length \* (nums.length + 1)) / 2 - nums.reduce((acc, num) => num + acc)
-
-console.log(missingNumber([3, 0, 1])) // 2
-console.log(missingNumber([9, 6, 4, 2, 3, 5, 7, 0, 1])) // 8
-
-```
-
-</details>
-
----
-
-**6 Find count of all players**
-
-```js
-const data = {
-  id: 1,
-  name: ['P1', 'P4'],
-  next: {
-    id: 2,
-    name: ['P3'],
-    next: {
-      id: 3,
-      name: ['P3', 'P4', 'P5'],
-      next: {
-        id: 4,
-        name: ['P1', 'P2', 'P4'],
-        next: {
-          id: 5,
-          name: ['P2', 'P3', 'P5'],
-          next: null,
-        },
-      },
-    },
-  },
-};
-```
-
-<details>
-<summary>View Answer</summary>
-
-```js
-const playerCount = (data) => {
-  if (data === null) {
-    return {};
-  }
-
-  let countPlayer = {};
-  for (let player of data.name) {
-    countPlayer[player] = (countPlayer[player] || 0) + 1;
-  }
-  const nextPlayerCount = playerCount(data.next);
-
-  for (let key in nextPlayerCount) {
-    countPlayer[key] = (countPlayer[key] || 0) + nextPlayerCount[key];
-  }
-  return countPlayer;
-};
-
-const countPlayer = playerCount(data);
-console.log(countPlayer); // {p1: 2, p4: 3, p3: 3, p2: 2: p5: 2}
-```
-
-</details>
-
----
-
-**7. Number of Good Pairs**
+**4. Number of Good Pairs**
 
 ```js
 Example 1:
@@ -196,7 +81,7 @@ Output: 0
 
 ---
 
-**8. Count the Number of Consistent Strings**
+**5. Count the Number of Consistent Strings**
 
 ```js
 Example 1:
@@ -218,7 +103,7 @@ Explanation: Strings "cc", "acd", "ac", and "d" are consistent.
 
 ---
 
-**9 Unique Number of Occurrences**
+**6 Unique Number of Occurrences**
 
 ```js
 Example 1:
@@ -237,7 +122,7 @@ Output: true
 
 ---
 
-**10. Longest Substring Without Repeating Characters**
+**7. Longest Substring Without Repeating Characters**
 
 ```js
 Example 1:
@@ -260,7 +145,7 @@ Notice that the answer must be a substring, "pwke" is a subsequence and not a su
 
 ---
 
-**11. Find the Index of the First Occurrence in a String**
+**8. Find the Index of the First Occurrence in a String**
 
 ```js
 Example 1:
@@ -277,7 +162,7 @@ Explanation: "leeto" did not occur in "leetcode", so we return -1.
 
 ---
 
-**12. Longest Consecutive Sequence- Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.**
+**9. Longest Consecutive Sequence- Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.**
 
 ```js
 Example 1:
@@ -293,7 +178,7 @@ Explanation: The longest consecutive elements sequence is [0, 1, 2, 3, 4, 5, 6, 
 
 ---
 
-**13.First Unique Character in a String - Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.**
+**10.First Unique Character in a String - Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.**
 
 ```js
 Example 1:
@@ -311,7 +196,7 @@ Output: -1
 
 ---
 
-**14.Find Common Characters - Given a string array words, return an array of all characters that show up in all strings within the words (including duplicates). You may return the answer in any order.**
+**11.Find Common Characters - Given a string array words, return an array of all characters that show up in all strings within the words (including duplicates). You may return the answer in any order.**
 
 ```js
 Example 1:
@@ -325,7 +210,7 @@ Output: ["c","o"]
 
 ---
 
-**15. Sort Characters By Frequency - sort it in decreasing order based on the frequency of the characters. The frequency of a character is the number of times it appears in the string. Return the sorted string. If there are multiple answers, return any of them.**
+**12. Sort Characters By Frequency - sort it in decreasing order based on the frequency of the characters. The frequency of a character is the number of times it appears in the string. Return the sorted string. If there are multiple answers, return any of them.**
 
 ```js
 Example 1:
@@ -349,7 +234,7 @@ Note that 'A' and 'a' are treated as two different characters.
 
 ---
 
-**16. Reverse Vowels of a String**
+**13. Reverse Vowels of a String**
 
 ```js
 Example 1:

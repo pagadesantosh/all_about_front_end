@@ -11,34 +11,32 @@ Object.create(proto, propertiesObject);
 
 ```js
 function createObject(proto) {
-  if (proto === null || typeof proto !== 'object') {
-    throw new Error('Argument must be the object, or null');
-  }
-
-  //empty function
-  function F() {}
-  //prototype chaining with proto as the value
-  F.prototype = proto;
-  //return the new Function
-  return new F();
+  Object.prototype.customCreate = function (proto) {
+    if (proto === null || typeof proto !== 'object') {
+      throw new Error('Argument must be the object, or null');
+    }
+    //empty function
+    function F() {}
+    //prototype chaining with proto as the value
+    F.prototype = proto;
+    //return the new Function
+    return new F();
+  };
 }
 
-const person = {
-  key: 'value',
+const obj1 = {
+  key: 1,
   sayHello() {
-    console.log('Hello!');
+    return 'Hello';
   },
 };
 
-const john = createObject(person);
-john.sayHello(); // Hello
-console.log('person object', person); // person object {key: 'value', sayHello: ƒ}
-console.log('john object', john); // john object F {}
-console.log('john object', john.key); // john object value
-// it does create an new object with prototype property
-const newObj = Object.create(person);
-console.log('newObj object', newObj); // newObj object {}
-console.log('Are they equal', newObj === john); // false
-console.log('Are they equal', person === john); // false
-console.log('Are they equal', john === john); // true
+const newObj1 = Object.customCreate(obj1);
+console.log('newObj1', newObj1);
+console.log('newObj1 Key', newObj1.key);
+console.log('newObj1 sayHello', newObj1.sayHello());
 ```
+
+![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/c47e3ec6-5e28-4e7b-a72d-46f725f19064)
+
+![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/3d79a21f-39fd-43d3-871a-a1ecd9e3a5c3)

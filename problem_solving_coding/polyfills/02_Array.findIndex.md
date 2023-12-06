@@ -19,29 +19,22 @@ findIndex(callbackFn, thisArg);
 
 ```js
 if (!Array.prototype.customFindIndex) {
-  Array.prototype.customFindIndex = function (callback, thisArg) {
+  Array.prototype.customFindIndex = function (callbackFunc, thisArg) {
     if (this == null) {
       throw new TypeError('"this" is null or not defined');
     }
 
-    if (typeof callback !== 'function') {
+    if (typeof callbackFunc !== 'function') {
       throw new TypeError('callback must be a function');
     }
-
-    const o = Object(this);
-    const len = Number(o.length) || 0;
-
-    let k = 0;
-    while (k < len) {
-      //searched element value at particular index ex: arr[0] will be 5
-      const kValue = o[k];
+    var inputArr = Object(this);
+    var inputArrLen = Number(o.length) || 0;
+    for (let i = 0; i < inputArrLen; i++) {
       //thisArg, searchElement, index, array
-      if (callback.call(thisArg, kValue, k, o)) {
-        return k;
+      if (callbackFunc.call(thisArg, inputArr[i], i, inputArr)) {
+        return i;
       }
-      k++;
     }
-
     return -1;
   };
 }
@@ -80,4 +73,9 @@ const library = [
 ];
 const index3 = library.customFindIndex((book) => book.title === '1984');
 console.log(index3); // Output: 1
+
+//Example 4
+const words3 = ['apple', 'banana', 'cherry', 'date'];
+const index4 = words3.customFindIndex((word) => word === 'cherry'); //2
+console.log(index4); // Output: 2 (because "cherry" is at its index is 2)
 ```

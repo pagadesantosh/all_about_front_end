@@ -6,19 +6,31 @@
 - Ex: If you throttle a function to be called at most once every 300 ms, it will ignore any additional calls that happen before the 300 ms have passed.
 
 ```js
-const throttle = (func, limit) => {
-  let inThrottle;
-  return (...args) => {
-    if (!inThrottle) {
-      func(...args);
-      inThrottle = true;
-      setTimeout(() => (inThrottle = false), limit);
+function updateLayout() {
+  console.log('Updating layout...');
+}
+
+function throttle(func, limit) {
+  //maintain a variable for mutation (ex: isThrottle = false)
+  let isThrottle = false;
+  // return another function with args
+  return function (...args) {
+    // check the variable is not true, if yes then mutate the variable to true,
+    if (!isThrottle) {
+      isThrottle = true;
+      func.apply(this, args);
+      setTimeout(() => {
+        isThrottle = false;
+      }, limit);
     }
   };
-};
+}
 
-// Usage:
-const throttledFunction = throttle(() => console.log('Throttled!'), 300);
+let isThrottled = throttle(updateLayout, 100);
+
+window.addEventListener('resize', () => {
+  isThrottled();
+});
 ```
 
 **Debouncing**
@@ -28,17 +40,25 @@ const throttledFunction = throttle(() => console.log('Throttled!'), 300);
 - Ex: execute this function only if 100 milliseconds have passed without it being called
 
 ```js
-const debounceFunc = (func, delay) => {
+function searchQuery(query) {
+  console.log(`Searching for: ${query}`);
+}
+
+function debounce(func, delay) {
+  //maintain a variable (ex: timer)
   let timer;
+
+  //return another function with args
   return function (...args) {
-    const context = this;
-    clearTimeOut(timer);
-    timer = setTimeOut(() => {
-      func.apply(context, args);
+    clearTimeout(timer);
+    //mutate that variable
+    timer = setTimeout(() => {
+      func.apply(this, args);
     }, delay);
   };
-};
+}
 
-// Usage:
-const debouncedFunction = debounce(() => console.log('Debounced!'), 300);
+const debouncedSearch = debounce(searchQuery, 100);
+let inputState = 'Hello';
+debouncedSearch(inputState);
 ```

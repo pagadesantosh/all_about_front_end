@@ -79,7 +79,7 @@ Attributes are placed directly after the name of a tag, inside the two angled br
 HTML links are specified with the < a > tag. The link address is specified in the href attribute:
 
 ```js
-<a href="https://www.educative.io">This is a link</a>
+<a href='https://www.educative.io'>This is a link</a>
 ```
 
 HTML images also have width and height attributes, which specify the width and height of the image respectively:
@@ -141,7 +141,7 @@ The following is the general syntax for headings in HTML:
 The HTML anchor tag < a > defines a hyperlink that links one page to another page. The href attribute is the most important attribute of the HTML anchor tag that determines the link’s destination. Search engines use the anchor tag to decide the subject matter of the destination URL.
 
 ```js
-<a href="..........."> Link Text </a>
+<a href='...........'> Link Text </a>
 ```
 
 ---
@@ -366,3 +366,165 @@ iframe introduce security risks. When an iframe is added to a page, the website 
 - Performance and intergration
 - Device access
 - Styling
+
+---
+
+#### How do you serve a page with content in multiple languages?
+
+- This is one of the aspects of internationalization (i18n)
+- When an HTTP request is made to a server, the requesting user agent usually sends information about language preferences, such as in the `Accept-Language` header.
+- The server can then use this information to return a version of the document in the appropriate language is such an alternative is available.
+- The returned HTML document should also declare the `lang` attribute in the `<html>` tag such as `<html lang="en"...</html/>`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Multilingual Page</title>
+  </head>
+  <body></body>
+</html>
+
+To let a search engine know that the same content is available in different
+languages `<link />` tags with the `rel=alternate` and `hreflang="de"`
+attributes should be used Eg:
+<link href="alternate" hreflang="de" href="http://de.example.com/page.html" />
+```
+
+---
+
+#### What kind of things must you be wary of when designing or developing for multilingual sites?
+
+##### Search Engine Optimization:
+
+- Use the `lang` attribute on the `<html>` tag
+- Include the locale in the URL (eg: en_US, zh_CN etc)
+- Webpages should use below to tell search engines that there is another page at the specified `href` with the same content but for another language/locale
+
+```html
+link rel="alternate" hreflang="other_locale" href="url_of_locale"
+```
+
+##### Locale vs Language:
+
+- Locale settings control how numbers, dates, and times display for your region
+- Languages have different flavors in different countries, so it's important to differentiate languages for the target country
+
+```html
+en: en-US (American English), en-GB (British English) zh: zh-CN (Chinese
+(Simplified)), zh,TW (Chinese (Traditional))
+```
+
+##### Predict locale but don't restrict:
+
+- Servers can determine the locale/language of visitors via a combination of HTTP `Accept-language` headers and IP's.
+- With these visitors can automatically select the best locale for the visitor.
+
+##### Consider differences in the length of the text in different languages:
+
+- Some content can be longer when written in another language, So be wary of layout.
+
+##### Language reading direction:
+
+- Languages like English and French are written from left-to-right, top-to-bottom.
+- However some languages, such as Hebrew & Arabic, are written from right-to-left. This can affect the layout of your site, and the placement of elements on the page.
+
+##### Do not concatenate translated strings
+
+- The date today + date, it will break in languages with different word order.
+- Use a template string with parameters substitution
+
+##### Formatting dates and currencies
+
+- Calendar dates are sometimes presented in different ways.
+- Eg: May 31, 2023 in US, 31 May 2023 in Europe
+
+##### Do not put text in images
+
+- Putting text in images (e.g. png, gif, jpg etc.) is not a scalable approach.
+- However to support image text translation, there needs to be a separate image created for each language which is not scalable workflow for designers.
+
+---
+
+#### Describe the difference between script, script async and script defer.
+
+- Scripts tags are used to include Javascript on a web page.
+- The async and defer attributes are used to change how/when the loading and execution of the script happens
+
+i) **Plain Script tag**: When these are encountered, `HTML parsing is blocked`, `the script is fetched and executed immediately`. HTML parsing resumes after the script is executed.
+
+ii) **async Script tag**: The script will be fetched in parallel to HTML parsing and executed as soon as it is available (before HTML parsing completes), and it will not necessarily be executed in order in which it appears in the HTML document.
+
+- Use async when the script is independent of any other scripts on the page (Ex: analytics)
+
+i) **Plain Script tag**: The script will be fetched in parallel to HTML parsing and executed when the document has been fully parsed, but before firing `DOMContentLoaded`.
+
+- If there are multiple of them, each script is executed in the order they appeared in the HTML document.
+- If a script relies on the fully parsed DOM, the `defer` attribute will be useful in ensuring that the HTML is fully parsed before executing.
+
+---
+
+#### What is progressive rendering?
+
+- Technique used to improve the performance of a webpage (perceived load time), to render content for display as quickly as possible.
+
+**Lazy Loading of Images**: Images on the page are not loaded all at once. The image is only loaded when the user scroll.
+
+```js
+<img loading='lazy'>
+```
+
+- Is a modern way to instruct the browser to defer loading of images that are outside of the screen until the user scroll near them.
+- Use JS, to watch the scroll position and load the image when the image is about to come on screen (by comparing the coordinates of the image with the scroll position)
+
+**Prioritizing visible content**
+
+- Include only the minimum CSS/content/scripts necessary for the amount of page that would be rendered in the users browser first to display as quickly as possible,
+- You can then use deferred scripts or listen for the `DOMContentLoaded/load` event to load in other resources and content
+
+---
+
+#### Why you would use a srcset attribute in an image tag? Explain the process the browser uses when evaluating the content of this attribute.
+
+- When you want to serve different images to users depending on their device display width.
+- Below example tells the browser to display the small, medium or large .jpg depending on client's resolution.
+- The first value is the image name and the second line is the width of the image in pixels.
+  Ex:
+
+```js
+<img src="small.jpg 500w, medium.jpg 1000w, large.jpg 2000w" alt="">
+```
+
+- `srcset` solve the problem whereby you want to serve smaller image files to narrow screen devices, as they don't need huge images like desktop displays do
+
+---
+
+#### What is the difference between canvas and svg?
+
+#### Canvas
+
+- uses **immediate mode graphics rendering**. Once a shape is drawn it's not remembered by canvas, if you want to change it, we need to redraw it.
+- Better for pixel-based, well suited for video games where the scene changes for frequently.
+- Less accessible as it doesn't support screen readers by default.
+
+#### SVG(Scalar Vector Graphics):
+
+- Uses retained mode graphics. SVG elements are part of the DOM. Each drawn shape is remembered as an object. If attributes of an SVG element are changed, the browser automatically rerenders the shape.
+- Better for icons, charts & diagrams. These can scale to any size **without losing quality.**
+
+---
+
+#### What are empty elements in HTML?
+
+- Empty elements are those that do not contain and do not require closing tags. They are also known as `void elements`.
+- These elements typically have attributes but they do not have any text or child elements within them.
+
+```js
+<br>: Line Break
+<hr>: Horizontal Rule
+<img>: Image
+<input>: Input field
+<link>: external resource link
+<meta> Metadata
+```

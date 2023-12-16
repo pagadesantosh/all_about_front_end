@@ -1,8 +1,8 @@
 ## 1.
 
 ```js
-console.log(0.1 + 0.2 == 0.3) //false
-console.log(0.1 + 0.2) // 0.30000000000000004
+console.log(0.1 + 0.2 == 0.3); //false
+console.log(0.1 + 0.2); // 0.30000000000000004
 ```
 
 ## 2.
@@ -23,14 +23,14 @@ console.log("b defined? " + (typeof b! == 'undefined')); true! =='undefined';
 ```js
 function foo1() {
   return {
-    bar: "hello",
-  }
+    bar: 'hello',
+  };
 }
 
 function foo2() {
-  return
+  return;
   {
-    bar: "hello"
+    bar: 'hello';
   }
 }
 
@@ -40,16 +40,16 @@ function foo2() {
 ## 4.
 
 ```js
-;(function () {
-  console.log(1)
+(function () {
+  console.log(1);
   setTimeout(function () {
-    console.log(2)
-  }, 1000)
+    console.log(2);
+  }, 1000);
   setTimeout(function () {
-    console.log(3)
-  }, 0)
-  console.log(4)
-})()
+    console.log(3);
+  }, 0);
+  console.log(4);
+})();
 
 // O/p: 1 4 3 2
 ```
@@ -59,7 +59,7 @@ function foo2() {
 ```js
 var x = 10,
   y = 11,
-  z = x + y
+  z = x + y;
 
 // O/p: Yes, this will work
 ```
@@ -85,16 +85,16 @@ Ans: 3 3 3
 
 ```js
 function sum(a, b, c) {
-  return a + b + c
+  return a + b + c;
 }
 
 function sum(a, b) {
-  return a + b
+  return a + b;
 }
 
-var result = sum(1, 2, 3)
-console.log(result) //3
-Reason: Overriding
+var result = sum(1, 2, 3);
+console.log(result); //3
+Reason: Overriding;
 ```
 
 ---
@@ -199,11 +199,11 @@ Cons: Not only /about page will take time to load, but this now affects other pa
 ## 19
 
 ```js
-a = 10
+a = 10;
 
-console.log(a)
+console.log(a);
 
-var a = 20
+var a = 20;
 ```
 
 O/p:
@@ -212,11 +212,11 @@ O/p:
 ## 20
 
 ```js
-var obj1 = { type: "Fiat", model: "500", color: "white" }
-var obj2 = obj1
-obj2.model = "600"
-console.log(obj1)
-console.log(obj2)
+var obj1 = { type: 'Fiat', model: '500', color: 'white' };
+var obj2 = obj1;
+obj2.model = '600';
+console.log(obj1);
+console.log(obj2);
 ```
 
 ![image](https://user-images.githubusercontent.com/42731246/151492604-e45cf218-d91c-4afd-8be2-1cc28b6a249b.png)
@@ -224,8 +224,8 @@ console.log(obj2)
 ## 21
 
 ```js
-let a = 10
-let a = 20
+let a = 10;
+let a = 20;
 ```
 
 ![image](https://user-images.githubusercontent.com/42731246/151492543-669e6cdd-3443-4929-be10-1ce173521f80.png)
@@ -233,39 +233,39 @@ let a = 20
 ## 22
 
 ```js
-1 + "12"
+1 + '12';
 ```
 
 ```js
-0 - "10"
+0 - '10';
 ```
 
 ```js
-"11" + 1
+'11' + 1;
 ```
 
 ```js
-"10" + -1
+'10' + -1;
 ```
 
 ```js
-null === undefined
+null === undefined;
 ```
 
 ```js
-null == undefined
+null == undefined;
 ```
 
 ## 23
 
 ```js
-let a = 10
+let a = 10;
 
 function func() {
-  console.log(a)
+  console.log(a);
 }
 
-func()
+func();
 ```
 
 ## 24
@@ -284,13 +284,13 @@ var a= 20
 ## 25 Without use strict
 
 ```js
-var a = 10
+var a = 10;
 
-console.log(a)
+console.log(a);
 
-var a = 20
+var a = 20;
 
-console.log(a)
+console.log(a);
 ```
 
 ## 26
@@ -321,28 +321,28 @@ console.log(fname)
 ## 27
 
 ```js
-let array = [1, 1, 3, 6, 5, 6]
-let result = [...new Set(array)]
-console.log(result)
+let array = [1, 1, 3, 6, 5, 6];
+let result = [...new Set(array)];
+console.log(result);
 ```
 
 ## 28
 
 ```js
-const a = "12"
-a = 11
-console.log(a)
+const a = '12';
+a = 11;
+console.log(a);
 ```
 
 ## 29
 
 ```js
 const Employee = {
-  firstname: "John",
-  lastname: "Doe",
-}
-Employee.firstname = "Singh"
-console.log(Employee.firstname)
+  firstname: 'John',
+  lastname: 'Doe',
+};
+Employee.firstname = 'Singh';
+console.log(Employee.firstname);
 ```
 
 ## 30 CSS related
@@ -373,42 +373,42 @@ console.log(evenNumbers);
 ## 32 What will this print ?
 
 ```js
-const filteredItems = array.filter(() => 0)
-console.log(filteredItems)
+const filteredItems = array.filter(() => 0);
+console.log(filteredItems);
 ```
 
 ## 33 Print the value based on the query params and second key value pair (&)
 
 ```js
 const url =
-  "https://codesandbox.io/s/little-darkness-qsymi?file=/src/index.js:205-267&name=saiteja"
+  'https://codesandbox.io/s/little-darkness-qsymi?file=/src/index.js:205-267&name=saiteja';
 ```
 
 ## 34
 
 ```js
-var objA = { prop1: 42 }
-var objB = objA
-objB.prop1 = 90
-console.log(objA)
+var objA = { prop1: 42 };
+var objB = objA;
+objB.prop1 = 90;
+console.log(objA);
 ```
 
 ## 35
 
 ```js
-;(function () {
-  var objA = new Object({ foo: "foo" })
-  var objB = new Object({ foo: "foo" })
-  console.log(objA == objB)
-  console.log(objA === objB)
-})()
+(function () {
+  var objA = new Object({ foo: 'foo' });
+  var objB = new Object({ foo: 'foo' });
+  console.log(objA == objB);
+  console.log(objA === objB);
+})();
 ```
 
 ## 36
 
 ```js
 for (var i = 0; i < 3; i++) {
-  setTimeout(() => console.log(i), 1)
+  setTimeout(() => console.log(i), 1);
 }
 ```
 
@@ -416,19 +416,19 @@ for (var i = 0; i < 3; i++) {
 
 ```js
 for (let i = 0; i < 3; i++) {
-  setTimeout(() => console.log(i), 1)
+  setTimeout(() => console.log(i), 1);
 }
 ```
 
 ## 38
 
 ```js
-var x = { name: 10 }
-var y = { ...x }
-y.name = 20
+var x = { name: 10 };
+var y = { ...x };
+y.name = 20;
 
-console.log(x)
-console.log(y)
+console.log(x);
+console.log(y);
 ```
 
 ## 39 Exercise with React.js
@@ -445,33 +445,33 @@ Create a search bar which:
 ## 40
 
 ```js
-var a = 2
-a++
-console.log(a) // 3
-const d = [1, 2, 3]
-d.push(5)
-console.log(d) // [1,2,3,5]
-const b = 2
-b++
-console.log(b) // TypeError: Assignment to constant variable
-const c = [2] //nothing prints from this line
-c[0]++
-console.log(c)
+var a = 2;
+a++;
+console.log(a); // 3
+const d = [1, 2, 3];
+d.push(5);
+console.log(d); // [1,2,3,5]
+const b = 2;
+b++;
+console.log(b); // TypeError: Assignment to constant variable
+const c = [2]; //nothing prints from this line
+c[0]++;
+console.log(c);
 ```
 
 ## 41
 
 ```js
-var a = b()
-console.log(a)
-var c = d()
+var a = b();
+console.log(a);
+var c = d();
 function b() {
-  return c
+  return c;
 }
-console.log(a)
+console.log(a);
 var d = function () {
-  return b()
-}
+  return b();
+};
 ```
 
 ## 42
@@ -492,7 +492,6 @@ a();
 
 ![image](https://user-images.githubusercontent.com/42731246/152519562-3d8001fd-f083-4e54-976c-8617519eeec4.png)
 
-
 ```js
 
 import "./styles.css";
@@ -512,7 +511,7 @@ export default function App() {
   );
 }
 
-CSS: 
+CSS:
 
 * {
   margin: 0;
@@ -570,7 +569,7 @@ CSS:
 
 ```
 
-----
+---
 
 ## 44
 
@@ -626,18 +625,18 @@ undefined
 
 ```js
 var output = (function (x) {
-  delete x
+  delete x;
 
-  return x
-})(0)
+  return x;
+})(0);
 
-console.log(output)
+console.log(output);
 ```
 
 ## 47 How to empty an array
 
 ```js
-let a = [1, 6, 8, 9]
+let a = [1, 6, 8, 9];
 ```
 
 I only know this :D
@@ -646,7 +645,7 @@ I only know this :D
 ## 48 only print defined values
 
 ```js
-let b = [1, 2, , 4, 5]
+let b = [1, 2, , 4, 5];
 
 // output should be [1, 2, 4, 5]
 ```
@@ -662,9 +661,54 @@ let c = [1, 2, 3, 2, 5, 3]
 ## 50 Nested Arrays
 
 ```js
-let a = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]]
+let a = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
 
 // output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 ```
 
 ![image](https://user-images.githubusercontent.com/42731246/157431479-ca9028f4-596b-4541-9b53-e2cf67892cd6.png)
+
+---
+
+## 51
+
+```js
+const arr = [1, 2, undefined, NaN, null, false, true, '', 'abc', 3];
+console.log(arr.filter(Boolean)); //[1, 2, true, 'abc', 3]
+
+const arr1 = [1, 2, undefined, NaN, null, false, true, '', 'abc', 3];
+console.log(arr1.filter(!Boolean));
+```
+
+## 52
+
+```js
+var a = 3;
+var b = {
+  a: 9,
+  b: ++a,
+};
+console.log(a + b.a + ++b.b); //18
+```
+
+## 53. How to implement your own Custom Event in JavaScript?
+
+- You can use the CustomEvent constructor to create an custom event.
+- The CustomEvent Constructor accepts two arguments, (eventName, optionalObject)
+- You can use the dispatchEvent method to dispatch the custom event on the target element/document
+
+```js
+const event = new CustomEvent('event1', {
+  detail: { name: 'Javascript' },
+});
+
+element.dispatchEvent(event);
+```
+
+```js
+// listening the events
+
+element.addEventListener('event1', (event) => {
+  console.log(event.detail);
+});
+```

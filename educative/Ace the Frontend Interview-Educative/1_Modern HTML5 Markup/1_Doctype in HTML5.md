@@ -15,10 +15,10 @@
 
 - ##### With DOCTYPE placed at the start of the HTML markup, "Full standards mode" is enabled in web browsers.
 
-- ##### Will adding any non-executing code, e.g. comments, XML declaration before the DOCTYPE declaration will trigger quirks mode in Internet Explorer 9 and older.
+- ##### Will adding any non-executing code, e.g. comments, XML declaration `before the DOCTYPE declaration will trigger quirks mode` in Internet Explorer 9 and older.
 
 - ##### The HTML5 doctype, < !DOCTYPE html>, triggers Full Standards mode in every browser (including IE6).
 
 - ##### The main issue that arises if we don’t define DOCTYPE at the beginning of our HTML code is it activates the Quriks mode.
 
-####
+- #### For example: new features & tags in HTML5 such as article, footer,header, nav, section may not be supported if the <!DOCTYPE> is not declared.

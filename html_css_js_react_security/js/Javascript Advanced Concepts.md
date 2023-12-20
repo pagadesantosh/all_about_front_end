@@ -38,7 +38,7 @@
 
 ---
 
-### Call Stack and Memory Heap
+### 2. Call Stack and Memory Heap
 
 #### <u>Call stack:</u>
 
@@ -80,7 +80,7 @@
 
 ---
 
-### Garbage Collection:
+### 3. Garbage Collection:
 
 - Javascript is a **garbage collected** language
 - That means when Javascript allocates memory
@@ -98,7 +98,7 @@
 
 ---
 
-### Memory Leaks:
+### 4. Memory Leaks:
 
 - Memory leaks **_are pieces of memory that the application have used_** `in the past`, _but is not needed any longer_ <u>but has not yet been returned back to us to the pool of free memory</u>.
 
@@ -122,7 +122,7 @@
 
 ---
 
-### Execution Context:
+### 5. Execution Context:
 
 - Whenever our code run in Javascript, it is run inside an Execution Context. (This might be of Global or Inside function that we call).
 
@@ -163,7 +163,7 @@
 
 ---
 
-### Lexical Environment
+### 6. Lexical Environment
 
 ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/22a89184-0581-4c03-8a52-291e85dfb1c4)
 
@@ -175,7 +175,7 @@
 
 ---
 
-### Hoisting
+### 7. Hoisting
 
 - By Hoisting it means the **_behavior of moving the variables or function declarations to the top_**.
 
@@ -231,7 +231,7 @@
 
 ---
 
-### Scope Chain:
+### 8. Scope Chain:
 
 - Each context has a link to its outside world or a link to his parent and the outer environment depends on where the function sits.
 - **_Lexical means where the function is written_**
@@ -253,7 +253,7 @@
 
 ---
 
-### Global Variables:
+### 9. Global Variables:
 
 - Too many Global variables, pollutes the Global Execution Context
 - Which Eventually leads to memory leaks and making things slower and slower until our browsers crash.
@@ -267,7 +267,7 @@
 
 ---
 
-### IIFE's:
+### 10. IIFE's:
 
 - Using this Immediately Invoked Function Expression, we can place all the code inside of local scope to avoid any namespace collisions.
 - When JS Engine comes across this brackets, it automatically makes it into a function expression (not functional declaration)
@@ -324,9 +324,215 @@ b();
 ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/51d08d7b-e88e-4cff-95e6-68fe76da2b89)
 
 ##### <u>Before ES6, using reference variable:</u>
+
 - outside to the function expression itself, we will create a reference
 - e.g. `var self = this;`
-- At the time the above code is ran, ***self start maintaining that reference to the object*** so that **we can use self** going forward ***(instead of this)***
-
+- At the time the above code is ran, **_self start maintaining that reference to the object_** so that **we can use self** going forward **_(instead of this)_**
 
 ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/b2794857-a535-4325-bd04-592657a3a5ee)
+
+---
+
+### 11. Call Apply Bind:
+
+- In order to manipulate `this` keyword, there are three important methods.
+- In order to borrow methods, we can make use of call apply bind.
+
+**Call**: underneath the hood, all functions when created have this property called call that allows us to call/invoke the function
+
+```js
+// call syntax:
+Function.call(context, thisArg, thisArg1, thisArg2);
+```
+
+**apply**: instead of a.call(), we can also use a.apply() in one of this case.
+
+```js
+// apply syntax:
+Function.apply(context, [thisArg1, thisArg2, thisArg3]);
+```
+
+```js
+// bind syntax:
+const newFunc = Function.bind(context, thisArg1, thisArg2, thisArg3);
+```
+
+```js
+function a() {
+  console.log('hi'); // hi
+}
+
+a.call();
+```
+
+```js
+// object 1 has heal method
+const wizard = {
+  name: 'Merlin',
+  health: 100,
+  heal() {
+    return (this.health = 100);
+  },
+};
+
+wizard.heal(); // 100
+
+// object 2 is in need of heal method
+const archer = {
+  name: 'Robin Hood',
+  health: 30,
+};
+
+// So, in order to borrow heal method from wizard object, we use `call, apply, bind`
+
+// instead of using wizard to call heal, it uses archer to call heal
+console.log('1', archer); // logs the original archer object with health 30
+wizard.heal.call(archer);
+console.log('2', archer); // logs the mutated archer object with health 100
+```
+
+---
+
+```js
+// object 1 has heal method
+const wizard = {
+  name: 'Merlin',
+  health: 100,
+  heal(num1, num2) {
+    return (this.health += num1 + num2);
+  },
+};
+
+wizard.heal(); // 100
+
+// object 2 is in need of heal method
+const archer = {
+  name: 'Robin Hood',
+  health: 30,
+};
+
+// So, in order to borrow heal method from wizard object, we use `call, apply, bind`
+
+// instead of using wizard to call heal, it uses archer to call heal
+console.log('1', archer); // logs the original archer object with health 30
+wizard.heal.call(archer, 50, 30);
+// wizard.heal.apply(archer, [50, 30]);
+// const healArcher = wizard.bind(archer, 50, 30)
+// healArcher()
+console.log('2', archer); // logs the mutated archer object with health 100
+```
+
+---
+
+### 12. bind and currying
+
+- we can reuse the function and pass any second parameter (Ex: 4 in the first case, 10 in the second case)
+  ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/04c6a89b-2fab-4cfa-8c66-4c3cecd67491)
+
+---
+
+#### Examples
+
+- b.say() logs the `b` object
+- c.say() if double invoked logs the `Window` object
+- d.say() if double invoked logs the {name: 'jay', say:[Function]}
+
+![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/1a87f82a-e8de-4047-bbf6-474c5147eefc)
+
+---
+
+### 13. Context vs Scope
+
+**Scope**
+
+- Scope is a **_function_** based
+- Scope means what is the variable axis of a function when it is invoked and what is in the variable environment.
+
+**Context**
+
+- Context, on the other hand, is more about object based.
+- Context says **_what's the value of the this keyword_**, which is a reference to the object that owns that current executing code.
+
+**_Context is most often determined by how a function is invoked with the value of this keyword and scope
+refers to the visibility of variables._**
+
+---
+
+### 14. Javascript Data Types
+
+**_There are 7 JS data types_**
+
+```js
+/* Primitives: types other than object type are all primitives (It is a data that only represents a single value)*/
+- Number
+- String
+- Boolean
+- undefined (absence of a definition for a variable)
+- null (absence of value + intentionally provided value )
+
+/* Non-primitives: Doesn't contain the actual value directly, whereas it has reference similar to a pointer to somewhere in memory that the object is held */
+- Object
+- Symbol (usually used for object properties so that their property is **_unique_**)
+```
+
+<b><u>Note:</u></b> typeof function(){} returns function but underneath the hood, **_functions are just objects_**
+
+![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/6331d4f9-f8c3-4cb5-b2b8-1fe741e09de2)
+
+<b><u>Note:</u></b> Primitives are immutable (in order to change them, remove the primitive type and assign with a new value )
+
+---
+
+### 15. Pass By Reference vs Pass By Value
+
+![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/be0de22b-710b-4b73-b50d-115bf2b01c2a)
+
+**Pass By Value**: Primitives follow this pass by value, which are only changed when a new value is assigned to them in memory.
+
+e.g. If we have variables a & b (then they really don't know each other)
+![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/16351786-5839-4b84-82cd-06c14e114161)
+
+**_Summary:_** Pass by value simply means we copy the value and we create that value somewhere else in memory.
+
+**Pass By Reference**: Objects follow this pass by reference.
+
+- If you assign one of the object to another and If you change the reference of one object, then the other object also updates
+
+![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/cce8253d-3723-4207-89ea-7b509abcc62f)
+
+```js
+//output:
+{name: 'Yao', password: 'easypeasy',}
+{name: 'Yao', password: 'easypeasy'}
+
+```
+
+<u>**Solutions**:</u>
+**_Solution 1_**: `let clonedObj = Object.assign({}, originalObj)`
+**_Solution 2_**: `let clonedObj = {...originalObj}`
+
+<u>**Limitations of Object.assign and spread**:</u>
+
+- This doesn't work for nested objects
+- Because it **_does the shallow clone_**, which means it only clones first layer
+
+```js
+let obj = {
+  a: 'a',
+  b: 'b',
+  c: { deep: 'try and copy' },
+};
+
+let clone1 = Object.assign({}, obj);
+let clone2 = { ...obj };
+
+obj.c.deep = 'hahaha';
+console.log(obj); // {a: 'a', b: 'b', c: { deep: 'hahaha' }}
+console.log(clone1); // {a: 'a', b: 'b', c: { deep: 'hahaha' }}
+console.log(clone2); // {a: 'a', b: 'b', c: { deep: 'hahaha' }}
+```
+
+<u>**Solution for Deep Clone instead of shallow clone**:</u>
+```js
+let deepClone = JSON.stringify(JSON.parse(originalObj))
+```

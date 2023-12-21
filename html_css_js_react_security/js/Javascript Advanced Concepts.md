@@ -280,7 +280,7 @@
 
 ---
 
-### this keyword:
+### 11. this keyword:
 
 - this is the object that the function is a property of
 
@@ -333,7 +333,7 @@ b();
 
 ---
 
-### 11. Call Apply Bind:
+### 12. Call Apply Bind:
 
 - In order to manipulate `this` keyword, there are three important methods.
 - In order to borrow methods, we can make use of call apply bind.
@@ -424,7 +424,7 @@ console.log('2', archer); // logs the mutated archer object with health 100
 
 ---
 
-### 12. bind and currying
+### 13. bind and currying
 
 - we can reuse the function and pass any second parameter (Ex: 4 in the first case, 10 in the second case)
   ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/04c6a89b-2fab-4cfa-8c66-4c3cecd67491)
@@ -441,7 +441,7 @@ console.log('2', archer); // logs the mutated archer object with health 100
 
 ---
 
-### 13. Context vs Scope
+### 14. Context vs Scope
 
 **Scope**
 
@@ -458,7 +458,7 @@ refers to the visibility of variables._**
 
 ---
 
-### 14. Javascript Data Types
+### 15. Javascript Data Types
 
 **_There are 7 JS data types_**
 
@@ -483,7 +483,7 @@ refers to the visibility of variables._**
 
 ---
 
-### 15. Pass By Reference vs Pass By Value
+### 16. Pass By Reference vs Pass By Value
 
 ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/be0de22b-710b-4b73-b50d-115bf2b01c2a)
 
@@ -533,6 +533,108 @@ console.log(clone2); // {a: 'a', b: 'b', c: { deep: 'hahaha' }}
 ```
 
 <u>**Solution for Deep Clone instead of shallow clone**:</u>
+
 ```js
-let deepClone = JSON.stringify(JSON.parse(originalObj))
+let deepClone = JSON.stringify(JSON.parse(originalObj));
 ```
+
+---
+
+### 17. Type coercion
+
+<b><u>Definition:</u></b> Converting a certain type to another type
+
+- The operands on the left vs right are of different types, so in this case one of them will be converted into an equivalent value by the JS engine.
+- **_Type coercion happens when we have double equal to_** (==), so this simply means compare two values if both are of different type, coerce one into the same type.
+- **_Triple equal to in JS means compare two values, but don't try and coerce the values_**.
+
+<u>**_Useful info Link_**</u> 👉: https://dorey.github.io/JavaScript-Equality-Table/
+
+```js
+console.log(false == ''); //true
+console.log(false == []); //true
+console.log(false == {}); //false
+console.log('' == 0); //true
+console.log('' == []); //true
+console.log('' == {}); //false
+console.log(0 == []); //true
+console.log(0 == {}); //false
+console.log(0 == null); //false
+```
+
+---
+
+### 18. Functions are first class citizens:
+
+**_1. Functions can be assigned to variables and properties of objects_**
+
+```js
+//1
+var func = function () {};
+```
+
+**_2. We can also pass functions as arguments into a function._**
+
+```js
+//2
+function a(fn) {
+  fn();
+}
+
+a(function () {
+  console.log('hi');
+});
+```
+
+**_3. You can return functions as values from other functions_**
+
+```js
+//3
+function b() {
+  return function c() {
+    console.log('bye');
+  };
+}
+
+var d = b();
+d();
+```
+
+---
+
+### 19. Higher Order Functions:
+
+- Higher order functions are simply a function that can take a function as a argument or a function that returns another function
+
+```js
+const giveAccessTo = (name) => {
+  console.log('Access granted to ' + name); //Access granted to Tim
+};
+
+function authenticate(verify) {
+  let array = [];
+  for (let i = 0; i < verify; i++) {
+    array.push(i);
+  }
+  return true;
+}
+
+function letPerson(person, fn) {
+  if (person.level === 'admin') {
+    fn(500000);
+  } else if (person.level === 'user') {
+    fn(500);
+  }
+  return giveAccessTo(person.name);
+}
+
+letPerson({ level: 'user', name: 'Tim' }, authenticate);
+```
+
+```js
+//Example 2
+
+const multiplyBy = (num1) => (num2) => num1 * num2;
+console.log(multiplyBy(4)(6)); //24
+```
+<u>Summary</u>: keeping our code more generic and following the idea of DRY (Don't Repeat Yourself) by breaking the code into small functionalities

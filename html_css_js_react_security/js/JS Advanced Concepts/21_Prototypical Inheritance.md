@@ -261,16 +261,45 @@ fight;
 
 ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/5970a307-c29d-40ec-9914-5fc09f027146)
 
+![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/4089d2a4-66ca-41b5-9e4d-11fb1e17bd32)
 
 ##### Arrays
+
 ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/66485063-c529-45a8-a5d1-19ce25dacc13)
 
-<u>**One thing to remember is:**</u> ***double underscore proto*** property actually ***lives on the prototype***
+<u>**One thing to remember is:**</u> **_double underscore proto_** property actually **_lives on the prototype_**
 
------------------------
+---
 
 Safe way to create own prototypes is by using Object.create()
 
 ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/e281f985-1bd1-4516-a110-b0ad66fde5a4)
 
 ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/12437a00-af2d-40c3-be35-067f53c50621)
+
+**_In Functions, The only time when we use prototypes is when we call constructor functions._**
+
+- Constructor functions usually start with a capital letter and they contain the prototype that we use
+
+![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/c6aecbca-bc7b-49e1-8050-868d6c3f2091)
+
+![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/31b14a56-03e6-4fc2-b817-a706144cb6e8)
+
+```js
+typeof Object; //'function'
+```
+
+<u>**One thing to remember is:**</u> Every function has a prototype property and it references to an object used to attach properties that will be inherited by objects further down the prototype chain. The last object in the chain is this built in object (Object.prototype)
+
+<u>**Another thing to remember is:**</u> **_Object_** is a function because it has the prototype and now Object.prototype is what we call the base object
+
+**WHAT IS HAPPENING**
+![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/7254867f-2f2f-4a56-bb64-788456650e9a)
+
+![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/56ef4b9c-fdc1-43c5-a988-8ba77a3c76be)
+
+**Only Functions have prototypes**
+![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/dd881eb1-6840-4cf9-840b-eea18ffe0b88)
+
+<u>**Summary:**</u>
+Using prototypes, we avoid repeating ourselves. We avoid adding the same code over and over and over and being inefficient with our memory.

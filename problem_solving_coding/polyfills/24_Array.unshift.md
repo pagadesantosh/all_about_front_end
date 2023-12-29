@@ -58,5 +58,5 @@ Array.prototype.myUnshift = function (...elements) {
 const fruits = ['apple', 'banana', 'mango'];
 const newLength = fruits.myUnshift('pineapple', 'grape');
 console.log(newLength); // Expected output: 5
-console.log(fruits); // Expected output: ["apple", "banana", "mango", "pineapple", "grape"]
+console.log(fruits); // Expected output:['pineapple', 'grape', 'apple', 'banana', 'mango']
 ```

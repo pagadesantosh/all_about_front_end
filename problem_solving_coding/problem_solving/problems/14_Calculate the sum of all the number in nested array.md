@@ -8,18 +8,17 @@
 4. outside the for of loop, return that sum
 
 ```js
-function sumArray(ar) {
-  var sum = 0;
-  //el is the 1 at first, then 2 then [3, [4], [5, 6]], and this will be passed recursively and will be moved till 7
-  for (var el of ar) {
-    if (Array.isArray(el)) {
-      el = sumArray(el); //recursion
+function sumArray(inputArray) {
+  let sum = 0;
+  for (let element of inputArray) {
+    if (Array.isArray(element)) {
+      sum = sum + sumArray(element); // Add the sum of the nested array
+    } else {
+      sum = sum + element; // For non-array elements, just add to sum
     }
-    //if it is non-array, then simply add to the existing sum (ex: 0+1, 1+2, 3+4 and so on...)
-    sum += el;
   }
-  //outside the for of loop, return the finalSum
   return sum;
 }
-console.log(sumArray([1, 2, [3, [4], [5, 6]], [7]])); //28
+
+console.log(sumArray([1, 2, [3, [4], [5, 6]], [7]])); // 28
 ```

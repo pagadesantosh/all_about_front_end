@@ -15,16 +15,17 @@ map(callbackFn, thisArg);
 4. outside the for loop return the array
 
 ```js
-Array.prototype.myMap = function (callbackFn) {
+Array.prototype.myMap = function (callbackFn, thisArg) {
   var arr = [];
   for (var i = 0; i < this.length; i++) {
-    /* call the callback function for every value of this array and       push the returned value into our resulting array
-     */
-    arr.push(callbackFn(this[i], i, this));
+    arr.push(callbackFn.call(thisArg, this[i], i, this));
   }
   return arr;
 };
-const arr = [1, 2, 3, 4];
-const doubleNums = arr.myMap((item) => item * 2);
-console.log('doubleNums', doubleNums);
+
+const arr = [2, 3, 4, 5, 6];
+
+const myMapArr = arr.myMap((item) => item * 5);
+console.log('myMapArr', myMapArr); //[10, 15, 20, 25, 30]
+
 ```

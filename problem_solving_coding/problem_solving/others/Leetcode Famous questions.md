@@ -25,42 +25,6 @@ Output: [0, 1];
 
 ---
 
-**2. Return the majority element repeated in the array**
-
-```js
-Example 1:
-Input: nums = [3,2,3]
-Output: 3
-
-Example 2:
-Input: nums = [2,2,1,1,1,2,2]
-Output: 2
-```
-
-<details>
-<summary>View Answer</summary>
-
-</details>
-
----
-
-**3. Max Consecutive Ones - return the max number of consecutive 1's in the array**
-
-```js
-Example 1:
-
-Input: nums = [1,1,0,1,1,1]
-Output: 3
-Explanation: The first two digits or the last three digits are consecutive 1s. The maximum number of consecutive 1s is 3.
-Example 2:
-
-Input: nums = [1,0,1,1,0,1]
-Output: 2
-
-```
-
----
-
 **4. Number of Good Pairs**
 
 ```js
@@ -99,65 +63,6 @@ Example 3:
 Input: allowed = "cad", words = ["cc","acd","b","ba","bac","bad","ac","d"]
 Output: 4
 Explanation: Strings "cc", "acd", "ac", and "d" are consistent.
-```
-
----
-
-**6 Unique Number of Occurrences**
-
-```js
-Example 1:
-Input: arr = [1,2,2,1,1,3]
-Output: true
-Explanation: The value 1 has 3 occurrences, 2 has 2 and 3 has 1. No two values have the same number of occurrences.
-
-Example 2:
-Input: arr = [1,2]
-Output: false
-
-Example 3:
-Input: arr = [-3,0,1,-3,1,1,1,-3,10,0]
-Output: true
-```
-
----
-
-**7. Longest Substring Without Repeating Characters**
-
-```js
-Example 1:
-Input: s = "abcabcbb"
-Output: 3
-Explanation: The answer is "abc", with the length of 3.
-
-Example 2:
-Input: s = "bbbbb"
-Output: 1
-Explanation: The answer is "b", with the length of 1.
-
-
-Example 3:
-Input: s = "pwwkew"
-Output: 3
-Explanation: The answer is "wke", with the length of 3.
-Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
-```
-
----
-
-**8. Find the Index of the First Occurrence in a String**
-
-```js
-Example 1:
-Input: haystack = "sadbutsad", needle = "sad"
-Output: 0
-Explanation: "sad" occurs at index 0 and 6.
-The first occurrence is at index 0, so we return 0.
-
-Example 2:
-Input: haystack = "leetcode", needle = "leeto"
-Output: -1
-Explanation: "leeto" did not occur in "leetcode", so we return -1.
 ```
 
 ---
@@ -230,20 +135,6 @@ Input: s = "Aabb"
 Output: "bbAa"
 Explanation: "bbaA" is also a valid answer, but "Aabb" is incorrect.
 Note that 'A' and 'a' are treated as two different characters.
-```
-
----
-
-**13. Reverse Vowels of a String**
-
-```js
-Example 1:
-Input: s = "hello"
-Output: "holle"
-
-Example 2:
-Input: s = "leetcode"
-Output: "leotcede"
 ```
 
 ---

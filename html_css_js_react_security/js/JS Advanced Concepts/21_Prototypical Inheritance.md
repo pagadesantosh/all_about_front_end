@@ -303,3 +303,34 @@ typeof Object; //'function'
 
 <u>**Summary:**</u>
 Using prototypes, we avoid repeating ourselves. We avoid adding the same code over and over and over and being inefficient with our memory.
+
+---
+
+<u><b>Interview Question:</b></u> Difference between proto and prototype
+
+`__proto__`:
+
+- `__proto__` is a property of an object **_that points to the prototype of the constructor function_** which created that object.
+- It is a part of the internal prototype chain that Javascript uses to look up properties and methods
+- is the actual object that is used in the lookup chain to resolve methods
+- Direct use of proto is discouraged, Instead the standard functions Object.setPrototypeOf and Object.getPrototypeOf are recommended
+
+`prototype:`
+
+- prototype is a **_property of a function object_**, <u>specifically a constructor function</u>, that is used to set the prototype of new objects created with that constructor function
+- Ex: if you have a constructor function `MyConstructor`, MyConstructor.prototype will be the object that new instances created with new MyConstructor will have in their `__proto__`
+
+```js
+//Sample Code
+function MyConstructor() {}
+
+MyConstructor.prototype.addSomeFunc = function () {};
+
+const newInstance = new MyConstructor();
+
+console.log(newInstance.__proto__ === MyConstructor.prototype); //true
+```
+
+#### Refer below screenshot from browser console
+
+![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/a16d60d1-1fad-4cfa-8c8e-114d8f1f5deb)

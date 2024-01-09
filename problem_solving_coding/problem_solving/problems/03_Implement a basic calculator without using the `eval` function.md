@@ -2,30 +2,21 @@
 
 ```js
 function Calculator() {
+  // logic 1: maintain a variable called value and mutate this value variable (ex: for add: function (){value = value + num})
   let value = 0;
-
+  // logic 2: create Higher Order Function
+  function method(callback) {
+    return function (num) {
+      value = callback(value, num);
+      return this;
+    };
+  }
   return {
-    add: function (number) {
-      value += number;
-      return this;
-    },
-    multiply: function (number) {
-      value *= number;
-      return this;
-    },
-    subtract: function (number) {
-      value -= number;
-      return this;
-    },
-    modulus: function (number) {
-      if (number !== 0) {
-        value %= number;
-      }
-      return this;
-    },
-    result: function () {
-      return value;
-    },
+    add: method((value, num) => value + num),
+    subtract: method((value, num) => value - num),
+    multiply: method((value, num) => value * num),
+    modulus: method((value, num) => value % num),
+    result: () => value,
   };
 }
 

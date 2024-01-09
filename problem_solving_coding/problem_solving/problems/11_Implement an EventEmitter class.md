@@ -70,7 +70,7 @@ emitter.emit('data', { id: 1, message: 'Hello World' });
 // Both onDataReceived and onAnotherDataReceived will be called
 
 // Remove onDataReceived callback for the 'data' event
-// emitter.off('data', onDataReceived);
+emitter.off('data', onDataReceived);
 
 // Emit the 'data' event again
 console.log('Second emit after removing onDataReceived:');

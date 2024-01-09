@@ -50,19 +50,49 @@ class EventEmitter {
 
 // Example usage:
 const emitter = new EventEmitter();
-emitter.on('data', (data) => {
-  console.log('Received data:', data);
-});
-emitter.on('userJoined', (...usernames) => {
-  usernames.forEach((userName) => {
-    console.log(`${userName} has joined the chat.`);
-  });
-});
 
-emitter.emit('data', { test: 123 }); // Outputs: Received data: { test: 123 }
-emitter.emit('userJoined', 'Alice', 'Blice', 'Clice');
-// Outputs:
-// Alice has joined the chat.
-// Blice has joined the chat.
-// Clice has joined the chat.
+// Define a couple of callback functions
+function onDataReceived(data) {
+  console.log('onDataReceived:', data);
+}
+
+function onAnotherDataReceived(data) {
+  console.log('onAnotherDataReceived:', data);
+}
+
+// Register the callbacks for the 'data' event
+emitter.on('data', onDataReceived);
+emitter.on('data', onAnotherDataReceived);
+
+// Emit the 'data' event
+console.log('First emit:');
+emitter.emit('data', { id: 1, message: 'Hello World' });
+// Both onDataReceived and onAnotherDataReceived will be called
+
+// Remove onDataReceived callback for the 'data' event
+// emitter.off('data', onDataReceived);
+
+// Emit the 'data' event again
+console.log('Second emit after removing onDataReceived:');
+emitter.emit('data', { id: 2, message: 'Goodbye World' });
+// Only onAnotherDataReceived will be called this time
+
+/*
+Output: If emitter.off line is `not commented`
+First emit:
+onDataReceived: { id: 1, message: 'Hello World' }
+onAnotherDataReceived: { id: 1, message: 'Hello World' }  
+Second emit after removing onDataReceived:
+onAnotherDataReceived: { id: 2, message: 'Goodbye World' }
+*/
+
+/*
+Output: If emitter.off line is `commented`
+First emit:
+onDataReceived: { id: 1, message: 'Hello World' }
+onAnotherDataReceived: { id: 1, message: 'Hello World' }  
+Second emit after removing onDataReceived:
+onDataReceived: { id: 2, message: 'Goodbye World' }       
+onAnotherDataReceived: { id: 2, message: 'Goodbye World' }
+*/
 ```

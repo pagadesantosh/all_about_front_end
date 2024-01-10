@@ -1,18 +1,12 @@
 ## Find the occurrences
 
 ```js
-function countGender(people) {
-  const genderCount = {};
-
-  for (let person of people) {
-    if (!genderCount[person.gender]) {
-      genderCount[person.gender] = 1; // If the gender hasn't been counted yet, initialize it with 1
-    } else {
-      genderCount[person.gender]++; // Otherwise, increment the count
-    }
+function countGender(inputArr) {
+  const count = {};
+  for (let genderSpecific of inputArr) {
+    count[genderSpecific.gender] = (count[genderSpecific.gender] || 0) + 1;
   }
-
-  return genderCount;
+  return count;
 }
 
 const people = [

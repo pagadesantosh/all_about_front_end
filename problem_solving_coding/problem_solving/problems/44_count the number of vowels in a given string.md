@@ -48,7 +48,7 @@ function printUsedVowels(inputStr) {
   return `Used vowels are ${usedVowels} and their length is ${usedVowels.length}`;
 }
 
-console.log(printUsedVowels('saiteja')); //aie
+console.log(printUsedVowels('saiteja')); //Used vowels are aie and their length is 3
 ```
 
 ##### Solution 2 Using Set and join

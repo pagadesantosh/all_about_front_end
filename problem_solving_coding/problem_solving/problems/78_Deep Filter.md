@@ -6,9 +6,8 @@ function filter(input, callback) {
   const result = {};
 
   // initially you would only get the keys of non-nested ones (ex: a, b in our first example)
-  Object.keys(input).forEach((key) => {
+  for (const [key, value] of Object.entries(input)) {
     // storing the values of the keys (ex: a: 1, b: Object{})
-    const value = input[key];
 
     // if type is of object
     if (typeof value === 'object' && value !== null) {
@@ -24,7 +23,7 @@ function filter(input, callback) {
       // store that key in the result object with value
       result[key] = value;
     }
-  });
+  }
 
   // don't forget to return the end result object
   return result;

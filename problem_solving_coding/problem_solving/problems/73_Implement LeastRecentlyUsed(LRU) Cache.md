@@ -35,14 +35,32 @@ function createLRUCache(capacity) {
     cache.set(key, value);
   }
 
-  return { get, put };
+  return {
+    put,
+    get,
+  };
 }
 
-// Usage example
 const lruCache = createLRUCache(2);
-lruCache.put(1, 1);
-lruCache.put(2, 2);
-console.log(lruCache.get(1)); // returns 1
-lruCache.put(3, 3); // evicts key 2
-console.log(lruCache.get(2)); // returns -1 (not found)
+lruCache.put('a', 1);
+lruCache.put('b', 2);
+console.log(lruCache.get('a'));
+
+/*
+After you try to get key 'a', the least recently used will become b 😉
+0: {"b" => 2}
+1: {"a" => 1}
+
+*/
+
+lruCache.put('c', 3);
+
+/*
+After you try to put key 'c', capacity is now matched and it will delete the first key (i.e: 'b' from the previous result) 😉
+0: {"a" => 1}
+1: {"c" => 3}
+
+*/
+
+console.log(lruCache.get('b')); //-1 will be logged this is not there in the cache.
 ```

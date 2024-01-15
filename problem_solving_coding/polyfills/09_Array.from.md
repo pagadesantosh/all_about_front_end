@@ -11,7 +11,8 @@ Array.from(arrayLike, mapFn, thisArg);
 <strong>Approach Taken:</strong>
 
 1. we need write a separate logic for `iterators` like (Strings, Set, Map, Array)
-2. A separate logic for `Objects` (`or not iterables`)
+2. A separate logic for arrayLike `Objects`. Array like objects means that has the length property inside the object (`or not iterables`)
+***The defining feature of an array-like object is not just having numeric keys, but also having a length property that accurately reflects the number of elements (based on the numeric keys). ***
 3. For iterators, `simply spread your inputArr`, if mapFn is provided then spreadArr.map(mapFn, thisArg) else spreadArr will be returned
 4. for non-iterator, `create a dummy arr with the length` (ex: Array(length))
 5. you can get length of inputArrayLike object with .length property (ex: Math.floor(inputArr.length))

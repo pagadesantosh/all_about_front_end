@@ -12,28 +12,26 @@
 6. for object condition, maintain an empty object and perform a for-in-loop and pass recursively (ex: finalObj[key] = cloneDeep(value[key])). Post for loop ends, return the finalObj
 
 ```js
-function cloneDeep(value) {
-  if (typeof value !== 'object' || value === null) {
-    // Return primitive types, functions, or null directly
-    return value;
+function deepCloneCustom(obj) {
+  //primitives and null
+  if (obj === null || typeof obj !== 'object') {
+    return obj;
   }
-
-  if (Array.isArray(value)) {
-    //This conditon is satisfied only when the values are of array for ex: cloneDeep has the hobbies value, then that would satisfies this if conditon
-    // Clone arrays
+  // Arrays
+  if (Array.isArray(obj)) {
     const arrCopy = [];
-    for (let i = 0; i < value.length; i++) {
-      arrCopy[i] = cloneDeep(value[i]);
+    for (let value of obj) {
+      arrCopy.push(deepCloneCustom(value));
     }
     return arrCopy;
   }
 
-  if (typeof value === 'object') {
-    // Clone objects
+  // object
+  if (typeof obj === 'object') {
     const objCopy = {};
-    for (const key in value) {
-      if (value.hasOwnProperty(key)) {
-        objCopy[key] = cloneDeep(value[key]);
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        objCopy[key] = deepCloneCustom(obj[key]);
       }
     }
     return objCopy;
@@ -51,10 +49,9 @@ const original = {
   hobbies: ['reading', 'coding'],
 };
 
-const copy = cloneDeep(original);
+const deepClonedObj = deepCloneCustom(original);
 
-console.log(copy); // Outputs cloned object
-console.log(copy !== original); // Outputs: true
-console.log(copy.address !== original.address); // Outputs: true
-console.log(copy.hobbies !== original.hobbies); // Outputs: true
+console.log(deepClonedObj); // Outputs cloned object
+console.log(deepClonedObj.address === original.address); // Outputs: false
+console.log(deepClonedObj.hobbies === original.hobbies); // Outputs: false
 ```

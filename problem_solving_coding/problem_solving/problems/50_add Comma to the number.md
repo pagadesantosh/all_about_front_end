@@ -10,7 +10,7 @@ function addComma(num) {
   if (Math.floor(num) !== num) {
     // If the number has a decimal part
     let parts = num.toString().split('.');
-    return parts[0].toLocaleString('en-US') + '.' + parts[1];
+    return parseInt(parts[0]).toLocaleString('en-US') + '.' + parseInt(parts[1]);
   }
   // this is the core logic, which runs for every non-decimal part of the number
   return num.toLocaleString('en-US');

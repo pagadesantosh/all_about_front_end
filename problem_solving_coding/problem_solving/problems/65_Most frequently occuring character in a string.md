@@ -11,20 +11,17 @@
 7. core logic: sometimes result will have c and e as maxCharacters, sometimes one char is max (that is why we are checking the `return result.length === 1 ? result[0]: result`)
 
 ```js
-function count(str) {
-  const counts = {};
+function mostRepeatedChar(inputStr) {
+  let charCount = {};
   let maxCount = 0;
-  const result = [];
+  let result = [];
 
-  // Count each character's occurrences
-  for (const char of str) {
-    counts[char] = (counts[char] || 0) + 1;
-    maxCount = Math.max(maxCount, counts[char]);
-  }
-
-  // Find characters with the maximum count
-  for (const char in counts) {
-    if (counts[char] === maxCount) {
+  for (let char of inputStr) {
+    charCount[char] = (charCount[char] || 0) + 1; // ex: {a: 1, b: 1, c: 1, d: 1, e: 3}
+    if (charCount[char] > maxCount) {
+      maxCount = charCount[char];
+      result = [char];
+    } else if (charCount[char] === maxCount) {
       result.push(char);
     }
   }
@@ -32,6 +29,6 @@ function count(str) {
   return result.length === 1 ? result[0] : result;
 }
 
-console.log('most repeated char count', count('abcdeee')); // most repeated char count e
-console.log('most repeated char count', count('abcccdeee')); // most repeated char count ['c', 'e']
+console.log('most repeated char count', mostRepeatedChar('abcdeee')); // most repeated char count e
+console.log('most repeated char count', mostRepeatedChar('abcccdeee')); // most repeated char count ['c', 'e']
 ```

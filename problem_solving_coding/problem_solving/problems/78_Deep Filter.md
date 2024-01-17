@@ -4,29 +4,17 @@
 //input is the object, callback is based on how you want to filter the element (ex: element > 0)
 function filter(input, callback) {
   const result = {};
-
-  // initially you would only get the keys of non-nested ones (ex: a, b in our first example)
-  Object.keys(input).forEach((key) => {
-    // storing the values of the keys (ex: a: 1, b: Object{})
-    const value = input[key];
-
-    // if type is of object
-    if (typeof value === 'object' && value !== null) {
-      // recursion
+  for (const [key, value] of Object.entries(input)) {
+    if (value !== null && typeof value === 'object') {
       const filteredObject = filter(value, callback);
-      // if there are keys in the above filtered object
-      if (Object.keys(filteredObject).length > 0) {
-        // store that key in the result object with value as filteredObject
-        result[key] = filteredObject;
-      }
-      // if type is not of object and adhering to callback (ex: element > 0)
+
+      // is crucial for ensuring that only `non-empty objects` are added to the result object.
+      Object.keys(filteredObject).length > 0 && (result[key] = filteredObject);
     } else if (callback(value)) {
-      // store that key in the result object with value
       result[key] = value;
     }
-  });
+  }
 
-  // don't forget to return the end result object
   return result;
 }
 

@@ -37,9 +37,11 @@ console.log(result); // Outputs: "saitejgodby"
 - The Set-based solution is the most performant with a time complexity of O(n).
 
 ```js
-let a = 'saitejaisgoodboy';
-let result = [...new Set(a)].join('');
-console.log(result); // Outputs: "saitejgodby"
+function printOnlyUniqueValues(inputStr) {
+  return [...new Set(inputStr)].join('');
+}
+
+console.log(printOnlyUniqueValues('saitejaiscoding')); //saitejcodng
 ```
 
 ---
@@ -49,16 +51,16 @@ console.log(result); // Outputs: "saitejgodby"
 - The outer loop runs n times. The indexOf method has a linear search which in the worst case is O(n). Hence, this method can also be O(n^2) in the worst case.
 
 ```js
-let a = 'saitejaisgoodboy';
-let result = '';
-
-for (let i = 0; i < a.length; i++) {
-  if (result.indexOf(a[i]) === -1) {
-    result += a[i];
+function printOnlyUniqueValues1(inputStr) {
+  let resultStr = '';
+  for (let char of inputStr) {
+    if (resultStr.indexOf(char) === -1) {
+      resultStr += char;
+    }
   }
+  return resultStr;
 }
-
-console.log(result); // Outputs: "saitejgodby"
+console.log(printOnlyUniqueValues1('saiteja')); //saitej
 ```
 
 ---
@@ -68,15 +70,15 @@ console.log(result); // Outputs: "saitejgodby"
 - The reduce function runs the callback for each element in the array, which is n times. The includes method also takes O(n) time in the worst case. Thus, this method is O(n^2) in the worst case.
 
 ```js
-let a = 'saitejaisgoodboy';
-let result = a.split('').reduce((acc, curr) => {
-  if (!acc.includes(curr)) {
-    acc += curr;
-  }
-  return acc;
-}, '');
-
-console.log(result); // Outputs: "saitejgodby"
+function printOnlyUniqueValues2(inputStr) {
+  let result = inputStr.split('').reduce((initialValue, currentValue) => {
+    if (!initialValue.includes(currentValue)) {
+      initialValue += currentValue;
+    }
+    return initialValue;
+  }, '');
+  return result;
+}
 ```
 
 ---

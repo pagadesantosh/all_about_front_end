@@ -11,48 +11,41 @@
 7. million dollar question is fetchWithAutoRetry(()=>fetchAPIURL(url), maxCount).then(()=>{}).catch(()=>{})
 
 ```js
-async function fetchWithAutoRetry(fetchResource, count) {
+const autoRetry = async (fetchURLFunc, maxRetries) => {
   try {
-    // Attempt the fetch call
-    //Here, the function awaits the resolution of the fetchResource function. If fetchResource throws an error (for example, a network failure or server error), control moves to the catch block.
-    return await fetchResource();
+    return await fetchURLFunc();
   } catch (error) {
-    if (count <= 1) {
-      // If the retry count has been exceeded, throw the error
-      throw new Error('Maximum retry attempts exceeded');
+    console.log('Retrying....');
+    if (maxRetries <= 1) {
+      throw new Error('Max no. of attempts are exceeded');
     }
-
-    // If there's an error, and we haven't exceeded the retry count, try again
-    return await fetchWithAutoRetry(fetchResource, count - 1);
+    return await autoRetry(fetchURLFunc, maxRetries - 1);
   }
-}
+};
 
-// Usage Example
-function fetchResource(url) {
-  return fetch(url)
-    .then((response) => {
-      if (!response.ok) {
-        // Handle HTTP errors
-        throw new Error(`HTTP error: Status ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      // You can add additional checks here for data validity
-      return data;
-    })
-    .catch((error) => {
-      // Network failures and other errors are caught here
-      throw error;
-    });
-}
+//fetch the api URL and return the data
+const fetchURLFunc = async (URL) => {
+  const response = await fetch(URL);
+  if (!response.ok) {
+    throw new Error(`Status ${response.status}`);
+  }
+  const data = await response.json();
+  return data;
+};
 
-const maxRetries = 3; // Maximum number of retries
-const url = 'https://jsonplaceholder.typicode.com/posts/1';
+const maxRetries = 3;
+const URL = 'https://jsonplaceholder.typicode.com/posts/1';
 
-fetchWithAutoRetry(() => fetchResource(url), maxRetries)
-  .then((data) => console.log('Data fetched:', data))
-  .catch((error) => console.error('Failed to fetch data:', error));
+const main = async () => {
+  try {
+    const data = await autoRetry(() => fetchURLFunc(URL), maxRetries);
+    console.log('Data Fetched', data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+main();
 ```
+### Play with the URL, to get the desired below output 😉😉
+![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/dcbed3e1-749d-4ce2-a9ce-1410f0d961a8)
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/89d13951-e09f-41bf-9ea7-b2388746a80b)

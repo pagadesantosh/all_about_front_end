@@ -135,5 +135,3 @@ function App() {
 </details>
 
 ---
-
-**5. How to create a custom hook – useLocalStorage example**

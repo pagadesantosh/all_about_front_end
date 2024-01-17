@@ -9,45 +9,35 @@
 5. If it is an object, use a `for-in` loop to iterate inside the object and for each property of the source object (obj), it calls the deepClone function recursively
 
 ```js
-function deepClone(obj) {
-  // Handle primitive types and null
-  if (obj === null || typeof obj !== 'object') return obj;
+const obj1 = { a: 1, b: 2, c: { d: 4, e: 5, f: { g: 6 } } };
+const shallowClone = { ...obj1 };
+console.log('shallowCloned Obj', shallowClone);
+console.log('Testing shallowCloned Obj', obj1.c === shallowClone.c); //true, because it doesn't apply to the nested objects
 
-  // Handle arrays
-  if (Array.isArray(obj)) {
-    return obj.map((item) => deepClone(item));
+function deepClone(inputObj) {
+  // logic 1 is to check if inputParam is of null or not an object (Primitives and null)
+  if (inputObj === null || typeof inputObj !== 'object') {
+    return inputObj;
   }
+  // logic 2 is Array.isArray(inputParam), inputParam.map((item)=>deepClone(item))
+  if (Array.isArray(inputObj)) {
+    return inputObj.map((item) => deepClone(item));
+  }
+  // logic 3 is typeof inputParam === 'object', maintain a copyObj, for in loop on inputParam and check if inputParam.hasOwnProperty(key) then copyObj[key] = deepClone(inputParam[key])
+  if (typeof inputObj === 'object') {
+    const copyObj = {};
 
-  // Handle objects
-  const copy = {};
-  for (let key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      copy[key] = deepClone(obj[key]);
+    for (let key in inputObj) {
+      if (inputObj.hasOwnProperty(key)) {
+        copyObj[key] = deepClone(inputObj[key]);
+      }
     }
+    return copyObj;
   }
-  return copy;
 }
 
-// Example usage:
-const obj = {
-  a: 1,
-  b: {
-    c: 2,
-    d: {
-      e: 3,
-    },
-  },
-  f: [4, 5, { g: 6 }],
-};
-
-const deepClonedObj = deepClone(obj);
-const shallowClonedObj = Object.assign({}, obj);
-
-console.log('deepClonedObj', deepClonedObj); // { a: 1, b: { c: 2, d: { e: 3 } }, f: [ 4, 5, { g: 6 } ] }
-
-console.log('shallowClone', shallowClonedObj); // { a: 1, b: { c: 2, d: { e: 3 } }, f: [ 4, 5, { g: 6 } ] }
-
-console.log('deepClonedObj', deepClonedObj.b.d === obj.b.d); //false
-
-console.log('shallowClonedObj', shallowClonedObj.b.d === obj.b.d); //true
+const obj2 = { a: 1, b: 2, c: { d: 4, e: 5, f: { g: 6 } } };
+const deepClonedObject = deepClone(obj2);
+console.log('deepClonedObj', deepClonedObject);
+console.log('Testing deepClonedObj', obj2.c === deepClonedObject.c); //false, because references are not same
 ```

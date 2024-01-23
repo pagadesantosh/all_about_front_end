@@ -712,3 +712,84 @@ element.addEventListener('event1', (event) => {
   console.log(event.detail);
 });
 ```
+
+---
+
+## 54. What will be the output of the code below?
+
+```js
+function foo() {
+  return "I'm the outer function";
+}
+
+function test() {
+  console.log(bar);
+  return foo();
+  var bar = "I'm a variable";
+  function foo() {
+    return "I'm the inner function";
+  }
+}
+console.log(test());
+```
+
+<details>
+  <summary>View Answer</summary>
+ undefined 
+ I’m the inner function
+</details>
+
+---
+
+## 55. What will be the output of the code below?
+
+```js
+const nums = [1,2,3,4,5,6,7];
+nums.forEach((n) => {
+    if(n%2 === 0)
+      break;
+    console.log(n);
+});
+```
+
+<details>
+  <summary>View Answer</summary>
+Syntax Error
+
+```js
+//correct solution would be by using loops
+
+const nums = [1, 2, 3, 4, 5, 6, 7];
+
+for (let n of nums) {
+  if (n % 2 === 0) break;
+  console.log(n);
+}
+```
+
+</details>
+
+---
+
+## 56. What will be the output of the code below?
+
+```js
+async function foo() {
+  console.log('A');
+  await Promise.resolve();
+  console.log('B');
+  await new Promise((resolve) => setTimeout(resolve, 0));
+  console.log('C');
+}
+
+console.log('D');
+foo();
+console.log('E');
+```
+
+<details>
+  <summary>View Answer</summary>
+Output: D, A, E, B, C
+</details>
+
+---

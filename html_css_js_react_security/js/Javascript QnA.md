@@ -631,3 +631,331 @@ c) Bind returns a new function, allowing you to pass in this array and any numbe
 #### overriding name key and value
 
 ![image](https://user-images.githubusercontent.com/42731246/148686257-cc70316c-643f-493e-99e5-97084ce30a3e.png)
+
+---
+
+## 85. When should we use generators in ES6?
+
+- **Handing Asynchronous operations**: Generators can be used to simplify the code for asynchronous operations making it easier to read and maintain.
+- **Lazy Evaluation**: Generators allow you to define a potentially infinite sequence and compute its values on demand. This is useful when dealing with large datasets where you don't need all values immediately and want to avoid the memory overhead of storing them all at once.
+- **Stateful Iterations**: Generators maintain their state during executions. This makes them to create custom iterators where you need to maintain state across iterations.
+- **Complex Control Flow**: You might have code that is hard to read. Generators provide readable and maintainable solution in these cases
+- **Multitasking**: Generators can be used to implement cooperative multitasking within a single thread. By yielding control back to the scheduler different tasks can be interleaved in a controlled manner.
+- **Pause and Resume execution**- Generators can pause the execution and resume it later, which can be useful in scenarios where you need to wait for an external process or input before continuing.
+- **Custom Data Producers** - Like a specific range of numbers or a unique sequence, generators are more elegant solution than building an iterator using traditional methods.
+
+---
+
+## 86. When should we use Arrow functions in ES6?
+
+- **Shorter Syntax**: Shorter syntax is particularly useful for inline functions or callbacks
+- **No this binding**: Arrow functions do not have their own `this` context. They inherit `this` from `parent scope` at the time they are defined.
+- **Implicit return**: For functions, they simple return a value, whereas arrow functions can be written with an implicit return making the code shorter and cleaner. (useful for map, filter, reduce)
+- **Functional Programming**: Well suited for FP patterns due to their syntax + no context binding (ex: this, arguments, super, new.target)
+- **Non method Functions**: Arrow functions are ideal for non-method functions. They are not suitable as object methods when you need to access the object's properties using `this` will refer to the outer context.
+
+```js
+// An arrow function in the global scope
+const checkThis = () => {
+  console.log(this === window); // true in a non-strict mode browser environment
+};
+
+checkThis(); // Calls the arrow function
+```
+
+```js
+function MyObject() {
+  this.value = 10;
+
+  this.increment = function () {
+    // Arrow function captures 'this' from the enclosing scope (MyObject instance)
+    setTimeout(() => {
+      this.value++;
+      console.log(this.value); // Correctly refers to the MyObject instance
+    }, 1000);
+  };
+}
+
+let obj = new MyObject();
+obj.increment(); // After 1 second, it will log '11'
+```
+
+---
+
+## 87. const vs Object.freeze()?
+
+**const**
+
+- The const keyword is used to declare a variable
+- It ensures that the variable identifier cannot be reassigned to a different value
+- But it doesn't make the value it holds as immutable. **For instance, if the const variable holds an object, the properties of that object can still be modified.**
+
+Ex:
+
+```js
+const myConst = { a: 1 };
+myConst = { b: 2 }; // Error: Assignment to constant variable.
+myConst.a = 2; // This is fine, myConst now is { a: 2 }
+```
+
+**Object.freeze()**
+
+- This is a method that acts on an object
+- Makes an object immutable meaning its **properties cannot be added, removed or changed**.
+- This is a shallow freeze, so it only applies to the immediate properties of the object.
+- **Nested objects can still be modified** unless they are also frozen
+
+```js
+const myObject = { a: 1 };
+Object.freeze(myObject);
+myObject.a = 2; // No effect, myObject is still { a: 1 }
+myObject.b = 3; // No effect, can't add new properties
+```
+
+---
+
+## 88. How do you compare two objects in javascript ?
+
+Comparing objects is tricky, because objects are compared by the reference not by value. This means that even if two objects contain exactly the same properties with the same values, they are considered different if they are not the same instance.
+
+Below are some of the methods to compare objects based on criteria
+
+**1. Shallow Comparison**: considers immediate properties of two objects are equal. **Doesn't consider nested objects**
+
+```js
+function shallowEqual(object1, object2) {
+  const keys1 = Object.keys(object1);
+  const keys2 = Object.keys(object2);
+
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+
+  for (let key of keys1) {
+    if (object1[key] !== object2[key]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+```
+
+**2. Deep comparison**: Is necessary if the objects may have nested objects or arrays. This checks every property (and sub-property) for equality.
+
+```js
+function deepEqual(object1, object2) {
+  if (object1 === object2) {
+    return true;
+  }
+
+  if (
+    typeof object1 !== 'object' ||
+    object1 === null ||
+    typeof object2 !== 'object' ||
+    object2 === null
+  ) {
+    return false;
+  }
+
+  const keys1 = Object.keys(object1);
+  const keys2 = Object.keys(object2);
+
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+
+  for (let key of keys1) {
+    if (!keys2.includes(key) || !deepEqual(object1[key], object2[key])) {
+      return false;
+    }
+  }
+
+  return true;
+}
+```
+
+3. **JSON Stringify**: Quick and dirty way to compare objects. However it has limitations it doesn't handle functions or `undefined` properties and the order of the properties matters
+
+```js
+const areEqual = JSON.stringify(object1) === JSON.stringify(object2);
+```
+
+**4. Using Loadash libraries**
+
+```js
+// Using Lodash
+const areEqual = _.isEqual(object1, object2);
+```
+
+---
+
+## 89. document `load` event vs document `DOMContentLoaded` event ?
+
+### DOMContentLoaded
+
+- Triggered when the DOMContentLoaded event is fired when the `initial HTML document has been completely loaded and parsed` `without waiting for stylesheets, images and subframes to finish loading`.
+
+- **Use case:** If you're adding event listeners or manipulating the DOM, this is the best case.
+
+- **Faster than the `load` event for initiating DOM-related scripts**
+
+```js
+document.addEventListener('DOMContentLoaded', function () {
+  console.log('DOM fully loaded and parsed');
+});
+```
+
+### load event
+
+- triggered when the load event is fired, when the whole page has loaded, including all dependent resources such as stylesheets and images.
+- used when you need to perform actions that require all resources on the page to be fully loaded. **Ideal for actions that need dimensions of images or styles applied from CSS**
+
+```js
+window.addEventListener('load', function () {
+  console.log('Entire page is fully loaded');
+});
+```
+
+**Note:**
+
+- DOMContentLoaded is typically added to the `document`
+- `load` can be added to the `window` object to detect the complete page load.
+
+---
+
+## 90. Motivation behind introduction of Symbol in ES6?
+
+**Unique Identifiers**- Particularly useful when you create an object property that doesn't clash with any other property, it's a way to add `private` properties to objects
+
+**Property Key privacy**: Before ES6, object properties were either strings or numbers, which could lead to naming collisions. Symbols offer a way to create `hidden` properties on objects that are not enumerable in traditional for-in loops and are not part of the object's public when using libraries.
+
+```js
+let mySymbol = Symbol('myPrivateProperty');
+
+let myObject = {
+  [mySymbol]: 'This is a private property',
+  publicProperty: 'This is a public property',
+};
+
+console.log(myObject.publicProperty); // Accessible and outputs: This is a public property
+
+// Accessing the private property with the symbol
+console.log(myObject[mySymbol]); // Outputs: This is a private property
+
+// Demonstrating the privacy
+for (let prop in myObject) {
+  console.log(prop); // Only logs "publicProperty", not the symbol property
+}
+
+console.log(Object.keys(myObject)); // Outputs: ["publicProperty"], symbol property is not listed
+
+console.log(JSON.stringify(myObject)); // Outputs: {"publicProperty":"This is a public property"}, symbol property is not included
+```
+
+**Symbol.iterator**- is used to make an object iterable and compatible with the new `for of` loop.
+
+---
+
+## 91. Prototype Design Pattern
+
+----
+
+## 92. JS module Design Pattern
+
+-----
+
+## 93. Actual uses of ES6 WeakMap ?
+
+### 1. Private Data
+
+- WeakMap can be used to store private data for an object
+- Since the keys are weakly referenced the private data will be garbage collected when the object is no longer in use, helping to prevent memory leaks.
+
+```js
+const privateData = new WeakMap();
+
+function MyClass(privateContent) {
+  privateData.set(this, privateContent);
+}
+
+MyClass.prototype.doSomething = function () {
+  console.log(privateData.get(this));
+};
+```
+
+### 2. Caching data:
+
+- Caching results of a function for memoization
+
+```js
+const cache = new WeakMap();
+
+function computeExpensiveValue(obj) {
+  if (!cache.has(obj)) {
+    const result = {
+      /*some expensive operation */
+    };
+    cache.set(obj, result);
+  }
+  return cache.get(obj);
+}
+```
+
+### 3. Security:
+
+- Since the keys of WeakMap are not enumerable (no way to get the list of keys), it can add a layer of security where the association between the object and its data in the `WeakMap` is not easily discoverable from outside code.
+
+**Realtime Scenario**:
+
+- Managing Sessions in a Web Application:
+
+```js
+const sessionData = new WeakMap();
+
+class Session {
+  constructor(userId) {
+    this.userId = userId;
+    sessionData.set(this, {
+      /* private data */
+    });
+  }
+
+    endSession(){
+      sessionData.delete(this)
+    }
+
+}
+  function createSession(userId){
+    return new Session(userId)
+  }
+```
+
+---
+
+## 94. Map vs WeakMap
+
+----
+
+## 95. Is it possible to reset an ES6 generator to its initial state?
+----
+
+## 96. What is the difference between host objects and native objects?
+----
+
+## 97. What is the difference between an "attribute" and a "property" ?
+----
+
+## 98. Explain the same-origin policy with regards to JavaScript.
+----
+
+## 99. Explain Ajax in as much detail as possible.
+----
+
+## 100. Why would you use something like the load event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?
+----
+
+## 101. Explain what a single page app is and how to make one SEO-friendly.
+----
+
+## 102. Why you might want to create static class members?

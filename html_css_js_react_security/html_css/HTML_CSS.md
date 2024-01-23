@@ -222,3 +222,102 @@ The basic difference between CSS Grid Layout and CSS Flexbox Layout is that flex
 ## 40. Position relative vs Position absolute
 
 position: relative places an element relative to its current position without changing the layout around it, whereas position: absolute places an element relative to its parent's position and changing the layout around it.
+
+---
+
+## 41. What is CSS selector specificity and how does it work?
+
+- The browser determines what styles to show on an element depending on the specificity of CSS rules.
+- Four set of rules are calculated based on the following
+
+a - is whether inline styles are being used.
+b - is ID selectors
+c - classes, attributes & pseudo classes selectors
+d - tags and pseudo-elements selectors
+
+Ex: a, b, c, d
+
+- In order to determine which has the highest specificity look from left to right (ex: 0 1 0 0) so b will override c and d in this case.
+- In cases of equal specificity, the latest rule is the one that counts.
+- If you have written the same rule into your stylesheet then the lower rule in your stylesheet is closer to the element to be styled.
+- **It is a better practice to write CSS rules with low specificity so that they can be easily overridden if necessary without using too complicated CSS rules just for the sake of increasing specificity or resorting to !important**
+
+---
+
+## 42. What is the difference between "resetting" and "normalizing" CSS? Which would you choose, and why?
+
+- **Resetting**: Is meant to strip all default browser styling on elements. For e.g. **margins, paddings, font-size** of all the elements are reset to be the same.
+  You have to redeclare styling for common typographic elements.
+
+- **Normalizing**: Preserves useful default styles rather than `unstyling` everything. It also corrects bugs for common browser dependencies.
+
+---
+
+## 43. Describe Floats and how they work.
+
+- Float is a CSS positioning property primarily used for wrapping text around images or (for creating layouts where block-level elements are aligned side by side)
+- Floated elements remain a part of the flow of the page, and will affect the positioning of other elements (e.g. text will flow around floated elements), unlike `position: absolute` elements, which is used to position an element completely out of the normal document flow.
+- The CSS `clear` property can be used to positioned below `left/right/both` floated elements
+- If parent element contains nothing but floated elements, its height will be collapsed to nothing which can be fixed by clearing the float after the floated elements in the container but before the close of the container.
+- Floats don't provide vertical alignment.
+
+---
+
+## 44. Describe z-index and how stacking context is formed.
+- z-index `controls the vertical stacking order of elements` that overlap each other.
+- z-index only affects `positioned elements` (elements which have a position value which is not `static`) and its descendants or flex items
+- Can be of Positive or negative whole numbers, determining the elements layer within its stacking context.
+- if provided auto, the element inherits its stacking order from its parent.
+- Higher z-index values mean the element will be closer to the front, overlaying elements with lower values.
+- If two elements have the same z-index, the one that appears later in the HTML will be on top.
+- Negative values are allowed which can place elements behind their parent stacking context.
+
+**Stacking context**:
+- is an element that contains a set of layers.
+- within a local stacking context, the z-index values of its children are set relative to that element rather than to the document root. 
+
+## 45. Describe BFC (Block Formatting Context) and how it works.
+
+## 46. What are the various clearing techniques and which is appropriate for what context?
+
+## 47. How would you approach fixing browser-specific styling issues?
+
+## 48. How do you serve your pages for feature-constrained browsers?
+
+## 49. What techniques/processes do you use?
+
+## 50. What are the different ways to visually hide content (and make it available only for screen readers)?
+
+## 51. Have you ever used a grid system, and if so, what do you prefer?
+
+## 52. What are the advantages/disadvantages of using CSS preprocessors? Describe what you like and dislike about the CSS preprocessors you have used.
+
+## 53. How would you implement a web design comp that uses non-standard fonts?
+
+
+
+## 54. Explain how a browser determines what elements match a CSS selector.
+
+## 55. Describe pseudo-elements and discuss what they are used for.
+
+## 56. Explain your understanding of the box model and how you would tell the browser in CSS to render your layout in different box models.
+
+## 57. What does \* { box-sizing: border-box; } do? What are its advantages?
+
+## 58. What is the CSS display property and can you give a few examples of its use?
+
+## 59. What is the difference between inline and inline-block?
+
+## 60. What is the difference between the "nth-of-type()" and "nth-child()" selectors?
+
+## 61. What is the difference between a relative, fixed, absolute and statically positioned element?
+
+## 62. Is there any reason you'd want to use translate() instead of absolute positioning, or vice-versa? And why?
+
+## 63. Can you explain the difference between px, em and rem as they relate to font sizing?
+
+## 64. Can you give an example of a pseudo class? Can you provide an example use case for a pseudo class?
+
+## 65. What is the difference between a block level element and an inline element. Can you provide examples of each type of element?
+
+## 66. What is the difference between CSS Grid and Flexbox? When would you use one over the other?

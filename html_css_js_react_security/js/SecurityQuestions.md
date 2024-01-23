@@ -1,0 +1,3 @@
+#### 1. XSS vulnerability. Interviewers are especially looking out for this whenever you need to render user input. You almost never need to use .innerHTML. There's .textContent and $.text(). If you do have to render raw HTML, make sure you escape the contents first.
+
+#### 2. User input that is being displayed in the URL has to be encoded first as well, or else there's also a potential for mischief where users can add additional query parameters.

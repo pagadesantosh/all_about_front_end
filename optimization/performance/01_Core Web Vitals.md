@@ -469,11 +469,92 @@ module.exports = {
 
 - To provide a user experience, pages should **_maintain a CLS of 0.1 or less_**
 
-You can read more about CLS here — https://web.dev/articles/cls
+### To improve CLS, let's discuss few best practices
+
+**_1. Size attribute for Images and Videos_**:
+
+- **_Ensure that images and videos on your website have explicit width and height_** attributes defined in the HTML.
+- This helps the **_browser allocate the correct space_** for these elements **_during page layout_**.
+
+```js
+<img src="example.jpg" alt="Example" width="300" height="200">
+```
+
+---
+
+**2. Lazy Loading Images:**
+
+- Implement lazy loading for images and videos using the loading attribute. This defers the loading of below-the-fold images until they are close to entering the viewport, reducing layout shifts caused by late image loading.
 
 ---
 
 **Note:** For each of the above metrics, to ensure you're hitting the recommended target for most of your users, a good threshold to measure is the **_75th percentile_** of page loads.
+
+---
+
+**3. Preload Critical Resources:**
+
+- Use the preload or prefetch attributes to give the browser a hint about resources that will be needed in the future.
+- **_Preloading critical resources like fonts, stylesheets, or scripts_** can reduce the likelihood of layout shifts caused by late-loading resources.
+
+```js
+<link rel="preload" href="font.woff2" as="font">
+```
+
+---
+
+**4. Optimize Web Fonts:**
+
+- **Web fonts can contribute to CLS** if they load and change the layout of text elements.
+- Consider **using font-display strategies** to control font loading and reduce layout shifts.
+
+---
+
+**5. Using Placeholders for Content:**
+
+- Display a skeleton or placeholder until the content is fully loaded.
+
+```js
+return data ? <div>{data.content}</div> : <div className='placeholder'></div>;
+```
+
+---
+
+**6. Reserve Space for Lazy-loaded Images:**
+
+If you’re lazy-loading images, reserve their space with appropriate placeholders.
+
+```js
+const img = new Image();
+img.src = 'path/to/image.jpg';
+
+img.onload = function () {
+  placeholder.replaceWith(img);
+};
+```
+
+---
+
+**7. Avoid document.write:**
+
+- Using document.write **can block the page and cause unexpected content shifts**.
+
+```js
+// Instead of document.write("<h1>Hello</h1>");
+const h1 = document.createElement('h1');
+h1.textContent = 'Hello';
+document.body.appendChild(h1);
+```
+
+---
+
+**8. Optimize CSS Animations:**
+
+- Prefer properties like opacity and transform that don’t cause layout recalculations.
+
+---
+
+You can read more about CLS here — https://web.dev/articles/cls
 
 ---
 
@@ -520,10 +601,50 @@ TTFB is the sum of:
 
 ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/26bab05a-2c89-46ca-a40e-3889bfff7411)
 
+### Optimizing TBT:
+
+**1. Reduce JavaScript Execution**:
+
+- Consider code splitting, tree shaking, and only loading what’s necessary.
+
+**2. Optimize Third-Party Scripts**
+
+- Some third-party scripts can be very resource-intensive. Consider lazy-loading them, deferring them, or looking for lighter alternatives.
+
+**3. Web Workers:**
+
+- **_Use web workers for off-thread calculations_**. This allows running JavaScript without blocking the main thread.
+
 ---
 
 **Speed Index**:
 
 - Measure how quickly the page's content becomes visible to the user
+- Is calculated <u>**_by capturing a video of the page load in a browser_**</u> and computing the visual progression between frames.
+- Essentially it measures the average time at which visible parts of the page are displayed.
 
 ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/90b7e2de-3103-4975-94c1-ca9df451a13a)
+
+---
+
+### Importance of Web Performance:
+
+**- SEO**:
+
+- Search Engines like Google, factor in site speed when ranking websites
+- Faster websites are more likely to rank higher in search results, leading to increased visibility and organic traffic.
+
+**- Accessibility**:
+
+- Web performance also plays a role in making the web accessible to users with slow internet connections or older devices.
+
+---
+
+### General:
+
+- An optimized website ensures inclusivity for all users, regardless of their tech capabilities.
+- Faster websites provide better User experience.
+- Delays in page loading or interactive responses can frustrate users, leading them to abandon the site.
+- **_<u>Faster websites lead to higher conversion rates_**.</u>
+- **_<u>Slow-loading websites have higher bounce rates_**</u>, meaning users leave before interacting with the site.
+- Improved performance can reduce bounce rates, keeping users engaged for longer.

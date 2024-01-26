@@ -4,7 +4,7 @@
 
 ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/05f2806f-e67f-47e9-872c-b8a0299874ca)
 
-- The current set of metrics focusses on three aspects of the user experience - **_loading, interactivity, visual stability_**
+- The current set of metric(s) focusses on three aspects of the user experience - **_loading, interactivity, visual stability_**
 
 ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/bcc6d834-870e-4956-8d87-06cd67e2cb03)
 

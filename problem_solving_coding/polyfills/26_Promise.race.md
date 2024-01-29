@@ -34,22 +34,14 @@ if (typeof Promise.customRace !== 'function') {
 }
 
 // Example Usage
-function processLocally(data) {
-  return new Promise((resolve) => {
-    // Simulated delay for local processing
-    setTimeout(() => resolve(`Local result for ${data} 1000ms`), 1000);
-  });
+function delay(message, time) {
+  return new Promise((resolve) => setTimeout(() => resolve(message), time));
 }
 
-function processRemotely(data) {
-  return new Promise((resolve) => {
-    // Simulated delay for remote processing
-    setTimeout(() => resolve(`Remote result for ${data} 500ms`), 500);
-  });
-}
-
-const data = 'sampleTask';
-Promise.customRace([processLocally(data), processRemotely(data)])
-  .then((result) => console.log(result)) // Outputs: "Remote result for sampleTask 500ms"
-  .catch((error) => console.error(error));
+Promise.customRace([
+  delay("Delay 1 second", 1000),
+  delay("Delay half a second", 500)
+])
+.then(result => console.log(result))  // Outputs: "Delay half a second"
+.catch(error => console.error(error));
 ```

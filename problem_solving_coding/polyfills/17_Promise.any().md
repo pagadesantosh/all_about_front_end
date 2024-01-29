@@ -15,7 +15,7 @@ Promise.any(iterable);
 4. so when errors.length is equal to the passed promisesArray.length then return reject with Aggregate Error saying that all the promises are rejected.
 
 ```js
-if (typeof Promise.any !== 'function') {
+if (typeof Promise.customAny !== 'function') {
   Promise.customAny = function (promises) {
     return new Promise((resolve, reject) => {
       if (!Array.isArray(promises)) {

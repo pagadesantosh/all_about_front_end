@@ -13,17 +13,9 @@
 
 #### Let's break down this process into smaller steps to understand even better
 
-1.**_A user requests a page_** from a server. This could be a direct request to the server or a click on a link that triggers a request. 
-2. **_The server sends a minimal HTML page to the client_**(usually a loader image). 
-3. Along with that initial HTML, the **_server sends any necessary JS and CSS files_**. 
-4. The client's **_browser loads the HTML_** page and **_executes the JS code_**. 
-5. The JS code makes a request to an API or other data source to fetch the data needed to render the page. 
-6. Once the data is fetched, the **JS code uses it to render the page** in the browser. 
-7. At this point the page is fully loaded, visible and interactable: any subsequent interactions such as clicks or form submissions trigger further JS code execution and data fetching as needed.
+1.**_A user requests a page_** from a server. This could be a direct request to the server or a click on a link that triggers a request. 2. **_The server sends a minimal HTML page to the client_**(usually a loader image). 3. Along with that initial HTML, the **_server sends any necessary JS and CSS files_**. 4. The client's **_browser loads the HTML_** page and **_executes the JS code_**. 5. The JS code makes a request to an API or other data source to fetch the data needed to render the page. 6. Once the data is fetched, the **JS code uses it to render the page** in the browser. 7. At this point the page is fully loaded, visible and interactable: any subsequent interactions such as clicks or form submissions trigger further JS code execution and data fetching as needed.
 
 ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/16cd9aec-fc8c-4999-9a38-5012eb73ead7)
-
-
 
 ```js
 1] Browser makes a request to the server.
@@ -71,3 +63,50 @@
 ### Server Side Rendering (SSR):
 
 <img src="https://miro.medium.com/v2/resize:fit:786/format:webp/0*DgPXg7GxhxYoG1p7.png">
+
+#### How it works:
+
+- With SSR, <u>the server processes the request</u>, fetches the required data, **_renders the page into HTML_** and <u>**_sends this fully rendered HTML to the client_**</u>.
+  ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/ae6f89fb-ee8c-4c3d-ac8d-476704e5ad16)
+
+```js
+import fetch from 'node-fetch';
+
+function Page({ data }) {
+  return (
+    <div>
+      {data.map((item) => (
+        <div key={item.id}>{item.name}</div>
+      ))}
+    </div>
+  );
+}
+
+export async function getServerSideProps() {
+  const response = await fetch('https://api.example.com/data');
+  const data = await response.json();
+  return {
+    props: { data },
+  };
+}
+
+export default Page;
+```
+
+---
+
+#### PROS
+
+**1. Faster Initial Load**:
+
+- Users get a fully rendered page upon the initial request, often leading to a perception of faster page loads.
+
+**2. SEO advantages**: Better for SEO, since search engine crawlers get a fully rendered page, optimizing indexation.
+
+**3. Faster Largest Contentful Paint (LCP)**
+
+---
+
+#### CONS
+
+**1. Increased Server load** since the server has to render content on every request

@@ -19,40 +19,40 @@ The term “render prop” refers to a technique for sharing code between React 
 ```js
 class Cat extends React.Component {
   render() {
-    const mouse = this.props.mouse
+    const mouse = this.props.mouse;
     return (
       <img
-        src="/cat.jpg"
-        style={{ position: "absolute", left: mouse.x, top: mouse.y }}
+        src='/cat.jpg'
+        style={{ position: 'absolute', left: mouse.x, top: mouse.y }}
       />
-    )
+    );
   }
 }
 
 class Mouse extends React.Component {
   constructor(props) {
-    super(props)
-    this.handleMouseMove = this.handleMouseMove.bind(this)
-    this.state = { x: 0, y: 0 }
+    super(props);
+    this.handleMouseMove = this.handleMouseMove.bind(this);
+    this.state = { x: 0, y: 0 };
   }
 
   handleMouseMove(event) {
     this.setState({
       x: event.clientX,
       y: event.clientY,
-    })
+    });
   }
 
   render() {
     return (
-      <div style={{ height: "100vh" }} onMouseMove={this.handleMouseMove}>
+      <div style={{ height: '100vh' }} onMouseMove={this.handleMouseMove}>
         {/*
           Instead of providing a static representation of what <Mouse> renders,
           use the `render` prop to dynamically determine what to render.
         */}
         {this.props.render(this.state)}
       </div>
-    )
+    );
   }
 }
 
@@ -63,7 +63,7 @@ class MouseTracker extends React.Component {
         <h1>Move the mouse around!</h1>
         <Mouse render={(mouse) => <Cat mouse={mouse} />} />
       </div>
-    )
+    );
   }
 }
 ```
@@ -91,17 +91,17 @@ Code-splitting your app can help you “lazy-load” just the things that are cu
 Before:
 
 ```js
-import { add } from "./math"
+import { add } from './math';
 
-console.log(add(16, 26))
+console.log(add(16, 26));
 ```
 
 After:
 
 ```js
-import("./math").then((math) => {
-  console.log(math.add(16, 26))
-})
+import('./math').then((math) => {
+  console.log(math.add(16, 26));
+});
 ```
 
 #### React.lazy
@@ -109,13 +109,13 @@ import("./math").then((math) => {
 Before:
 
 ```js
-import OtherComponent from "./OtherComponent"
+import OtherComponent from './OtherComponent';
 ```
 
 After:
 
 ```js
-const OtherComponent = React.lazy(() => import("./OtherComponent"))
+const OtherComponent = React.lazy(() => import('./OtherComponent'));
 ```
 
 React.lazy currently only supports default exports. If the module you want to import uses named exports, you can create an intermediate module that reexports it as the default. This ensures that tree shaking keeps working and that you don’t pull in unused components.
@@ -242,13 +242,13 @@ Here’s an example of an action that can be carried out during login in an app:
 ```js
 const setLoginStatus = (name, password) => {
   return {
-    type: "LOGIN",
+    type: 'LOGIN',
     payload: {
-      username: "foo",
-      password: "bar",
+      username: 'foo',
+      password: 'bar',
     },
-  }
-}
+  };
+};
 ```
 
 #### Reducers in Redux
@@ -261,23 +261,23 @@ As pure functions, they do not change the data in the object passed to them or p
 const LoginComponent = (state = initialState, action) => {
   switch (action.type) {
     // This reducer handles any action with type "LOGIN"
-    case "LOGIN":
+    case 'LOGIN':
       return state.map((user) => {
         if (user.username !== action.username) {
-          return user
+          return user;
         }
 
         if (user.password == action.password) {
           return {
             ...user,
-            login_status: "LOGGED IN",
-          }
+            login_status: 'LOGGED IN',
+          };
         }
-      })
+      });
     default:
-      return state
+      return state;
   }
-}
+};
 ```
 
 ### Store in Redux
@@ -287,9 +287,9 @@ The store holds the application state. It is highly recommended to keep only one
 listeners via helper methods.
 
 ```js
-import { Provider } from "react-redux"
-import store from "./store/store"
-import { BrowserRouter as Router } from "react-router-dom"
+import { Provider } from 'react-redux';
+import store from './store/store';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 ReactDOM.render(
   <Provider store={store}>
@@ -297,8 +297,8 @@ ReactDOM.render(
       <App />
     </React.StrictMode>
   </Provider>,
-  document.getElementById("root")
-)
+  document.getElementById('root')
+);
 ```
 
 ### 31. Principles of Redux?
@@ -306,7 +306,7 @@ ReactDOM.render(
 a. Single source of truth. The global state of your application is stored in an object tree within a single store.
 
 ```js
-console.log(store.getState())
+console.log(store.getState());
 ```
 
 b. State is read-only. The only way to change the state is to emit an action, an object describing what happened. ...
@@ -417,11 +417,11 @@ StrictMode is a tool for highlighting potential problems in an application. Like
 If the other module fails to load (for example, due to network failure), it will trigger an error. You can handle these errors to show a nice user experience and manage recovery with Error Boundaries. Once you’ve created your Error Boundary, you can use it anywhere above your lazy components to display an error state when there’s a network error.
 
 ```js
-import React, { Suspense } from "react"
-import MyErrorBoundary from "./MyErrorBoundary"
+import React, { Suspense } from 'react';
+import MyErrorBoundary from './MyErrorBoundary';
 
-const OtherComponent = React.lazy(() => import("./OtherComponent"))
-const AnotherComponent = React.lazy(() => import("./AnotherComponent"))
+const OtherComponent = React.lazy(() => import('./OtherComponent'));
+const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
 
 const MyComponent = () => (
   <div>
@@ -434,5 +434,130 @@ const MyComponent = () => (
       </Suspense>
     </MyErrorBoundary>
   </div>
-)
+);
 ```
+
+### 54. When should we use arrow functions with React?
+
+##### Arrow functions in React are used primarily for two reasons:
+
+- their concise syntax
+- the way they handle the `this` keyword.
+
+**Concise Syntax:**
+
+1. ##### Arrow functions are commonly used for event handlers
+
+```js
+const MyComponent = () => {
+  const handleClick = () => {
+    console.log('Button clicked');
+  };
+
+  return <button onClick={handleClick}>Click me</button>;
+};
+```
+
+2. ##### In class components, arrow functions can be used to automatically bind methods
+
+```js
+class MyComponent extends React.Component {
+  handleClick = () => {
+    console.log('Button clicked');
+  };
+
+  render() {
+    return <button onClick={this.handleClick}>Click me</button>;
+  }
+}
+```
+
+3. ##### Custom Hooks: Due to their concise syntax and readability.
+
+```js
+const useCustomHook = () => {
+  // Hook logic here
+};
+```
+
+4. ##### Inline Event Handlers
+
+```js
+<button onClick={() => console.log('Button clicked')}>Click me</button>
+```
+
+#### When not to use arrow functions?
+
+- Avoid using arrow functions in render methods or **_functional components that re-render frequently_**, as they create new instances of the function on each render, potentially leading to performance issues.
+
+- Using arrow functions **_inside dependency arrays of hooks like useEffect_**. Since they are recreated on each render, they can cause unnecessary re-runs of effects.
+
+### 55. How can automated tooling be used to improve the accessibility of a React application?
+
+##### There are two main categories:
+
+**- Static Analysis Tools**:
+
+- Linting tools like **ESLint** can be used with plugins such as <u>**_eslint-plugin-jsx-a11y_** </u> **_to analyze React projects at a component level._**
+
+**- Browser Tools**:
+
+- Browser accessibility tools such as <u>**_aXe_**</u> and <u>**_Google Lighthouse_**</u> perform automated accessibility at the app level.
+
+---
+
+### 56. Why should not we update the state directly?
+
+- **Updating the state directly** is a common pitfall that **_can lead to several issues_**
+- **When you update the state directly** (i.e., mutating the state), <u>**_React won't be aware of the changes_**</u>, and as a result, the component won't re-render.
+
+<u>**Points to remember on why not to update state directly:**</u>
+
+- React's design philosophy **_treats state as immutable_**. This means once a state is set, you do not modify it directly. **_Instead, you should use the setState method_** (or the state updater function with hooks) to change the state.
+
+<br/>
+
+- **Component Will Not Re-render:** If you mutate the state directly, React will not know that the state has changed because setState or the state updater function from hooks also triggers the re-render process.
+
+<br/>
+
+- **Unexpected Behavior in Component Lifecycle:** Mutating state directly can **_lead to unexpected behavior_** in various lifecycle methods, **as React relies on the previous state to determine if a re-render is necessary**.
+
+```js
+//Wrong way
+function MyComponent() {
+  const [count, setCount] = useState(0);
+
+  const handleIncrement = () => {
+    count = count + 1; // Wrong: Directly mutating state
+    console.log(count); // This might log the updated count
+  };
+
+  return (
+    <div>
+      <button onClick={handleIncrement}>Increment</button>
+      <p>{count}</p> {/* This won't update as expected */}
+    </div>
+  );
+}
+```
+
+```js
+//correct way
+function MyComponent() {
+  const [count, setCount] = useState(0);
+
+  const handleIncrement = () => {
+    setCount((prevCount) => prevCount + 1);
+  };
+
+  return (
+    <div>
+      <button onClick={handleIncrement}>Increment</button>
+      <p>{count}</p> {/* This will update correctly */}
+    </div>
+  );
+}
+```
+
+---

@@ -14,10 +14,10 @@
 
 #### Security headers caveats:
 
-- Using security headers can be a great strategy to help prevent security vulnerabilites. However, <strong>a common mistake is to rely solely on security headers to mitigate issues</strong>
+- Using security headers can be a great strategy to help prevent security vulnerabilities. However, <strong>a common mistake is to rely solely on security headers to mitigate issues</strong>
 - Effectively responding to the request with a security header depends on the browser to support, implement and adhere to certain specifications to enforce the header.
-- You may consult the <strong>Strict Transport Security browser compatability matrix</strong> to verify the browsers used for your web application are supported.
-- <strong>Security headers should be used as a defense in depth security mechanism </strong>that helps add a security control, but they should not be the only defense against vulnerabilites like Cross-Site Scripting
+- You may consult the <strong>Strict Transport Security browser compatibility matrix</strong> to verify the browsers used for your web application are supported.
+- <strong>Security headers should be used as a defense in depth security mechanism </strong>that helps add a security control, but they should not be the only defense against vulnerabilities like Cross-Site Scripting
 
 ---
 
@@ -34,16 +34,16 @@
 We are setting the X-Frame options using Helmet built-in <strong>frameguard</strong> method
 
 ```js
-const express = require("express")
-const helmet = require("helmet")
+const express = require('express');
+const helmet = require('helmet');
 
-const app = express()
+const app = express();
 
 app.use(
   helmet.frameguard({
-    action: "sameorigin",
+    action: 'sameorigin',
   })
-)
+);
 ```
 
 ---
@@ -52,6 +52,12 @@ app.use(
 
 - Also known as HSTS, is a protocol standard <strong>which enforces secure connections to the server via HTTP over SSL/TLS.</strong>
 - HSTS is configured and transmitted from the server to any HTTP web client using the <strong>HTTP header Strict-Transport-Security</strong>.
+  <br>
+- **Implementation**:
+
+  - Configured via an HTTP header to inform the browser that the website should only be accessed over HTTPS.
+    <br>
+
 - This specifies a time interval during which the browser should only communicate over an HTTP secured connection (HTTPS)
 
 ```js
@@ -102,15 +108,15 @@ Strict-Transport-Security: max-age=3600
 - It is common for web servers to have sub-domains to fetch assets from or to make REST API Calls. We would also of course like to protect them and enforce the HTTP requests.
 
 ```js
-const helmet = require("helmet")
+const helmet = require('helmet');
 
-const reqDuration = 2629746000 // 1 month into milliseconds
+const reqDuration = 2629746000; // 1 month into milliseconds
 
 app.use(
   helmet.hsts({
     maxAge: reqDuration,
   })
-)
+);
 ```
 
 ```js
@@ -129,41 +135,41 @@ To includeSubDomains we need to add this parameter in the hsts options object
 - Using HSTS as a browser security control to allow only HTTPS-enabled resources to be fetched from the primary domain for a website.
 
 ```js
-const http = require("http")
-const https = require("https")
-var fs = require("fs")
-const express = require("express")
-const helmet = require("helmet")
-const morgan = require("morgan")
-const expressHandlebars = require("express-handlebars")
-const appRoutes = require("./routes/app.routes.js")
+const http = require('http');
+const https = require('https');
+var fs = require('fs');
+const express = require('express');
+const helmet = require('helmet');
+const morgan = require('morgan');
+const expressHandlebars = require('express-handlebars');
+const appRoutes = require('./routes/app.routes.js');
 
-const HTTP_PORT_NUMBER = 80
+const HTTP_PORT_NUMBER = 80;
 
-const httpApp = express()
-httpApp.engine("handlebars", expressHandlebars())
-httpApp.set("view engine", "handlebars")
+const httpApp = express();
+httpApp.engine('handlebars', expressHandlebars());
+httpApp.set('view engine', 'handlebars');
 
 httpApp.use(
   helmet.hsts({
     maxAge: 86400,
   })
-)
+);
 
 var options = {
-  key: fs.readFileSync("localhost-key.pem"),
-  cert: fs.readFileSync("localhost.pem"),
-}
+  key: fs.readFileSync('localhost-key.pem'),
+  cert: fs.readFileSync('localhost.pem'),
+};
 
-httpApp.use(morgan("dev"))
-httpApp.use("/", appRoutes)
-httpApp.use(express.static("public"))
+httpApp.use(morgan('dev'));
+httpApp.use('/', appRoutes);
+httpApp.use(express.static('public'));
 
-const httpServer = http.createServer(httpApp)
+const httpServer = http.createServer(httpApp);
 httpServer.listen(HTTP_PORT_NUMBER, function () {
-  console.log(`Server started on port ${httpServer.address().port}`)
-})
-https.createServer(options, httpApp).listen(443)
+  console.log(`Server started on port ${httpServer.address().port}`);
+});
+https.createServer(options, httpApp).listen(443);
 ```
 
 ### HSTS in a deployed HTTPS application
@@ -227,19 +233,19 @@ X-Frame-Options: DENY
 - To set the X-Frame-Options completely deny all forms of embedding.
 
 ```js
-const helmet = require("helmet")
+const helmet = require('helmet');
 
 app.use(
   helmet.frameguard({
-    action: "deny",
+    action: 'deny',
   })
-)
+);
 ```
 
 - To allow frames to occur only from the same origin by providing the following options object
 
 ```js
-action: "sameorigin"
+action: 'sameorigin';
 ```
 
 - To allow frames occur from a specified host
@@ -254,8 +260,14 @@ domain: 'https://mydomain.com'
 ### Content Security Policy
 
 - Most powerful security feature that browser has implemented in the recent years in mitigating Cross-Site Scripting vulnerabilities.
-- With CSP it is possible to prevent a wide range of attacks, including Cross-Site-Scripting and other content injections.
+- With CSP it is possible to prevent various types of attacks, **_such as Cross-Site Scripting (XSS) and data injection attacks_**, by allowing web developers to declare which sources of content are considered trustworthy.
 - The implementation of the CSP <strong>renders the use of X-Frame options header obsolete.</strong>
+- It is used to <u>**_mitigate the risks associated with the execution of malicious scripts_**</u> on a web page.
+- **By defining a policy**, developers can instruct the <u>**_browser to only load resources (like scripts, styles, images, etc.) from specified origins_**.</u>
+
+**Implementation:**
+
+- Developers <u>**_include a Content-Security-Policy header in the HTTP response from the server_**</u>, specifying the allowed sources for various types of content.
 
 #### Some of the issues that can be prevented by setting a CSP policy are:
 
@@ -271,7 +283,7 @@ domain: 'https://mydomain.com'
 - Other script interfaces that are covered by this directive are
 
 ```js
-Fetch, EventSource, WebSocket, Navigator.sendBeacon()
+Fetch, EventSource, WebSocket, Navigator.sendBeacon();
 ```
 
 - Acceptable values that we can set for this directive:
@@ -322,13 +334,13 @@ Note that unsafe-inline directive refers to a website's own javascript sources.
 - We define an allowlist in which javascript code and CSS resources are only allowed to load from the current origin, which is the exact hostname or domain (no sub-domains will be allowed)
 
 ```js
-const helmet = require("helmet")
+const helmet = require('helmet');
 
 app.use(
   helmet.contentSecurityPolicy({
     directives: { scriptSrc: ["'self'"], styleSrc: ["'self'"] },
   })
-)
+);
 ```
 
 <strong>Note:</strong> If no default policy is specified, <strong>then all other types of content policies are open and allowed,</strong> and some content policies which simply don't have a default must be specified to be overridden.
@@ -385,16 +397,16 @@ Once the above is added, the browser will send a POST request to the URI provide
 ```js
 // With helmet CSP middleware
 
-const helmet = require("helmet")
+const helmet = require('helmet');
 
 app.use(
   helmet.csp({
     directives: {
-      defaultSrc: ["self"],
-      reportUri: "https://mydomain.com/report",
+      defaultSrc: ['self'],
+      reportUri: 'https://mydomain.com/report',
     },
   })
-)
+);
 ```
 
 - Another important configuration for Helmet when we are still evaluating a CSP <strong>to instruct the browser to only report on content policy violation and not block them.</strong>
@@ -402,21 +414,22 @@ app.use(
 ```js
 // just add reportOnly: true
 
-const helmet = requrie("helmet")
+const helmet = requrie('helmet');
 
 app.use(
   helmet.csp({
     directives: {
-      defaultSrc: ["self"],
-      reportUri: "https://mydomain.com/report",
+      defaultSrc: ['self'],
+      reportUri: 'https://mydomain.com/report',
     },
     reportOnly: true,
   })
-)
+);
 ```
 
 ### X XSS Protection
 
+- **_Enables_** a browser’s **_built-in Cross-Site Scripting (XSS) protection_**, which helps mitigate XSS attacks.
 - Browser specific Cross-Site Scripting protection.
 - Used by IE8 and IE9 and allows the XSS filter capabaility that is built into the browser to be toggled on or off.
 - Not in active use anymore
@@ -425,12 +438,13 @@ app.use(
 - Turning XSS filtering on for any IE8 and IE9 browsers rendering your web application <strong>requires the following HTTP header</strong>
 
 ```js
+// Configured via an HTTP header to enable or disable the browser’s XSS protection.
 X-XSS-Protection: 1; mode-block
 ```
 
 ##### With helmet, this protection can be turned on using the following snippet.
 
 ```js
-const helmet = require("helmet")
-app.use(helmet.xssFilter())
+const helmet = require('helmet');
+app.use(helmet.xssFilter());
 ```

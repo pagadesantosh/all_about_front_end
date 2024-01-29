@@ -1,3 +1,7 @@
+- ##### Prevents browsers <u>***from interpreting files as a different MIME type than declared in the Content-Type header***</u>, reducing the risk of attacks like MIME sniffing.
+
+
+
 - When browsers fetches remote sources of content such as javascript or images then <strong>they are instructed using the Content-Type header on the type of content</strong>
 
 <strong>Ex: </strong>PDF content is fetched by the browser, the server hints the browser by setting the following header

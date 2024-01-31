@@ -561,3 +561,90 @@ function MyComponent() {
 ```
 
 ---
+
+### 57. How can find the version of React at runtime in the browser?
+
+- Chrome Dev Tools
+
+```js
+window.React.version;
+```
+
+---
+
+### 58. How to use https instead of http in create-react-app?
+
+- set the HTTPS environment variable to true, then start the dev server as usual with npm start:
+
+```js
+#Windows
+set HTTPS=true && npm start
+```
+
+---
+
+### 59. React Router Features
+
+1. **useHistory**
+
+- Provides access to the history prop
+- Refers to the history package dependency that the router uses
+- primary use case would be for push, replace
+
+```js
+import { useHistory } from 'react-router-dom';
+
+function Home() {
+  const history = useHistory();
+  return <button onClick={() => history.push('/profile')}>Profile</button>;
+}
+```
+
+2. **useLocation**
+
+- similar to **window.location** in the browser itself, <u>but this is accessible everywhere</u> as it represents the Router state and location.
+- A primary use case for this would be <u>**_to access the query params or the complete route string_**.</u>
+
+```js
+import {useLocation} from 'react-router-dom'
+import React, {useEffect} from 'react'
+
+
+function Profile(){
+  const location = useLocation()
+   useEffect(()=>{
+    const currentPath = window.location.pathname
+    const searchParams = new URLSearchParams(location.search)
+   })
+},[location]
+
+return <p>Profile</p>
+```
+
+3. **useParams**
+
+- provides access to search params in the URl
+
+```js
+import { useParams, Route } from 'react-router-dom';
+
+function Profile() {
+  const { name } = useParams();
+  return <p>{name}'s Profile</p>;
+}
+
+function Dashboard() {
+  return (
+    <>
+      <nav>
+        <Link to={`/profile/alex`}>Alex Profile</Link>
+      </nav>
+      <main>
+        <Route path='/profile/:name'>
+          <Profile />
+        </Route>
+      </main>
+    </>
+  );
+}
+```

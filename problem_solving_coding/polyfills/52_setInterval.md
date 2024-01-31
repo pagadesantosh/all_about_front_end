@@ -1,23 +1,23 @@
 ### Implement setInterval polyfill
 
 ```js
-let rafIntervals = {};
+let intervals = {};
 
 function customSetInterval(callback, delay) {
   const start = performance.now();
   const id = Symbol('rafInterval');
 
   function loop(timestamp) {
-    if (timestamp - start >= delay * (rafIntervals[id].counter + 1)) {
+    if (timestamp - start >= delay * (intervals[id]?.counter + 1)) {
       callback();
-      rafIntervals[id].counter++;
+      intervals[id].counter++;
     }
-    if (!rafIntervals[id].stopped) {
+    if (!intervals[id]?.stopped) {
       requestAnimationFrame(loop);
     }
   }
 
-  rafIntervals[id] = {
+  intervals[id] = {
     counter: 0,
     stopped: false,
   };
@@ -27,9 +27,9 @@ function customSetInterval(callback, delay) {
 }
 
 function customClearInterval(id) {
-  if (rafIntervals[id]) {
-    rafIntervals[id].stopped = true;
-    delete rafIntervals[id];
+  if (intervals[id]) {
+    intervals[id].stopped = true;
+    delete intervals[id];
   }
 }
 

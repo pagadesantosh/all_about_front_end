@@ -8,20 +8,20 @@ A closure in programming refers to a function that has access to variables from 
 
 ```javascript
 function makeCounter() {
-  let count = 0
+  let count = 0;
 
   return function () {
-    return count++
-  }
+    return count++;
+  };
 }
 
-let counter1 = makeCounter()
-let counter2 = makeCounter()
+let counter1 = makeCounter();
+let counter2 = makeCounter();
 
-console.log(counter1()) // Outputs: 0
-console.log(counter1()) // Outputs: 1
-console.log(counter2()) // Outputs: 0
-console.log(counter1()) // Outputs: 2
+console.log(counter1()); // Outputs: 0
+console.log(counter1()); // Outputs: 1
+console.log(counter2()); // Outputs: 0
+console.log(counter1()); // Outputs: 2
 ```
 
 In this example:
@@ -50,36 +50,36 @@ The `this` keyword in JavaScript refers to the object it belongs to. However, it
    const obj = {
      value: 'Hello',
      say: function () {
-       console.log(this.value)
+       console.log(this.value);
      },
-   }
-   obj.say() // Outputs: "Hello"
+   };
+   obj.say(); // Outputs: "Hello"
    ```
 
 2. **Standalone Function**: When a function is called outside of an object context, `this` refers to the global object (`window` in a browser). But in "strict mode", it's `undefined`.
 
    ```javascript
    function standalone() {
-     console.log(this)
+     console.log(this);
    }
-   standalone() // Outputs: window (or undefined in strict mode)
+   standalone(); // Outputs: window (or undefined in strict mode)
    ```
 
 3. **Constructor Function**: When a function is called with the `new` keyword, `this` refers to the newly created instance.
 
    ```javascript
    function Car(make) {
-     this.make = make
+     this.make = make;
    }
-   const myCar = new Car('Toyota')
-   console.log(myCar.make) // Outputs: "Toyota"
+   const myCar = new Car('Toyota');
+   console.log(myCar.make); // Outputs: "Toyota"
    ```
 
 4. **Event Listener**: In DOM event listeners, `this` refers to the element that received the event.
    ```javascript
    button.addEventListener('click', function () {
-     console.log(this) // Outputs: <button> element
-   })
+     console.log(this); // Outputs: <button> element
+   });
    ```
 
 You can change the context of `this` using these methods:
@@ -88,23 +88,23 @@ You can change the context of `this` using these methods:
 
    ```javascript
    function greet(greeting, punctuation) {
-     console.log(greeting + ', ' + this.name + punctuation)
+     console.log(greeting + ', ' + this.name + punctuation);
    }
-   const person = { name: 'John' }
-   greet.call(person, 'Hello', '!') // Outputs: "Hello, John!"
+   const person = { name: 'John' };
+   greet.call(person, 'Hello', '!'); // Outputs: "Hello, John!"
    ```
 
 2. **`apply()`**: Similar to `call()`, but arguments are provided as an array.
 
    ```javascript
-   greet.apply(person, ['Hello', '!']) // Outputs: "Hello, John!"
+   greet.apply(person, ['Hello', '!']); // Outputs: "Hello, John!"
    ```
 
 3. **`bind()`**: Creates a new function with a given `this` value and optional arguments.
 
    ```javascript
-   const greetJohn = greet.bind(person, 'Hi')
-   greetJohn('!') // Outputs: "Hi, John!"
+   const greetJohn = greet.bind(person, 'Hi');
+   greetJohn('!'); // Outputs: "Hi, John!"
    ```
 
 4. **Arrow functions**: Arrow functions don't have their own `this`. They inherit the `this` value from the enclosing scope.
@@ -113,11 +113,11 @@ You can change the context of `this` using these methods:
      value: 'Hello',
      say: function () {
        setTimeout(() => {
-         console.log(this.value) // Outputs: "Hello"
-       }, 1000)
+         console.log(this.value); // Outputs: "Hello"
+       }, 1000);
      },
-   }
-   obj.say()
+   };
+   obj.say();
    ```
 
 Understanding the behavior of `this` is crucial in JavaScript, as it's central to how objects and functions interact.
@@ -137,9 +137,9 @@ Hoisting applies to both variables (declared with `var`) and function declaratio
 1. **Variable Hoisting**: When variables are declared using `var`, they are hoisted to the top of their scope, but they are not initialized. They are assigned the value `undefined` until the code where they are defined runs.
 
    ```javascript
-   console.log(foo) // Outputs: undefined
-   var foo = 5
-   console.log(foo) // Outputs: 5
+   console.log(foo); // Outputs: undefined
+   var foo = 5;
+   console.log(foo); // Outputs: 5
    ```
 
    In the above example, the variable declaration `var foo;` is hoisted, but the assignment `foo = 5` stays where it is.
@@ -147,9 +147,9 @@ Hoisting applies to both variables (declared with `var`) and function declaratio
 2. **Function Hoisting**: Function declarations are hoisted to the top of their scope, including their definitions.
 
    ```javascript
-   console.log(bar()) // Outputs: "Hello!"
+   console.log(bar()); // Outputs: "Hello!"
    function bar() {
-     return 'Hello!'
+     return 'Hello!';
    }
    ```
 
@@ -160,17 +160,17 @@ However, there are nuances:
 - Variables declared with `let` and `const` are also hoisted to the top of their block scope, but accessing them before their actual declaration in the code will throw an error. This phenomenon is often referred to as the "Temporal Dead Zone."
 
   ```javascript
-  console.log(baz) // Throws an error
-  let baz = 5
+  console.log(baz); // Throws an error
+  let baz = 5;
   ```
 
 - Function expressions (including arrow functions) are not hoisted, because they involve variable assignments. If a function is assigned to a variable using `var`, the variable will be hoisted but not the function itself.
 
   ```javascript
-  console.log(qux()) // Throws an error
+  console.log(qux()); // Throws an error
   var qux = function () {
-    return 'Hello!'
-  }
+    return 'Hello!';
+  };
   ```
 
   </details>
@@ -191,7 +191,7 @@ Constructor functions are used to instantiate new objects in JavaScript.
 
 ```javascript
 function Animal(name) {
-  this.name = name
+  this.name = name;
 }
 ```
 
@@ -199,15 +199,15 @@ function Animal(name) {
 
 ```javascript
 Animal.prototype.speak = function () {
-  console.log(`${this.name} makes a noise.`)
-}
+  console.log(`${this.name} makes a noise.`);
+};
 ```
 
 **3. Create a new constructor for a derived class:**
 
 ```javascript
 function Dog(name) {
-  Animal.call(this, name) // Call the parent constructor
+  Animal.call(this, name); // Call the parent constructor
 }
 ```
 
@@ -216,23 +216,23 @@ function Dog(name) {
 To achieve this, we'll set the prototype of the `Dog` constructor to an instance of `Animal`.
 
 ```javascript
-Dog.prototype = Object.create(Animal.prototype)
-Dog.prototype.constructor = Dog // Fix the constructor property
+Dog.prototype = Object.create(Animal.prototype);
+Dog.prototype.constructor = Dog; // Fix the constructor property
 ```
 
 **5. Add or override methods for the derived class:**
 
 ```javascript
 Dog.prototype.speak = function () {
-  console.log(`${this.name} barks.`)
-}
+  console.log(`${this.name} barks.`);
+};
 ```
 
 **6. Instantiate and use:**
 
 ```javascript
-let dog = new Dog('Rover')
-dog.speak() // Outputs: "Rover barks."
+let dog = new Dog('Rover');
+dog.speak(); // Outputs: "Rover barks."
 ```
 
 In this example, `Dog` inherits from `Animal`. When the `speak` method is called on a `Dog` instance, JavaScript will first look for the method on `Dog`. If not found (or before we added the override), it would look on `Dog's` prototype, which is an instance of `Animal`, and use the `speak` method from there.
@@ -288,13 +288,13 @@ _Here's a basic comparison:_
 function fetchData(callback) {
   // Simulating async operation using setTimeout
   setTimeout(function () {
-    callback('Data fetched!')
-  }, 1000)
+    callback('Data fetched!');
+  }, 1000);
 }
 
 fetchData(function (data) {
-  console.log(data)
-})
+  console.log(data);
+});
 ```
 
 **Promise**:
@@ -304,14 +304,14 @@ function fetchData() {
   return new Promise((resolve, reject) => {
     // Simulating async operation using setTimeout
     setTimeout(function () {
-      resolve('Data fetched with promises!')
-    }, 1000)
-  })
+      resolve('Data fetched with promises!');
+    }, 1000);
+  });
 }
 
 fetchData()
   .then((data) => console.log(data))
-  .catch((error) => console.error(error))
+  .catch((error) => console.error(error));
 ```
 
 The Promise version provides a clear way to handle both success (using `.then()`) and failure (using `.catch()`) scenarios. As more asynchronous operations are chained, the advantages of using promises over callbacks become more pronounced.
@@ -340,14 +340,14 @@ Let's refactor our previous Promise example to use `async/await`:
 function fetchData() {
   return new Promise((resolve, reject) => {
     setTimeout(function () {
-      resolve('Data fetched with promises!')
-    }, 1000)
-  })
+      resolve('Data fetched with promises!');
+    }, 1000);
+  });
 }
 
 fetchData()
   .then((data) => console.log(data))
-  .catch((error) => console.error(error))
+  .catch((error) => console.error(error));
 ```
 
 **Refactored with `async/await`**:
@@ -356,21 +356,21 @@ fetchData()
 function fetchData() {
   return new Promise((resolve, reject) => {
     setTimeout(function () {
-      resolve('Data fetched with async/await!')
-    }, 1000)
-  })
+      resolve('Data fetched with async/await!');
+    }, 1000);
+  });
 }
 
 async function displayData() {
   try {
-    let data = await fetchData()
-    console.log(data)
+    let data = await fetchData();
+    console.log(data);
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 }
 
-displayData()
+displayData();
 ```
 
 _In the refactored example:_
@@ -395,61 +395,61 @@ This approach offers a more structured and readable way to handle asynchronous o
 
 ```js
 var myModule = (function () {
-  var privateVar = "I'm private"
+  var privateVar = "I'm private";
   function privateMethod() {
-    console.log(privateVar)
+    console.log(privateVar);
   }
   return {
     publicMethod: function () {
-      privateMethod()
+      privateMethod();
     },
-  }
-})()
-myModule.publicMethod() // Outputs: "I'm private"
+  };
+})();
+myModule.publicMethod(); // Outputs: "I'm private"
 ```
 
 **2. Revealing Module Pattern**: A variation where you reveal only the properties and methods you want to make public by returning an object literal.
 
 ```js
 var revealingModule = (function () {
-  var privateVar = "I'm private"
+  var privateVar = "I'm private";
   function privateMethod() {
-    console.log(privateVar)
+    console.log(privateVar);
   }
   function publicMethod() {
-    privateMethod()
+    privateMethod();
   }
   return {
     publicMethod: publicMethod,
-  }
-})()
-revealingModule.publicMethod() // Outputs: "I'm private"
+  };
+})();
+revealingModule.publicMethod(); // Outputs: "I'm private"
 ```
 
 **3. Singleton Pattern**: Ensures that a class has only one instance and provides a global point to access it.
 
 ```js
 var singleton = (function () {
-  var instance
+  var instance;
   function init() {
     return {
       publicMethod: function () {
-        console.log("I'm a public method")
+        console.log("I'm a public method");
       },
-    }
+    };
   }
   return {
     getInstance: function () {
       if (!instance) {
-        instance = init()
+        instance = init();
       }
-      return instance
+      return instance;
     },
-  }
-})()
-var singleA = singleton.getInstance()
-var singleB = singleton.getInstance()
-console.log(singleA === singleB) // Outputs: true
+  };
+})();
+var singleA = singleton.getInstance();
+var singleB = singleton.getInstance();
+console.log(singleA === singleB); // Outputs: true
 ```
 
 **4. ES6 Modules (ES2015)**: The native module system in ES6. It allows for the export and import of modules.
@@ -457,12 +457,12 @@ console.log(singleA === singleB) // Outputs: true
 ```js
 // file: moduleA.js
 export function myFunction() {
-  console.log('Hello from module A')
+  console.log('Hello from module A');
 }
 
 // file: main.js
-import { myFunction } from './moduleA'
-myFunction() // Outputs: "Hello from module A"
+import { myFunction } from './moduleA';
+myFunction(); // Outputs: "Hello from module A"
 ```
 
 </details>
@@ -498,29 +498,29 @@ myFunction() // Outputs: "Hello from module A"
 - Done with the try catch finally
 
 ```js
-const axios = require('axios')
+const axios = require('axios');
 
 async function fetchData(url) {
-  let response
+  let response;
   try {
-    response = await axios.get(url)
+    response = await axios.get(url);
     // Handle the response (e.g., return the data or do something with it)
-    return response.data
+    return response.data;
   } catch (error) {
-    console.error('An error occurred while fetching data:', error.message)
+    console.error('An error occurred while fetching data:', error.message);
     // Depending on your use case, you might want to throw the error,
     // return a default value, or handle it in some other way.
-    return null
+    return null;
   } finally {
-    console.log('API call finished.')
+    console.log('API call finished.');
   }
 }
 
 // Usage:
-;(async () => {
-  const data = await fetchData('https://api.example.com/data')
-  console.log(data)
-})()
+(async () => {
+  const data = await fetchData('https://api.example.com/data');
+  console.log(data);
+})();
 ```
 
 </details>
@@ -556,12 +556,12 @@ async function fetchData(url) {
 ```js
 // With event delegation:
 
-const itemList = document.getElementById('itemlist')
+const itemList = document.getElementById('itemlist');
 itemList.addEventListener('click', function (event) {
   if (event.target.tagName === 'LI') {
-    console.log(event.target.textContent)
+    console.log(event.target.textContent);
   }
-})
+});
 ```
 
 </details>
@@ -576,30 +576,30 @@ itemList.addEventListener('click', function (event) {
 ```js
 function manipulateDOM() {
   // Parent element to which our new element will be appended
-  const parentElement = document.body
+  const parentElement = document.body;
 
   // 1. Add an Element to the DOM
-  const newElement = document.createElement('div')
-  newElement.id = 'myElement'
-  newElement.textContent = 'This is a new element!'
-  parentElement.appendChild(newElement)
+  const newElement = document.createElement('div');
+  newElement.id = 'myElement';
+  newElement.textContent = 'This is a new element!';
+  parentElement.appendChild(newElement);
 
   // 2. Update the Element
   setTimeout(() => {
-    const elementToUpdate = document.getElementById('myElement')
-    elementToUpdate.textContent = 'This element has been updated!'
-    elementToUpdate.style.color = 'blue'
-  }, 2000) // Update after 2 seconds
+    const elementToUpdate = document.getElementById('myElement');
+    elementToUpdate.textContent = 'This element has been updated!';
+    elementToUpdate.style.color = 'blue';
+  }, 2000); // Update after 2 seconds
 
   // 3. Remove the Element from the DOM
   setTimeout(() => {
-    const elementToRemove = document.getElementById('myElement')
-    parentElement.removeChild(elementToRemove)
-  }, 4000) // Remove after 4 seconds
+    const elementToRemove = document.getElementById('myElement');
+    parentElement.removeChild(elementToRemove);
+  }, 4000); // Remove after 4 seconds
 }
 
 // Call the function
-manipulateDOM()
+manipulateDOM();
 ```
 
 </details>
@@ -662,25 +662,25 @@ Higher-order functions are functions **that take one or more functions as argume
 **1. map**: Iterates over each item in an array and applies a function to each element. It returns a new array with the results
 
 ```js
-const numbers = [1, 2, 3, 4]
-const doubled = numbers.map((num) => num * 2)
-console.log(doubled) // [2, 4, 6, 8]
+const numbers = [1, 2, 3, 4];
+const doubled = numbers.map((num) => num * 2);
+console.log(doubled); // [2, 4, 6, 8]
 ```
 
 **2. filter**: Iterates over each item in an array and returns a new array with only the items for which the provided function returns true
 
 ```js
-const numbers = [1, 2, 3, 4]
-const evens = numbers.filter((num) => num % 2 === 0)
-console.log(evens) // [2, 4]
+const numbers = [1, 2, 3, 4];
+const evens = numbers.filter((num) => num % 2 === 0);
+console.log(evens); // [2, 4]
 ```
 
 **3. reduce**: Iterates over each item in an array and reduces the array to a single value using a function that you provide.
 
 ```js
-const numbers = [1, 2, 3, 4]
-const sum = numbers.reduce((total, num) => total + num, 0)
-console.log(sum) // 10
+const numbers = [1, 2, 3, 4];
+const sum = numbers.reduce((total, num) => total + num, 0);
+console.log(sum); // 10
 ```
 
 </details>
@@ -722,8 +722,8 @@ Here are some of the principles of functional programming.
 - Lexcially binds the value of `this` which is useful in scenarios like event handlers and callbacks.
 
 ```js
-const numbers = [1, 2, 3]
-const doubled = numbers.map((num) => num * 2)
+const numbers = [1, 2, 3];
+const doubled = numbers.map((num) => num * 2);
 ```
 
 **2. Template Literals:**
@@ -731,8 +731,8 @@ const doubled = numbers.map((num) => num * 2)
 - Allows for string interpolation and multi-line strings without hacks.
 
 ```js
-const name = 'Alice'
-const greeting = `Hello ${name}`
+const name = 'Alice';
+const greeting = `Hello ${name}`;
 ```
 
 **3. Destructuring**
@@ -740,8 +740,8 @@ const greeting = `Hello ${name}`
 - Provides a way to extract values from arrays or properties from objects into distinct variables.
 
 ```js
-const person = { firstName: 'John', lastName: 'Doe' }
-const { firstName, lastName } = person
+const person = { firstName: 'John', lastName: 'Doe' };
+const { firstName, lastName } = person;
 ```
 
 **4. Spread/Rest operator**:
@@ -751,8 +751,8 @@ const { firstName, lastName } = person
 
 ```js
 // Spread operator example
-const arr1 = [1, 2, 3]
-const arr2 = [...arr1, 4, 5]
+const arr1 = [1, 2, 3];
+const arr2 = [...arr1, 4, 5];
 ```
 
 **5. Promises and async/await:**
@@ -761,9 +761,9 @@ const arr2 = [...arr1, 4, 5]
 
 ```js
 async function fetchData() {
-  const response = await fetch(URL)
-  const data = response.json()
-  return data
+  const response = await fetch(URL);
+  const data = response.json();
+  return data;
 }
 ```
 
@@ -773,10 +773,10 @@ async function fetchData() {
 
 ```js
 // math.js
-export const add = (a, b) => a + b
+export const add = (a, b) => a + b;
 
 // app.js
-import { add } from './math'
+import { add } from './math';
 ```
 
 </details>
@@ -812,7 +812,7 @@ function throttle(func, limit) {
 // How to use:
 
 // Example usage:
-window.addEventListener('scroll', throttle(scrollHandlerFunc, 1000)) // This function will be called at most once every 1000ms (1 second)
+window.addEventListener('scroll', throttle(scrollHandlerFunc, 1000)); // This function will be called at most once every 1000ms (1 second)
 ```
 
 </details>
@@ -867,28 +867,28 @@ _V Dom_: is about performance: optimizing the way the UI updates by minimizing d
 ```js
 // Arrays
 
-const arr = [1, 2, 3]
+const arr = [1, 2, 3];
 
-const arr2 = [...arr, 4, 5] // [1, 2, 3, 4, 5]
+const arr2 = [...arr, 4, 5]; // [1, 2, 3, 4, 5]
 ```
 
 ```js
 // Objects
-const obj1 = { a: 1, b: 3 }
+const obj1 = { a: 1, b: 3 };
 
-const obj2 = { ...obj1, c: 4 } // { a: 1, b: 2, c: 3 }
+const obj2 = { ...obj1, c: 4 }; // { a: 1, b: 2, c: 3 }
 ```
 
 ```js
 // Function arguments
 
 function sum(x, y, z) {
-  return x + y + z
+  return x + y + z;
 }
 
-const numbers = [1, 2, 3]
+const numbers = [1, 2, 3];
 
-console.log(sum(...numbers)) // 6
+console.log(sum(...numbers)); // 6
 ```
 
 **2. Rest operator**:
@@ -901,10 +901,10 @@ console.log(sum(...numbers)) // 6
 
 ```js
 function collectIntoArray(...args) {
-  return args
+  return args;
 }
 
-console.log(collectIntoArray(1, 2, 3, 4)) // [1, 2, 3, 4]
+console.log(collectIntoArray(1, 2, 3, 4)); // [1, 2, 3, 4]
 ```
 
 </details>
@@ -921,29 +921,29 @@ console.log(collectIntoArray(1, 2, 3, 4)) // [1, 2, 3, 4]
 **_Array Destructuring_**:
 
 ```js
-const colors = ['red', 'green', 'blue']
+const colors = ['red', 'green', 'blue'];
 
-const [firstColor, secondColor, thirdColor] = colors
+const [firstColor, secondColor, thirdColor] = colors;
 
-console.log(firstColor) // red
-console.log(secondColor) // green
-console.log(thirdColor) // blue
+console.log(firstColor); // red
+console.log(secondColor); // green
+console.log(thirdColor); // blue
 ```
 
 ```js
 // if you skip items
 
-const [, , lastColor] = colors
+const [, , lastColor] = colors;
 
-console.log(lastColor) // blue
+console.log(lastColor); // blue
 ```
 
 ```js
 //using rest parameter
-const [primaryColor, ...otherColors] = colors
+const [primaryColor, ...otherColors] = colors;
 
-console.log(primaryColor) // red
-console.log(otherColors) // ['green', 'blue']
+console.log(primaryColor); // red
+console.log(otherColors); // ['green', 'blue']
 ```
 
 **_Object Destructuring_**:
@@ -955,19 +955,19 @@ const person = {
   firstName: 'John',
   lastName: 'Doe',
   age: 30,
-}
+};
 
-const { firstName, lastName } = person
+const { firstName, lastName } = person;
 
-console.log(firstName) // John
-console.log(lastName) // Doe
+console.log(firstName); // John
+console.log(lastName); // Doe
 ```
 
 ```js
-const { firstName: fName, lastName: lName } = person
+const { firstName: fName, lastName: lName } = person;
 
-console.log(fName) // John
-console.log(lName) // Doe
+console.log(fName); // John
+console.log(lName); // Doe
 ```
 
 ```js
@@ -977,14 +977,14 @@ const student = {
     math: 90,
     english: 85,
   },
-}
+};
 
 const {
   scores: { math, english },
-} = student
+} = student;
 
-console.log(math) // 90
-console.log(english) // 85
+console.log(math); // 90
+console.log(english); // 85
 ```
 
 </details>
@@ -1012,8 +1012,8 @@ Template literals, introduced in ES6, offer a more powerful and flexible way to 
    const multiLine = `
    This is a line.
    And this is another line.
-   `
-   console.log(multiLine)
+   `;
+   console.log(multiLine);
    ```
 
 </details>
@@ -1038,23 +1038,23 @@ const event = new CustomEvent('customStart', {
   },
   bubbles: true,
   cancelable: true,
-})
+});
 ```
 
 **2. Dispatching the Custom Event**
 
 ```js
-const button = document.querySelector('button')
-button.dispatchEvent(event) // you have to provide the varialbe that is used for creation of custom Event (ex: event)
+const button = document.querySelector('button');
+button.dispatchEvent(event); // you have to provide the varialbe that is used for creation of custom Event (ex: event)
 ```
 
 **3. Listening the Custom Event**
 
 ```js
 button.addEventListener('customStart', (e) => {
-  console.log(e.detail.message) // Custom Event triggered!
-  console.log(e.detail.time) // time when user clicked on button
-})
+  console.log(e.detail.message); // Custom Event triggered!
+  console.log(e.detail.time); // time when user clicked on button
+});
 ```
 
 </details>
@@ -1074,11 +1074,11 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker
     .register('/service-worker.js')
     .then((registration) => {
-      console.log('Service Worker registered with scope'.registration.scope)
+      console.log('Service Worker registered with scope'.registration.scope);
     })
     .catch((error) => {
-      console.log('Service worker registration failed: ', error)
-    })
+      console.log('Service worker registration failed: ', error);
+    });
 }
 ```
 
@@ -1087,14 +1087,14 @@ if ('serviceWorker' in navigator) {
 ```js
 // service-worker.js
 
-const CACHE_NAME = 'my-site-cache-v1'
+const CACHE_NAME = 'my-site-cache-v1';
 
 const urlsToCache = [
   '/',
   '/styles/main.css',
   '/scripts/main.js',
   '/images/my-image.jpg',
-]
+];
 ```
 
 **3. Install the service worker and cache the assets:**
@@ -1105,11 +1105,11 @@ const urlsToCache = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('Opened cache')
-      return cache.addAll(urlsToCache)
+      console.log('Opened cache');
+      return cache.addAll(urlsToCache);
     })
-  )
-})
+  );
+});
 ```
 
 **4. Intercept fetch requests and serve from cache if available:**
@@ -1122,28 +1122,28 @@ self.addEventListener('fetch', (event) => {
     caches.match(event.request).then((response) => {
       // Cache hit - return the response from the cached version
       if (response) {
-        return response
+        return response;
       }
 
       // If not in cache, fetch from the network
       return fetch(event.request).then((response) => {
         // Check if we received a valid response
         if (!response || response.status !== 200 || response.type !== 'basic') {
-          return response
+          return response;
         }
 
         // Clone the response so that it's stream remains readable in both cache and browser
-        const responseToCache = response.clone()
+        const responseToCache = response.clone();
 
         caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, responseToCache)
-        })
+          cache.put(event.request, responseToCache);
+        });
 
-        return response
-      })
+        return response;
+      });
     })
-  )
-})
+  );
+});
 ```
 
 **5. update the service worker and manage old caches**
@@ -1152,7 +1152,7 @@ self.addEventListener('fetch', (event) => {
 // activate
 
 self.addEventListener('activate', (event) => {
-  const cacheWhitelist = [CACHE_NAME]
+  const cacheWhitelist = [CACHE_NAME];
 
   event.waitUntil(
     caches.keys().then((cacheNames) => {
@@ -1160,13 +1160,13 @@ self.addEventListener('activate', (event) => {
         cacheNames.map((cacheName) => {
           if (cacheWhitelist.indexOf(cacheName) === -1) {
             // If this cache name isn't present in the array, delete it
-            return caches.delete(cacheName)
+            return caches.delete(cacheName);
           }
         })
-      )
+      );
     })
-  )
-})
+  );
+});
 ```
 
 </details>
@@ -1281,29 +1281,29 @@ JavaScript **_doesn't enforce immutability by default_**, but you can adopt prac
 1. **Using Const**: The `const` keyword ensures that a variable cannot be reassigned. However, this doesn't make the value itself immutable, especially if it's an object or array.
 
    ```javascript
-   const arr = [1, 2, 3]
-   arr.push(4) // This is allowed, so the array itself isn't immutable.
+   const arr = [1, 2, 3];
+   arr.push(4); // This is allowed, so the array itself isn't immutable.
    ```
 
 2. **Avoid Mutating Methods**: For arrays, avoid methods like `push`, `pop`, `shift`, `splice`, and instead use methods like `map`, `filter`, `concat`, and the spread operator.
 
    ```javascript
-   const arr = [1, 2, 3]
-   const newArr = [...arr, 4] // Instead of push
+   const arr = [1, 2, 3];
+   const newArr = [...arr, 4]; // Instead of push
    ```
 
    For objects, you can use the spread operator or `Object.assign` to create new objects without mutating the original:
 
    ```javascript
-   const obj = { a: 1, b: 2 }
-   const newObj = { ...obj, c: 3 } // Instead of direct assignment
+   const obj = { a: 1, b: 2 };
+   const newObj = { ...obj, c: 3 }; // Instead of direct assignment
    ```
 
 3. **Object.freeze**: This method can make an object shallowly immutable, meaning you can't add, modify, or delete properties. However, nested objects remain mutable.
 
    ```javascript
-   const obj = Object.freeze({ a: 1, b: 2 })
-   obj.a = 3 // This will not work
+   const obj = Object.freeze({ a: 1, b: 2 });
+   obj.a = 3; // This will not work
    ```
 
 4. **Use Libraries**: Libraries like [Immutable.js](https://immutable-js.com/) or [immer](https://immerjs.github.io/immer/) provide immutable data structures and helper functions to work with them. These libraries offer deep immutability and various utilities to manipulate data without mutations.
@@ -1352,11 +1352,29 @@ In conclusion, while JavaScript doesn't enforce immutability by default, underst
 
 ---
 
-33. **`IIFEs (Immediately Invoked Function Expressions)`**: Describe their purpose and provide an example.
+33. **How do I use JavaScript to `modify the URL without reloading the page`?**
 
 <details>
 <summary>View Answer</summary>
 
+- We can achieve this using History API (pushState or replaceState)
+
+#### History API:
+
+- You can use either history.pushState() or history.replaceState() to modify the URL in the browser
+- The arguments for both methods are the same, allowing you to pass a customized serializable state object as the first argument.
 </details>
 
----
+```js
+// Current URL: https://my-website.com/page_a
+
+const nextURL = 'https://my-website.com/page_b';
+const nextTitle = 'My new page title';
+const nextState = { additionalInformation: 'Updated the URL with JS' };
+
+// This will create a new entry in the browser's history, without reloading
+window.history.pushState(nextState, nextTitle, nextURL);
+
+// This will replace the current entry in the browser's history without reloading
+window.history.replaceState(nextState, nextTitle, nextURL);
+```

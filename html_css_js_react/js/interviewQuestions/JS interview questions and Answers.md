@@ -12,10 +12,10 @@
 
 ```js
 const employees = [
-  { name: "SaiTeja", email: "saitejagatadi543@gmai.com" },
-  { name: "RaviTeja", email: "raviteja543@gmai.com" },
-  { name: "DharmaTeja", email: "dharmai543@gmai.com" },
-]
+  { name: 'SaiTeja', email: 'saitejagatadi543@gmai.com' },
+  { name: 'RaviTeja', email: 'raviteja543@gmai.com' },
+  { name: 'DharmaTeja', email: 'dharmai543@gmai.com' },
+];
 ```
 
 ---
@@ -30,16 +30,16 @@ const employees = [
 
 ```js
 function getGreet() {
-  return "Hello, how are you?"
+  return 'Hello, how are you?';
 }
 
 //functions that are tread like variable
 const message = function (getMsg, name) {
-  console.log(`${getMsg()}, ${name}`)
-}
+  console.log(`${getMsg()}, ${name}`);
+};
 
 // function passing as an argument to other function
-message(getGreet, "IMRAN")
+message(getGreet, 'IMRAN');
 ```
 
 ---
@@ -49,7 +49,7 @@ message(getGreet, "IMRAN")
 - Function does not accept another function as an argument and does not return a function as it's own value.
 
 ```js
-const firstOrder = () => console.log("I am a first order function!")
+const firstOrder = () => console.log('I am a first order function!');
 ```
 
 ---
@@ -62,12 +62,12 @@ Some of them like map, filter, reduce.
 
 ```js
 const firstOrderFunc = () => {
-  console.log("Hello, I am first order function")
-}
+  console.log('Hello, I am first order function');
+};
 
-const higherOrder = (returnFirstOrderFunc) => returnFirstOrderFunc()
+const higherOrder = (returnFirstOrderFunc) => returnFirstOrderFunc();
 
-higherOrder(firstOrderFunc)
+higherOrder(firstOrderFunc);
 ```
 
 ---
@@ -77,9 +77,9 @@ higherOrder(firstOrderFunc)
 - Function that accepts only one argument.
 
 ```js
-const unaryFunction = (a) => console.log(a + 10)
+const unaryFunction = (a) => console.log(a + 10);
 
-unaryFunction(10) //20
+unaryFunction(10); //20
 ```
 
 ---
@@ -99,11 +99,11 @@ Immediately Invoked Function Expression is a function that runs by itself withou
 - IIFE is mainly used for data privacy.
 
 ```js
-;(function () {
-  var message = "IIFE"
-  console.log(messasge)
-})()
-console.log(messasge) // message is not defined
+(function () {
+  var message = 'IIFE';
+  console.log(messasge);
+})();
+console.log(messasge); // message is not defined
 ```
 
 ---
@@ -128,15 +128,15 @@ A Promise is in one of these states:
 
 ```js
 function greeting(name) {
-  alert(`Hello ${name}`)
+  alert(`Hello ${name}`);
 }
 
 function processUserInput(callback) {
-  const name = prompt("enter name")
-  callback(name)
+  const name = prompt('enter name');
+  callback(name);
 }
 
-processUserInput(greeting)
+processUserInput(greeting);
 ```
 
 ---
@@ -171,19 +171,19 @@ processUserInput(greeting)
 - Using in operator
 
 ```js
-"key" in obj
+'key' in obj;
 ```
 
 - Using hasOwnProperty operator
 
 ```js
-obj.hasOwnProperty("key")
+obj.hasOwnProperty('key');
 ```
 
 - Using undefined comparsion
 
 ```js
-user.name !== undefined
+user.name !== undefined;
 ```
 
 ---
@@ -193,7 +193,7 @@ user.name !== undefined
 - Using Logical OR operator
 
 ```js
-const a = b || c
+const a = b || c;
 ```
 
 ---
@@ -259,14 +259,14 @@ const a = b || c
 
 ---
 
-```js
-Writing more than one constructor in a class will get unCaught errors.
-```
+### Writing more than one constructor in a class will get unCaught errors.
 
-```js
-We use the super keyword to access the parent constructor into the child class
-```
+---
 
-```js
-ENUM feature is available in typescript.
-```
+### We use the super keyword to access the parent constructor into the child class
+
+---
+
+### ENUM feature is available in typescript.
+
+--------------

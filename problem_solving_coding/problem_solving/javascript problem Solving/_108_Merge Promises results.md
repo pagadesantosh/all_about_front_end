@@ -1,13 +1,14 @@
 ### Merge Results of Promises
 
 ```js
-//Step 1: Create Mock APIs
+//Step 1: Create Mock APIs with the array values
 function createMockApi(students) {
   return new Promise((resolve) => {
     resolve(students);
   });
 }
 
+// api1, api2 are fulfilled promises
 const api1 = createMockApi([
   { name: 'ABC', marks: '98%', registrationId: '1234' },
   { name: 'DEF', marks: '88%', registrationId: '1235' },
@@ -33,9 +34,10 @@ function mergeAndRemoveDuplicates(api1Data, api2Data) {
   return Array.from(uniqueStudents.values());
 }
 
-//Step 3: Combine and Execute
+//Step 3: Combine and Execute Promises
 Promise.all([api1, api2])
   .then(([api1Data, api2Data]) => {
+    //api1Data and api2Data are nothing but arrays
     const mergedData = mergeAndRemoveDuplicates(api1Data, api2Data);
     console.log(mergedData);
   })

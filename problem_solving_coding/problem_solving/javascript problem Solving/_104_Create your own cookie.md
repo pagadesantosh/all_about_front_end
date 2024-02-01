@@ -19,39 +19,33 @@ document.myCookie;
 ```
 
 ```js
-// Solution
-
 (function () {
-  // Helper function to parse cookie string
-  function parseCookieString(cookieStr) {
+  function parseCookie(cookieStr) {
     let cookies = {};
     let parts = cookieStr.split(';');
     parts.forEach((part) => {
-      let [key, value] = part.trim().split('=');
+      let [key, value] = part.split('=');
       cookies[key] = decodeURIComponent(value);
     });
     return cookies;
   }
 
-  // Custom property definition
   Object.defineProperty(document, 'myCookie', {
     get: function () {
-      // Read all cookies from document.cookie
-      return parseCookieString(document.cookie);
+      return parseCookie(document.cookie);
     },
     set: function (value) {
-      // Set cookie using document.cookie
       document.cookie = value;
     },
   });
 })();
 
-// Test
-document.myCookie = 'bfe=dev; max-age=5'; // Set a cookie with max-age of 5 seconds
-console.log(document.myCookie); // Should show the cookie "bfe=dev"
+// attribute used to specify the lifetime of a cookie is max-age, and this is the exact terminology you must use
+document.myCookie = 'saiteja=gatadi; max-age=5'; //5 seconds
+console.log(document.myCookie);
 
 // After 8 seconds, the cookie should be expired and no longer visible
 setTimeout(() => {
-  console.log('After expiration:', document.myCookie); // Should show an empty object or no 'bfe' cookie
+  console.log('After Expiration', document.myCookie);
 }, 8000);
 ```

@@ -22,55 +22,36 @@ document.myCookie;
 // Solution
 
 (function () {
-  let cookies = {};
-
-  // Helper to parse cookie string
-  function parseCookie(cookieStr) {
+  // Helper function to parse cookie string
+  function parseCookieString(cookieStr) {
+    let cookies = {};
     let parts = cookieStr.split(';');
-    let cookie = {};
     parts.forEach((part) => {
       let [key, value] = part.trim().split('=');
-      cookie[key] = value;
+      cookies[key] = decodeURIComponent(value);
     });
-    return cookie;
+    return cookies;
   }
 
   // Custom property definition
   Object.defineProperty(document, 'myCookie', {
     get: function () {
-      // Return all cookies as string, without max-age attribute
-      return Object.entries(cookies)
-        .filter(([key]) => key !== 'max-age')
-        .map(([key, value]) => `${key}=${value}`)
-        .join('; ');
+      // Read all cookies from document.cookie
+      return parseCookieString(document.cookie);
     },
     set: function (value) {
-      let newCookie = parseCookie(value);
-
-      if (newCookie['max-age']) {
-        let maxAge = parseInt(newCookie['max-age'], 10);
-        setTimeout(() => {
-          for (let key in newCookie) {
-            if (cookies[key]) {
-              delete cookies[key];
-            }
-          }
-        }, maxAge * 1000);
-        delete newCookie['max-age'];
-      }
-
-      cookies = { ...cookies, ...newCookie };
+      // Set cookie using document.cookie
+      document.cookie = value;
     },
   });
 })();
 
 // Test
-document.myCookie = 'bfe=dev; max-age=1';
-console.log(document.myCookie); // "bfe=dev"
+document.myCookie = 'bfe=dev; max-age=5'; // Set a cookie with max-age of 5 seconds
+console.log(document.myCookie); // Should show the cookie "bfe=dev"
+
+// After 8 seconds, the cookie should be expired and no longer visible
 setTimeout(() => {
-  console.log(
-    'deleted the cookie as per the max-age setting',
-    document.myCookie
-  ); // ""
-}, 1100);
+  console.log('After expiration:', document.myCookie); // Should show an empty object or no 'bfe' cookie
+}, 8000);
 ```

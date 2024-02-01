@@ -11,30 +11,30 @@
 - Used to avoid situations where a promise might never resolve (or take an unacceptably long time to do so).
 
 ```js
-function promisePool(concurrency, tasks) {
-  // concurrency means the maximum no. of concurrent tasks
+function promisePool(limit, tasks) {
+  // limit means the maximum no. of concurrent tasks
   // task means an array of functions that return promises.
-  let active = 0;
+  let inProgress = 0;
   let index = 0;
-  let results = new Array(tasks.length);
+  let results = [];
 
   return new Promise((resolve, reject) => {
-    while (index < concurrency && index < tasks.length) {
+    while (inProgress < limit && index < tasks.length) {
       runTask(index++);
     }
 
-    //used to manage each task. When a task completes it checks if there are more tasks to run and starts the next one. Also keeps track of active tasks
+    //used to manage each task. When a task completes it checks if there are more tasks to run and starts the next one. Also keeps track of inProgress tasks
     function runTask(taskIndex) {
-      active++;
+      inProgress++;
       tasks[taskIndex]()
         .then((result) => {
           results[taskIndex] = result;
-          active--;
+          inProgress--;
           if (index < tasks.length) {
             runTask(index++);
           }
           // once all tasks are completed, the promise is resolved
-          else if (active === 0) {
+          else if (inProgress === 0) {
             resolve(results);
           }
         })
@@ -47,9 +47,10 @@ function promisePool(concurrency, tasks) {
 
 // example of an asynchronous operation
 function simulateAsyncTask(id, delay) {
+  console.log(`Task ${id} started`);
   return new Promise((resolve) => {
     setTimeout(() => {
-      console.log(`Task ${id} completed`);
+      console.log(`Task ${id} "COMPLETED"`);
       resolve(`Result of task ${id}`);
     }, delay);
   });

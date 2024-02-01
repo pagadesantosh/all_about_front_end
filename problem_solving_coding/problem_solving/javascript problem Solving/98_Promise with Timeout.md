@@ -1,3 +1,8 @@
+**Approach Taken**
+1. Write 2 functions, one func is fetchDataFromAPI and another is the main function which takes your resulted apiFunc with timeout
+2. Your main function core logic is to save the timeout in a variable (ex: let timeout = new Promise((resolve, reject)=>{setTimeoutLogic here})
+3. stored timeout variable is going to be as part of the return Promise.race[promiseParam, timeoutVariable]
+
 ```js
 // takes a promise and timeout duration in ms.
 function promiseWithTimeout(promise, ms) {
@@ -5,7 +10,7 @@ function promiseWithTimeout(promise, ms) {
   let timeout = new Promise((resolve, reject) => {
     let id = setTimeout(() => {
       clearTimeout(id);
-      reject('Timed out in ' + ms + 'ms.');
+      reject('Timed out in ' + ms + 'ms.'); //core logic is to reject
     }, ms);
   });
 
@@ -13,7 +18,7 @@ function promiseWithTimeout(promise, ms) {
   return Promise.race([promise, timeout]);
 }
 
-// Makes an API request and processes the response.
+// BASIC API CALL Func which is wrapped in setTimeout
 function fetchDataFromAPI(url, delay = 0) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -36,9 +41,9 @@ function fetchDataFromAPI(url, delay = 0) {
 
 // Usage example with an intentional delay
 let delay = 2000; // Delay of 2000ms
-let timeout = 1000; // Timeout of 1000ms (MUTATE THIS VALUE TO SHOW TO INTERVIEWER e.g. 1000 to 2300)
+let timeout = 3000; // Timeout of 1000ms (MUTATE THIS VALUE TO SHOW TO INTERVIEWER e.g. 1000 to 2300)
 let someAsyncOperation = fetchDataFromAPI(
-  'https://jsonplaceholder.typicode.com/todos/1',
+  'https://jsonplaceholder.typicode.com/todos',
   delay
 );
 

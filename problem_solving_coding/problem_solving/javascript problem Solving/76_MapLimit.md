@@ -15,23 +15,20 @@
 
 ```js
 // This is useful for managing resource usage when performing a large number of asynchronous operations, such as database requests.
-
-function mapLimit(inputs, limit, iterateeFn, finalCallback) {
+function mapLimit(inputArr, limit, iterateeFn, callback) {
   let inProgress = 0;
   let index = 0;
-  let results = new Array(inputs.length);
-
+  let results = [];
   function processNext() {
-    //if every operation is completed
-    if (index === inputs.length && inProgress === 0) {
-      finalCallback(results);
+    if (index === inputArr.length && inProgress === 0) {
+      callback(results);
       return;
     }
 
-    while (inProgress < limit && index < inputs.length) {
+    while (index < inputArr.length && inProgress < limit) {
       (function (i) {
         inProgress++;
-        iterateeFn(inputs[i], function (result) {
+        iterateeFn(inputArr[i], function (result) {
           results[i] = result;
           inProgress--;
           processNext();
@@ -45,16 +42,17 @@ function mapLimit(inputs, limit, iterateeFn, finalCallback) {
 }
 
 function getUserById(id, callback) {
-  // randomly generated number between 200 and 299 milliseconds.
-  //  This simulates the variable amount of time an asynchronous operation, like a database request, might take in real-world scenarios.
-  const randomRequestTime = Math.floor(Math.random() * 100) + 200;
+  const randomRequestTime = Math.floor(Math.random() * 100) + 2000;
+  console.log(`Starting operation for User ${id}`);
   setTimeout(() => {
-    callback('User' + id);
+    console.log(`Completing operation for User ${id}`);
+    console.log('-----------------------------------------');
+    callback(`User ${id}`);
   }, randomRequestTime);
 }
 
-// Example usage
-mapLimit([1, 2, 3, 4, 5], 2, getUserById, (allResults) => {
-  console.log('output:', allResults); // ["User1", "User2", "User3", "User4", "User5"]
+mapLimit([1, 2, 3, 4], 2, getUserById, (results) => {
+  console.log(results);
 });
 ```
+![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/1db14ca8-1468-43af-a8b8-7a643805ef75)

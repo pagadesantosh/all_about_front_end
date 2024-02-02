@@ -136,9 +136,17 @@ The process of checking the difference between the new VDOM tree and the old VDO
 
 ### 11. Babel and Webpack?
 
-Babel is a transpiler that compiles JavaScript ES6 to JavaScript ES5 allowing you to write JavaScript “from the future” so that current browsers will understand it
+<u>**Babel**:</u>
 
-Webpack is a module bundler
+- Babel is a transpiler that compiles JavaScript new code to JavaScript old ones allowing you to write JavaScript “from the future” so that current browsers will understand it
+
+<u>**Webpack**:</u>
+
+- Webpack is a modular build tool that has two sets of functionality —> Loaders and Plugins.
+- Loaders <u>**_transform the source code of a module_**</u>.
+- For example, <u>**_style-loader adds CSS to DOM_**</u> using style tags. <u>**_sass-loader compiles SASS files to CSS_**</u>. babel-loader transpile JS code given the presets.
+- Plugins are the core of Webpack. They can do things that loaders can't.
+- For example, there is a <u>**_plugin called UglifyJS that minifies and uglifies the output of webpack_**.</u>
 
 ### 12. Disadvantages of React?
 
@@ -647,4 +655,63 @@ function Dashboard() {
     </>
   );
 }
+```
+
+---
+
+### 60. What is the difference between NavLink and Link?
+
+- The Link component is used to navigate the different routes on the site
+- NavLink is used to add the style attributes to the active routes
+
+```js
+<Link to='/'>Home</Link>
+```
+
+```js
+<NavLink to='/' activeClassName='active'>
+  Home
+</NavLink>
+```
+
+```js
+// index.css
+.active {
+  color: blue;
+}
+```
+
+---
+
+### 61. What is withRouter for in react-router-dom?
+
+- withRouter() is a higher-order component that allows to get access to the history object's properties and the closest <Route>'s match.
+- It is **_used to pass updated match, location, and history props to a functional component_** whenever it renders.
+
+```js
+import React from 'react';
+import { withRouter } from 'react-router-dom';
+
+const MyComponent = (props) => {
+  // Accessing the history, location, and match props
+  const { history, location, match } = props;
+
+  // Example usage: Navigate to a different route
+  const navigateToHome = () => {
+    history.push('/');
+  };
+
+  // Example usage: Read data from the URL
+  const productId = match.params.id;
+
+  return (
+    <div>
+      <h1>Product ID: {productId}</h1>
+      <button onClick={navigateToHome}>Go Home</button>
+      <p>Current location: {location.pathname}</p>
+    </div>
+  );
+};
+
+export default withRouter(MyComponent);
 ```

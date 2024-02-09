@@ -1,4 +1,4 @@
-#### Points to Remember
+### DOCTYPE in HTML5
 
 ```js
 // Syntax to define Doctype in HTML5 is

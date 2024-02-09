@@ -1,24 +1,45 @@
 #### Points to Remember
 
-- ##### Syntax to define Doctype in HTML5 is < !DOCTYPE html >
-- ##### The < !DOCTYPE html > declaration is considered as an information to the browser about what document type to expect, it is not considered as an HTML tag.
+```js
+// Syntax to define Doctype in HTML5 is
+<!DOCTYPE html>
+```
 
-- ##### The following are the three modes that are defined by layout engines in web browsers
+- This declaration <u>**_is considered as an information to the browser_**</u> <u>about what document type to expect</u>, it is not considered as an HTML tag.
 
-- ###### Quirks Mode, Almost standards mode, Full standards mode.
+The following are the **_three modes_** that are <u>**_defined by layout engines in web browsers_**</u>
 
-- Quirks mode refers to a strategy used by some web browsers to preserve backward compatibility with web pages built for old web browsers, rather than solely complying with standard W3C and IETF requirements in the standards mode.
+- Quirks Mode,
+- Almost standards mode,
+- Full standards mode
+  <br/>
+- **_Quirks mode_** refers to a strategy used by some web browsers <u>**_to preserve backward compatibility with web pages built for old web browsers_**</u>, rather than solely complying with standard W3C and IETF requirements in the standards mode.
+  <br/>
 
-- Almost standards mode rendering matches “full standards” mode in all details except, the image layout inside table cells is treated in the same way that “quirks” mode works. This means that sliced image-in-table layouts are less likely to collapse in browsers in either “quirks” or “almost normal” mode than in “full standards” mode.
+- **_Almost standards mode_** rendering matches “full standards” mode in all details <u>**_except the image layout inside table cells is treated in the same way that “quirks” mode works_**</u>. This means that sliced image-in-table layouts are less likely to collapse in browsers in either “quirks” or “almost normal” mode than in “full standards” mode.
+  <br/>
 
-- Full standards mode In this mode, the behavior described is the same as described by HTML and CSS specifications. Most of the modern browsers use full standard mode.
+- **_Full standards mode_** In this mode, the behavior described is the same as described by HTML and CSS specifications. <u>**_Most of the modern browsers use full standard mode_**.</u>
 
-- ##### With DOCTYPE placed at the start of the HTML markup, "Full standards mode" is enabled in web browsers.
+  <br/>
 
-- ##### Will adding any non-executing code, e.g. comments, XML declaration `before the DOCTYPE declaration will trigger quirks mode` in Internet Explorer 9 and older.
+#### Points to remember:
 
-- ##### The HTML5 doctype, < !DOCTYPE html>, triggers Full Standards mode in every browser (including IE6).
+- With DOCTYPE <u>**_placed at the start of the HTML markup_**</u>, `Full standards mode` is enabled in web browsers.
+  <br/>
 
-- ##### The main issue that arises if we don’t define DOCTYPE at the beginning of our HTML code is it activates the Quriks mode.
+- <u>adding any non-executing code</u>, **e.g. comments, XML declaration** <u>**_before the DOCTYPE declaration will trigger quirks mode in Internet Explorer 9 and older_**</u>.
 
-- #### For example: new features & tags in HTML5 such as article, footer,header, nav, section may not be supported if the <!DOCTYPE> is not declared.
+  <br/>
+
+- The HTML5 doctype, `<!DOCTYPE html>`, <u>**_triggers Full Standards mode in every browser_**</u> (including IE6).
+
+  <br/>
+
+- The main issue that arises <u>_if we don’t define DOCTYPE at the beginning of our HTML_</u> code is <u>**_it activates the Quirks mode._**</u>
+
+  <br/>
+
+<u>**For example:**</u>
+
+- **_new features & tags in HTML5_** such as `article`, `footer`, `header`, `nav`, `section` **may not be supported** <u>if the `<!DOCTYPE>` is not declared.</u>

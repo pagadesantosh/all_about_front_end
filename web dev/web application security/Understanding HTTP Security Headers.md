@@ -51,11 +51,12 @@ app.use(
 ### HTTP Strict Transport Security
 
 - Also known as HSTS, is a protocol standard <strong>which enforces secure connections to the server via HTTP over SSL/TLS.</strong>
+- In simple words, **Forces the use of HTTPS** by instructing the browser to only connect to the server over a secure, encrypted connection.
 - HSTS is configured and transmitted from the server to any HTTP web client using the <strong>HTTP header Strict-Transport-Security</strong>.
   <br>
 - **Implementation**:
 
-  - Configured via an HTTP header to inform the browser that the website should only be accessed over HTTPS.
+  - **Configured via an HTTP header** to inform the browser that the **website should only be accessed over HTTPS**.
     <br>
 
 - This specifies a time interval during which the browser should only communicate over an HTTP secured connection (HTTPS)
@@ -182,7 +183,7 @@ https.createServer(options, httpApp).listen(443);
 
 #### HST with expiration time
 
-- By seting the expiration time to zero (maxAge: 0), following are the things going to happen
+- By setting the expiration time to zero (maxAge: 0), following are the things going to happen
 - It means that Strict-Transport-Security header is set but by setting to zero, it disables it
 - The image which have the http url will be loaded from HTTP directly, without any redirect happening to HTTPS
 - The favicon is <strong>fetched and displayed for the website</strong>

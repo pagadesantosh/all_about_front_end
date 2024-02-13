@@ -1,6 +1,6 @@
 ### Following are the common Security Issues
 
-- **Includes Cross-site-scripting (XSS)**:
+- **Cross-site-scripting (XSS)**:
 
   - <u>Sanitize user inputs, **_use Content Security Policy headers_** and **_encode user generated content_**</u>
 
@@ -28,8 +28,8 @@
 ### What is the importance of HTTPS in securing web applications, and how does it work?
 
 - HTTPS (Hyper Text Transfer Protocol Secure) is essential for <u>**_securing data transmission between a user's browser and a website_**.</u>
-- It encrypts the data using SSL/TLS, preventing eavesdropping and man-in-the-middle attacks.
-- HTTPS ensures the integrity and confidentiality of user data.
+
+- Encrypts the data using SSL/TLS transmitted between the user’s browser and the web server, providing confidentiality and integrity.
 - **To implement HTTPs**, <u>**_a website needs an SSL/TLS certificate_**</u>, which verifies the site's identity and enables secure communication.
 
 ---
@@ -69,6 +69,31 @@
 
 ---
 
+### Security Headers:
+
+**Purpose**:
+
+- Various security-related HTTP headers <u>**can be set to control browser behavior and enhance security**</u>.
+- Examples include `Referrer-Policy`, `Feature-Policy`, and `Strict-Transport-Security`
+
+---
+
+### Input Validation and Sanitization:
+
+**Purpose**:
+
+- Ensures that user inputs are validated and sanitized to prevent common vulnerabilities like SQL injection, Cross Site Scripting (XSS) and other injection attacks.
+
+---
+
+### Session Management:
+
+**Purpose**:
+
+- Properly manages user sessions, including secure session storage, session timeout, and secure session handling to prevent unauthorized access.
+
+---
+
 ### Web Application Firewalls (WAF):
 
 - **Purpose:**
@@ -88,4 +113,5 @@
 - **_Prevents a web page from being embedded within an iframe_**, protecting <u>**against clickjacking attacks**</u>
 
 **Implementation**:
+
 - Configured via an HTTP header to control whether the browser should allow the page to be framed.

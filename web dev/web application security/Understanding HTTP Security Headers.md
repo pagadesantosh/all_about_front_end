@@ -308,7 +308,10 @@ Content-Security-Policy: connect-src 'self' https://apis.google.com;
 - Follwing is the policy for allowing javascript to be executed only from our own domain and from Google (while allowing inline javascript code as well)
 
 ```js
-Content-Security-Policy: script-src 'self' https://apis.google.com 'unsafe-inline'
+<meta
+  http-equiv='Content-Security-Policy'
+  content="default-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; script-src 'self' https://maps.googleapis.com 'unsafe-inline' 'unsafe-eval';"
+/>
 ```
 
 ```js
@@ -328,7 +331,7 @@ Note that unsafe-inline directive refers to a website's own javascript sources.
 
 - If you deny inline script blocks then your R&D team should be aware of this and comes well prepared. Otherwise it might break features and functionality across code that depends on inline javascript code blocks.
 
----
+## <img src="https://miro.medium.com/v2/format:webp/0*BKXMd9FkApZwM7JQ.jpg">
 
 #### Helmet Implementation
 

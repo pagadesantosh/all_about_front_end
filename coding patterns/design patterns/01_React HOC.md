@@ -31,12 +31,14 @@ export default Component2;
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
-const withAuthorization = (WrappedComponent) => (props) => {
-  const { isLoggedIn } = props;
-  if (!isLoggedIn) {
-    return <Redirect to='/login' />;
-  }
-  return <WrappedComponent {...props} />;
+const withAuthorization = (WrappedComponent) => {
+  return function (props) {
+    const { isLoggedIn } = props;
+    if (!isLoggedIn) {
+      return <Redirect to='/login' />;
+    }
+    return <WrappedComponent {...props} />;
+  };
 };
 
 export default withAuthorization;

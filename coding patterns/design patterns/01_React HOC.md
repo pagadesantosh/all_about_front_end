@@ -10,32 +10,36 @@
 
 ```js
 // Component1.jsx
-import React from 'react';
-
-const Component1 = () => <div>Hello from Component 1</div>;
+const Component1 = () => {
+  return <div>This is Component 1</div>;
+};
 
 export default Component1;
 ```
 
 ```js
 // Component2.jsx
-import React from 'react';
-
-const Component2 = () => <div>Welcome to Component 2</div>;
+const Component2 = () => {
+  return <div>This is Component 2</div>;
+};
 
 export default Component2;
 ```
 
 ```js
-// withAuthorization.jsx
-import React from 'react';
-import { Redirect } from 'react-router-dom';
+//Login.jsx
+const Login = ({ onClick }) => {
+  return <button onClick={onClick}>Login</button>;
+};
+export default Login;
+```
 
+```js
+// withAuthorization.jsx
 const withAuthorization = (WrappedComponent) => {
   return function (props) {
-    const { isLoggedIn } = props;
-    if (!isLoggedIn) {
-      return <Redirect to='/login' />;
+    if (!props.isLoggedIn) {
+      return;
     }
     return <WrappedComponent {...props} />;
   };
@@ -46,47 +50,30 @@ export default withAuthorization;
 
 ```js
 // App.jsx
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useState } from 'react';
+import Component1 from './components/Component1';
+import Component2 from './components/Component2';
+import withAuthorization from './HOC/withAuthorization';
+import Login from './components/Login';
 
-//import your components + HOC Component
-import withAuthorization from './withAuthorization';
-import Component1 from './Component1';
-import Component2 from './Component2';
-
-// Components wrapped with HOC
-const AuthComponent1 = withAuthorization(Component1);
-const AuthComponent2 = withAuthorization(Component2);
-
-const Login = ({ onLogin }) => (
-  <div>
-    <button onClick={onLogin}>Log in</button>
-  </div>
-);
-
-const App = () => {
+export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const AuthComponent1 = withAuthorization(Component1);
+  const AuthComponent2 = withAuthorization(Component2);
 
-  const handleLogin = () => setIsLoggedIn(true);
+  const handleClick = () => setIsLoggedIn(true);
 
   return (
-    <Router>
+    <div className='App'>
       <div>
-        <Routes>
-          <Route path='/login'>
-            <Login onLogin={handleLogin} />
-          </Route>
-          <Route path='/component1'>
-            <AuthComponent1 isLoggedIn={isLoggedIn} />
-          </Route>
-          <Route path='/component2'>
-            <AuthComponent2 isLoggedIn={isLoggedIn} />
-          </Route>
-        </Routes>
+        <Login onClick={handleClick} />
+        <AuthComponent1 isLoggedIn={isLoggedIn} />
+        <AuthComponent2 isLoggedIn={isLoggedIn} />
       </div>
-    </Router>
+    </div>
   );
-};
-
-export default App;
+}
 ```
+
+### Project Structure
+![alt text](image.png)

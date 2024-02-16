@@ -2,98 +2,89 @@
 
 #### What is HOC ?
 
-- Higher Order Component receives a component, applies a certain logic and then return that component with those additional logics
+- **_Higher Order Component <u>receives a component</u>_**, applies a certain logic and **_<u>then return that component with those additional logics</u>_**
 
 #### When to use HOC?
 
-- When we want to apply same logic to multiple components
+- When we want **_<u>to apply same logic to multiple components</u>_**
 
 ```js
-//App.jsx
+// Component1.jsx
+import React from 'react';
 
-import './styles.css';
-import Comp1 from './Comp1';
-import Comp2 from './Comp2';
+const Component1 = () => <div>Hello from Component 1</div>;
 
-export default function App() {
-  return (
-    <div className='App'>
-      <Comp1 />
-      <Comp2 />
-    </div>
-  );
-}
+export default Component1;
 ```
 
 ```js
-// Comp1.js
-import { forwardRef } from 'react';
-import WithDimension from './WithDimension';
-const Comp1 = (props, ref) => {
-  return (
-    <div ref={ref} className='comp1'>
-      Hey I am comp1 width: {props.width}
-    </div>
-  );
-};
+// Component2.jsx
+import React from 'react';
 
-export default WithDimension(forwardRef(Comp1));
+const Component2 = () => <div>Welcome to Component 2</div>;
+
+export default Component2;
 ```
 
 ```js
-// Comp2.js
-import { forwardRef } from 'react';
-import WithDimension from './WithDimension';
-const Comp2 = (props, ref) => {
-  return (
-    <div ref={ref} className='comp2'>
-      Hey I am comp2 width: {props.width}
-    </div>
-  );
-};
+// withAuthorization.jsx
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 
-export default WithDimension(forwardRef(Comp2));
-```
-
-```js
-// WithDimension.js
-
-import { useEffect, useRef, useState } from 'react';
-
-const withDimension = (Element) => {
-  function WithDimensions(props) {
-    const compRef = useRef();
-    const [width, setWidth] = useState(null);
-    const [height, setHeight] = useState(null);
-
-    useEffect(() => {
-      if (compRef.current) {
-        setWidth(compRef.current.offsetWidth);
-        setHeight(compRef.current.offsetHeight);
-      }
-    }, [compRef]);
-    return <Element ref={compRef} width={width} height={height} {...props} />;
+const withAuthorization = (WrappedComponent) => (props) => {
+  const { isLoggedIn } = props;
+  if (!isLoggedIn) {
+    return <Redirect to='/login' />;
   }
-  return WithDimensions;
+  return <WrappedComponent {...props} />;
 };
 
-export default withDimension;
+export default withAuthorization;
 ```
 
 ```js
-img {
-  height: 100px;
-  display: block;
-  margin-bottom: 10px;
-}
-.comp1 {
-  height: 100px;
-  width: 200px;
-}
+// App.jsx
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-.comp2 {
-  height: 150px;
-  width: 250px;
-}
- 
+//import your components + HOC Component
+import withAuthorization from './withAuthorization';
+import Component1 from './Component1';
+import Component2 from './Component2';
+
+// Components wrapped with HOC
+const AuthComponent1 = withAuthorization(Component1);
+const AuthComponent2 = withAuthorization(Component2);
+
+const Login = ({ onLogin }) => (
+  <div>
+    <button onClick={onLogin}>Log in</button>
+  </div>
+);
+
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => setIsLoggedIn(true);
+
+  return (
+    <Router>
+      <div>
+        <Routes>
+          <Route path='/login'>
+            <Login onLogin={handleLogin} />
+          </Route>
+          <Route path='/component1'>
+            <AuthComponent1 isLoggedIn={isLoggedIn} />
+          </Route>
+          <Route path='/component2'>
+            <AuthComponent2 isLoggedIn={isLoggedIn} />
+          </Route>
+        </Routes>
+      </div>
+    </Router>
+  );
+};
+
+export default App;
 ```

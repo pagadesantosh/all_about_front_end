@@ -2,45 +2,85 @@
 
 **Uses**:
 
-- When we want to make the component customizable
-- Provide ability to theme the component according to their design system
+#### For sharing <u>**_code between React components using a prop whose value is a function_**</u>.
 
 ```js
-//App.js
+//App.jsx
+import React, { useState } from 'react';
+import DataFetcher from './components/DataFetcher';
 
-import './styles.css';
-import Input from './Input';
 export default function App() {
-  const showValue = (value) => <b>The value is {value}</b>;
-  const multiplyByTen = (value) => <>The multiplied value is {value * 10}</>;
+  const [fetchSuccess, setFetchSuccess] = useState(true);
+  const [isLoading, setIsLoading] = useState(false); // State to track loading
+
   return (
-    <div className='App'>
-      <Input renderTextBelow={showValue} />
-      <br />
-      <Input renderTextBelow={multiplyByTen} />
+    <div>
+      <h2>Dynamic Data Fetching Example</h2>
+      {/* Disable the button while loading */}
+      <button
+        onClick={() => setFetchSuccess(!fetchSuccess)}
+        disabled={isLoading}
+      >
+        {fetchSuccess ? 'Click Here to Fail the Data' : 'Click Here to Succeed'}
+      </button>
+      <DataFetcher
+        shouldSucceed={fetchSuccess}
+        onLoadingChange={setIsLoading} // Pass setIsLoading to DataFetcher
+        renderLoading={() => <div>Loading...</div>}
+        renderSuccess={(data) => <div>Success: {data}</div>}
+        renderError={(error) => <div>Error: {error.message}</div>}
+      />
     </div>
   );
 }
 ```
 
 ```js
-// Input.js
+// DataFetcher.jsx
 
-import { useState } from 'react';
+// Import useEffect and useState from 'react'
+import { useEffect, useState } from 'react';
 
-const Input = (props) => {
-  const [value, setValue] = useState(null);
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
-  return (
-    <>
-      <input value={value} onChange={handleChange} />
-      <br />
-      {props.renderTextBelow(value)}
-    </>
-  );
+const DataFetcher = ({
+  shouldSucceed,
+  renderLoading,
+  renderSuccess,
+  renderError,
+  onLoadingChange, // New prop to communicate loading state changes
+}) => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    setLoading(true);
+    onLoadingChange(true); // Notify parent component that loading has started
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (shouldSucceed) {
+          resolve('Data loaded successfully');
+        } else {
+          reject(new Error('Failed to load data'));
+        }
+      }, 2000);
+    })
+      .then((data) => {
+        setData(data);
+        setLoading(false);
+        setError(null);
+        onLoadingChange(false); // Notify parent component that loading has ended
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
+        onLoadingChange(false); // Notify parent component that loading has ended
+      });
+  }, [shouldSucceed, onLoadingChange]);
+
+  if (loading) return renderLoading();
+  if (error) return renderError(error);
+  return renderSuccess(data);
 };
 
-export default Input;
+export default DataFetcher;
 ```

@@ -1,15 +1,15 @@
 **React Compound Pattern**
 
 - Multiple components come together to serve a common functionality
+- This pattern **makes use of React's composition model** to let **_<u>components share an implicit state and logic while still allowing the user to assemble them in various configurations</u>_**.
 - Ex: Select tag where select and option jointly help us create dropdowns.
 - React Context APIs plays an important role in Compound pattern
 - Use cases like: select, dropdown components, menu items
 
 ```js
-//App.js
+//App.jsx
 import { useState } from 'react';
-import './styles.css';
-import Tab from './Tab';
+import Tab from './components/Tab';
 export default function App() {
   const [currentIndex, setIndex] = useState(0);
 
@@ -42,9 +42,8 @@ export default function App() {
 ```
 
 ```js
-//Tab.js
+//Tab.jsx
 import { createContext, useContext } from 'react';
-import './Tab.css';
 const TabContext = createContext();
 
 export default function Tab({ children, value, onChange }) {
@@ -60,23 +59,20 @@ Tab.Heads = ({ children }) => {
   return <div className='heads'>{children}</div>;
 };
 
-Tab.Item = ({ label, index, children }) => {
+Tab.ContentWrapper = ({ children }) => {
+  return <div className='contentWraper'>{children}</div>;
+};
+
+Tab.Item = ({ label, index }) => {
   const { value, onChange } = useContext(TabContext);
-  const handleClick = () => {
-    onChange(index);
-  };
   return (
     <div
-      onClick={handleClick}
+      onClick={() => onChange(index)}
       className={`item ${index === value ? 'active' : null}`}
     >
       {label}
     </div>
   );
-};
-
-Tab.ContentWrapper = ({ children }) => {
-  return <div className='contentWraper'>{children}</div>;
 };
 
 Tab.Content = ({ children, index }) => {

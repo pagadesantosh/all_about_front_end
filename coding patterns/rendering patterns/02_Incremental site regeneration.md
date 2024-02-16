@@ -1,5 +1,6 @@
-- Incremental site regeneration enables you to `use static-generation on a per-page basis`, `without` needing to `rebuild the entire site`.
-- With ISR, you can retain the benefits of static while scaling to millions of pages.
+- Following outlines how to implement Incremental Static Regeneration (ISR) in a Next.js application, showcasing both the frontend component for displaying posts and the backend handler for on-demand revalidation of specific paths.
+- ISR is a powerful feature in Next.js that **allows for static pages to be updated after deployment without needing to rebuild and redeploy the entire site**.
+- This technique is particularly **useful for site with a large number of pages**, enabling them to enjoy the benefits of static generation (fast load times, SEO-friendly) while keeping content fresh.
 - To use ISR, add the `revalidate prop` to `getStaticProps`
 - I wanted to get updated data every time without manual build (next build && next export), so over here the revalidation comes into picture for ISG
 
@@ -19,6 +20,9 @@ export default function MyPosts(props) {
   );
 }
 
+//getStaticProps is an async function that fetches data at build time for static generation, however with 'revalidate' option set, Next.js will attempt to re-generate the page when a request comes in at most every 10 seconds
+
+//This means your page will serve the statically generated page and update it in the background if it's older than 10 seconds.
 export async function getStaticProps(context) {
   const promise = await fetch(
     'https://api.jsonbin.io/v3/b/6342b4f62b3499323bd881c1'
@@ -55,4 +59,17 @@ export default async function handler(req, res) {
 }
 ```
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/ded1813c-0fe5-416e-8926-1cc6f2b789cb)
+![alt text](![image.png](<Incremental Site regeneration.png>))
+
+---
+
+#### How it works
+
+1. **Static Generation with Revalidation**: The site is built statically, including the posts page.
+
+   - The revalidate prop in getStaticProps **_<u>tells Next.js to revalidate the page in the background if a request comes in after 10 seconds since the last generation</u>_**.
+
+2. **On-demand Revalidation:**: The backend handler allows specific pages to be revalidated instantly.
+   - **When content changes**, **_<u>a request can be made to this API route with the path of the page that needs updating</u>_**.
+3. **Security Measures:**: The check for a secret query parameter in the API route is a simple **_<u>way to secure the revalidation process</u>_**, ensuring that only requests from known sources can trigger revalidation.
+4. **Error Handling**: The handler includes basic error handling, responding appropriately if the secret is missing, the body is missing, or if revalidation fails.

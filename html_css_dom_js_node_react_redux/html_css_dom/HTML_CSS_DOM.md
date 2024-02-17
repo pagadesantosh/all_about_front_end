@@ -194,6 +194,42 @@ span.c {
 
 ![alt text](https://user-images.githubusercontent.com/42731246/142733891-689b876d-380c-44e0-b5da-f4cb36334231.png)
 
+#### <u>Use Cases of `display:none`</u>:
+
+- Completely removing an element from the layout, especially **_in responsive designs where certain elements should not be shown at specific screen sizes_**.
+- Used in JavaScript-driven interactions to hide or show elements dynamically (e.g., dropdown menus, modal dialogs).
+
+### opacity:
+
+- The opacity property **_controls the transparency level of an element_**.
+- An element with opacity: 0; is fully transparent **_<u>but still occupies space in the layout and remains interactive</u>_** (e.g., clickable).
+
+#### <u>Use Cases of `opacity:0`</u>:
+
+- Creating fade-in/fade-out animations where an element gradually appears or disappears but should still occupy space during the transition.
+
+### visibility:
+
+- The visibility property determines whether an element is visible or not.
+- Setting visibility: hidden; makes an element invisible, but unlike `display: none;`, the element still takes up space in the layout.
+- It's invisible but still affects layout and document flow.
+
+#### <u>Use Cases of `visibility:hidden`</u>:
+
+- Temporarily hiding elements **_without disrupting the layout_**.
+- Useful in cases **_where you might want to show the element again without having to recalculate the layout_** or where the sudden appearance/disappearance of elements could cause a jarring shift in the layout.
+- Creating tool tips or dropdown menus that appear in the same spot without affecting the surrounding elements position.
+
+**<u>When to Use Each:**</u>
+
+- Use `display: none`; when you need to remove an element entirely from the layout and document flow. This is **_<u>useful for responsive designs or when replacing an element with another</u>_**.
+  <br/>
+- Use `opacity: 0`; **_<u>for creating visual effects where the element transitions from invisible to visible or vice versa, especially in animations</u>_**. This property is best when you want an element to remain part of the layout and document flow, even when it's not visibly seen.
+  <br/>
+- Use `visibility: hidden`; when you want to hide an element but maintain its space in the layout. This is **_<u>ideal for UI elements that toggle between being shown and hidden, where maintaining the layout's stability is crucial</u>_**.
+
+---
+
 ## 25. Float and Clear in CSS
 
 ![alt text](https://user-images.githubusercontent.com/42731246/142733900-6bf11547-d3c4-4859-8644-93ba0f33adfd.png)

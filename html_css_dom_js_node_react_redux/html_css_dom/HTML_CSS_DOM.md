@@ -232,11 +232,34 @@ span.c {
 
 ## 25. Float and Clear in CSS
 
+- The `float` and `clear` properties in CSS are tools **for controlling the layout** of elements on a webpage, **_<u>particularly how elements align horizontally</u>_** and how they interact with each other in terms of flow and positioning.
+
+#### Float:
+
+- is used to <u>place an element to the left or right side of its container</u>, allowing other content to wrap around it
+- The values for float can be `left`, `right`, or `none`
+
+##### <u>Use Cases:</u>
+
+- Text wrapping around images: Making text wrap around an image by floating the image to the left or right.
+
 ![alt text](https://user-images.githubusercontent.com/42731246/142733900-6bf11547-d3c4-4859-8644-93ba0f33adfd.png)
 
 ![alt text](https://user-images.githubusercontent.com/42731246/142733904-f91f36e8-a73a-4eb3-b224-a6d0a412c2d4.png)
 
 ![alt text](https://user-images.githubusercontent.com/42731246/142733910-c1b773eb-d273-4eab-b405-1a06ecf7adc0.png)
+
+#### Clear:
+
+- The clear property is used to prevent elements from floating alongside or wrapping around an element.
+- It can clear floats to the left, right, or both sides of an element, **_<u>ensuring that the element appears below floated elements previously defined in the markup</u>_**.
+
+##### <u>Use Cases:</u>
+
+- **Stopping text wrap:** **_<u>Forcing text or other elements to appear below</u>_** a floated element instead of wrapping around it.
+- **Creating separation**: **_<u>Ensuring that a section of content starts on a new line</u>_**, clear of any floated elements that precede it.
+
+---
 
 ## 26. Position Static vs Position relative
 

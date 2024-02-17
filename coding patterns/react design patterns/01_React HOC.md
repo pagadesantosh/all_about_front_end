@@ -76,4 +76,5 @@ export default function App() {
 ```
 
 ### Project Structure
-![alt text](image.png)
+
+![alt text](<images used/HOC.png>)

@@ -59,7 +59,7 @@ export default async function handler(req, res) {
 }
 ```
 
-![alt text](![image.png](<Incremental Site regeneration.png>))
+![alt text](<images used/Incremental Site regeneration.png>)
 
 ---
 

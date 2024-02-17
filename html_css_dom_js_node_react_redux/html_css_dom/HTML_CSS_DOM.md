@@ -27,9 +27,6 @@
 
 # HTML & CSS:
 
-
-
-
 ## 1. DIV and SPAN
 
 ![alt text](https://user-images.githubusercontent.com/42731246/142733551-fc0aeaf2-91b4-48c7-8ea8-53e7a5d380b1.png)
@@ -38,7 +35,7 @@
 
 ![alt text](https://user-images.githubusercontent.com/42731246/142733561-815fb9d9-d023-4514-809c-21c6c8119624.png)
 
-## 3. CSS Specifity
+## 3. CSS Specificity
 
 ![alt text](https://user-images.githubusercontent.com/42731246/142733573-96c4add1-fef6-4774-a344-3fe4df1dc0ad.png)
 
@@ -108,6 +105,24 @@ Instead of one option, we supply multiple. And you can think of it as a fallback
 
 ![alt text](https://user-images.githubusercontent.com/42731246/142733828-29818aef-4e5e-4975-834c-1cd561ccec9b.png)
 
+```js
+<div class='a'>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper diam
+    at erat pulvinar, at pulvinar felis blandit. Vestibulum volutpat tellus
+    diam, consequat gravida libero rhoncus ut.
+  </p>
+</div>
+```
+
+```css
+div.a {
+  text-indent: 50px;
+}
+```
+
+![alt text](<images used/text-indent.png>)
+
 ## 18. Other Text Properties
 
 ![alt text](https://user-images.githubusercontent.com/42731246/142733834-a9b525ea-c681-4f12-b196-7ed88e242e9e.png)
@@ -121,6 +136,45 @@ Instead of one option, we supply multiple. And you can think of it as a fallback
 ![alt text](https://user-images.githubusercontent.com/42731246/142733842-82c1bfc7-e0dd-4cd9-82cf-a67d5abea88e.png)
 
 ![alt text](https://user-images.githubusercontent.com/42731246/142733843-098d468e-e2df-4b0b-aef1-5ffd8fa9b87c.png)
+
+```js
+<div><span class="a">Aliquam</span> <span class="a">venenatis</span></div>
+<div><span class="b">Aliquam</span> <span class="b">venenatis</span></div>
+<div><span class="c">Aliquam</span> <span class="c">venenatis</span></div>
+```
+
+```css
+/* for class 'a', browser doesn't increase width and height because display:inline doesn't respect width and height */
+span.a {
+  display: inline; /* the default for span */
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid blue;
+  background-color: yellow;
+}
+/* display inline-block doesn't starts in a new line but respects width and height, whereas not applying doesn't take the full width (I mean by default it acts like inline + doesn't span full width) */
+span.b {
+  display: inline-block;
+  padding: 5px;
+  border: 1px solid blue;
+  background-color: yellow;
+}
+
+/* display block starts in a new line and takes full width by default and respects width and height*/
+span.c {
+  display: block;
+  padding: 5px;
+  border: 1px solid blue;
+  background-color: yellow;
+}
+```
+
+![alt text](<images used/display inline vs block vs inline-block.png>)
+
+#### display inline-block doesn't starts in a new line but respects width and height
+
+![alt text](<images used/display inline-block respects width and height.png>)
 
 ## 21. Box-sizing
 
@@ -267,6 +321,7 @@ Ex: a, b, c, d
 ---
 
 ## 44. Describe z-index and how stacking context is formed.
+
 - z-index `controls the vertical stacking order of elements` that overlap each other.
 - z-index only affects `positioned elements` (elements which have a position value which is not `static`) and its descendants or flex items
 - Can be of Positive or negative whole numbers, determining the elements layer within its stacking context.
@@ -276,8 +331,9 @@ Ex: a, b, c, d
 - Negative values are allowed which can place elements behind their parent stacking context.
 
 **Stacking context**:
+
 - is an element that contains a set of layers.
-- within a local stacking context, the z-index values of its children are set relative to that element rather than to the document root. 
+- within a local stacking context, the z-index values of its children are set relative to that element rather than to the document root.
 
 ## 45. Describe BFC (Block Formatting Context) and how it works.
 
@@ -296,8 +352,6 @@ Ex: a, b, c, d
 ## 52. What are the advantages/disadvantages of using CSS preprocessors? Describe what you like and dislike about the CSS preprocessors you have used.
 
 ## 53. How would you implement a web design comp that uses non-standard fonts?
-
-
 
 ## 54. Explain how a browser determines what elements match a CSS selector.
 
@@ -325,7 +379,6 @@ Ex: a, b, c, d
 
 ## 66. What is the difference between CSS Grid and Flexbox? When would you use one over the other?
 
-
 1. What is HTML?
 2. Explain the difference between HTML and XHTML.
 3. What are the new features in HTML5?
@@ -352,7 +405,7 @@ Ex: a, b, c, d
 24. How do you create a hyperlink that opens in a new tab or window?
 25. Discuss the 'placeholder' attribute in HTML forms.
 26. What is the purpose of the 'ruby' element in HTML?
-27. Explain the 'data-*' attributes in HTML5.
+27. Explain the 'data-\*' attributes in HTML5.
 28. How does the 'accesskey' attribute work in HTML forms?
 29. Describe the role of the 'figcaption' element in HTML.
 30. What is the purpose of the 'progress' element in HTML5?
@@ -367,9 +420,7 @@ Ex: a, b, c, d
 39. Describe the 'picture' element in HTML5 and its use in responsive images.
 40. How can you disable a hyperlink using HTML?
 
-
-
-----
+---
 
 Q1. What does the CSS property float do?
 Q2. How can you clear the sides of a floating element?
@@ -404,7 +455,6 @@ Q30. What are the reasons to use a CSS preprocessor in web development?
 Q31. What is the difference between layout and positioning in CSS?
 Q32. What is the difference between CSS Flexbox and CSS Grid layout systems?
 
-
 ---
 
 1. What is the DOM, and how does it relate to HTML?
@@ -427,7 +477,7 @@ Q32. What is the difference between CSS Flexbox and CSS Grid layout systems?
 18. How do you add and remove classes from an element in the DOM?
 19. Explain the differences between classList.add, classList.remove, and classList.toggle.
 20. How can you traverse the DOM tree using JavaScript?
-21. What are data attributes (data-*), and how can you use them in DOM manipulation?
+21. What are data attributes (data-\*), and how can you use them in DOM manipulation?
 22. Explain the purpose of the style property in DOM manipulation.
 23. How can you retrieve the dimensions (width and height) of an element in the DOM?
 24. What is the purpose of the offset properties (offsetWidth, offsetHeight, offsetLeft, offsetTop) in DOM manipulation?

@@ -234,6 +234,12 @@ span.c {
 
 - The `float` and `clear` properties in CSS are tools **for controlling the layout** of elements on a webpage, **_<u>particularly how elements align horizontally</u>_** and how they interact with each other in terms of flow and positioning.
 
+- Float is a CSS positioning property **_primarily used for wrapping text around images_** or (for creating layouts where block-level elements are aligned side by side)
+- **_Floated elements remain a part of the flow of the page, and will affect the positioning of other elements_** (e.g. text will flow around floated elements), unlike `position: absolute` elements, which is used to position an element completely out of the normal document flow.
+- The CSS `clear` property can be used to positioned below `left/right/both` floated elements
+- If parent element contains nothing but floated elements, its height will be collapsed to nothing which can be fixed by clearing the float after the floated elements in the container but before the close of the container.
+- **_Floats <u>don't provide vertical alignment_</u>**.
+
 #### Float:
 
 - is used to <u>place an element to the left or right side of its container</u>, allowing other content to wrap around it
@@ -277,109 +283,12 @@ top:0;
 
 ![alt text](https://user-images.githubusercontent.com/42731246/142733933-929db7f7-d8c6-46ea-978b-c15e70a41282.png)
 
+**<u>More details are provided in this website**</u>:
+https://dillionmegida.com/p/static-relative-absolute-fixed-sticky-positions/
+
+---
+
 ## 29. Z-index
-
-![alt text](https://user-images.githubusercontent.com/42731246/142733941-e25688fc-ac79-4a70-8159-c28d08057ca9.png)
-
-## 30. Before and after pseudo-elements
-
-![alt text](https://user-images.githubusercontent.com/42731246/142733950-0f2aa177-b640-4517-8cb1-e7f9ce68a51c.png)
-
-![alt text](https://user-images.githubusercontent.com/42731246/142733952-dc0041e8-cccf-47d0-9782-2d7277d7b914.png)
-
-## 31.
-
-![alt text](https://user-images.githubusercontent.com/42731246/142733967-2a410644-49e6-432b-b6f2-77dd080615e3.png)
-![alt text](https://user-images.githubusercontent.com/42731246/142733970-6a960f57-0da9-4084-88f9-6975baaec2be.png)
-
-## 32.
-
-![alt text](https://user-images.githubusercontent.com/42731246/142734011-dac6468c-72e8-4537-9689-5c953c249e59.png)
-
-## 33.
-
-![alt text](https://user-images.githubusercontent.com/42731246/142734015-03851fcf-56ec-45be-9037-fab64caf1740.png)
-
-## 34.
-
-![alt text](https://user-images.githubusercontent.com/42731246/142734021-cec7dd92-0d3a-40fc-966f-65da86870c5b.png)
-
-![alt text](https://user-images.githubusercontent.com/42731246/142734027-5c957f87-b682-475e-a3e5-bb8c7c23e420.png)
-
-works in rem as multiply operation
-![alt text](https://user-images.githubusercontent.com/42731246/142734030-26d0dcf2-da1f-4893-be90-6d85eac5c6a3.png)
-
-## 35. Transition in CSS
-
-![alt text](https://user-images.githubusercontent.com/42731246/142734036-896cb717-7068-4b49-9bce-62c248f5d22a.png)
-
-## 36. Animation
-
-![alt text](https://user-images.githubusercontent.com/42731246/142734043-5e73ab89-cb27-48df-b42e-d3117b5f27eb.png)
-
-![alt text](https://user-images.githubusercontent.com/42731246/142734047-c2cf61ba-0702-4330-bffa-04aa98f891f7.png)
-
-![alt text](https://user-images.githubusercontent.com/42731246/142734049-7837027a-563e-4205-8a8b-c77419cf94cf.png)
-
-![alt text](https://user-images.githubusercontent.com/42731246/142734051-f3c454cb-1755-4c47-aba6-ef7bcc62ac97.png)
-
-## 37. CSS Variables
-
-![alt text](https://user-images.githubusercontent.com/42731246/142734059-5362e041-a75b-48b9-bc61-546cf057c8a5.png)
-
-## 38. Box-shadow
-
-x axis y axis blur spread-radius
-
-## 39. Flex vs Grid
-
-The basic difference between CSS Grid Layout and CSS Flexbox Layout is that flexbox was designed for layout in one dimension - either a row or a column. Grid was designed for two-dimensional layout - rows, and columns at the same time
-
-## 40. Position relative vs Position absolute
-
-position: relative places an element relative to its current position without changing the layout around it, whereas position: absolute places an element relative to its parent's position and changing the layout around it.
-
----
-
-## 41. What is CSS selector specificity and how does it work?
-
-- The browser determines what styles to show on an element depending on the specificity of CSS rules.
-- Four set of rules are calculated based on the following
-
-a - is whether inline styles are being used.
-b - is ID selectors
-c - classes, attributes & pseudo classes selectors
-d - tags and pseudo-elements selectors
-
-Ex: a, b, c, d
-
-- In order to determine which has the highest specificity look from left to right (ex: 0 1 0 0) so b will override c and d in this case.
-- In cases of equal specificity, the latest rule is the one that counts.
-- If you have written the same rule into your stylesheet then the lower rule in your stylesheet is closer to the element to be styled.
-- **It is a better practice to write CSS rules with low specificity so that they can be easily overridden if necessary without using too complicated CSS rules just for the sake of increasing specificity or resorting to !important**
-
----
-
-## 42. What is the difference between "resetting" and "normalizing" CSS? Which would you choose, and why?
-
-- **Resetting**: Is meant to strip all default browser styling on elements. For e.g. **margins, paddings, font-size** of all the elements are reset to be the same.
-  You have to redeclare styling for common typographic elements.
-
-- **Normalizing**: Preserves useful default styles rather than `unstyling` everything. It also corrects bugs for common browser dependencies.
-
----
-
-## 43. Describe Floats and how they work.
-
-- Float is a CSS positioning property primarily used for wrapping text around images or (for creating layouts where block-level elements are aligned side by side)
-- Floated elements remain a part of the flow of the page, and will affect the positioning of other elements (e.g. text will flow around floated elements), unlike `position: absolute` elements, which is used to position an element completely out of the normal document flow.
-- The CSS `clear` property can be used to positioned below `left/right/both` floated elements
-- If parent element contains nothing but floated elements, its height will be collapsed to nothing which can be fixed by clearing the float after the floated elements in the container but before the close of the container.
-- Floats don't provide vertical alignment.
-
----
-
-## 44. Describe z-index and how stacking context is formed.
 
 - z-index `controls the vertical stacking order of elements` that overlap each other.
 - z-index only affects `positioned elements` (elements which have a position value which is not `static`) and its descendants or flex items
@@ -393,6 +302,178 @@ Ex: a, b, c, d
 
 - is an element that contains a set of layers.
 - within a local stacking context, the z-index values of its children are set relative to that element rather than to the document root.
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733941-e25688fc-ac79-4a70-8159-c28d08057ca9.png)
+
+**Use cases:**
+
+- For complex web designs where **_<u>elements like modals, dropdowns, tooltips, and overlays must float above other content</u>_**.
+
+---
+
+## 30. Before and after pseudo-elements
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733950-0f2aa177-b640-4517-8cb1-e7f9ce68a51c.png)
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733952-dc0041e8-cccf-47d0-9782-2d7277d7b914.png)
+
+---
+
+## 31. Descendant and Child selectors
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733967-2a410644-49e6-432b-b6f2-77dd080615e3.png)
+![alt text](https://user-images.githubusercontent.com/42731246/142733970-6a960f57-0da9-4084-88f9-6975baaec2be.png)
+
+**Overview:**
+
+- `.header h1`: This is a `descendant` selector. It **_<u>selects any h1 element that is inside a .header element, regardless of the level of nesting</u>_**. Both h1 elements within the header class are targeted by this selector. The color green is applied to these h1 elements.
+  <br/>
+- `.header > h1`: This is a `child` selector. It **_selects h1 elements that are direct children of .header_**.
+- This means **_<u>it will only apply to h1 elements that are immediately wrapped by a div with the class header, but not h1 elements that are nested further within other elements</u>_** (like inside the ul within the header class). The color purple is assigned to these h1 elements.
+  <br/>
+- `div h1`: This is another descendant selector, **_but it is less specific than the first one_**
+  <br/>
+- `div > h1`: This is another child selector, similar to the second rule, but it applies to h1 elements that are direct children of any div, **_not just ones with the class header_**.
+
+---
+
+## 32. `first-line` and `first-selector`
+
+![alt text](https://user-images.githubusercontent.com/42731246/142734011-dac6468c-72e8-4537-9689-5c953c249e59.png)
+
+## 33.
+
+![alt text](https://user-images.githubusercontent.com/42731246/142734015-03851fcf-56ec-45be-9037-fab64caf1740.png)
+
+## 34. root element
+
+- #### A `:root` selector defines the base font size as 10px.
+  ![alt text](https://user-images.githubusercontent.com/42731246/142734021-cec7dd92-0d3a-40fc-966f-65da86870c5b.png)
+
+![alt text](https://user-images.githubusercontent.com/42731246/142734027-5c957f87-b682-475e-a3e5-bb8c7c23e420.png)
+
+works in rem as multiply operation
+![alt text](https://user-images.githubusercontent.com/42731246/142734030-26d0dcf2-da1f-4893-be90-6d85eac5c6a3.png)
+
+- Elements with the class .absolute will have a font size of 24px. (No change here because this is not relative to the root font size. )
+- Elements with the class .relative will have a font size of 15px, **_because 1.5rem is multiplied by the root font size of 10px_**.
+
+---
+
+## 35. Transition in CSS
+
+![alt text](https://user-images.githubusercontent.com/42731246/142734036-896cb717-7068-4b49-9bce-62c248f5d22a.png)
+
+---
+
+## 36. Animation
+
+![alt text](https://user-images.githubusercontent.com/42731246/142734043-5e73ab89-cb27-48df-b42e-d3117b5f27eb.png)
+
+![alt text](https://user-images.githubusercontent.com/42731246/142734047-c2cf61ba-0702-4330-bffa-04aa98f891f7.png)
+
+![alt text](https://user-images.githubusercontent.com/42731246/142734049-7837027a-563e-4205-8a8b-c77419cf94cf.png)
+
+![alt text](https://user-images.githubusercontent.com/42731246/142734051-f3c454cb-1755-4c47-aba6-ef7bcc62ac97.png)
+
+- The animation-fill-mode property in CSS **_<u>specifies how a CSS animation should apply styles to its target before and after its execution_</u>**.
+  <br/>
+
+- **none**: The default value. The **<u>_animation will not apply any styles to the target before or after it is executing_</u>**.
+  <br/>
+- **forwards**: **<u>_After the animation completes (i.e., it finishes playing), the target will retain the style values that were set by the last keyframe of the animation_</u>** (the keyframe that is applied when the animation ends). This is often used when you want the state of the animation to be preserved after it finishes.
+  <br/>
+- **backwards**: The **_<u>target will apply the style values defined in the first keyframe, and these values will be applied as soon as the animation is applied to the target_</u>** (even before the animation starts). This is useful if you want the initial state of the animation to take effect during the period defined by animation-delay.
+  <br/>
+
+  both: The target **_<u>will follow the rules for both forwards and backwards</u>_**. It will get the style values from the first keyframe when the animation is applied, and retain the style values from the last keyframe after the animation completes.
+
+---
+
+## 37. CSS Variables
+
+![alt text](https://user-images.githubusercontent.com/42731246/142734059-5362e041-a75b-48b9-bc61-546cf057c8a5.png)
+
+---
+
+## 38. Box-shadow
+
+```js
+box-shadow: [horizontal offset] [vertical offset] [blur radius] [spread radius] [color];
+```
+
+```js
+.element {
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
+}
+```
+
+---
+
+## 39. Flex vs Grid
+
+The basic difference between `CSS Grid Layout` and `CSS Flexbox Layout` is that
+
+- **_<u>flexbox was designed for layout in one dimension</u>_** - either` a row` or `a column`.
+
+- Grid was **_designed for two-dimensional layout - rows, and columns at the same time_**
+
+---
+
+## 40. Position relative vs Position absolute
+
+position: relative places an element relative to its current position without changing the layout around it, whereas position: absolute places an element relative to its parent's position and changing the layout around it.
+
+---
+
+## 41. What is CSS selector specificity and how does it work?
+
+- The browser determines what styles to show on an element depending on the specificity of CSS rules.
+- Four set of rules are calculated based on the following
+
+```js
+  a - is whether inline styles are being used.
+  b - is ID selectors
+  c - classes, attributes & pseudo classes selectors
+  d - tags and pseudo-elements selectors
+
+Ex: a, b, c, d
+```
+
+- In order to determine which has the highest specificity look from left to right (ex: 0 1 0 0) so b will override c and d in this case.
+- In cases of equal specificity, the latest rule is the one that counts.
+- If you have written the same rule into your stylesheet then the lower rule in your stylesheet is closer to the element to be styled.
+- **It is a better practice to write CSS rules with low specificity so that they can be easily overridden if necessary without using too complicated CSS rules just for the sake of increasing specificity or resorting to !important**
+
+---
+
+## 42. What is the difference between "resetting" and "normalizing" CSS? Which would you choose, and why?
+
+- **Resetting**: Is meant to strip all default browser styling on elements. For e.g. **margins, paddings, font-size** of all the elements are reset to be the same.
+  You have to redeclare styling for common typographic elements.
+
+- **Normalizing**: **_<u>Preserves useful default styles</u>_** rather than `unstyling` everything. It also corrects bugs for common browser dependencies.
+
+```js
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/**
+ * Remove the margin in all browsers.
+ */
+
+body {
+  margin: 0;
+}
+```
+
+- If you want to start **_with an absolute blank slate and have strict control over every element’s styling_**, go for a `reset`.
+  <br/>
+- If you prefer a more hands-off approach, where common defaults are preserved and **_you only need to tweak certain elements_**, `normalization` might be better.
+
+---
 
 ## 45. Describe BFC (Block Formatting Context) and how it works.
 
@@ -414,29 +495,16 @@ Ex: a, b, c, d
 
 ## 54. Explain how a browser determines what elements match a CSS selector.
 
-## 55. Describe pseudo-elements and discuss what they are used for.
+## 55. Explain your understanding of the box model and how you would tell the browser in CSS to render your layout in different box models.
 
-## 56. Explain your understanding of the box model and how you would tell the browser in CSS to render your layout in different box models.
+## 56. What is the difference between the "nth-of-type()" and "nth-child()" selectors?
 
-## 57. What does \* { box-sizing: border-box; } do? What are its advantages?
+## 57. Is there any reason you'd want to use translate() instead of absolute positioning, or vice-versa? And why?
 
-## 58. What is the CSS display property and can you give a few examples of its use?
+## 58. Can you explain the difference between px, em and rem as they relate to font sizing?
 
-## 59. What is the difference between inline and inline-block?
 
-## 60. What is the difference between the "nth-of-type()" and "nth-child()" selectors?
 
-## 61. What is the difference between a relative, fixed, absolute and statically positioned element?
-
-## 62. Is there any reason you'd want to use translate() instead of absolute positioning, or vice-versa? And why?
-
-## 63. Can you explain the difference between px, em and rem as they relate to font sizing?
-
-## 64. Can you give an example of a pseudo class? Can you provide an example use case for a pseudo class?
-
-## 65. What is the difference between a block level element and an inline element. Can you provide examples of each type of element?
-
-## 66. What is the difference between CSS Grid and Flexbox? When would you use one over the other?
 
 1. What is HTML?
 2. Explain the difference between HTML and XHTML.
@@ -444,45 +512,39 @@ Ex: a, b, c, d
 4. Describe the DOCTYPE declaration in HTML.
 5. Explain the purpose of the 'meta' tag in HTML.
 6. What is the role of the 'alt' attribute in the 'img' tag?
-7. Differentiate between 'div' and 'span' in HTML.
-8. How does the 'a' tag contribute to creating hyperlinks?
-9. What is the significance of the 'form' element in HTML?
-10. Explain the difference between 'GET' and 'POST' methods in form submissions.
-11. Discuss the importance of the 'semantic' elements in HTML5.
-12. What is the purpose of the 'head' section in an HTML document?
-13. Differentiate between 'id' and 'class' attributes in HTML.
-14. How does the 'iframe' tag work in HTML?
-15. Explain the concept of HTML entities.
-16. Describe the purpose of the 'canvas' element in HTML5.
-17. What is the 'viewport' meta tag used for in responsive web design?
-18. How do you embed audio and video in HTML5?
-19. What is the significance of the 'lang' attribute in the 'html' tag?
-20. Discuss the role of the 'table' element in HTML.
-21. How do you create a numbered list in HTML?
-22. Explain the difference between inline and block elements in HTML.
-23. What is the purpose of the 'localStorage' and 'sessionStorage' objects in HTML5?
-24. How do you create a hyperlink that opens in a new tab or window?
-25. Discuss the 'placeholder' attribute in HTML forms.
-26. What is the purpose of the 'ruby' element in HTML?
-27. Explain the 'data-\*' attributes in HTML5.
-28. How does the 'accesskey' attribute work in HTML forms?
-29. Describe the role of the 'figcaption' element in HTML.
-30. What is the purpose of the 'progress' element in HTML5?
-31. How do you create a responsive web design using media queries in CSS?
-32. Explain the concept of 'cross-origin resource sharing' (CORS) in HTML.
-33. Discuss the importance of the 'role' attribute in HTML for accessibility.
-34. How can you include comments in HTML code?
-35. What is the purpose of the 'target' attribute in the 'a' tag?
-36. How do you create a dropdown menu in HTML?
-37. Explain the difference between 'cookie' and 'sessionStorage' in client-side storage.
-38. What is the purpose of the 'async' and 'defer' attributes in script tags?
-39. Describe the 'picture' element in HTML5 and its use in responsive images.
-40. How can you disable a hyperlink using HTML?
+7. What is the significance of the 'form' element in HTML?
+8. Explain the difference between 'GET' and 'POST' methods in form submissions.
+9. Discuss the importance of the 'semantic' elements in HTML5.
+10. What is the purpose of the 'head' section in an HTML document?
+11. Differentiate between 'id' and 'class' attributes in HTML.
+12. How does the 'iframe' tag work in HTML?
+13. Explain the concept of HTML entities.
+14. Describe the purpose of the 'canvas' element in HTML5.
+15. What is the 'viewport' meta tag used for in responsive web design?
+16. How do you embed audio and video in HTML5?
+17. What is the significance of the 'lang' attribute in the 'html' tag?
+18. Discuss the role of the 'table' element in HTML.
+19. How do you create a numbered list in HTML?
+20. What is the purpose of the 'localStorage' and 'sessionStorage' objects in HTML5?
+21. How do you create a hyperlink that opens in a new tab or window?
+22. Discuss the 'placeholder' attribute in HTML forms.
+23. What is the purpose of the 'ruby' element in HTML?
+24. Explain the 'data-\*' attributes in HTML5.
+25. How does the 'accesskey' attribute work in HTML forms?
+26. Describe the role of the 'figcaption' element in HTML.
+27. What is the purpose of the 'progress' element in HTML5?
+28. How do you create a responsive web design using media queries in CSS?
+29. Explain the concept of 'cross-origin resource sharing' (CORS) in HTML.
+30. Discuss the importance of the 'role' attribute in HTML for accessibility.
+31. How can you include comments in HTML code?
+32. What is the purpose of the 'target' attribute in the 'a' tag?
+33. How do you create a dropdown menu in HTML?
+34. Explain the difference between 'cookie' and 'sessionStorage' in client-side storage.
+35. Describe the 'picture' element in HTML5 and its use in responsive images.
+36. How can you disable a hyperlink using HTML?
 
 ---
 
-Q1. What does the CSS property float do?
-Q2. How can you clear the sides of a floating element?
 Q3. Why don't CSS properties apply when selectors are mixed up with different cases?
 Q4. Are CSS properties case-sensitive?
 Q5. Do margin-top or margin-bottom have an effect on inline elements?
@@ -493,9 +555,6 @@ Q9. The pseudo-class :checked will select inputs with type radio or checkbox, bu
 Q10. In an HTML document, the pseudo-class :root always refers to the element. True or False?
 Q11. Can the translate() function move the position of an element on the z-axis?
 Q12. Which unit of measurement would you prefer among px, em, %, or pt, and why?
-Q13. How do absolute, relative, fixed, and static positions differ in CSS?
-Q14. What are the differences between visibility: hidden and display: none?
-Q15. What are the differences between inline, block, and inline-block display types?
 Q16. What are the properties related to the CSS box model?
 Q17. Does overflow: hidden create a new block formatting context?
 Q18. How can you apply CSS rules specific to a media query?

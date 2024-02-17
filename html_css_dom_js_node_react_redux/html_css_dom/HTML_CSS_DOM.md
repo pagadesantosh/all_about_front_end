@@ -27,6 +27,9 @@
 
 # HTML & CSS:
 
+
+
+
 ## 1. DIV and SPAN
 
 ![alt text](https://user-images.githubusercontent.com/42731246/142733551-fc0aeaf2-91b4-48c7-8ea8-53e7a5d380b1.png)
@@ -321,3 +324,116 @@ Ex: a, b, c, d
 ## 65. What is the difference between a block level element and an inline element. Can you provide examples of each type of element?
 
 ## 66. What is the difference between CSS Grid and Flexbox? When would you use one over the other?
+
+
+1. What is HTML?
+2. Explain the difference between HTML and XHTML.
+3. What are the new features in HTML5?
+4. Describe the DOCTYPE declaration in HTML.
+5. Explain the purpose of the 'meta' tag in HTML.
+6. What is the role of the 'alt' attribute in the 'img' tag?
+7. Differentiate between 'div' and 'span' in HTML.
+8. How does the 'a' tag contribute to creating hyperlinks?
+9. What is the significance of the 'form' element in HTML?
+10. Explain the difference between 'GET' and 'POST' methods in form submissions.
+11. Discuss the importance of the 'semantic' elements in HTML5.
+12. What is the purpose of the 'head' section in an HTML document?
+13. Differentiate between 'id' and 'class' attributes in HTML.
+14. How does the 'iframe' tag work in HTML?
+15. Explain the concept of HTML entities.
+16. Describe the purpose of the 'canvas' element in HTML5.
+17. What is the 'viewport' meta tag used for in responsive web design?
+18. How do you embed audio and video in HTML5?
+19. What is the significance of the 'lang' attribute in the 'html' tag?
+20. Discuss the role of the 'table' element in HTML.
+21. How do you create a numbered list in HTML?
+22. Explain the difference between inline and block elements in HTML.
+23. What is the purpose of the 'localStorage' and 'sessionStorage' objects in HTML5?
+24. How do you create a hyperlink that opens in a new tab or window?
+25. Discuss the 'placeholder' attribute in HTML forms.
+26. What is the purpose of the 'ruby' element in HTML?
+27. Explain the 'data-*' attributes in HTML5.
+28. How does the 'accesskey' attribute work in HTML forms?
+29. Describe the role of the 'figcaption' element in HTML.
+30. What is the purpose of the 'progress' element in HTML5?
+31. How do you create a responsive web design using media queries in CSS?
+32. Explain the concept of 'cross-origin resource sharing' (CORS) in HTML.
+33. Discuss the importance of the 'role' attribute in HTML for accessibility.
+34. How can you include comments in HTML code?
+35. What is the purpose of the 'target' attribute in the 'a' tag?
+36. How do you create a dropdown menu in HTML?
+37. Explain the difference between 'cookie' and 'sessionStorage' in client-side storage.
+38. What is the purpose of the 'async' and 'defer' attributes in script tags?
+39. Describe the 'picture' element in HTML5 and its use in responsive images.
+40. How can you disable a hyperlink using HTML?
+
+
+
+----
+
+Q1. What does the CSS property float do?
+Q2. How can you clear the sides of a floating element?
+Q3. Why don't CSS properties apply when selectors are mixed up with different cases?
+Q4. Are CSS properties case-sensitive?
+Q5. Do margin-top or margin-bottom have an effect on inline elements?
+Q6. Do padding-top or padding-bottom have an effect on inline elements?
+Q7. Do padding-left, padding-right, margin-left, or margin-right have an effect on inline elements?
+Q8. If you have a <p> element with font-size: 10rem, will the text be responsive when the user resizes or drags the browser window?
+Q9. The pseudo-class :checked will select inputs with type radio or checkbox, but not elements. True or False?
+Q10. In an HTML document, the pseudo-class :root always refers to the element. True or False?
+Q11. Can the translate() function move the position of an element on the z-axis?
+Q12. Which unit of measurement would you prefer among px, em, %, or pt, and why?
+Q13. How do absolute, relative, fixed, and static positions differ in CSS?
+Q14. What are the differences between visibility: hidden and display: none?
+Q15. What are the differences between inline, block, and inline-block display types?
+Q16. What are the properties related to the CSS box model?
+Q17. Does overflow: hidden create a new block formatting context?
+Q18. How can you apply CSS rules specific to a media query?
+Q19. What is the use of the only keyword in media queries?
+Q20. Does the screen keyword in media queries apply to the device's physical screen or the browser's viewport?
+Q21. Can you name some pseudo-classes you have used in CSS?
+Q22. How do you vertically and horizontally align a <p> element to the center inside a <div>?
+Q23. How can you optimize CSS selectors for better performance?
+Q24. How can you load CSS resources conditionally in a web page?
+Q25. Why would you use sprites in CSS?
+Q26. What is specificity in CSS, and how do you calculate it?
+Q27. What is the shadow DOM in web development?
+Q28. What do you know about CSS transitions?
+Q29. Name some different CSS filters you can use to modify elements.
+Q30. What are the reasons to use a CSS preprocessor in web development?
+Q31. What is the difference between layout and positioning in CSS?
+Q32. What is the difference between CSS Flexbox and CSS Grid layout systems?
+
+
+---
+
+1. What is the DOM, and how does it relate to HTML?
+2. How can you access elements in the DOM using JavaScript?
+3. Explain the differences between getElementById, getElementsByClassName, and getElementsByTagName.
+4. What is the purpose of the querySelector method, and how does it differ from querySelectorAll?
+5. Explain the concept of event bubbling and how it impacts event handling in the DOM.
+6. How do you stop event propagation in the DOM?
+7. What is event delegation, and why is it useful in DOM manipulation?
+8. How can you dynamically create HTML elements using JavaScript?
+9. Explain the differences between the textContent and innerHTML properties.
+10. How can you modify CSS properties of an element in the DOM using JavaScript?
+11. Explain the purpose of the setAttribute and getAttribute methods in DOM manipulation.
+12. What is the difference between appendChild and insertBefore methods for adding elements to the DOM?
+13. How do you remove elements from the DOM using JavaScript?
+14. What is the purpose of the parentNode property in DOM manipulation?
+15. Explain how to clone an element in the DOM using JavaScript.
+16. How do you check if an element exists in the DOM using JavaScript?
+17. What is the purpose of the classList property, and how can you use it to manipulate classes?
+18. How do you add and remove classes from an element in the DOM?
+19. Explain the differences between classList.add, classList.remove, and classList.toggle.
+20. How can you traverse the DOM tree using JavaScript?
+21. What are data attributes (data-*), and how can you use them in DOM manipulation?
+22. Explain the purpose of the style property in DOM manipulation.
+23. How can you retrieve the dimensions (width and height) of an element in the DOM?
+24. What is the purpose of the offset properties (offsetWidth, offsetHeight, offsetLeft, offsetTop) in DOM manipulation?
+25. How do you handle form manipulation in the DOM using JavaScript?
+26. Explain the differences between innerText, textContent, and innerHTML.
+27. How do you detect if an element is hidden or visible in the DOM?
+28. What are the differences between the client and offset properties in DOM manipulation?
+29. How can you handle scroll events in the DOM using JavaScript?
+30. Explain the differences between createDocumentFragment and createElement in DOM manipulation.

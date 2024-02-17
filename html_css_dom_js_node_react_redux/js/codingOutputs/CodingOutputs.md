@@ -793,3 +793,60 @@ Output: D, A, E, B, C
 </details>
 
 ---
+
+𝗤𝟭: console.log(2 + '2' - 1);
+
+𝗤𝟮: console.log([] == ![]);
+
+𝗤𝟯: console.log('5' + 3);
+
+𝗤𝟰: console.log(3 == '3');
+
+𝗤𝟱: console.log(1 < 2 < 3);
+
+𝗤𝟲: console.log(3 < 2 < 1);
+
+𝗤𝟳: console.log(typeof NaN);
+
+𝗤𝟴: console.log(typeof typeof 1);
+
+𝗤𝟵: console.log(1 + '1' - 1);
+
+𝗤𝟭𝟬: console.log([] + [] + 'foo'.split(''));
+
+𝗤𝟭𝟭:
+console.log(1 < 2 < 3);
+console.log(3 < 2 < 1);
+
+𝗤𝟭𝟮:
+var x = 0;
+console.log(x++);
+console.log(++x);
+
+𝗤𝟭𝟯: console.log('1' - - '1');
+
+𝗤𝟭𝟰:
+console.log(!!null);
+console.log(!!undefined);
+
+𝗤𝟭𝟱:
+console.log(false == '0');
+console.log(false === '0');
+
+𝗤𝟭𝟲:
+var a = { b: 1 };
+var c = a;
+a.b = 2;
+console.log(c.b);
+
+𝗤𝟭𝟳: console.log('hello' instanceof String);
+
+𝗤𝟭𝟴: console.log(1 + '1' - 1);
+
+𝗤𝟭𝟵: console.log([] == 0);
+
+𝗤𝟮𝟬:
+console.log([] == ![]);
+console.log(!![]);
+
+---

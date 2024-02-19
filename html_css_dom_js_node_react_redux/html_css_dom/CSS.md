@@ -1,0 +1,994 @@
+## 1. DIV and SPAN
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733551-fc0aeaf2-91b4-48c7-8ea8-53e7a5d380b1.png)
+
+## 2. Inheritance in CSS
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733561-815fb9d9-d023-4514-809c-21c6c8119624.png)
+
+## 3. CSS Specificity
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733573-96c4add1-fef6-4774-a344-3fe4df1dc0ad.png)
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733659-51908f7b-0f0d-486a-9c68-68dedaddd318.png)
+
+## 4. RGB means:
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733665-b227e858-e1e6-4fd4-a65d-dbdad3c2f108.png)
+
+## 5. RGBA (what is A):
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733674-610db881-ffde-473f-9aa9-7a3fd7d3a29b.png)
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733679-fd051132-d046-4a6a-9cca-44468d6a08d1.png)
+
+## 6. HEX Values in CSS
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733689-1ab85c7a-bfb1-4c29-b44c-061e17a6ce2d.png)
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733694-8887e58e-9fc3-46d0-a7a0-1fac74c3eb84.png)
+
+## 7. Pixels, Font-Size, Width, Height in CSS
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733702-d16b9ab2-48ed-4728-9ca0-ebc6d2783ae5.png)
+
+## 8. Percent in CSS
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733706-53b6cc8d-27bb-4924-aa3d-847a5b11fc76.png)
+
+## 9. Em units in CSS
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733713-52492351-69b0-4d88-95f1-1b7b5b341546.png)
+
+## 10. Rem in CSS
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733717-771535a6-c2d0-4666-a73b-466ea2505a58.png)
+
+## 11. ViewPort Units in CSS
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733725-a61bc826-acbe-4754-8540-85eb87257e16.png)
+
+## 12. Calc in CSS
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733773-0a7a0eff-ae6d-4fcc-b2d4-7bcc1e274467.png)
+
+## 13. Min height in CSS
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733783-42582d11-e605-4696-a6e9-59060acffb06.png)
+
+## 14. Max height in CSS
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733788-e205bac0-b0ad-466f-9329-cdc7bff467e7.png)
+
+## 15. Font-Stack Generic Fonts
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733791-12aa07b5-5b3c-454f-95a2-196f4ffaaecb.png)
+
+Instead of one option, we supply multiple. And you can think of it as a fallback system. If none of the five families we passed in are supported by the user browser at the end of the stack we can pass in generic Fonts family and the browser is going to use generic font family to get similar looking fonts.
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733795-36130bd4-a433-421d-8c13-c2b483dbeba9.png)
+
+## 16. Font-weight, Font Style
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733823-2637d6e2-e135-48fc-a240-07a7f767bd23.png)
+
+## 17. Text Indent in CSS
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733828-29818aef-4e5e-4975-834c-1cd561ccec9b.png)
+
+```js
+<div class='a'>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper diam
+    at erat pulvinar, at pulvinar felis blandit. Vestibulum volutpat tellus
+    diam, consequat gravida libero rhoncus ut.
+  </p>
+</div>
+```
+
+```css
+div.a {
+  text-indent: 50px;
+}
+```
+
+![alt text](<images used/text-indent.png>)
+
+## 18. Other Text Properties
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733834-a9b525ea-c681-4f12-b196-7ed88e242e9e.png)
+
+## 19. CSS Box Model
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733839-947f5d14-da02-43cc-8214-af0d5f7bd2fd.png)
+
+## 20. Display Property in CSS
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733842-82c1bfc7-e0dd-4cd9-82cf-a67d5abea88e.png)
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733843-098d468e-e2df-4b0b-aef1-5ffd8fa9b87c.png)
+
+```js
+<div><span class="a">Aliquam</span> <span class="a">venenatis</span></div>
+<div><span class="b">Aliquam</span> <span class="b">venenatis</span></div>
+<div><span class="c">Aliquam</span> <span class="c">venenatis</span></div>
+```
+
+```css
+/* for class 'a', browser doesn't increase width and height because display:inline doesn't respect width and height */
+span.a {
+  display: inline; /* the default for span */
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid blue;
+  background-color: yellow;
+}
+/* display inline-block doesn't starts in a new line but respects width and height, whereas not applying doesn't take the full width (I mean by default it acts like inline + doesn't span full width) */
+span.b {
+  display: inline-block;
+  padding: 5px;
+  border: 1px solid blue;
+  background-color: yellow;
+}
+
+/* display block starts in a new line and takes full width by default and respects width and height*/
+span.c {
+  display: block;
+  padding: 5px;
+  border: 1px solid blue;
+  background-color: yellow;
+}
+```
+
+![alt text](<images used/display inline vs block vs inline-block.png>)
+
+#### display inline-block doesn't starts in a new line but respects width and height
+
+![alt text](<images used/display inline-block respects width and height.png>)
+
+## 21. Box-sizing
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733850-d2f32840-f6d1-4206-9a84-262a94b8e513.png)
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733851-8d5cae5e-ce6c-469e-86ab-4e8d648f7920.png)
+
+## 22. Display inline-block
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733857-beeacd3b-cc63-44ab-a63c-ddabe200c0ba.png)
+
+## 23. Background attachment in css
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733868-de59690a-28cc-493e-85f0-eb7f9933a4be.png)
+
+## 24. Display vs opacity vs visibility in CSS
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733891-689b876d-380c-44e0-b5da-f4cb36334231.png)
+
+#### <u>Use Cases of `display:none`</u>:
+
+- Completely removing an element from the layout, especially **_in responsive designs where certain elements should not be shown at specific screen sizes_**.
+- Used in JavaScript-driven interactions to hide or show elements dynamically (e.g., dropdown menus, modal dialogs).
+
+### opacity:
+
+- The opacity property **_controls the transparency level of an element_**.
+- An element with opacity: 0; is fully transparent **_<u>but still occupies space in the layout and remains interactive</u>_** (e.g., clickable).
+
+#### <u>Use Cases of `opacity:0`</u>:
+
+- Creating fade-in/fade-out animations where an element gradually appears or disappears but should still occupy space during the transition.
+
+### visibility:
+
+- The visibility property determines whether an element is visible or not.
+- Setting visibility: hidden; makes an element invisible, but unlike `display: none;`, the element still takes up space in the layout.
+- It's invisible but still affects layout and document flow.
+
+#### <u>Use Cases of `visibility:hidden`</u>:
+
+- Temporarily hiding elements **_without disrupting the layout_**.
+- Useful in cases **_where you might want to show the element again without having to recalculate the layout_** or where the sudden appearance/disappearance of elements could cause a jarring shift in the layout.
+- Creating tool tips or dropdown menus that appear in the same spot without affecting the surrounding elements position.
+
+**<u>When to Use Each:**</u>
+
+- Use `display: none`; when you need to remove an element entirely from the layout and document flow. This is **_<u>useful for responsive designs or when replacing an element with another</u>_**.
+  <br/>
+- Use `opacity: 0`; **_<u>for creating visual effects where the element transitions from invisible to visible or vice versa, especially in animations</u>_**. This property is best when you want an element to remain part of the layout and document flow, even when it's not visibly seen.
+  <br/>
+- Use `visibility: hidden`; when you want to hide an element but maintain its space in the layout. This is **_<u>ideal for UI elements that toggle between being shown and hidden, where maintaining the layout's stability is crucial</u>_**.
+
+---
+
+## 25. Float and Clear in CSS
+
+- The `float` and `clear` properties in CSS are tools **for controlling the layout** of elements on a webpage, **_<u>particularly how elements align horizontally</u>_** and how they interact with each other in terms of flow and positioning.
+
+- Float is a CSS positioning property **_primarily used for wrapping text around images_** or (for creating layouts where block-level elements are aligned side by side)
+- **_Floated elements remain a part of the flow of the page, and will affect the positioning of other elements_** (e.g. text will flow around floated elements), unlike `position: absolute` elements, which is used to position an element completely out of the normal document flow.
+- The CSS `clear` property can be used to positioned below `left/right/both` floated elements
+- If parent element contains nothing but floated elements, its height will be collapsed to nothing which can be fixed by clearing the float after the floated elements in the container but before the close of the container.
+- **_Floats <u>don't provide vertical alignment_</u>**.
+
+#### Float:
+
+- is used to <u>place an element to the left or right side of its container</u>, allowing other content to wrap around it
+- The values for float can be `left`, `right`, or `none`
+
+##### <u>Use Cases:</u>
+
+- Text wrapping around images: Making text wrap around an image by floating the image to the left or right.
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733900-6bf11547-d3c4-4859-8644-93ba0f33adfd.png)
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733904-f91f36e8-a73a-4eb3-b224-a6d0a412c2d4.png)
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733910-c1b773eb-d273-4eab-b405-1a06ecf7adc0.png)
+
+#### Clear:
+
+- The clear property is used to prevent elements from floating alongside or wrapping around an element.
+- It can clear floats to the left, right, or both sides of an element, **_<u>ensuring that the element appears below floated elements previously defined in the markup</u>_**.
+
+##### <u>Use Cases:</u>
+
+- **Stopping text wrap:** **_<u>Forcing text or other elements to appear below</u>_** a floated element instead of wrapping around it.
+- **Creating separation**: **_<u>Ensuring that a section of content starts on a new line</u>_**, clear of any floated elements that precede it.
+
+---
+
+## 26. Position Static vs Position relative
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733917-778ee809-00e5-4f84-9245-2564a89c1893.png)
+
+## 27. Position Absolute vs Position Fixed
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733925-f5c37232-391e-4a92-bc80-dae8c5591142.png)
+
+## 28. Position sticky:
+
+Ex:
+position:sticky;
+top:0;
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733933-929db7f7-d8c6-46ea-978b-c15e70a41282.png)
+
+**<u>More details are provided in this website**</u>:
+https://dillionmegida.com/p/static-relative-absolute-fixed-sticky-positions/
+
+---
+
+## 29. Z-index
+
+- z-index `controls the vertical stacking order of elements` that overlap each other.
+- z-index only affects `positioned elements` (elements which have a position value which is not `static`) and its descendants or flex items
+- Can be of Positive or negative whole numbers, determining the elements layer within its stacking context.
+- if provided auto, the element inherits its stacking order from its parent.
+- Higher z-index values mean the element will be closer to the front, overlaying elements with lower values.
+- If two elements have the same z-index, the one that appears later in the HTML will be on top.
+- Negative values are allowed which can place elements behind their parent stacking context.
+
+**Stacking context**:
+
+- is an element that contains a set of layers.
+- within a local stacking context, the z-index values of its children are set relative to that element rather than to the document root.
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733941-e25688fc-ac79-4a70-8159-c28d08057ca9.png)
+
+**Use cases:**
+
+- For complex web designs where **_<u>elements like modals, dropdowns, tooltips, and overlays must float above other content</u>_**.
+
+---
+
+## 30. Before and after pseudo-elements
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733950-0f2aa177-b640-4517-8cb1-e7f9ce68a51c.png)
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733952-dc0041e8-cccf-47d0-9782-2d7277d7b914.png)
+
+---
+
+## 31. Descendant and Child selectors
+
+![alt text](https://user-images.githubusercontent.com/42731246/142733967-2a410644-49e6-432b-b6f2-77dd080615e3.png)
+![alt text](https://user-images.githubusercontent.com/42731246/142733970-6a960f57-0da9-4084-88f9-6975baaec2be.png)
+
+**Overview:**
+
+- `.header h1`: This is a `descendant` selector. It **_<u>selects any h1 element that is inside a .header element, regardless of the level of nesting</u>_**. Both h1 elements within the header class are targeted by this selector. The color green is applied to these h1 elements.
+  <br/>
+- `.header > h1`: This is a `child` selector. It **_selects h1 elements that are direct children of .header_**.
+- This means **_<u>it will only apply to h1 elements that are immediately wrapped by a div with the class header, but not h1 elements that are nested further within other elements</u>_** (like inside the ul within the header class). The color purple is assigned to these h1 elements.
+  <br/>
+- `div h1`: This is another descendant selector, **_but it is less specific than the first one_**
+  <br/>
+- `div > h1`: This is another child selector, similar to the second rule, but it applies to h1 elements that are direct children of any div, **_not just ones with the class header_**.
+
+---
+
+## 32. `first-line` and `first-selector`
+
+![alt text](https://user-images.githubusercontent.com/42731246/142734011-dac6468c-72e8-4537-9689-5c953c249e59.png)
+
+## 33.
+
+![alt text](https://user-images.githubusercontent.com/42731246/142734015-03851fcf-56ec-45be-9037-fab64caf1740.png)
+
+## 34. root element
+
+- #### A `:root` selector defines the base font size as 10px.
+  ![alt text](https://user-images.githubusercontent.com/42731246/142734021-cec7dd92-0d3a-40fc-966f-65da86870c5b.png)
+
+![alt text](https://user-images.githubusercontent.com/42731246/142734027-5c957f87-b682-475e-a3e5-bb8c7c23e420.png)
+
+works in rem as multiply operation
+![alt text](https://user-images.githubusercontent.com/42731246/142734030-26d0dcf2-da1f-4893-be90-6d85eac5c6a3.png)
+
+- Elements with the class .absolute will have a font size of 24px. (No change here because this is not relative to the root font size. )
+- Elements with the class .relative will have a font size of 15px, **_because 1.5rem is multiplied by the root font size of 10px_**.
+
+---
+
+## 35. Transition in CSS
+
+![alt text](https://user-images.githubusercontent.com/42731246/142734036-896cb717-7068-4b49-9bce-62c248f5d22a.png)
+
+---
+
+## 36. Animation
+
+![alt text](https://user-images.githubusercontent.com/42731246/142734043-5e73ab89-cb27-48df-b42e-d3117b5f27eb.png)
+
+![alt text](https://user-images.githubusercontent.com/42731246/142734047-c2cf61ba-0702-4330-bffa-04aa98f891f7.png)
+
+![alt text](https://user-images.githubusercontent.com/42731246/142734049-7837027a-563e-4205-8a8b-c77419cf94cf.png)
+
+![alt text](https://user-images.githubusercontent.com/42731246/142734051-f3c454cb-1755-4c47-aba6-ef7bcc62ac97.png)
+
+- The animation-fill-mode property in CSS **_<u>specifies how a CSS animation should apply styles to its target before and after its execution_</u>**.
+  <br/>
+
+- **none**: The default value. The **<u>_animation will not apply any styles to the target before or after it is executing_</u>**.
+  <br/>
+- **forwards**: **<u>_After the animation completes (i.e., it finishes playing), the target will retain the style values that were set by the last keyframe of the animation_</u>** (the keyframe that is applied when the animation ends). This is often used when you want the state of the animation to be preserved after it finishes.
+  <br/>
+- **backwards**: The **_<u>target will apply the style values defined in the first keyframe, and these values will be applied as soon as the animation is applied to the target_</u>** (even before the animation starts). This is useful if you want the initial state of the animation to take effect during the period defined by animation-delay.
+  <br/>
+
+  both: The target **_<u>will follow the rules for both forwards and backwards</u>_**. It will get the style values from the first keyframe when the animation is applied, and retain the style values from the last keyframe after the animation completes.
+
+---
+
+## 37. CSS Variables
+
+![alt text](https://user-images.githubusercontent.com/42731246/142734059-5362e041-a75b-48b9-bc61-546cf057c8a5.png)
+
+---
+
+## 38. Box-shadow
+
+```js
+box-shadow: [horizontal offset] [vertical offset] [blur radius] [spread radius] [color];
+```
+
+```js
+.element {
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
+}
+```
+
+---
+
+## 39. Flex vs Grid
+
+The basic difference between `CSS Grid Layout` and `CSS Flexbox Layout` is that
+
+- **_<u>flexbox was designed for layout in one dimension</u>_** - either` a row` or `a column`.
+
+- Grid was **_designed for two-dimensional layout - rows, and columns at the same time_**
+
+---
+
+## 40. Position relative vs Position absolute
+
+position: relative places an element relative to its current position without changing the layout around it, whereas position: absolute places an element relative to its parent's position and changing the layout around it.
+
+---
+
+## 41. What is CSS selector specificity and how does it work?
+
+- The browser determines what styles to show on an element depending on the specificity of CSS rules.
+- Four set of rules are calculated based on the following
+
+```js
+  a - is whether inline styles are being used.
+  b - is ID selectors
+  c - classes, attributes & pseudo classes selectors
+  d - tags and pseudo-elements selectors
+
+Ex: a, b, c, d
+```
+
+- In order to determine which has the highest specificity look from left to right (ex: 0 1 0 0) so b will override c and d in this case.
+- In cases of equal specificity, the latest rule is the one that counts.
+- If you have written the same rule into your stylesheet then the lower rule in your stylesheet is closer to the element to be styled.
+- **It is a better practice to write CSS rules with low specificity so that they can be easily overridden if necessary without using too complicated CSS rules just for the sake of increasing specificity or resorting to !important**
+
+---
+
+## 42. What is the difference between "resetting" and "normalizing" CSS? Which would you choose, and why?
+
+- **Resetting**: Is meant to strip all default browser styling on elements. For e.g. **margins, paddings, font-size** of all the elements are reset to be the same.
+  You have to redeclare styling for common typographic elements.
+
+- **Normalizing**: **_<u>Preserves useful default styles</u>_** rather than `unstyling` everything. It also corrects bugs for common browser dependencies.
+
+```js
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/**
+ * Remove the margin in all browsers.
+ */
+
+body {
+  margin: 0;
+}
+```
+
+- If you want to start **_with an absolute blank slate and have strict control over every element’s styling_**, go for a `reset`.
+  <br/>
+- If you prefer a more hands-off approach, where common defaults are preserved and **_you only need to tweak certain elements_**, `normalization` might be better.
+
+---
+
+## 45. Describe BFC (Block Formatting Context) and how it works.
+
+- `Block Formatting Context (BFC)` is a foundational concept **_in the CSS visual rendering of web pages_**.
+- It's essentially **_a part of the box model that <u>deals with how block boxes are laid out and how they interact with each other</u>_**.
+
+##### Understanding BFC is crucial for web developers and designers <u>as it affects the layout, clearing floats, and preventing margin collapse</u>. Here’s a detailed explanation of BFC and its workings:
+
+#### What is BFC?
+
+- A Block Formatting Context **_<u>is an area within the page layout where block boxes are placed and interact in specific ways_</u>**.
+- It's **_<u>a context that defines a self-contained block that doesn't affect the outside elements</u>_** and isn't affected by them.
+- **_Each BFC follows a set of rules for its internal layout_**, independent of its surroundings.
+
+#### How BFC Works?
+
+- When a BFC is created, it follows these principles:
+
+#### 1. Vertical Layout:
+
+- Elements inside a BFC **_are laid out in a vertical sequence_** according to their order in the source code.
+- The vertical **_distances between these boxes are determined <u>by their margin properties</u>_**
+- and in a BFC, **_<u>adjoining vertical margins of two or more boxes can combine to form a single margin_**</u>.
+
+#### 2. Horizontal Containment:
+
+- In a BFC, **_each box's <u>left outer edge</u> touches the <u>left edge of the containing block</u>_** (for languages that are left-to-right like English).
+- This means the **_content of a box in a BFC doesn't overlap with float elements outside of that BFC_**.
+
+#### 3. Containment of Floating Elements:
+
+- BFCs are required to contain their floating elements. That means a BFC will expand vertically to encompass floats, preventing content from overflowing outside of its container.
+
+#### 4. No Interaction Between BFCs:
+
+- **_Elements outside a BFC do not affect the layout of elements inside the BFC_**. This isolation makes BFCs very useful for layout tasks, such as containing floats and avoiding unwanted margin collapse.
+
+### 5. Block-Level Boxes:
+
+- Within a BFC, boxes are treated as block-level on the vertical axis, even if they are inline-level elements outside of the BFC.
+
+### Creating a BFC
+
+#### Several CSS properties can trigger the formation of a new BFC:
+
+- `display: flow-root`;
+- `float: left;` or `float: right;` (any value other than none)
+- `position: absolute`; or `position: fixed`;
+- `display: inline-block;`, `display: table-cell;`, `display: table-caption;`, or other table-related values
+- `overflow: hidden;`, `overflow: auto;`, or `overflow: scroll;` (any value other than visible)
+
+### Use Cases of BFC:
+
+- **Containing floats**: A common use of BFC is to contain floated elements within a parent element so that it doesn't collapse to a height of zero.
+  <br/>
+- **Preventing Margin Collapse**: Vertical margins between blocks can sometimes collapse into a single margin. Creating a BFC can prevent this from happening, maintaining the intended spacing.
+  <br/>
+
+- **Creating Self-Contained Layouts**: Since BFCs prevent elements outside from affecting the layout inside, they're great for creating components or sections of a page that need to be layout-isolated from the rest.
+
+---
+
+## 46. What are the various clearing techniques and which is appropriate for what context?
+
+- In CSS, clearing techniques are **_used to ensure that elements are properly positioned and aligned in relation to floated elements within the layout_**.
+
+1. `Clear: Both:`
+   - This technique **_clears floats <u>from both sides of the element_</u>**.
+   - It ensures that the **_<u>element will be displayed below any floated elements</u> that precede it in the HTML markup_**.
+
+```js
+.clearfix {
+    clear: both;
+}
+```
+
+2. `Clear: Left:`
+
+   - This **_clears floats from the <u>left side of the element</u>_**.
+   - It ensures that the **_element will be displayed below any floated elements to the left of it in the HTML markup_**.
+
+```js
+.clearfix {
+    clear: left;
+}
+```
+
+3. `Clear: Right:`
+   - This <u>**clears** **_floats</u> from the <u>right side of the element</u>_**.
+   - It ensures that the element will be displayed below any floated elements to the right of it in the HTML markup.
+
+```js
+.clearfix {
+    clear: right;
+}
+```
+
+4. `Clearfix Hack:`
+
+- This is a popular clearfix technique **_used to contain floated elements_**.
+- It involves adding a pseudo-element with `clear: both`
+-
+
+```js
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+```
+
+5. Overflow: Auto:
+
+   - Setting `overflow: auto` on a container element **_causes it to clear its floated children_**.
+   - This technique is particularly **_useful when you want the container to expand to contain its floated children_**. Example:
+
+```js
+.container {
+    overflow: auto;
+}
+```
+
+**Usage:**
+
+- `Clear: Both` is typically used **when you want an element to clear floats from both sides**. It's useful when you have floating elements on both sides of the cleared element.
+- `Clear: Left` and `Clear: Right` are used when **you specifically want to clear floats from one side only**.
+- `Clearfix Hack` is commonly **_<u>used to create self-clearing containers</u>_**, ensuring that the **_container wraps around its floated children_**.
+- `Overflow: Auto` is useful **_<u>when you want a container to expand to contain its floated children, effectively clearing them without needing additional markup or styles.</u>_** However, be cautious with this approach as it may introduce unintended scrolling if the container's dimensions are constrained.
+
+---
+
+## 47. How would you approach fixing browser-specific styling issues?
+
+####1. Identify the Issue
+Use Browser Developer Tools: Modern browsers like Chrome, Firefox, and Safari have built-in developer tools. Use these to inspect elements and understand how different browsers are rendering your CSS differently.
+**Test Across Browsers:** Use tools like BrowserStack, CrossBrowserTesting, or LambdaTest to test your website on different browsers and operating systems.
+
+#### 2. Use a Reset or Normalize CSS
+
+- `Reset CSS`: A reset stylesheet (like Meyer's Reset) removes all the native browser styling on elements. This means you start with a clean slate.
+- `Normalize CSS`: Normalizing stylesheets (like Normalize.css) aim to make built-in browser styling consistent across browsers without removing styles that are useful for making accessible websites.
+
+#### 3. Leverage CSS Prefixes for Browser Compatibility:
+
+- Vendor Prefixes: Some CSS properties require vendor prefixes to work in specific browsers (e.g., -webkit-, -moz-, -ms-, -o-).
+- Tools like `Autoprefixer` can automatically add these prefixes to your stylesheets based on current browser popularity and support data.
+
+#### 4. Utilize Feature Detection
+
+- **Modernizr**: Use a feature detection library like Modernizr to check if a browser supports a particular feature. This allows you to apply fallback styles or scripts when a feature is not supported.
+
+---
+
+## 48. How do you serve your pages for feature-constrained browsers?
+
+- Feature-Constrained browsers means (such as those **_<u>on older devices_</u>** or in **_<u>environments with limited JavaScript support</u>_**),
+
+### 1. Progressive Enhancement:
+
+- **Concept**:
+  - Start with a baseline of HTML content that is functional and accessible.
+  - Then, enhance the experience with CSS for styling and JavaScript for interactivity, layered on top of the basic HTML.
+  - This ensures that the core content and functionality are accessible even in browsers that do not support advanced features.
+- **Implementation**:
+  - **Use semantic HTML5 elements**,
+  - ensure that all content can be accessed **_without_** JavaScript,
+  - and progressively add enhancements for browsers that support them.
+
+### 2. Graceful Degradation:
+
+- **Concept**:
+
+  - Design your site for the latest browsers first, **_then add fallbacks for older browsers_**. This is the opposite approach to progressive enhancement and can be more challenging to implement effectively.
+
+- **Implementation**:
+  - **_<u>Use feature detection libraries (like Modernizr) to check for browser capabilities and provide fallbacks or alternative experiences for feature-constrained browsers_**</u>
+
+### 3. Responsive Web Design (RWD)::
+
+- **Concept**:
+  - Ensure your website's layout adapts to the screen size and capabilities of the device it's being viewed on.
+  - RWD uses a combination of flexible grids, layouts, images, and CSS media queries.
+- **Implementation**:
+  - Design your site's layout to be fluid and flexible, use media queries to apply different styles for different screen sizes and resolutions, and ensure images and other media are scalable.
+
+### 4. Server-Side Adaptation:
+
+- **Concept**:
+
+  - **_<u>Detect the user's device and browser server-side</u>, and deliver customized HTML, CSS, and JavaScript optimized for that particular environment_**.
+
+- **Implementation**:
+
+  - Use **_server-side tools or libraries to detect the user agent and serve different versions of your content based on the capabilities of the browser or device_**.
+
+### 5. Feature Detection and Polyfills:
+
+- **Concept**:
+  - Use JavaScript to detect whether a browser supports a particular feature and then implement polyfills to add missing functionality.
+- **Implementation**:
+  - Before using a modern web feature, check if the browser supports it. If not, load a polyfill that emulates the feature for older browsers.
+
+---
+
+## 51. Have you ever used a grid system, and if so, what do you prefer?
+
+- **Grid systems** are fundamental to web design because **_<u>they provide a structured layout system that makes it easier to design responsive</u>_** and aesthetically pleasing websites.
+
+### 1. Bootstrap Grid:
+
+- It's **_built with flexbox_** and is fully responsive.
+- uses a series of containers, rows, and columns to layout and align content.
+
+**<u>Why Preferred:**</u>
+
+- It's part of the larger Bootstrap framework, which includes a wide range of components and utilities, making it a comprehensive solution for building responsive websites.
+
+### 2. CSS Grid Layout:
+
+- A powerful layout system **_native to CSS_** that provides a **_<u>way to create complex responsive layouts directly in CSS, without needing external libraries</u>_**.
+
+**<u>Why Preferred:**</u>
+
+- It offers a high level of control over layout design, **_making it easier to create complex, grid-based layouts with fewer lines of code_**.
+- It's directly integrated into CSS, **_<u>so there's no need to load external libraries</u>_**.
+
+### 3. Flexbox:
+
+- Flexbox is often used as an alternative to grid systems for layout design.
+
+**<u>Why Preferred:**</u>
+
+- It's great for 1-dimensional layouts (either rows or columns), and when combined with CSS Grid, it offers a robust solution for most layout challenges.
+
+### 4. Tailwind CSS:
+
+- Tailwind **doesn't offer a grid system** in the traditional sense **_but <u>provides utility classes for flexbox and CSS Grid</u>_**, enabling developers to build custom grids with more granularity.
+
+**<u>Why Preferred:**</u>
+
+- It allows for highly customizable layouts without stepping out of the design system.
+- Developers **_who prefer a <u>utility-first CSS framework often choose Tailwind</u> for its flexibility and efficiency_**.
+
+---
+
+## 52. What are the advantages/disadvantages of using CSS pre-processors? Describe what you like and dislike about the CSS pre-processors you have used.
+
+- CSS preprocessors like `Sass`, `LESS`, and `Stylus` have become essential tools for **_<u>extending CSS with dynamic capabilities</u>_** such as `variables`, `nested rules`, `mixins`, `functions`, and more.
+
+#### Advantages of CSS Pre-processors
+
+**1. Variables for Dynamic Styles:**
+
+- Allows the use of variables for colors, font stacks, or any CSS value.
+- This makes it easier to maintain and update styles.
+- Reduces repetition, **making code DRY** (Don't Repeat Yourself), and simplifies changes across large projects.
+
+**2. Nesting:**
+
+- Makes it possible to **nest selectors within one another**, **_mirroring the HTML structure_**.
+- This can make stylesheets more readable and maintainable.
+- Helps in organizing styles better, but over-nesting can lead to overly specific selectors and bloated CSS.
+
+**3. Mixins and Functions:**
+
+- Allows the creation of **_reusable blocks of code_**, **_enhancing maintainability and reducing repetition_**.
+- Great for creating themes or responsive design patterns, but can lead to confusion if overused or not documented properly.
+
+**4. Conditionals and Loops:**
+
+- Provides the **_ability to use logic in your CSS, enabling dynamic generation of styles based on conditions or iterations_**.
+
+- Adds powerful capabilities for complex styling scenarios but can make stylesheets harder to read for those not familiar with the preprocessor's syntax.
+
+**5. Better Organization:**
+
+- Supports **_splitting CSS into multiple files_** without worrying about the performance hit from multiple HTTP requests, **_as the preprocessor compiles all the imports into a single file_**.
+- Simplifies codebase management and collaboration but requires good organization to prevent confusion.
+
+#### Disadvantages of CSS Pre-processors
+
+**1. Compilation Time:**
+
+- Pre-processors **_need to compile to CSS, which can introduce a delay_**, especially in large projects.
+- Can be mitigated with efficient build tools and development practices, but might be frustrating during rapid development cycles.
+
+**2. Debugging:**
+
+- Debugging **_can be more complex because the browser's developer tools show the compiled CSS_**, not the preprocessor source code.
+- **_<u>Source maps have largely mitigated this issue by mapping the compiled CSS back to the preprocessor source files</u>_**.
+
+---
+
+## 53. How would you implement a web design comp that uses non-standard fonts?
+
+- The process typically involves choosing the right font format, hosting the fonts, and then using CSS to apply them to your web design.
+
+#### 1. Obtain the Fonts
+
+- Obtain the font in web-friendly formats.
+- The **_most common formats are WOFF_** (Web Open Font Format),
+- `WOFF2` (an improved version of WOFF with better compression),
+- `TTF/OTF` for older browsers,
+- and `EOT` for older versions of Internet Explorer.
+
+#### 2. Host the Fonts
+
+- **Self-Hosting**: Upload the font files to your web server. This gives you full control over the font files and their delivery.
+
+- **Using a CDN:** Alternatively, you can use a Content Delivery Network (CDN) to host the fonts. Some font providers offer CDN hosting.
+
+- **Using Font Services**: Services like Google Fonts, Adobe Fonts, or others provide a wide range of fonts that can be easily integrated into your web projects without needing to host the font files yourself.
+
+#### 3. Use CSS @font-face to Define the Fonts
+
+- The `@font-face` rule in CSS **is used to define custom fonts for use on your website**. Here’s a basic example of how to use it:
+
+```js
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('path/to/font-file.woff2') format('woff2'),
+         url('path/to/font-file.woff') format('woff'),
+         url('path/to/font-file.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'MyCustomFont', sans-serif;
+}
+```
+
+#### 4. Test Across Browsers and Devices
+
+- Ensure the font displays correctly across different browsers and devices.
+- This might involve adjusting the @font-face rule or troubleshooting any issues with font rendering.
+- **Always specify fallback fonts** (like sans-serif or serif) **_so the browser can display text even if the custom font fails to load_**.
+
+#### 5. Accessibility Considerations
+
+- Ensure that the use of non-standard fonts does not negatively impact the accessibility of your website.
+- Text should remain readable and accessible to users with disabilities.
+
+---
+
+## 54. Explain how a browser determines what elements match a CSS selector.
+
+- it follows a specific process that involves parsing the CSS and creating a structure known as the CSSOM (CSS Object Model), which is similar to the DOM (Document Object Model) but for CSS.
+
+#### 1. Parsing CSS
+
+- The browser first parses the CSS stylesheets, whether they are inline styles or external CSS files
+- During this parsing phase, the browser converts the CSS into a form it can understand and work with, organizing the rules into a structure
+
+#### 2. Understanding Selectors
+
+- CSS selectors are patterns used to select the elements you want to style
+- A selector can target elements by their type (e.g., div), class (e.g., .className), ID (e.g., #idname), attributes, or their relationships with other elements (e.g., parent-child relationships or siblings).
+
+#### 3. Matching Elements
+
+- The browser then matches these selectors against the elements in the DOM. This process is generally done right-to-left, meaning the browser first looks at the key selector (the rightmost part of the selector) and then moves leftwards through the ancestors if the selector is a descendant selector, checking each part of the selector against the DOM elements.
+
+- For example, in the selector `.parent` `.child`, `.child` is the key selector, and `.parent` is an ancestor selector.
+- The browser first finds all elements that match `.child` and then checks if these elements have an ancestor matching `.parent`.
+
+#### 4. Specificity and Cascade
+
+- If **_<u>multiple rules target the same element</u>_**, the browser uses specificity and the cascade to determine which styles to apply.
+- **_<u>Inline styles have the highest specificity</u>_**, followed by IDs, classes/attributes/pseudo-classes, and then element tags/pseudo-elements.
+  - **_If specificity <u>is equal</u>, <u>the last rule defined in the CSS is applied</u> due to the cascade_**.
+
+---
+
+## 55. Explain your understanding of the box model and how you would tell the browser in CSS to render your layout in different box models.
+
+- The CSS Box Model is a fundamental concept in web design and development, describing how elements are rendered on the screen, including their spacing, borders, and dimensions.
+
+##### The CSS Box Model comprises four main parts, from inside out:
+
+**1. <u>Content:**</u> The actual content of the box, where text and images appear.
+**2. <u>Padding:**</u> The space between the content and the border.
+**3. <u>Border:**</u> Surrounds the padding (if any) and content. It's the edge of the box that can be styled in terms of thickness, color, and style.
+**4. <u>Margin:**</u> The outermost layer, representing the space between the box and adjacent elements. Unlike padding, **_margin does not include background colors; it's completely transparent_**.
+
+#### Different Box Models:
+
+- CSS primarily uses the standard box model, but it can also adopt an alternative model known as the `"border-box"` model.
+
+##### The difference between these models lies in how the size of the box is calculated:
+
+####**<u>Standard Box Model (content-box)</u>:**
+
+- In this model, the <u>`width` and `height` properties of an element specify the size of the content area</u>.
+- Padding and borders are added outside of it.
+- This means that the <u>actual size of an element is the width/height plus padding plus borders plus margins</u>.
+
+#### **<u>Alternative Box Model (border-box) </u>:**
+
+- In this model, the `width` and `height` properties **_include the content, padding, and border_**, **_<u>but not the margin</u>_**.
+- This approach **_makes it easier to size elements because the padding and border do not affect the final size of the element_**.
+
+```js
+/* Standard box model */
+* {
+  box-sizing: content-box;
+}
+
+/* Border-box model */
+* {
+  box-sizing: border-box;
+}
+
+/* Apply border-box model to everything */
+html {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+```
+
+### Practical Use:
+
+Using the `border-box` model **can simplify layout design**, especially for responsive designs, because **_<u>it allows you to more predictably size elements without having to perform calculations to account for padding and borders</u>_**. This is particularly useful in grid and flex layouts where you want precise control over the element sizes.
+
+- In practice, many developers globally apply the border-box model to all elements on a page to simplify box sizing and ensure consistent layout behavior:
+
+```js
+*{
+  box-sizing: border-box
+}
+```
+
+---
+
+## 56. What is the difference between the "nth-of-type()" and "nth-child()" selectors?
+
+- The CSS selectors `:nth-of-type()` and `:nth-child()` are powerful pseudo-class selectors used to select elements **_based on their position within their parent element_**, but they target elements in slightly different ways.
+
+#### `:nth-of-type()`
+
+- Is more specific in its matching criteria.
+- It selects an element **_<u>based on its position among siblings of the same type(i.e. same tag name) within their parent element</u>_**.
+- **_<u>This selector ignores siblings that do not share the same tag name as the targeted element</u>_**.
+
+#### Example Usage:
+
+- p:nth-of-type(2) **_selects the second <p> element among its siblings_**, regardless of what other types of elements are present among the siblings.
+- If there are other elements like <div> or <span> between the first and second <p> elements, they are ignored in the count.
+
+#### `:nth-child()`
+
+- The :nth-child() selector **_matches elements based on their overall position among a group of siblings within their parent element_**.
+- It counts all types of elements, including different tags, and selects the element that matches the specified pattern.
+
+#### Example Usage:
+
+- p:nth-child(2) selects the second child of its parent only if it is a <p> element. If the second child is, say, a <div>, then it won't be selected.
+- :nth-child(odd) selects all odd-numbered children within their parent, regardless of the element type.
+
+#### Key Differences
+
+- Sibling Count Basis: :nth-child() considers all child elements regardless of type, whereas :nth-of-type() only counts siblings of the same element type.
+- Use Cases:
+  - Use :nth-child() when you want to style elements based on their absolute position within their parent, regardless of their type.
+  - Use :nth-of-type() when you want to style elements based on their position relative to other siblings of the same type.
+
+```js
+<ul>
+  <li>Item 1</li>
+  <span>Not an item</span>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+```
+
+- li:nth-child(2) would not select any <li> element in this list because the second child is a <span>.
+- li:nth-of-type(2) would select "Item 2" because it is the second <li> element, ignoring the <span> element in the count.
+
+#### This distinction makes `:nth-of-type()` particularly useful for styling elements in situations where the HTML structure includes mixed types of elements, allowing for precise targeting without altering the structure.
+
+---
+
+## 57. Is there any reason you'd want to use translate() instead of absolute positioning, or vice-versa? And why?
+
+- `translate()` is a CSS function used with the `transform` property.
+- It **_<u>moves an element from its current position along the x-axis (horizontal move), y-axis (vertical move), or both, without affecting the layout of other elements</u>_**.
+
+## 58. Can you explain the difference between px, em and rem as they relate to font sizing?
+
+## 59. Why don't CSS properties apply when selectors are mixed up with different cases?
+
+## 60. Are CSS properties case-sensitive?
+
+## 61. Do margin-top or margin-bottom have an effect on inline elements?
+
+## 62. Do padding-top or padding-bottom have an effect on inline elements?
+
+## 63. Do padding-left, padding-right, margin-left, or margin-right have an effect on inline elements?
+
+## 64. If you have a <p> element with font-size: 10rem, will the text be responsive when the user resizes or drags the browser window?
+
+## 65. The pseudo-class :checked will select inputs with type radio or checkbox, but not elements. True or False?
+
+## 66. In an HTML document, the pseudo-class :root always refers to the element. True or False?
+
+## 67. Can the translate() function move the position of an element on the z-axis?
+
+## 68. Which unit of measurement would you prefer among px, em, %, or pt, and why?
+
+## 69. What are the properties related to the CSS box model?
+
+## 70. Does overflow: hidden create a new block formatting context?
+
+## 71. How can you apply CSS rules specific to a media query?
+
+## 72. What is the use of the only keyword in media queries?
+
+## 73. Does the screen keyword in media queries apply to the device's physical screen or the browser's viewport?
+
+## 74. Can you name some pseudo-classes you have used in CSS?
+
+## 75. How do you vertically and horizontally align a <p> element to the center inside a <div>?
+
+## 76. How can you optimize CSS selectors for better performance?
+
+## 77. How can you load CSS resources conditionally in a web page?
+
+## 78. Why would you use sprites in CSS?
+
+## 79. What is specificity in CSS, and how do you calculate it?
+
+## 80. What is the shadow DOM in web development?
+
+## 81. What do you know about CSS transitions?
+
+## 82. Name some different CSS filters you can use to modify elements.
+
+## 83. What are the reasons to use a CSS preprocessor in web development?
+
+## 84. What is the difference between layout and positioning in CSS?
+
+## 85. What is the difference between CSS Flexbox and CSS Grid layout systems?
+
+---

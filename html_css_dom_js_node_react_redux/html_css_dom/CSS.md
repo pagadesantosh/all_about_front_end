@@ -1258,6 +1258,17 @@ Here's a simple example to demonstrate how overflow: hidden can create a BFC and
 
 ## 73. Does the screen keyword in media queries apply to the device's physical screen or the browser's viewport?
 
+- The `screen` keyword in CSS media queries **_<u>refers to the type of device being used to display the content</u>_**, specifically targeting screens as opposed to other output devices like printers.
+- However, it does not directly refer to the device's physical screen in terms of hardware. Instead, **_<u>it applies to the browser's viewport,</u>_** which is the area of the screen used to display web content.
+- This does not necessarily correspond to the entire physical screen size **_but rather to the available display area for web content, which can be affected by the browser window size, screen resolution, and device-specific settings like zoom level_**.
+
+```js
+@media screen and (min-width: 768px) {
+    /* CSS rules here */
+}
+
+```
+
 ---
 
 ## 74. Can you name some pseudo-classes you have used in CSS?

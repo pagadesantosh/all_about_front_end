@@ -831,6 +831,13 @@ _Shadow Dom_:
 _Uses_: Shadow DOM is used when you want to create reusable and isolated components.
 
 - It's beneficial for widget development, plugins or any scenario where you don't want your component's internals to clash with the surrounding environment.
+- Since the Shadow DOM is isolated from the main document, **changes made inside a shadow tree do not directly affect the main document's DOM**.
+
+```js
+const element = document.getElementById('myElement');
+const shadowRoot = element.attachShadow({ mode: 'open' });
+shadowRoot.innerHTML = `<style>p { color: red; }</style><p>Hello, Shadow DOM!</p>`;
+```
 
 _Virtual Dom_:
 
@@ -838,25 +845,25 @@ _Virtual Dom_:
 
 **Differences:** Virtual DOM provides a way to update the view in a more optimized and efficient manner. Instead of making direct changes to the real DOM (which can be slow) changes are made to the virtual DOM, which then calculates the diff between the current and the new state and updates the real DOM in a minimal way.
 
-**Not Native**: Virutal DOM is not a web standard. It's a technique used by specific libraries and frameworks
+**Not Native**: Virtual DOM is not a web standard. It's a technique used by specific libraries and frameworks
 
-**Use Cases**: Virtual DOM is benificial in scenarios where frequent updates to the UI can lead to the performance bottlenecks. Virtual DOM ensures a smoother User Experience.
+**Use Cases**: Virtual DOM is beneficial in scenarios where frequent updates to the UI can lead to the performance bottlenecks. Virtual DOM ensures a smoother User Experience.
 
 **Summary**:
 
-_Shadow DOM_: is about encapuslation, isolating components and their styles/scripts from the main document to prevent conflicts and leaks
+_Shadow DOM_: is about encapsulation, isolating components and their styles/scripts from the main document to prevent conflicts and leaks
 
 _V Dom_: is about performance: optimizing the way the UI updates by minimizing direct interactions with the real DOM.
 
 - If you're building a reusable widget or component that you want to remain isolated from the surrounding env, consider using Shadow DOM.
 
-- If you're dveloping a dynamic web app where the UI changes frequently and you want to optimized those updates, consider using a library or framework that employs VDom like React.
+- If you're developing a dynamic web app where the UI changes frequently and you want to optimized those updates, consider using a library or framework that employs VDom like React.
 
 </details>
 
 ---
 
-19. **`Spread/Rest Operator`**: Explain with examples.
+1.  **`Spread/Rest Operator`**: Explain with examples.
 <details>
 <summary>View Answer</summary>
 

@@ -446,7 +446,7 @@ body {
 
 ---
 
-## 45. Describe BFC (Block Formatting Context) and how it works.
+## 43. Describe BFC (Block Formatting Context) and how it works.
 
 - `Block Formatting Context (BFC)` is a foundational concept **_in the CSS visual rendering of web pages_**.
 - It's essentially **_a part of the box model that <u>deals with how block boxes are laid out and how they interact with each other</u>_**.
@@ -507,7 +507,7 @@ body {
 
 ---
 
-## 46. What are the various clearing techniques and which is appropriate for what context?
+## 44. What are the various clearing techniques and which is appropriate for what context?
 
 - In CSS, clearing techniques are **_used to ensure that elements are properly positioned and aligned in relation to floated elements within the layout_**.
 
@@ -577,7 +577,7 @@ body {
 
 ---
 
-## 47. How would you approach fixing browser-specific styling issues?
+## 45. How would you approach fixing browser-specific styling issues?
 
 ####1. Identify the Issue
 Use Browser Developer Tools: Modern browsers like Chrome, Firefox, and Safari have built-in developer tools. Use these to inspect elements and understand how different browsers are rendering your CSS differently.
@@ -599,7 +599,7 @@ Use Browser Developer Tools: Modern browsers like Chrome, Firefox, and Safari ha
 
 ---
 
-## 48. How do you serve your pages for feature-constrained browsers?
+## 46. How do you serve your pages for feature-constrained browsers?
 
 - Feature-Constrained browsers means (such as those **_<u>on older devices_</u>** or in **_<u>environments with limited JavaScript support</u>_**),
 
@@ -650,7 +650,7 @@ Use Browser Developer Tools: Modern browsers like Chrome, Firefox, and Safari ha
 
 ---
 
-## 51. Have you ever used a grid system, and if so, what do you prefer?
+## 47. Have you ever used a grid system, and if so, what do you prefer?
 
 - **Grid systems** are fundamental to web design because **_<u>they provide a structured layout system that makes it easier to design responsive</u>_** and aesthetically pleasing websites.
 
@@ -691,7 +691,7 @@ Use Browser Developer Tools: Modern browsers like Chrome, Firefox, and Safari ha
 
 ---
 
-## 52. What are the advantages/disadvantages of using CSS pre-processors? Describe what you like and dislike about the CSS pre-processors you have used.
+## 48. What are the advantages/disadvantages of using CSS pre-processors? Describe what you like and dislike about the CSS pre-processors you have used.
 
 - CSS preprocessors like `Sass`, `LESS`, and `Stylus` have become essential tools for **_<u>extending CSS with dynamic capabilities</u>_** such as `variables`, `nested rules`, `mixins`, `functions`, and more.
 
@@ -739,7 +739,7 @@ Use Browser Developer Tools: Modern browsers like Chrome, Firefox, and Safari ha
 
 ---
 
-## 53. How would you implement a web design comp that uses non-standard fonts?
+## 49. How would you implement a web design comp that uses non-standard fonts?
 
 - The process typically involves choosing the right font format, hosting the fonts, and then using CSS to apply them to your web design.
 
@@ -791,7 +791,7 @@ body {
 
 ---
 
-## 54. Explain how a browser determines what elements match a CSS selector.
+## 50. Explain how a browser determines what elements match a CSS selector.
 
 - it follows a specific process that involves parsing the CSS and creating a structure known as the CSSOM (CSS Object Model), which is similar to the DOM (Document Object Model) but for CSS.
 
@@ -820,7 +820,7 @@ body {
 
 ---
 
-## 55. Explain your understanding of the box model and how you would tell the browser in CSS to render your layout in different box models.
+## 51. Explain your understanding of the box model and how you would tell the browser in CSS to render your layout in different box models.
 
 - The CSS Box Model is a fundamental concept in web design and development, describing how elements are rendered on the screen, including their spacing, borders, and dimensions.
 
@@ -882,7 +882,7 @@ Using the `border-box` model **can simplify layout design**, especially for resp
 
 ---
 
-## 56. What is the difference between the "nth-of-type()" and "nth-child()" selectors?
+## 52. What is the difference between the "nth-of-type()" and "nth-child()" selectors?
 
 - The CSS selectors `:nth-of-type()` and `:nth-child()` are powerful pseudo-class selectors used to select elements **_based on their position within their parent element_**, but they target elements in slightly different ways.
 
@@ -930,7 +930,7 @@ Using the `border-box` model **can simplify layout design**, especially for resp
 
 ---
 
-## 57. Is there any reason you'd want to use translate() instead of absolute positioning, or vice-versa? And why?
+## 53. Is there any reason you'd want to use translate() instead of absolute positioning, or vice-versa? And why?
 
 ### <u>Using Translate for positioning:</u>
 
@@ -975,7 +975,7 @@ Using the `border-box` model **can simplify layout design**, especially for resp
 
 ---
 
-## 58. Can you explain the difference between px, em and rem as they relate to font sizing?
+## 54. Can you explain the difference between px, em and rem as they relate to font sizing?
 
 - #### px (Pixels):
 
@@ -1004,14 +1004,14 @@ Using the `border-box` model **can simplify layout design**, especially for resp
 
 ---
 
-## 59. Why don't CSS properties apply when selectors are mixed up with different cases?
+## 55. Why don't CSS properties apply when selectors are mixed up with different cases?
 
 - CSS selectors **_are case-sensitive_** depending on the document language. This case sensitivity affects not only selectors (e.g., IDs, classes) but also attributes when using attribute selectors. The impact of case sensitivity in CSS can lead to situations where CSS properties do not apply if selectors are mixed up with different cases.
 - To avoid issues related to case sensitivity, it's a good practice to adopt a consistent naming convention for your classes, IDs, and other selectors. Many developers prefer using lowercase with dashes (e.g., .my-class) for CSS classes and IDs to maintain readability and prevent case-related issues.
 
 ---
 
-## 62. Do padding-top or padding-bottom have an effect on inline elements?
+## 56. Do padding-top or padding-bottom have an effect on inline elements?
 
 - unlike **margin-top and margin-bottom**, which generally **have no effect on inline elements**, **_`padding-top` and `padding-bottom` applied <u>to inline elements do have an effect</u>_**, but with some nuances in how they are rendered:
 - Applying `padding-top` and `padding-bottom` to inline elements **_increases the visual space around the content_** inside the element. This padding is rendered inside the element, **pushing away the element's content from its border** (if any).
@@ -1021,7 +1021,7 @@ Using the `border-box` model **can simplify layout design**, especially for resp
 
 ---
 
-## 63. Do padding-left, padding-right, margin-left, or margin-right have an effect on inline elements?
+## 57. Do padding-left, padding-right, margin-left, or margin-right have an effect on inline elements?
 
 - Yes, `padding-left`, `padding-right`, `margin-left`, and `margin-right` **_<u>do have an effect on inline elements</u>_**.
 - **_These properties add space to the left and right sides of an inline element, <u>affecting its overall width but not disrupting the inline flow</u>_** of the document.
@@ -1062,7 +1062,7 @@ Using the `border-box` model **can simplify layout design**, especially for resp
 
 ---
 
-## 64. If you have a `<p>` element with font-size: 10rem, will the text be responsive when the user resizes or drags the browser window?
+## 58. If you have a `<p>` element with font-size: 10rem, will the text be responsive when the user resizes or drags the browser window?
 
 - The responsiveness of text styled with a font-size set in rem units to browser window resizing **<u>depends on how the root font size (typically defined on the `<html>` element) is set up</u>**.
 - The `rem` unit is relative to the root element's font size in CSS.
@@ -1090,7 +1090,7 @@ p {
 
 ---
 
-## 65. The pseudo-class :checked will select inputs with type radio or checkbox, but not elements. True or False?
+## 59. The pseudo-class :checked will select inputs with type radio or checkbox, but not elements. True or False?
 
 - True.
 - The `:checked` pseudo-class in CSS **_<u>is used to select elements that are checked or selected_**</u>, such as `<input>` elements of type radio or checkbox.
@@ -1099,7 +1099,7 @@ p {
 
 ---
 
-## 66. In an HTML document, the pseudo-class :root always refers to the element. True or False?
+## 60. In an HTML document, the pseudo-class :root always refers to the element. True or False?
 
 - True.
 - In an HTML document, the `:root pseudo-class` **_<u>always refers to the root element, which is the `<html>` element_**</u>.
@@ -1108,7 +1108,7 @@ p {
 
 ---
 
-## 67. Can the translate() function move the position of an element on the z-axis?
+## 61. Can the translate() function move the position of an element on the z-axis?
 
 - Yes,
 - the translate() function in CSS **_<u>can move the position of an element along the z-axis</u>_**, but this is specifically **_<u>done using the translateZ() function</u>_** or **_<u>by specifying a third value in the translate3d() function_**</u>.
@@ -1123,7 +1123,7 @@ transform: translate3d(10px, 20px, 30px);
 
 ---
 
-## 68. Which unit of measurement would you prefer among px, em, %, or pt, and why?
+## 62. Which unit of measurement would you prefer among px, em, %, or pt, and why?
 
 #### px(pixels):
 
@@ -1144,7 +1144,7 @@ transform: translate3d(10px, 20px, 30px);
 
 ---
 
-## 70. Does overflow: hidden create a new block formatting context?
+## 63. Does overflow: hidden create a new block formatting context?
 
 - Yes, setting overflow to hidden (as well as scroll or auto) on an element **_can create a new block formatting context (BFC)_**.
 - A block formatting context **is a part of the visual CSS rendering of a web page**, **_<u>where block boxes are laid out</u>_**.
@@ -1192,7 +1192,7 @@ Here's a simple example to demonstrate how overflow: hidden can create a BFC and
 
 ---
 
-## 71. How can you apply CSS rules specific to a media query?
+## 64. How can you apply CSS rules specific to a media query?
 
 - To apply CSS rules specific to a media query, you use the @media rule in CSS.
 - Media queries allow you to apply styles to your document based on the condition of media features like viewport dimensions (width and height), screen resolution, orientation, and more.
@@ -1237,7 +1237,7 @@ Here's a simple example to demonstrate how overflow: hidden can create a BFC and
 
 ---
 
-## 72. What is the use of the only keyword in media queries?
+## 65. What is the use of the only keyword in media queries?
 
 - The only keyword in media queries is used as a way to prevent older browsers that do not support media queries from applying the styles defined within the media query block.
 - Its primary purpose is to enhance compatibility and ensure that styles intended for specific media types or conditions are not incorrectly applied by browsers that do not fully understand media queries.
@@ -1256,7 +1256,7 @@ Here's a simple example to demonstrate how overflow: hidden can create a BFC and
 
 ---
 
-## 73. Does the screen keyword in media queries apply to the device's physical screen or the browser's viewport?
+## 66. Does the screen keyword in media queries apply to the device's physical screen or the browser's viewport?
 
 - The `screen` keyword in CSS media queries **_<u>refers to the type of device being used to display the content</u>_**, specifically targeting screens as opposed to other output devices like printers.
 - However, it does not directly refer to the device's physical screen in terms of hardware. Instead, **_<u>it applies to the browser's viewport,</u>_** which is the area of the screen used to display web content.
@@ -1271,50 +1271,281 @@ Here's a simple example to demonstrate how overflow: hidden can create a BFC and
 
 ---
 
-## 74. Can you name some pseudo-classes you have used in CSS?
+## 67. Can you name some pseudo-classes you have used in CSS?
+
+- In CSS, pseudo-classes are used to define a special state of an element.
+
+1. **:hover** - Applies when the user hovers over an element with the mouse pointer.
+2. **:focus** - Applies when an element has focus.
+3. **:active** - Applies when an element is being activated by the user, typically through clicking or tapping.
+4. **:visited** - Applies to links that have been visited by the user.
+5. **:link** - Applies to links that have not yet been visited.
+6. **:first-child** - Targets the first child element within its parent.
+7. **:last-child** - Targets the last child element within its parent.
+8. **:nth-child(n)** - Targets the nth child element within its parent, where n can be a number, a formula, or even keywords like 'even' or 'odd'.
+9. **:nth-of-type(n)** - Similar to `:nth-child(n)` but targets the nth element of a specific type within its parent.
+10. **:not(selector)** - Excludes elements that match the given selector.
+11. **:checked** - Applies to input elements that are checked, like checkboxes or radio buttons.
+12. **:disabled** - Targets elements that are disabled.
+13. **:enabled** - Targets elements that are enabled.
+14. **:focus-within** - Applies to an element if it or any of its descendants are focused.
+15. **:root** - Targets the document's root element, typically `<html>`.
 
 ---
 
-## 75. How do you vertically and horizontally align a `<p>` element to the center inside a `<div>`?
+## 68. How do you vertically and horizontally align a `<p>` element to the center inside a `<div>`?
+
+```html
+<div class="div-container">
+  <p>This is a paragraph.</p>
+</div>
+```
+
+#### Method 1: Flexbox
+
+```js
+.div-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 200px; /* Set to desired height */
+}
+```
 
 ---
 
-## 76. How can you optimize CSS selectors for better performance?
+#### Method 2: Grid
+
+```js
+.div-container {
+  display: grid;
+  place-items: center; /* Center both vertically and horizontally */
+  height: 200px; /* Set to desired height */
+}
+```
 
 ---
 
-## 77. How can you load CSS resources conditionally in a web page?
+#### Method 3: Absolute Positioning
+
+```js
+.div-container {
+  position: relative;
+  height: 200px; /* Set to desired height */
+}
+
+.div-container p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Adjust for the element's own dimensions */
+}
+
+```
 
 ---
 
-## 78. Why would you use sprites in CSS?
+## 69. How can you optimize CSS selectors for better performance?
+
+- Optimizing CSS selectors **_<u>can significantly impact the rendering performance of a webpage, especially on large documents or on devices with limited processing power</u>_**.
+
+#### 1. Keep Selectors Short and Specific
+
+#### 2. Avoid Universal Selectors
+
+- Universal selectors (\*) are costly because they match every single element in the document. Use them sparingly and avoid complex universal selector patterns.
+
+#### 3. Minimize the Use of Expensive Properties
+
+- Avoid expensive properties like `:nth-child`, `:nth-of-type`, and attribute selectors ([attribute="value"]) **_<u>can be more expensive to process</u>_**.
+
+#### 4. Use Class and ID Selectors When Possible
+
+- These are among **_<u>the fastest selectors for browsers to process because they are directly linked to specific elements, reducing the need for complex DOM traversal</u>_**.
+
+#### 5. Avoid JavaScript-based Selectors in CSS
+
+- JavaScript in CSS: **Avoid using selectors that rely on JavaScript or are designed to mimic JavaScript behavior**, **_<u>such as :hover on non-link elements</u>_**.
+- These can cause `re-rendering` and `performance` issues.
+
+#### 6. Optimize Contextual Selectors
+
+- Be cautious with descendant selectors (e.g., .parent .child) as they can cause browsers to perform extensive DOM traversal. Limit their depth and complexity.
+- Prefer child selectors over descendant selectors when possible, as they are more efficient by limiting the scope of matching.
+
+#### 7. Leverage CSS Preprocessing
+
+- Tools like SASS or LESS can help organize and optimize selectors before compiling them into CSS, allowing for cleaner, more efficient code.
+
+#### 8. Avoid Inline Styles
+
+- inline styles can slow down rendering because they increase page size and force browsers to spend more time parsing and applying styles.
 
 ---
 
-## 79. What is specificity in CSS, and how do you calculate it?
+## 70. How can you load CSS resources conditionally in a web page?
+
+#### These conditions might include <u>media queries (for responsiveness)</u>, <u>feature detection</u>, <u>browser detection</u>, <u>or loading styles dynamically</u> based on user interactions
+
+#### 1. Media Queries
+
+```js
+// media queries -  Loading a CSS file for screens wider than 768px.
+<link rel='stylesheet' media='(min-width: 768px)' href='wide-screen.css' />
+```
+
+#### 2. Feature Detection with JavaScript
+
+- `Modernizr` is a JavaScript library that detects HTML5 and CSS3 features in the user’s browser.
+- You can use it to conditionally load CSS files based on feature support.
+
+```js
+if (Modernizr.flexbox) {
+  loadCSS('flexbox.css');
+}
+
+function loadCSS(href) {
+  var cssLink = document.createElement('link');
+  cssLink.rel = 'stylesheet';
+  cssLink.href = href;
+  document.head.appendChild(cssLink);
+}
+```
+
+#### 3. JavaScript Conditions
+
+```js
+if (condition) {
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'path/to/your/css/file.css';
+  document.head.appendChild(link);
+}
+```
+
+#### 4. Using CSS @import with Media Queries
+
+#### <u>Within a CSS file, you can use the @import rule combined with media queries</u> to load additional CSS files conditionally.
+
+```js
+@import url("wide-screens.css") screen and (min-width: 1200px);
+```
 
 ---
 
-## 80. What is the shadow DOM in web development?
+## 71. Why would you use sprites in CSS?
+
+- Using sprites in CSS is a technique **_<u>to improve web performance and manage multiple images more efficiently</u>_**
+- A sprite **_<u>is a single image file that contains multiple images_**</u>.
+
+##### Here are the key reasons for using CSS sprites:
+
+#### 1. Reduced HTTP Requests
+
+- Every image on a webpage typically requires a separate HTTP request to load.
+- **_<u>By combining multiple images into a single sprite, you reduce the number of HTTP requests needed to load a page</u>_**.
+- This can significantly speed up page loading times, especially on websites with many small images, like icons.
+
+#### 2. Reduced Bandwidth Usage
+
+- Since the sprite combines multiple images into one, **_<u>it can be optimized to use less bandwidth than the total size of the individual images</u>_**.
+- Efficient use of sprites **_<u>can help in reducing the overall size of web resources</u>_**, further improving load times and saving bandwidth.
+- Sprites allow for precise control over the display of images. **_<u>By adjusting the background-position CSS property, you can display any part of the sprite as needed</u>_**. This ensures consistent visual presentation of images across different parts of your site.
+- Sprites **_<u>can be effectively used for interactive elements like buttons or links</u>_**, where one part of the sprite is shown by default and another part is revealed on hover.
+
+#### 3. Browser Caching
+
+- Since the sprite is a single image file, **_<u>it can be cached by the browser after the first load</u>_**. This means that on subsequent page visits or on different pages of the site that use the same sprite, the images are loaded from the cache rather than downloaded again, further improving load times and user experience.
 
 ---
 
-## 81. What do you know about CSS transitions?
+## 72. What do you know about CSS transitions?
+
+- Specifies the CSS property or properties that the transition effect will apply to.
+- You can animate properties like `opacity`, `width`, `background-color`, etc.
+- **Transition Duration**: Determines how long the transition effect should last. The duration is typically defined in seconds (s) or milliseconds (ms).
+- **Transition Timing Function**: <u>Controls the pacing of the transition</u>. Common values include linear, ease, ease-in, ease-out, and ease-in-out, among others defined by cubic-bezier curves.
+- **Transition Delay**: Specifies a delay before the transition starts. Like the duration, it's defined in seconds (s) or milliseconds (ms).
+
+```js
+/* Shorthand */
+transition: property duration timing-function delay;
+
+/* Individual Properties */
+transition-property: property;
+transition-duration: duration;
+transition-timing-function: timing-function;
+transition-delay: delay;
+```
+
+```js
+div {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  transition: background-color 0.5s ease-in-out;
+}
+
+div:hover {
+  background-color: red;
+}
+```
+
+#### Use Cases
+
+- Hover Effects: Changing colors, sizes, or other properties of elements on hover.
+- Dynamic Layouts: Animating changes in layout or positioning as part of responsive design or user interactions.
+- Visual Flair: Adding polish and dynamism to web pages with subtle animations.
+
+#### Summary:
+
+- CSS transitions offer a simple yet powerful way to add animation to web elements, enhancing user experience and interactivity without the need for complex JavaScript animations. By understanding and utilizing transitions, developers can create more engaging and visually appealing web content.
 
 ---
 
-## 82. Name some different CSS filters you can use to modify elements.
+## 73. Name some different CSS filters you can use to modify elements.
+
+- CSS filters provide a powerful way to visually modify HTML elements directly in the browser, applying graphical effects like blurring, brightness adjustment, and color shifts.
+
+1. blur(): Applies a Gaussian blur to the element. The parameter defines the blur radius. For example, filter: blur(5px); adds a moderate blur.
+2. brightness(): Adjusts the brightness of the element. Values over 100% increase brightness, while values under 100% decrease it. For instance, filter: brightness(50%); dims the element.
+3. contrast(): Changes the contrast of the element. Values above 100% increase contrast, values below 100% decrease contrast. Example: filter: contrast(200%); significantly increases contrast.
+4. drop-shadow(): Applies a shadow effect similar to box-shadow, but to the image's alpha mask. The parameters define the shadow's offset, blur radius, and color. Example: filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.5));.
+5. grayscale(): Converts the element to grayscale. A value of 100% is completely grayscale, while 0% shows the original color. Example: filter: grayscale(50%); applies partial grayscale.
+6. hue-rotate(): Applies a hue rotation on the image. The angle parameter defines the rotation amount. Example: filter: hue-rotate(90deg); rotates the hues by 90 degrees.
+7. invert(): Inverts the colors of the element. 100% is fully inverted, while 0% is the original state. Example: filter: invert(100%); inverts all colors.
+8. opacity(): Adjusts the opacity of the element. 0% is completely transparent, 100% is fully opaque. Example: filter: opacity(50%); makes the element semi-transparent.
+9. saturate(): Adjusts the saturation level of the element. Values above 100% enhance saturation, while below 100% decrease it. Example: filter: saturate(200%); increases color saturation.
+10. sepia(): Applies a sepia tone to the element, making it resemble an old photograph. 100% is fully sepia-toned. Example: filter: sepia(60%); applies a moderate sepia effect.
+
+```js
+filter: grayscale(50%) blur(2px);
+```
 
 ---
 
-## 83. What are the reasons to use a CSS preprocessor in web development?
+## 74. What is the difference between layout and positioning in CSS?
 
----
+- The **layout** in CSS refers to the **_<u>way in which elements are structured and organized in relation to each other within a container</u>_** or the entire web page.
+- It involves the arrangement of elements in a systematic, grid-like, or flexible manner to create a coherent structure for the web content.
+- Layout techniques primarily dictate how elements are sized, stretched, shrunk, and aligned with respect to their parent containers and sibling elements. Common layout models include:
 
-## 84. What is the difference between layout and positioning in CSS?
+**Block Layout**: The default web layout where elements are stacked vertically.
+**Flexbox**: Flexbox makes it easier to design flexible and responsive layouts with items that align and distribute space within a container.
+**Grid Layout**: **Provides a two-dimensional grid-based layout system**, offering more control over the placement and sizing of elements across rows and columns. It's especially useful for complex layouts and responsive designs.
+**Table Layout**: Though originally intended for tabular data, table display properties can be used for layout purposes, organizing content in a row and column format.
 
----
+### Positioning
 
-## 85. What is the difference between CSS Flexbox and CSS Grid layout systems?
+- Positioning in CSS, on the other hand, **_<u>deals with the precise placement of elements at specific locations on the web page</u>_**, often **_<u>regardless of the normal document flow</u>_**. It allows for the overlapping of elements, layering, and placing elements outside their natural order in the layout. CSS offers several positioning schemes:
+
+**Static Positioning**: The default positioning model where elements are laid out according to the normal document flow.
+**Relative Positioning**: Positions an element relative to its normal position in the document flow, without removing it from the flow. It can be used to nudge elements in particular directions.
+**Absolute Positioning**: Removes an element from the normal document flow, positioning it relative to its nearest positioned ancestor or the viewport if there is none. This is useful for creating overlays or complex, precise arrangements.
+**Fixed Positioning**: Similar to absolute positioning, but the element is positioned relative to the viewport, meaning it stays in the same place even when the page is scrolled.
+**Sticky Positioning**: A hybrid of relative and fixed positioning. An element is treated as relatively positioned until it crosses a specified point, then it is treated as fixed positioned.
+
+**Conclusion**:
+While **<u>layout focuses on the overall structure and organization of elements within a container</u>** or the entire page, `positioning` is concerned with the precise location of elements, often allowing for more creative and dynamic arrangements that **_<u>can break away from the normal flow of the document</u>_**. Both concepts are essential for creating effective, responsive, and visually appealing web designs.
 
 ---

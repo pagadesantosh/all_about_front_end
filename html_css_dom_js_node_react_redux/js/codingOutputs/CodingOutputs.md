@@ -1,22 +1,78 @@
 ## 1.
 
 ```js
-console.log(0.1 + 0.2 == 0.3); //false
-console.log(0.1 + 0.2); // 0.30000000000000004
+console.log(0.1 + 0.2);
+console.log(0.1 + 0.2 == 0.3);
 ```
+
+<details>
+<summary>Solution</summary>
+
+```js
+console.log(0.1 + 0.2); //0.3
+console.log(0.1 + 0.2 == 0.3); //false, because adding 0.1 + 0.2 prints 0.30000000000000004
+```
+
+- To mitigate such issues, especially in comparisons, **it's often recommended to check if the numbers are "close enough" to each other rather than exactly equal**.
+- This can be done by defining a small threshold (epsilon) and checking if the absolute difference between the numbers is smaller than this threshold.
+
+```js
+const a = 0.1 + 0.2;
+const b = 0.3;
+const epsilon = 0.000001; // Define a small threshold
+console.log(Math.abs(a - b) < epsilon); // Use this to check for "equality"
+```
+
+</details>
+
+---
 
 ## 2.
 
-```js
+### i)
 
-‘use strict’;
-(function(){
-var a = b = 3;
+```js
+(function () {
+  var a = (b = 3);
 })();
 
-console.log("a defined? " + (typeof a! == 'undefined')); undefined! =='undefined';
-console.log("b defined? " + (typeof b! == 'undefined')); true! =='undefined';
+console.log('a defined? ' + (typeof a !== 'undefined'));
+console.log('b defined? ' + (typeof b !== 'undefined'));
 ```
+
+<details>
+<summary>Solution</summary>
+
+```js
+console.log('a defined? ' + (typeof a !== 'undefined')); //false
+console.log('b defined? ' + (typeof b !== 'undefined')); //true
+```
+
+</details>
+
+### ii)
+
+```js
+'use strict';
+(function () {
+  var a = (b = 3);
+})();
+
+console.log('a defined? ' + (typeof a !== 'undefined'));
+console.log('b defined? ' + (typeof b !== 'undefined'));
+```
+
+<details>
+<summary>Solution</summary>
+
+```js
+// because use strict doesn't allow you to declare global variables, here b is a global variable
+ReferenceError: b is not defined
+```
+
+</details>
+
+---
 
 ## 3.
 
@@ -34,8 +90,27 @@ function foo2() {
   }
 }
 
-// O/P: Both doesn’t return same(return keyword in foo2() acts like the end of the statement by assigning ;
+console.log('foo1 returns:');
+console.log(foo1());
+console.log('foo2 returns:');
+console.log(foo2());
 ```
+
+<details>
+<summary>Solution</summary>
+
+```js
+//undefined is returned for foo2() function invocation because return adds a semi colon next to it as nothing is added in that same line. So it expects it as undefined.
+
+console.log('foo1 returns:'); //foo1 returns:
+console.log(foo1()); //{"bar": "hello"}
+console.log('foo2 returns:'); //foo2 returns:
+console.log(foo2()); //undefined
+```
+
+</details>
+
+---
 
 ## 4.
 
@@ -50,9 +125,21 @@ function foo2() {
   }, 0);
   console.log(4);
 })();
-
-// O/p: 1 4 3 2
 ```
+
+<details>
+<summary>Solution</summary>
+
+```js
+1;
+4;
+3;
+2; //logs after 1 second delay
+```
+
+</details>
+
+---
 
 ## 5. Will this work?
 
@@ -60,26 +147,114 @@ function foo2() {
 var x = 10,
   y = 11,
   z = x + y;
-
-// O/p: Yes, this will work
 ```
 
+<details>
+<summary>Solution</summary>
+
+```js
+// Yes, the code snippet you provided will work in JavaScript.
+var x = 10, // Declares a variable x and assigns it the value 10
+  y = 11, // Declares a variable y and assigns it the value 11
+  z = x + y; // Declares a variable z and assigns it the value of x + y, which is 21
+```
+
+```js
+// this doesn't work as per your expectations because of type coercion
+var x = '10', // x is a string
+  y = 11,
+  z = x + y; // z becomes "1011", not 21
+```
+
+</details>
+
+---
+
 ## 6. find second largest number from Array
+
+<details>
+<summary>Solution</summary>
+
+```js
+// Approach 1: Sorting
+function findSecondLargest(nums) {
+  let uniqueNums = [...new Set(nums)]; // Remove duplicates
+  uniqueNums.sort((a, b) => b - a); // Sort in descending order
+  return uniqueNums[1]; // Return the second element
+}
+
+const arr = [1, 3, 4, 5, 0, 2, 4, 5]; // Example array
+console.log(findSecondLargest(arr)); // Output: 4
+```
+
+- Using `-Infinity` as the initial value for max and secondMax is a strategic choice in JavaScript when trying to find the largest or second-largest numbers in an array. **<u>This choice ensures that any number in the array, regardless of how large or small (including negative numbers), will be greater</u>** than `-Infinity`
+
+```js
+// Approach 2: for-of loop
+function findSecondLargest(nums) {
+  let max = -Infinity,
+    secondMax = -Infinity;
+  for (let num of nums) {
+    if (num > max) {
+      secondMax = max; // Update second max before updating max
+      max = num;
+    } else if (num > secondMax && num < max) {
+      // Update second max if num is between max and secondMax
+      secondMax = num;
+    }
+  }
+  return secondMax;
+}
+
+const arr = [1, 3, 4, 5, 0, 2, 4, 5]; // Example array
+console.log(findSecondLargest(arr)); // Output: 4
+```
+
+</details>
+
+---
 
 ## 7.
 
 ```js
-
 let i;
 
 for (i = 0; i < 3; i++) {
-setTimeout(()=>console.log(i), 100);
-
+  setTimeout(() => console.log(i), 100);
 }
-
-Ans: 3 3 3
-// Reason: in for loop i acts as global scope
 ```
+
+<details>
+<summary>Solution</summary>
+
+```js
+3;
+3;
+3;
+```
+
+#### Reason:
+
+- The loop increments `i` after each iteration until `i` is no longer less than 3. The final value of `i` after the loop finishes is 3.
+- After about 100 milliseconds, the scheduled functions start executing. However, by this time, the loop has completed, and the value of i has been updated to 3.
+- **Since the functions capture the `i` variable by reference (not by value), <u>all of them log the final value of i, which is 3</u>**.
+
+```js
+// to get the expected output, make sure to declare let i=0; inside for loop
+for (let i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 100);
+}
+```
+
+```js
+0;
+1;
+2;
+```
+
+</details>
+
+---
 
 ## 8.
 
@@ -93,85 +268,26 @@ function sum(a, b) {
 }
 
 var result = sum(1, 2, 3);
-console.log(result); //3
-Reason: Overriding;
+console.log(result);
 ```
+
+<details>
+<summary>Solution</summary>
+
+```js
+3;
+```
+
+#### Reason:
+
+- When you call sum(1, 2, 3), it uses the <u>second sum function</u>,
+- because the first `sum` function <u>has been overwritten by the second declaration</u>
+- Since the second sum function only accepts two parameters, **<u>it ignores the third parameter (3 in this case) and calculates the sum of the first two parameters only**</u>.
+</details>
 
 ---
 
-## 1. Prime Number
-
-![alt text](https://user-images.githubusercontent.com/42731246/142737068-e44fd4f6-bcaa-4bcd-8877-02fc87bcb420.png)
-
-## 2. Fibonacci
-
-![alt text](https://user-images.githubusercontent.com/42731246/142737071-a6361b5c-f22c-4063-be79-f0aba66870e6.png)
-
-## 3. Armstrong
-
-![alt text](https://user-images.githubusercontent.com/42731246/142737076-63406336-d4e7-4745-bd13-3864ba8f6955.png)
-
-## 4. Star pattern
-
-![alt text](https://user-images.githubusercontent.com/42731246/142737082-e39bda74-694b-4b1c-bdb1-74c5e47067e2.png)
-![alt text](https://user-images.githubusercontent.com/42731246/142737086-21951694-10a3-406a-b729-64b6e3323a1d.png)
-
-![alt text](https://user-images.githubusercontent.com/42731246/142737090-43ab3984-dc3e-4e89-9974-60c7746effcb.png)
-![alt text](https://user-images.githubusercontent.com/42731246/142737093-88975450-44bd-4d05-870e-e8ea5664eb14.png)
-
-## 5. Fizzbuzz
-
-![alt text](https://user-images.githubusercontent.com/42731246/142737101-b325b893-8fcc-4599-a9cb-a03681620d23.png)
-
-## 6. Sort an float array
-
-![alt text](https://user-images.githubusercontent.com/42731246/142737104-3226d003-513c-4cdd-8e3b-35fc619adb44.png)
-
-## 7. Maximum and Minimum values
-
-![alt text](https://user-images.githubusercontent.com/42731246/142737114-fbbb5a7f-7ba9-495b-8905-64f75b007a89.png)
-
-## 8. Output as per the questions
-
-![alt text](https://user-images.githubusercontent.com/42731246/142737118-1193f2c3-8e47-4fe7-a218-6fab385907cc.png)
-
 ## 9.
-
-![alt text](https://user-images.githubusercontent.com/42731246/142737137-e5ef3dca-6caf-4779-93c5-b57f4850c009.png)
-
-## 10.
-
-![alt text](https://user-images.githubusercontent.com/42731246/142737142-305bb31e-d5fc-4dbb-a489-6e3203a3c409.png)
-
-## 11.
-
-![alt text](https://user-images.githubusercontent.com/42731246/142737148-891f1992-82e2-4752-a55d-59cc5523a2f4.png)
-
-Output
-
-![alt text](https://user-images.githubusercontent.com/42731246/142737151-320d4b41-8754-4b7e-b64e-83a4f83197e0.png)
-
-## Add Function
-
-![alt text](https://user-images.githubusercontent.com/42731246/142737161-14d6d336-870c-4340-b3d7-1b3828e657a5.png)
-
-## 12. React Router Example:
-
-![alt text](https://user-images.githubusercontent.com/42731246/142737167-66209883-e033-41dd-9d14-e04f54f492d2.png)
-
-## 13. Palindrome
-
-![alt text](https://user-images.githubusercontent.com/42731246/142737175-6267b973-398c-45e2-94a8-f9c179357d9d.png)
-
-![alt text](https://user-images.githubusercontent.com/42731246/142737178-1dd8c547-439f-4fec-bffe-e2d909788267.png)
-
-## 14. Count the duplicate number that has repeated more number of times
-
-![alt text](https://user-images.githubusercontent.com/42731246/142737180-f7b2c61c-726b-43c8-9d91-291d5aff0bbf.png)
-
-![alt text](https://user-images.githubusercontent.com/42731246/142737184-77289625-f001-4606-bf83-9068a3252ebe.png)
-
-## 15.
 
 Javascript is by default a synchronous
 
@@ -180,23 +296,31 @@ Javascript is by default a synchronous
 using Browser API's to offload the tasks
 ![image](https://user-images.githubusercontent.com/42731246/149968037-2d87d91a-2666-4adf-a135-3873e833fb75.png)
 
-## 16. setInterval keeps on running until we kill the process
+---
+
+## 10. setInterval keeps on running until we kill the process
 
 ![image](https://user-images.githubusercontent.com/42731246/149972934-d770c51d-22b3-4a49-85db-1b5db28a60a5.png)
 
-## 17. listen is asynchronous so it keeps on running,
+---
+
+## 11. listen is asynchronous so it keeps on running,
 
 Every time you hit the request on the browser, you get that logged in as (request event)
 
 ![image](https://user-images.githubusercontent.com/42731246/149973561-26003a5b-e3c6-43b6-9e2f-728459bc5bff.png)
 
-## 18.Blocking code in callbacks (async code),
+---
+
+## 12.Blocking code in callbacks (async code),
 
 Cons: Not only /about page will take time to load, but this now affects other page routes also getting blocked (Home page route)
 
 ![image](https://user-images.githubusercontent.com/42731246/149974975-7415bcff-3c8a-4887-9629-5e3b60c2e58f.png)
 
-## 19
+---
+
+## 13. What is the output?
 
 ```js
 a = 10;
@@ -206,10 +330,16 @@ console.log(a);
 var a = 20;
 ```
 
-O/p:
-![image](https://user-images.githubusercontent.com/42731246/151492687-63fd27a2-884e-4693-a412-2bda304522b3.png)
+<details>
+<summary>Solution</summary>
 
-## 20
+10
+
+</details>
+
+---
+
+## 14
 
 ```js
 var obj1 = { type: 'Fiat', model: '500', color: 'white' };
@@ -219,9 +349,27 @@ console.log(obj1);
 console.log(obj2);
 ```
 
-![image](https://user-images.githubusercontent.com/42731246/151492604-e45cf218-d91c-4afd-8be2-1cc28b6a249b.png)
+<details>
+<summary>Solution</summary>
 
-## 21
+```js
+{
+    "type": "Fiat",
+    "model": "600",
+    "color": "white"
+}
+{
+    "type": "Fiat",
+    "model": "600",
+    "color": "white"
+}
+```
+
+</details>
+
+---
+
+## 15. let variable (Does it allow ?)
 
 ```js
 let a = 10;
@@ -230,33 +378,32 @@ let a = 20;
 
 ![image](https://user-images.githubusercontent.com/42731246/151492543-669e6cdd-3443-4929-be10-1ce173521f80.png)
 
-## 22
+---
+
+## 16. Type coercion
 
 ```js
-1 + '12';
+console.log(1 + '12');
+console.log(0 - '10');
+console.log('11' + 1);
+console.log('10' + -1);
 ```
+
+<details>
+<summary>Solution</summary>
 
 ```js
-0 - '10';
+112;
+-10;
+111;
+10 - 1;
 ```
 
-```js
-'11' + 1;
-```
+</details>
 
-```js
-'10' + -1;
-```
+---
 
-```js
-null === undefined;
-```
-
-```js
-null == undefined;
-```
-
-## 23
+## 17
 
 ```js
 let a = 10;
@@ -268,20 +415,41 @@ function func() {
 func();
 ```
 
-## 24
+<details>
+<summary>Solution</summary>
 
 ```js
-
-'use strict'
-
-var a= 10
-
-console.log(a
-
-var a= 20
+10;
 ```
 
-## 25 Without use strict
+</details>
+
+---
+
+## 18. With use strict
+
+```js
+'use strict';
+
+var a = 10;
+
+console.log(a);
+
+var a = 20;
+```
+
+<details>
+<summary>Solution</summary>
+
+```js
+10;
+```
+
+</details>
+
+---
+
+## 19 Without use strict
 
 ```js
 var a = 10;
@@ -293,32 +461,42 @@ var a = 20;
 console.log(a);
 ```
 
-## 26
+<details>
+<summary>Solution</summary>
 
 ```js
+10;
+20;
+```
 
-function func(a){
-let fname = "Singh";
-a()
+</details>
+
+---
+
+## 20 Callback Example
+
+```js
+function func(callback) {
+  let fname = 'Singh';
+  callback(fname); // Pass the fname as an argument to the callback function
 }
 
-func a (fname){
-
-});
-
-Ans:
-function func(a){
-let fname = "Singh";
-a(fname) //pass
-}
-
-func a (fname){
-console.log(fname)
-
+func(function (name) {
+  // The callback function now expects an argument
+  console.log(name); // This will log "Singh"
 });
 ```
 
-## 27
+---
+
+## 21. Remove Duplicates from an array
+
+```js
+let array = [1, 1, 3, 6, 5, 6];
+```
+
+<details>
+<summary>Solution</summary>
 
 ```js
 let array = [1, 1, 3, 6, 5, 6];
@@ -326,7 +504,11 @@ let result = [...new Set(array)];
 console.log(result);
 ```
 
-## 28
+</details>
+
+---
+
+## 22.
 
 ```js
 const a = '12';
@@ -334,7 +516,18 @@ a = 11;
 console.log(a);
 ```
 
-## 29
+<details>
+<summary>Solution</summary>
+
+```js
+ TypeError: Assignment to constant variable.
+```
+
+</details>
+
+---
+
+## 23. Object Mutation
 
 ```js
 const Employee = {
@@ -345,46 +538,101 @@ Employee.firstname = 'Singh';
 console.log(Employee.firstname);
 ```
 
-## 30 CSS related
+<details>
+<summary>Solution</summary>
 
 ```js
-
-div, p
-
-Ans: Both apply same styling properties
-
-div + p : Doing so will select all p elements that are placed immediately after the div element.
-div ~ p : Doing so will select all p elements that are siblings of the div element.
-div > p : Doing so will select all the p elements that are immediate children (first level children; and not their sub-children) of the div element.
+Singh;
 ```
 
-## 31 sum of the even numbers (which has to be squared)
+</details>
+
+---
+
+## 24. CSS (Most Important)
+
+`div, p`: **<u>Applies the same styling properties to both</u>** div elements and p elements, regardless of their relationship in the document.
+
+`div + p`: <u>**Selects the first p element that is placed immediately after each div element**</u>, where both share the same parent.
+
+`div ~ p`: <u>**Selects all p elements that are siblings of a div element</u>** and come after it in the document.
+
+`div > p`: <u>**Selects all p elements that are immediate children of a div element**.</u>
+
+---
+
+## 25. sum of the even numbers (which has to be squared)
 
 ```js
 const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const evenNumbers = array
-.filter((item) => item % 2 == 0)
-.map((item) => item \* item)
-.reduce((item1, item2) => item1 + item2);
-
-console.log(evenNumbers);
 ```
 
-## 32 What will this print ?
+<details>
+<summary>Solution</summary>
 
 ```js
+const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// Filter the even numbers, square them, and then sum them up
+const sum = array
+  .filter((num) => num % 2 === 0) // Filter out the even numbers
+  .map((num) => num * num) // Square each even number
+  .reduce((sum, num) => sum + num, 0); // Sum them up
+
+console.log(sum); // Output the sum
+```
+
+</details>
+
+---
+
+## 26. What will this print ?
+
+```js
+const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const filteredItems = array.filter(() => 0);
 console.log(filteredItems);
 ```
 
-## 33 Print the value based on the query params and second key value pair (&)
+<details>
+<summary>Solution</summary>
+
+```js
+[];
+```
+
+</details>
+
+---
+
+## 27. Print the value based on the query params and second key value pair (&)
 
 ```js
 const url =
   'https://codesandbox.io/s/little-darkness-qsymi?file=/src/index.js:205-267&name=saiteja';
 ```
 
-## 34
+<details>
+<summary>Solution</summary>
+
+```js
+const url =
+  'https://codesandbox.io/s/little-darkness-qsymi?file=/src/index.js:205-267&name=saiteja';
+
+// Create a URL object to easily access search params
+const urlObj = new URL(url);
+
+// Get the value of the 'name' parameter
+const name = urlObj.searchParams.get('name');
+
+console.log(name); // Output the value of the 'name' parameter
+```
+
+</details>
+
+---
+
+## 28
 
 ```js
 var objA = { prop1: 42 };
@@ -393,7 +641,20 @@ objB.prop1 = 90;
 console.log(objA);
 ```
 
-## 35
+<details>
+<summary>Solution</summary>
+
+```js
+{
+    "prop1": 90
+}
+```
+
+</details>
+
+---
+
+## 29
 
 ```js
 (function () {
@@ -404,7 +665,33 @@ console.log(objA);
 })();
 ```
 
-## 36
+<details>
+<summary>Solution</summary>
+
+```js
+//because they are comparing references, not the content of the objects.
+// If you want to compare the objects by their content, you would need to perform a deep comparison of each property within the objects.
+false;
+false;
+```
+
+Here's a simple way to perform a deep equality check using JSON serialization, with the caveat that this method doesn't work well with functions, undefined properties, or objects containing circular references:
+
+```js
+(function () {
+  var objA = new Object({ foo: 'foo' });
+  var objB = new Object({ foo: 'foo' });
+  console.log(JSON.stringify(objA) === JSON.stringify(objB)); // true if objects have the same content
+})();
+```
+
+</details>
+
+---
+
+## 30
+
+i)
 
 ```js
 for (var i = 0; i < 3; i++) {
@@ -412,7 +699,38 @@ for (var i = 0; i < 3; i++) {
 }
 ```
 
-## 37
+<details>
+<summary>Solution</summary>
+
+```js
+3;
+3;
+3;
+```
+
+</details>
+
+---
+
+#### ii) you want 0, 1, 2 using `var` keyword
+
+<details>
+<summary>Solution</summary>
+
+```js
+for (var i = 0; i < 3; i++) {
+  function inner(i) {
+    setTimeout(() => console.log(i), 1);
+  }
+  inner(i);
+}
+```
+
+</details>
+
+---
+
+## 31
 
 ```js
 for (let i = 0; i < 3; i++) {
@@ -420,7 +738,20 @@ for (let i = 0; i < 3; i++) {
 }
 ```
 
-## 38
+<details>
+<summary>Solution</summary>
+
+```js
+0;
+1;
+2;
+```
+
+</details>
+
+---
+
+## 32.
 
 ```js
 var x = { name: 10 };
@@ -431,18 +762,41 @@ console.log(x);
 console.log(y);
 ```
 
-## 39 Exercise with React.js
+<details>
+<summary>Solution</summary>
 
-Create a search bar which:
-1.Fetches data from an API : https://dummy.restapiexample.com/api/v1/employees
+```js
+{
+    "name": 10
+}
+{
+    "name": 20
+}
+```
 
-2. Display the search results that match the employee name typed in search bar (api should be called after a minimum of three characters typed in search bar)
+</details>
 
-3. On clicking any searched Employee name, take to a dummy page, pass that employee name to the URL which opens when you select from the searched results.
+---
 
-4. A cross mark to clear the search bar.
+## 33.
 
-## 40
+```js
+var a = 2;
+a++;
+console.log(a);
+const d = [1, 2, 3];
+d.push(5);
+console.log(d);
+const b = 2;
+b++;
+console.log(b);
+const c = [2];
+c[0]++;
+console.log(c);
+```
+
+<details>
+<summary>Solution</summary>
 
 ```js
 var a = 2;
@@ -459,7 +813,11 @@ c[0]++;
 console.log(c);
 ```
 
-## 41
+</details>
+
+---
+
+## 34
 
 ```js
 var a = b();
@@ -474,154 +832,51 @@ var d = function () {
 };
 ```
 
-## 42
+<details>
+<summary>Solution</summary>
 
 ```js
-
-function a(){
-for(var i =0; i<10; i++){
-setTimeout(() => {
-console.log(i)
-}, i\*1000)
-}
-}
-a();
+undefined
+TypeError: d is not a function
 ```
 
-## 43 Design this in less than 30 minutes
-
-![image](https://user-images.githubusercontent.com/42731246/152519562-3d8001fd-f083-4e54-976c-8617519eeec4.png)
-
-```js
-
-import "./styles.css";
-
-export default function App() {
-  const skills = ["HTML", "CSS", "Javascript", "React"];
-
-  return (
-    <div className="App">
-      <div className="box">
-        <h2 className="skills"> UI Skills</h2>
-        {skills.map((skill, index) => {
-          return <p className="skill">{`${index + 1}. ${skill}`}</p>;
-        })}
-      </div>
-    </div>
-  );
-}
-
-CSS:
-
-* {
-  margin: 0;
-  padding: 0;
-}
-.App {
-  position: relative;
-  display: flex;
-  box-sizing: border-box;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  background-color: gray;
-}
-
-.box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  width: 350px;
-  height: 250px;
-  border-radius: 15px;
-}
-
-.skills,
-.skill {
-  color: orange;
-}
-
-.skills {
-  margin-top: 50px;
-  margin-left: 30px;
-  margin-bottom: 30px;
-}
-
-.skill {
-  margin-left: 70px;
-  font-size: 18px;
-}
-
-@media only screen and (max-width: 600px) {
-  .box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 280px;
-    height: 620px;
-    border-radius: 15px;
-  }
-}
-
-
-```
+</details>
 
 ---
 
-## 44
+## 35.
 
 ```js
-
 var myObject = {
-foo: "bar",
-func: function() {
-var self = this;
-console.log("outer func: this.foo = " + this.foo);
-console.log("outer func: self.foo = " + self.foo);
-(function() {
-console.log("inner func: this.foo = " + this.foo);
-console.log("inner func: self.foo = " + self.foo);
-}());
-}
+  foo: 'bar',
+  func: function () {
+    var self = this;
+    console.log('outer func: this.foo = ' + this.foo);
+    console.log('outer func: self.foo = ' + self.foo);
+    (function () {
+      console.log('inner func: this.foo = ' + this.foo);
+      console.log('inner func: self.foo = ' + self.foo);
+    })();
+  },
 };
 myObject.func();
+```
 
+<details>
+<summary>Solution</summary>
+
+```js
 outer func: this.foo = bar
 outer func: self.foo = bar
 inner func: this.foo = undefined
 inner func: self.foo = bar
 ```
 
-## 45
+</details>
 
-```js
-function foo1()
-{
-return {
-bar: "hello"
-};
-}
+---
 
-function foo2()
-{
-return
-{
-bar: "hello"
-};
-}
-
-// ## Output:
-
-foo1 returns:
-Object {bar: "hello"}
-foo2 returns:
-undefined
-```
-
-## 46
+## 36.
 
 ```js
 var output = (function (x) {
@@ -633,16 +888,50 @@ var output = (function (x) {
 console.log(output);
 ```
 
-## 47 How to empty an array
+<details>
+<summary>Solution</summary>
+
+```js
+0;
+```
+
+</details>
+
+---
+
+## 37 How to empty an array
 
 ```js
 let a = [1, 6, 8, 9];
 ```
 
-I only know this :D
-![image](https://user-images.githubusercontent.com/42731246/157432109-40d06b7e-6ff2-45ad-8183-6099bb881dc9.png)
+<details>
+<summary>Solution</summary>
 
-## 48 only print defined values
+```js
+//1
+a.length = 0;
+
+//2
+a = [];
+
+//3
+a.splice(0, a.length);
+
+//4
+while (a.length) {
+  a.shift();
+}
+
+//5
+Array.from(a.fill());
+```
+
+</details>
+
+---
+
+## 38 only print defined values
 
 ```js
 let b = [1, 2, , 4, 5];
@@ -650,15 +939,27 @@ let b = [1, 2, , 4, 5];
 // output should be [1, 2, 4, 5]
 ```
 
-![image](https://user-images.githubusercontent.com/42731246/157432025-07b3d0e6-7098-415e-9178-cf344035e8ec.png)
+<details>
+<summary>Solution</summary>
 
-## 49 Remove duplicates
+```js
+//1
+// This will filter out any undefined slots in the array
+let cleanedArray = b.filter((item) => item !== undefined);
 
-let c = [1, 2, 3, 2, 5, 3]
+console.log(cleanedArray); // Output will be [1, 2, 4, 5]
 
-![image](https://user-images.githubusercontent.com/42731246/157431756-89909225-d3d0-4efa-b5a8-e55e9de24e57.png)
+//2 -> Shortcut
+let cleanedArray = b.filter(Boolean);
 
-## 50 Nested Arrays
+console.log(cleanedArray); // Output will be [1, 2, 4, 5]
+```
+
+</details>
+
+---
+
+## 39 Nested Arrays
 
 ```js
 let a = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
@@ -666,11 +967,23 @@ let a = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
 // output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 ```
 
-![image](https://user-images.githubusercontent.com/42731246/157431479-ca9028f4-596b-4541-9b53-e2cf67892cd6.png)
+<details>
+<summary>Solution</summary>
+
+```js
+let a = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
+
+// Flattens the array completely
+let flatArray = a.flat(Infinity);
+
+console.log(flatArray); // Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+```
+
+</details>
 
 ---
 
-## 51
+## 40
 
 ```js
 const arr = [1, 2, undefined, NaN, null, false, true, '', 'abc', 3];
@@ -680,7 +993,24 @@ const arr1 = [1, 2, undefined, NaN, null, false, true, '', 'abc', 3];
 console.log(arr1.filter(!Boolean));
 ```
 
-## 52
+<details>
+<summary>Solution</summary>
+
+```js
+const arr = [1, 2, undefined, NaN, null, false, true, '', 'abc', 3];
+console.log(arr.filter(Boolean));
+
+//This operation evaluates to false because !Boolean (the negation of a truthy value, which the Boolean function is considered to be) is false.
+// Therefore, when you try to pass !Boolean to .filter(), you're essentially trying to pass a boolean value (false) instead of a function, which is why you get the error "boolean false is not a function."
+const arr1 = [1, 2, undefined, NaN, null, false, true, '', 'abc', 3];
+console.log(arr1.filter(!Boolean));
+```
+
+</details>
+
+---
+
+## 41
 
 ```js
 var a = 3;
@@ -688,34 +1018,38 @@ var b = {
   a: 9,
   b: ++a,
 };
-console.log(a + b.a + ++b.b); //18
+console.log(a + b.a + ++b.b);
 ```
 
-## 53. How to implement your own Custom Event in JavaScript?
-
-- You can use the CustomEvent constructor to create an custom event.
-- The CustomEvent Constructor accepts two arguments, (eventName, optionalObject)
-- You can use the dispatchEvent method to dispatch the custom event on the target element/document
+<details>
+<summary>Solution</summary>
 
 ```js
-const event = new CustomEvent('event1', {
-  detail: { name: 'Javascript' },
-});
-
-element.dispatchEvent(event);
+18;
 ```
 
-```js
-// listening the events
+1. var a = 3; sets a to 3.
 
-element.addEventListener('event1', (event) => {
-  console.log(event.detail);
-});
-```
+2. In the object b, a is set to 9. This does not affect the variable a defined outside; they are two separate entities.
+
+3. Still inside object b, b: ++a is evaluated. The prefix increment ++a increases a by 1 before assigning it to b.b, making a now 4 and b.b also 4.
+
+4. At this point:
+
+The standalone variable a is 4.
+The object b looks like this: { a: 9, b: 4 }.
+console.log(a + b.a + ++b.b); computes the sum:
+
+- a is 4.
+- `b.a` is 9.
+- `++b.b` is a prefix increment of `b.b`, so `b.b` is increased to 5 before it's added to the sum.
+  Therefore, the calculation is 4 + 9 + 5, which equals 18.
+
+</details>
 
 ---
 
-## 54. What will be the output of the code below?
+## 42. What will be the output of the code below?
 
 ```js
 function foo() {
@@ -741,7 +1075,7 @@ console.log(test());
 
 ---
 
-## 55. What will be the output of the code below?
+## 43. What will be the output of the code below?
 
 ```js
 const nums = [1,2,3,4,5,6,7];
@@ -754,7 +1088,8 @@ nums.forEach((n) => {
 
 <details>
   <summary>View Answer</summary>
-Syntax Error
+  
+##### Syntax Error ( because you cannot use break within a forEach)
 
 ```js
 //correct solution would be by using loops
@@ -771,7 +1106,7 @@ for (let n of nums) {
 
 ---
 
-## 56. What will be the output of the code below?
+## 44. What will be the output of the code below?
 
 ```js
 async function foo() {
@@ -794,59 +1129,365 @@ Output: D, A, E, B, C
 
 ---
 
-𝗤𝟭: console.log(2 + '2' - 1);
+### 45.
 
-𝗤𝟮: console.log([] == ![]);
+```js
+console.log(2 + '2' - 1);
+```
 
-𝗤𝟯: console.log('5' + 3);
+<details>
+<summary>Solution</summary>
 
-𝗤𝟰: console.log(3 == '3');
+```js
+21 (type is 'number')
+```
 
-𝗤𝟱: console.log(1 < 2 < 3);
+</details>
 
-𝗤𝟲: console.log(3 < 2 < 1);
+---
 
-𝗤𝟳: console.log(typeof NaN);
+### 46.
 
-𝗤𝟴: console.log(typeof typeof 1);
+```js
+console.log([] == ![]);
+```
 
-𝗤𝟵: console.log(1 + '1' - 1);
+<details>
+<summary>Solution</summary>
 
-𝗤𝟭𝟬: console.log([] + [] + 'foo'.split(''));
+```js
+true;
+```
 
-𝗤𝟭𝟭:
+</details>
+
+---
+
+### 47.
+
+```js
+console.log('5' + 3);
+```
+
+<details>
+<summary>Solution</summary>
+
+```js
+53 (type is 'string')
+```
+
+</details>
+
+---
+
+### 48.
+
+```js
+console.log(3 == '3');
+```
+
+<details>
+<summary>Solution</summary>
+
+```js
+true;
+```
+
+</details>
+
+---
+
+### 49. ;
+
+```js
 console.log(1 < 2 < 3);
-console.log(3 < 2 < 1);
+```
 
-𝗤𝟭𝟮:
+<details>
+<summary>Solution</summary>
+
+```js
+true;
+```
+
+</details>
+
+---
+
+### 50.
+
+```js
+console.log(3 < 2 < 1);
+```
+
+<details>
+<summary>Solution</summary>
+
+```js
+true;
+```
+
+</details>
+
+---
+
+### 51.
+
+```js
+console.log(typeof NaN);
+```
+
+<details>
+<summary>Solution</summary>
+
+```js
+number;
+```
+
+</details>
+
+---
+
+### 52.
+
+```js
+console.log(typeof typeof 1);
+```
+
+<details>
+<summary>Solution</summary>
+
+```js
+string;
+```
+
+</details>
+
+---
+
+### 53.
+
+```js
+console.log(1 + '1' - 1);
+```
+
+<details>
+<summary>Solution</summary>
+
+```js
+10;
+```
+
+</details>
+
+---
+
+### 54.
+
+```js
+console.log([] + [] + 'foo'.split(''));
+```
+
+<details>
+<summary>Solution</summary>
+
+```js
+'f,o,o';
+```
+
+Reason:
+--> [] + [] effectively becomes "" + "", which results in an empty string "".
+---> 'foo'.split('') result is ["f", "o", "o"].
+---> In JavaScript, when you use the + operator with a string and an array, the array is converted to its string representation before the concatenation.
+---> The string representation of an array is obtained by joining its elements with commas. For the array ["f", "o", "o"], the string representation is "f,o,o".
+
+</details>
+
+---
+
+### 55.
+
+```js
 var x = 0;
 console.log(x++);
 console.log(++x);
+```
 
-𝗤𝟭𝟯: console.log('1' - - '1');
+<details>
+<summary>Solution</summary>
 
-𝗤𝟭𝟰:
+```js
+0;
+2;
+```
+
+</details>
+
+---
+
+### 58.
+
+```js
+console.log('1' - -'1');
+```
+
+<details>
+<summary>Solution</summary>
+
+```js
+2;
+```
+
+---> '1' is converted to the number 1.
+---> -1 negates the value of '1', turning it into -1.
+
+---> The subtraction '1' - -1 is performed, resulting in 1 - (-1) = 2.
+
+</details>
+
+---
+
+### 56.
+
+```js
 console.log(!!null);
+```
+
+<details>
+<summary>Solution</summary>
+
+```js
+false;
+```
+
+</details>
+
+---
+
+### 57.
+
+```js
 console.log(!!undefined);
+```
 
-𝗤𝟭𝟱:
-console.log(false == '0');
-console.log(false === '0');
+<details>
+<summary>Solution</summary>
 
-𝗤𝟭𝟲:
+```js
+false;
+```
+
+</details>
+
+---
+
+### 58.
+
+```js
 var a = { b: 1 };
 var c = a;
 a.b = 2;
 console.log(c.b);
+```
 
-𝗤𝟭𝟳: console.log('hello' instanceof String);
+<details>
+<summary>Solution</summary>
 
-𝗤𝟭𝟴: console.log(1 + '1' - 1);
+```js
+2;
+```
 
-𝗤𝟭𝟵: console.log([] == 0);
-
-𝗤𝟮𝟬:
-console.log([] == ![]);
-console.log(!![]);
+</details>
 
 ---
+
+### 59.
+
+```js
+console.log('hello' instanceof String);
+```
+
+<details>
+<summary>Solution</summary>
+
+```js
+false;
+```
+
+- In JavaScript, when you use single quotes (') or double quotes (") to create a string, you're creating a primitive string, not an instance of the String object.
+- When you use the instanceof operator, it checks if an object is an instance of a specific type. In this case, 'hello' is a primitive string, not an instance of the String object.
+
+```js
+var strObject = new String('hello');
+console.log(strObject instanceof String); // Output: true
+```
+
+</details>
+
+---
+
+### 60.
+
+```js
+console.log([] == 0);
+```
+
+<details>
+<summary>Solution</summary>
+
+```js
+true;
+```
+
+</details>
+
+---
+
+### 61.
+
+```js
+console.log([] == ![]);
+```
+
+<details>
+<summary>Solution</summary>
+
+```js
+true;
+```
+
+- ![] evaluates to false
+- []==false evaluates to true
+
+</details>
+
+---
+
+### 62.
+
+```js
+console.log(!![]);
+```
+
+<details>
+<summary>Solution</summary>
+
+```js
+true;
+```
+
+</details>
+
+---
+
+### 63. Point to remeber
+
+- an empty array [] is considered a "truthy" value, ![] becomes !true, which evaluates to false.
+
+##### For `console.log([] == false)`
+
+- When comparing against a `boolean`, JavaScript first **converts the boolean to a number** (false becomes 0).
+- JavaScript attempts to convert the array to a primitive value for comparison.
+- For the empty array [], this conversion process effectively **turns it into an empty string ""**
+- JavaScript then converts the empty string "" to a number, which results in 0.
+- Final Comparison: Now the comparison is between 0 and 0, which is true

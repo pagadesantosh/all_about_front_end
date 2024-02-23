@@ -61,11 +61,10 @@
 26. Describe the role of the 'figcaption' element in HTML.
 27. What is the purpose of the 'progress' element in HTML5?
 28. How do you create a responsive web design using media queries in CSS?
-29. Explain the concept of 'cross-origin resource sharing' (CORS) in HTML.
-30. Discuss the importance of the 'role' attribute in HTML for accessibility.
-31. How can you include comments in HTML code?
-32. What is the purpose of the 'target' attribute in the 'a' tag?
-33. How do you create a dropdown menu in HTML?
-34. Explain the difference between 'cookie' and 'sessionStorage' in client-side storage.
-35. Describe the 'picture' element in HTML5 and its use in responsive images.
-36. How can you disable a hyperlink using HTML?
+29. Discuss the importance of the 'role' attribute in HTML for accessibility.
+30. How can you include comments in HTML code?
+31. What is the purpose of the 'target' attribute in the 'a' tag?
+32. How do you create a dropdown menu in HTML?
+33. Explain the difference between 'cookie' and 'sessionStorage' in client-side storage.
+34. Describe the 'picture' element in HTML5 and its use in responsive images.
+35. How can you disable a hyperlink using HTML?

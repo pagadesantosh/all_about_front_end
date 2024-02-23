@@ -136,23 +136,19 @@ let copyObject = personObject
 
 16. inside <div> </div> element I have 4 <p></p> tags. For each <p> tag I need to display a $ icon. What is your approach?
 
-17. Event Bubbling,
+17. How many types of functions do we have in javascript?
 
-18. Event Capturing
+18. How do we update the state in react?
 
-19. How many types of functions do we have in javascript?
+19. setState is synchronous or asynchronous
 
-20. How do we update the state in react?
+20. After using setState, I want this setState to update a variable, will this work?
 
-21. setState is synchronous or asynchronous
+21. Why we need to write DOCTYPE? Complete Syntax
 
-22. After using setState, I want this setState to update a variable, will this work?
+22. What is the box-model?
 
-23. Why we need to write DOCTYPE? Complete Syntax
-
-24. What is the box-model?
-
-25. Lifecycle methods of React without Will methods (those where deprecated)
+23. Lifecycle methods of React without Will methods (those where deprecated)
 
 Ans: Initial Render, Updates, Unmount
 

@@ -44,3 +44,5 @@
 - <u>**_Browsers started using JIT compiler_**</u> to make the engines faster.
 
 $${\color{red}Welcome}$$
+
+<div style="background-color: yellow; ">Text with a background color</div>

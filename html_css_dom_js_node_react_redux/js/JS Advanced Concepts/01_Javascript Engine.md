@@ -7,7 +7,7 @@
 
 - Written in C++ programming language
 - When we provide the JS files, there will be lexical analysis happening (e.g. refer below screenshot)
-  ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/60e29b0e-9054-42a5-ab65-41eb55d7cfd2)
+![alt text](<images used/Javascript Engine.png>)
 - Our JS code is broken into tokens (ex: parser is one of the token we can refer to)
 - And these tokens are formed into **Abstract Syntax Tree** (AST). For more details explore website: https://astexplorer.net
 - And from AST, the code will go through the Interpreter and it spits out into Bytecode (which is able to be interpreted by Javascript engine)

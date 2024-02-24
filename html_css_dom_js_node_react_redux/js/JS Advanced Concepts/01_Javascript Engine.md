@@ -9,12 +9,8 @@
 - When we provide the JS files, there will be lexical analysis happening (e.g. refer below screenshot)
   ![alt text](<images used/Javascript Engine.png>)
 
-```diff
-- Our JS code is broken into tokens
-+ (ex: parser is one of the token we can refer to)
-```
+#### <ins>**_Our JS code is broken into tokens (ex: parser is one of the token we can refer to)_**</ins>
 
--
 - And these tokens are formed into <ins>**Abstract Syntax Tree** (AST)</ins>. For more details explore website: https://astexplorer.net
 - And from `AST`, the code will go through the `Interpreter` and it spits out into `Bytecode` (which is able to be interpreted by Javascript engine)
 - **Profiler** is also called as a `monitor` and **watches our code** as it runs and notes on optimizing the code.
@@ -41,5 +37,5 @@
 - **So, instead of calling multiple times,** just replace this function with the output (output which is rendered after every iteration e.g. 5+4=9)
 - **_As the compiler doesn't need to repeat the translation for each pass through in that loop_**, the code generated from it is actually faster. And these sort of things is called optimization
 
-- As we have seen that both have pros and cons, <ins>**_that is why they came up with combining both Compiler & Interpreter_**</ins> and created **JIT Compiler** which is called as **Just In Time Compiler**.
+- As we have seen that both have pros and cons, <ins>**_that is why they came up with combining both Compiler & Interpreter_**</ins> and created **JIT Compiler** which is called as <ins>**_Just In Time Compiler_**</ins>.
 - <ins>**_Browsers started using JIT compiler_**</ins> to make the engines faster.

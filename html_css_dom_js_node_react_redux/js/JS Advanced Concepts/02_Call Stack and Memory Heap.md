@@ -1,26 +1,28 @@
 ### 2. Call Stack and Memory Heap
 
-#### <u>Call stack:</u>
+#### <ins>Call stack:</ins>
 
-- Place to **keep track of where we are in the code** so that we can run the code in order.
+- Place to <ins>**keep track of where we are in the code**</ins> so that we can run the code in order.
 - Call Stack operates in **LIFO Mode (Last In First Out)**
-- Call Stack stores functions and variables as your code executes at each entry of the stack helps us to know where we are in the code
+- Call Stack <ins>stores functions and variables as your code executes at each entry</ins> of the stack helps us to know where we are in the code
 
-#### <u>Memory Heap:</u>
+#### <ins>Memory Heap:</ins>
 
-- We need memory heap **as a place to store and write information**.
+- We need memory heap <ins>**as a place to store and write information**</ins>.
 - That is the reason we have a place for allocating memory, use memory and release memory.
-- There is no order in storing data.
+- <ins>There is no order in storing data.</ins>
 
-##### <u>Animation:</u>
+##### <ins>Animation:</ins>
+
 ![alt text](<images used/Call Stack.png>)
 
-##### <u>Example Scenario:</u>
+##### <ins>Example Scenario:</ins>
+
 ![alt text](<images used/CallStack memory allocation.png>)
 
-##### <u>Below shows us how Call Stack work behind the scenes:</u>
+##### <ins>Following shows us how Call Stack work behind the scenes:</ins>
 
-<i>Below is the code:</i>
+<ins>Below is the code:</ins>
 ![alt text](<images used/CallStack behind the scenes.png>)
 
 **Global Execution Context**: (anonymous)
@@ -32,5 +34,5 @@
 **After subtractTwo() function is invoked**, it is added to the top of the call stack
 ![alt text](<images used/Function invocation added to callstack-1.png>)
 
-**Note:** We can get Maximum call stack size exceeded in one of the scenarios like **Recursion** which means a function calling itself
+**Note:** <ins>**_We can get Maximum call stack size exceeded_**</ins> in one of the scenarios like **Recursion** which means a function calling itself
 ![alt text](<images used/Maximum call stack exceeded.png>)

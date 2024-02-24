@@ -1,58 +1,65 @@
 ### 7. Hoisting
 
-- Javascript Hoisting refers to the process whereby the <strong>interpreter appears to move the declaration of functions, variables or classes to top of their scope</strong>, prior to the execution of code.
+- Javascript Hoisting refers to the process whereby the <ins><strong>interpreter appears to move the declaration of functions, variables or classes to top of their scope</strong></ins>, **_prior_** to the execution of code.
+  <br/>
+- By Hoisting it means the <ins>**_behavior of moving the variables or function declarations to the top_**</ins>.
+  <br/>
 
-- By Hoisting it means the **_behavior of moving the variables or function declarations to the top_**.
+- During `compilation` phase, <ins>**_variables are partially hoisted_**</ins> and <ins>**_function declarations are hoisted_**</ins>.
 
-- During compilation phase, **_variables are partially hoisted_** and **_function declarations are hoisted_**. Variables declared with `var keyword` if logged before initialized will return **_undefined_**.
+  - Variables declared with `var` keyword <ins>**_if logged before initialized_**</ins> will return **_undefined_**.
+    <br/>
 
 - Whenever JS engine **sees the var and function keywords** in the code, they are hoisted and JS engine **_allocates some memory_**.
+  <br/>
 
 - As we have two phases (creation phase and execution phase), we have **_Hoisting in the creation phase_**.
+  <br/>
 
 - White line divides creation phase and execution phase
+  <br/>
 
-##### <u>Refer below screenshot:</u>
+##### <ins>Refer below screenshot:</ins>
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/3f31cc53-ff18-458c-b939-f00d09b0be86)
+![alt text](<images used/Hoisting-1.png>)
 
-##### <u>Refer below screenshot:</u>
+##### <ins>Refer below screenshot:</ins>
 
-- Functional declarations can be accessed before initialization
-- variable declaration if accessed before will return undefined.
-  ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/df43dbb7-7ced-4830-bed9-96aea8d354a8)
+- ***Functional declarations*** **can** be accessed before `initialization`
+- ***variable*** declaration if **accessed** before will return **undefined**.
+![alt text](<images used/Hoisting-2.png>)
 
-##### <u>Reference Error: sing is not defined</u>
+##### <ins>Reference Error: sing is not defined</ins>
 
 - Because it is not hoisted
-  ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/26e8e285-21c4-40af-841e-63b61ba4b418)
+  ![alt text](<images used/Hoisting-3.png>)
 
-##### <u>if var teddy is replaced with let teddy, it will error out</u>
+##### <ins>if var teddy is replaced with let teddy, it will error out</ins>
 
 - because let and const are moved to the top
-  ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/eba0f71d-01f5-49aa-aaa2-0500a296e339)
+![alt text](<images used/Hoisting-4.png>)
 
-##### <u>functional expressions declared with var</u>
+##### <ins>functional expressions declared with var</ins>
 
 - Function is only going to be run after it was defined
 - logging **only sing2 variable** will **result in undefined**.
 - e.g. in below invoking the function sing2() **_beforehand will result in TypeError_** not defined
-  ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/84230715-81d8-4a15-80e1-ee0effa11159)
+![alt text](<images used/Hoisting-5.png>)
 
 - if you move the function invocation line below, then it will work as per the expectations.
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/d370ff0f-33ae-48de-a702-ef5535cfef0e)
+![alt text](<images used/Hoisting-6.png>)
 
-##### <u>Below Hoisting Example:</u>
+##### <ins>Below Hoisting Example:</ins>
 
 - This returns undefined because of the function execution context
 - **_Every time we run a function, `a new execution context gets created` and we have to go through the creation phase and execution phase_**
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/d50d7418-f57c-4c5f-94ff-0c83a07f3d70)
+![alt text](<images used/Hoisting-7.png>)
 
-##### <u>Above Code is converted into below code by JS engine by reading the code, that is why we see undefined logged.</u>
+##### <ins>Above Code is converted into below code by JS engine by reading the code, that is why we see undefined logged.</ins>
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/ea04566d-f3f8-47bf-8396-2de71e0986ac)
+![alt text](<images used/Hoisting-8.png>)
 
 ---
 

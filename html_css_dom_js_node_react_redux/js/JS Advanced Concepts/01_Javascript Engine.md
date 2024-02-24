@@ -38,10 +38,10 @@
 - As we have seen that both have pros and cons, <b><i style='background:yellow'>that is why they came up with combining both Compiler & Interpreter</i></b> and created **JIT Compiler** which is called as **Just In Time Compiler**.
 - <u>**_Browsers started using JIT compiler_**</u> to make the engines faster.
 
-<table>
-  <tr>
-    <td style="background-color: red;">Red</td>
-    <td style="background-color: green;">Green</td>
-    <td style="background-color: blue;">Blue</td>
-  </tr>
-</table>
+```diff
+- text in red
++ text in green
+! text in orange
+# text in gray
+@@ text in purple (and bold)@@
+```

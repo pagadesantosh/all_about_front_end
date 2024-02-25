@@ -3,11 +3,11 @@
 - In order to manipulate `this` keyword, there are three important methods.
 - In order to borrow methods, we can make use of call apply bind.
 
-**Call**: underneath the hood, all functions when created have this property called call that allows us to call/invoke the function
+<ins>**Call**</ins>: underneath the hood, **all functions when created have `this` property** called `call` that **allows us to call/invoke** the function
 
 ```js
 // call syntax:
-Function.call(context, thisArg, thisArg1, thisArg2);
+Function.call(context, thisArg1, thisArg2, thisArg3);
 ```
 
 **apply**: instead of a.call(), we can also use a.apply() in one of this case.

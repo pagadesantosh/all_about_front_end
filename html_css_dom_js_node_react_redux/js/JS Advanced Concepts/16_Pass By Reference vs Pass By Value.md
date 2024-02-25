@@ -1,35 +1,38 @@
 ### 16. Pass By Reference vs Pass By Value
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/be0de22b-710b-4b73-b50d-115bf2b01c2a)
+![alt text](<images used/Pass by Value and Pass By reference-1.png>)
 
-**Pass By Value**: Primitives follow this pass by value, which are only changed when a new value is assigned to them in memory.
+<ins>**Pass By Value**</ins>: `Primitives` follow this **pass by value**, which are only changed when a new value is assigned to them in memory.
 
-e.g. If we have variables a & b (then they really don't know each other)
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/16351786-5839-4b84-82cd-06c14e114161)
+e.g. If we have variables a & b (then <ins>**_they really don't know each other_**</ins>)
+![alt text](<images used/Pass by Value and Pass By reference-2.png>)
 
-**_Summary:_** Pass by value simply means we copy the value and we create that value somewhere else in memory.
+**_Summary:_**
 
-**Pass By Reference**: Objects follow this pass by reference.
+- Pass by value simply means **we copy the value** and we <ins>**_create that value somewhere else in memory_**</ins>.
+
+<br/>
+
+<ins>**Pass By Reference**</ins>: `Objects` follow this pass by reference.
 
 - If you assign one of the object to another and If you change the reference of one object, then the other object also updates
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/cce8253d-3723-4207-89ea-7b509abcc62f)
+![alt text](<images used/Pass by Value and Pass By reference-3.png>)
 
 ```js
 //output:
 {name: 'Yao', password: 'easypeasy',}
 {name: 'Yao', password: 'easypeasy'}
-
 ```
 
-<u>**Solutions**:</u>
+<ins>**Solutions to avoid the above problem of referencing and mutation**:</ins>
 **_Solution 1_**: `let clonedObj = Object.assign({}, originalObj)`
 **_Solution 2_**: `let clonedObj = {...originalObj}`
 
-<u>**Limitations of Object.assign and spread**:</u>
+<ins>**Limitations of` Object.assign` and `spread`**:</ins>
 
 - This doesn't work for nested objects
-- Because it **_does the shallow clone_**, which means it only clones first layer
+- Because it <ins>**_does the shallow clone_**</ins>, which means it only clones first layer
 
 ```js
 let obj = {
@@ -47,7 +50,7 @@ console.log(clone1); // {a: 'a', b: 'b', c: { deep: 'hahaha' }}
 console.log(clone2); // {a: 'a', b: 'b', c: { deep: 'hahaha' }}
 ```
 
-<u>**Solution for Deep Clone instead of shallow clone**:</u>
+<ins>**Solution is "Deep Clone" instead of shallow clone**:</ins>
 
 ```js
 let deepClone = JSON.stringify(JSON.parse(originalObj));
@@ -67,23 +70,20 @@ let y = 'Hi';
 let x = true;
 ```
 
-##### After assigning 'c' variable equal to 'a' (let c = a), even if we change the 'c' value it doesn't effect the 'a' value because values are pointed out to separate memory location here.
+##### After assigning 'c' variable equal to 'a' (let c = a), <ins>_even if we change the 'c' value it doesn't effect the 'a' value because values are pointed out to separate memory location_</ins> here.
 
-<img width="444" alt="image" src="https://user-images.githubusercontent.com/42731246/213954104-84a450de-c04d-4598-b489-50ce36264d1d.png">
-
----
+## ![alt text](<images used/Pass by Value and Pass By reference-4.png>)
 
 ### Pass By Reference:
 
-- Arrays, Objects, Classes are passed by reference and thus can be modified.
+- `Arrays`, `Objects`, `Classes` are passed by **reference** and thus can be modified.
+- variable c is an array and it points out to the memory address.
+- After assigning 'd' variable equal to 'c' (let d = c), it <ins>**_doesn't create a new memory location for variable 'd'_**</ins> (instead <ins>**_points out to the same memory_**</ins> address/location)
+- after assigning (let d = c), <ins>**_if we are performing any operation on one of the variable (c or d), then it changes the values_**</ins> of both (variable c and d)
 
-- variable c is an array and it points out to the memory address
-- After assigning 'd' variable equal to 'c' (let d = c), it doesn't create a new memory location for variable 'd' (instead points out to the same memory address/location)
-- after assigning (let d = c), if we are performing any operation on one of the variable (c or d), then it changes the values of both (variable c and d)
+<ins> **Below is the example:**</ins>
 
-##### Below is the example:
-
-- variable c and variable d now prints [1,2,3] if logged because they are pointing to same memory location.
+-` variable c` and `variable d` now <ins>**prints [1,2,3]**</ins> if logged because they are pointing to same memory location.
 
 <img width="571" alt="image" src="https://user-images.githubusercontent.com/42731246/213954630-910fa1bb-4eda-405e-8293-63fd3e342a24.png">
 

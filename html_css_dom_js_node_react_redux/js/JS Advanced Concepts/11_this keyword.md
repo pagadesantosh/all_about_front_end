@@ -1,6 +1,6 @@
 ### 11. this keyword:
 
-- this is the object that the function is a property of
+- `this` <ins>**_is the object that the function is a property of_**</ins>
 
 ##### <u>Example 1:</u>
 
@@ -21,25 +21,24 @@ function b() {
 b();
 ```
 
-- **_Inside a object, if there is any function property_**, then this keyword refers to its object.
-  ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/a031dd50-a015-48ce-ba5e-7e1a2aae010d)
-
-- anotherFunc is invoked inside sing() method property, and when we log `this` it logs **_Window object_**
+- **_Inside an object, if there is any function property_**, then <ins>**this keyword refers to its object**</ins>.
+  ![alt text](<images used/this keyword-1.png>)
+- anotherFunc is invoked inside sing() method property, and when we log `this` it logs <ins>**_Window object_**</ins>
 
 - this keyword is **_dynamically scoped_**. It doesn't matter where it's written, **_it matters on how the function is called_**.
 
 ##### <u>Arrow functions solve the problem here:</u>
 
-- Arrow functions has a lexical this behavior unlike normal functions (so it lexically bind this)
+- **_Arrow functions has a lexical `this` behavior_** unlike normal functions (so it lexically bind this)
 - In our below case (whatever the object is surrounding this while the main object is)
-  ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/fe8d6530-cf3c-4886-934d-9d730037e391)
+  ![alt text](<images used/this keyword-2.png>)
 
-##### <u>Before ES6, by applying `bind`:</u>
+##### <u>Before ES6, by applying `bind`, we can change the context of `this`:</u>
 
 - **_return the anotherFunc and bind to this_**
 - as we are returning this piece of code outside the functional expression code, `this keyword mentioned in the bind` refers to the object
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/51d08d7b-e88e-4cff-95e6-68fe76da2b89)
+![alt text](<images used/this keyword-3.png>)
 
 ##### <u>Before ES6, using reference variable:</u>
 
@@ -47,31 +46,29 @@ b();
 - e.g. `var self = this;`
 - At the time the above code is ran, **_self start maintaining that reference to the object_** so that **we can use self** going forward **_(instead of this)_**
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/b2794857-a535-4325-bd04-592657a3a5ee)
+![alt text](<images used/this keyword-4.png>)
 
-
------
-
+---
 
 ```js
 function CreateCustomer(name, accountBalance, branch) {
-  this.name = name
-  this.accountBalance = accountBalance
-  this.branch = branch
+  this.name = name;
+  this.accountBalance = accountBalance;
+  this.branch = branch;
 }
 
 CreateCustomer.prototype.addMoney = function () {
-  this.accountBalance++
-}
+  this.accountBalance++;
+};
 
 CreateCustomer.prototype.fetchBalance = function () {
-  console.log("The balance is" + this.accountBalance)
-}
+  console.log('The balance is ' + this.accountBalance); //The balance is 101
+};
 
-const customer1 = new CreateCustomer("Alex", 100, "XYZ")
+const customer1 = new CreateCustomer('Alex', 100, 'XYZ');
 
-customer1.addMoney()
-customer1.fetchBalance()
+customer1.addMoney();
+customer1.fetchBalance();
 ```
 
 ##### CreateCustomer function + Object bundle has the Prototype object and in this we have two functions
@@ -98,15 +95,15 @@ customer1.fetchBalance()
 
 ##### Next we are calling customer1.addMoney()
 
-- So javascript looks for the customer1 in the global memory, it finds one
+- So javascript looks for the **customer1 in the global memory**, it finds one
 - we are looking for addMoney (javascript doesn't finds it inside the customer1 object)
-- It goes to the proto property of customer1 object
-- proto property takes the javascript up to the Prototype of the createCustomer Function and here in the Prototype we find the addMoney it execute it.
+- It goes to the **proto** property of **customer1** object
+- **proto** property takes the javascript up to the **Prototype** of the **createCustomer** Function and here in the Prototype ***we find the addMoney*** it execute it.
 
 ##### Next we are executing the addMoney()
 
 - It finds out that this.accountBalance++ is written
-- So inside the addMoney() function, this keyword is pointing to customer1
+- So inside the addMoney() function, `this` keyword is pointing to **customer1**
 
 <img width="164" alt="image" src="https://user-images.githubusercontent.com/42731246/215963594-24fd019a-becf-42a6-a682-81f217ce45eb.png">
 

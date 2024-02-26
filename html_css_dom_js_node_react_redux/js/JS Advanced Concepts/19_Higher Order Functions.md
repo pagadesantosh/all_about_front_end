@@ -1,6 +1,6 @@
 ### 19. Higher Order Functions:
 
-- Higher order functions are simply a function that can take a function as a argument or a function that returns another function
+- Higher order functions are simply <ins>**_a function that can take a function as a argument or a function that returns another function_**</ins>
 
 ```js
 const giveAccessTo = (name) => {
@@ -21,9 +21,10 @@ function letPerson(person, fn) {
   } else if (person.level === 'user') {
     fn(500);
   }
+  //function returns another function
   return giveAccessTo(person.name);
 }
-
+//function takes a function as a argument
 letPerson({ level: 'user', name: 'Tim' }, authenticate);
 ```
 
@@ -33,4 +34,7 @@ letPerson({ level: 'user', name: 'Tim' }, authenticate);
 const multiplyBy = (num1) => (num2) => num1 * num2;
 console.log(multiplyBy(4)(6)); //24
 ```
-<u>Summary</u>: keeping our code more generic and following the idea of DRY (Don't Repeat Yourself) by breaking the code into small functionalities
+
+<ins>**_Summary_**</ins>:
+
+- Keeping our code more generic and following the idea of DRY (Don't Repeat Yourself) by breaking the code into small functionalities

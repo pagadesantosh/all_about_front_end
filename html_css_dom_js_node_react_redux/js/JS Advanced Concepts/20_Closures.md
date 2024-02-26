@@ -1,15 +1,17 @@
-### 20. Closures
+## Closures
 
-##### We have closures in javascript because of these two things:
+We have closures in javascript because of these two things:
 
-- **1. function()**
-- **2. Lexical Scope**
+**1. function()**
+**2. Lexical Scope**
 
-<u>**_Closures is simply a combination of function and the lexical scope environment from which it was declared._**</u>
+**_Closures is simply <ins>a combination of function and the lexical scope environment</ins> from which it was declared._**
 
-<u><b>Note:</b></u> Closures **_allow a function to access variables_** from an enclosing scope or environment, **_even after it is closed and executed_**.
+<ins><b>Note:</b></ins>
 
-##### Closure is <u>when you have a function defined inside of another function, that inner function has access to the variables and scope of the outer function even if the outer function finishes executing and those variables are no longer accessible outside of that function</u>."
+- Closures <ins>**_allow a function to access variables_** from an enclosing scope or environment, **_even after it is closed and executed_**</ins>.
+
+- ##### Closure is <ins>when you have a function defined inside of another function, _that inner function has access to the variables and scope of the outer function even if the outer function finishes executing and those variables are no longer accessible outside of that function_</ins>."
 
 ```js
 function a() {
@@ -32,15 +34,16 @@ console.log(a()()()); // grandpa > father > son
 
 - The javascript engine will make sure that the **_function has access to all the variables outside of the function with this closure_**.
 
-- So instead of garbage collected, JS engine sees that these functions formed as a closure and thereby putting them into the closure box after invocation. Instead of c checking the variables in the GOC(Global Execution Context), it checks first in the Closure box and when it finds them in the box, it returns them.
+- So **instead of garbage collected**, JS engine sees that **_these functions formed as a closure_** and thereby putting them into the closure box after invocation.
+- Instead of c checking the variables in the GOC(Global Execution Context), **_it checks first in the Closure box_** and when it finds them in the box, it returns them.
 
 ---
 
 #### Lexical Scope
 
-- Lexical Scope defines how variable names are resolved in nested functions.
-- So if we have a child function inside a parent function then the child function will have access to the variables defined in the parent function and also has access to the global scope
-- This is often confused with the closure, Lexical Scope is just a important part of the Closure.
+- Lexical Scope **defines how variable names are resolved** in nested functions.
+- So if we have a child function inside a parent function **_then the child function will have access to the variables defined in the parent function and also has access to the global scope_**
+- <ins>**This is often confused with the closure**</ins>, Lexical Scope is just a important part of the Closure.
 
 ##### Example 1 (Lexical Scope)
 
@@ -68,7 +71,7 @@ parentFunction();
 
 #### Closure:
 
-- A closure is a function having access to the parent scope, even after the parent function is closed.
+- A **closure** is **_a function having access to the parent scope, <ins>even after the parent function is closed.</ins>_**
 
 - <strong>Another Definition:</strong> A closure is created when we define a function, not when a function is executed.
 
@@ -105,8 +108,8 @@ result(); // returns child function
 ##### Example 3 (Closures with IIFE)
 
 - IIFE (Immediately Invoked Function Expression)
-- If you don't invoke the privateCounter then it only logs as initial value : 0 (because it is immediately invoked function expression)
-- If you log the privateCounter() then it will start printing the inner funciton
+- If you don't invoke the **privateCounter** then it only logs as initial value : 0 (because it is immediately invoked function expression)
+- If you log the **privateCounter**() then it will start printing the inner function
 
 ```js
 const privateCounter = (() => {
@@ -545,9 +548,9 @@ Inner Variable: inner
 
 <strong>Code Walkthrough</strong>:
 
-- When we first call the outerFunction, we have this outerVariable which we set to 'outside'
-- The reason why we're able to access the outerVariable inside the of innerFunction is because of the Closures.
-- When the outerFunction runs, the outerVariable is only available inside the outerFunction (but this function is done executing)
+- When we first call the `outerFunction`, we have this `outerVariable` which we set to 'outside'
+- The reason why we're able to access the outerVariable inside the of innerFunction is because of the `Closures`.
+- When the `outerFunction` runs, the outerVariable is only available inside the `outerFunction` (but this function is done executing)
 
 ```js
 //This line executes all the innerFunction code

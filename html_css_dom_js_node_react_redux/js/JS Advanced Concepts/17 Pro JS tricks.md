@@ -370,22 +370,104 @@ console.log('0' === 0); //false
 
 #### 16. Better way to accept arguments
 
-```js
-function downloadData(url, resourceId, searchTest, pageNo, limit) {}
-
-// In this case you need to remember the order
-downloadData(...);
-
-```
+##### 1. Example with Spread Operator in Function Call
 
 ```js
-// Another way
-function downloadData({ url, resourceId, searchTest, pageNo, limit } = {}) {
-  // return something
+function downloadData({ url, resourceId, searchText, pageNo, limit } = {}) {
+  // Function implementation
 }
 
-// In this case you need to remember the order
-downloadData({ resourceId: 2, url: '/posts', searchText: 'WebDev' });
+const params = {
+  resourceId: 2,
+  url: '/posts',
+  searchText: 'WebDev',
+  pageNo: 1,
+  limit: 10,
+};
+
+// Use spread operator to pass parameters
+downloadData({ ...params });
+```
+
+##### 2. Direct Use of Rest Parameters in Function Definition
+
+```js
+function downloadData(...args) {
+  // args is an array of arguments
+}
+
+// This loses the benefits of named parameters
+downloadData('/posts', 2, 'WebDev', 1, 10);
+```
+
+#### Example 1: Collecting Extra Arguments
+
+```js
+function logData(primaryData, ...additionalData) {
+  console.log('Primary Data:', primaryData);
+  console.log('Additional Data:', additionalData);
+}
+
+// Invocation
+logData('Core Info', 'Extra 1', 'Extra 2', 'Extra 3');
+```
+
+#### Example 2: Flexible Function Invocation with Object Properties
+
+```js
+function fetchData({ url, method, ...rest }) {
+  console.log(`Fetching ${url} with method ${method}`);
+  console.log('Additional options:', rest);
+}
+
+// Invocation
+fetchData({
+  url: 'https://example.com/data',
+  method: 'GET',
+  headers: { 'Content-Type': 'application/json' },
+  credentials: 'include',
+});
+```
+
+#### Example 3: Using Spread Operator for Invocation with Merged Parameters
+
+```js
+const baseParams = {
+  url: 'https://example.com/data',
+  method: 'GET',
+};
+
+const extraParams = {
+  credentials: 'include',
+  headers: { 'Content-Type': 'application/json' },
+};
+
+// Invocation
+fetchData({ ...baseParams, ...extraParams });
+```
+
+#### Example 4
+
+```js
+function createProfile(name, age, occupation) {
+  console.log(`Name: ${name}, Age: ${age}, Occupation: ${occupation}`);
+}
+
+const userDetails = ['Jane Doe', 28, 'Software Developer'];
+
+// Using spread to pass array elements as individual arguments
+createProfile(...userDetails);
+```
+
+#### Example 5
+
+```js
+function updateSettings({ theme = 'light', layout = 'grid' } = {}) {
+  console.log(`Theme: ${theme}, Layout: ${layout}`);
+}
+
+// Passing only one parameter, others will use default
+updateSettings({ theme: 'dark' });
 ```
 
 ---

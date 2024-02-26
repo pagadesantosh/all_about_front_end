@@ -1,19 +1,19 @@
 - As we know that **_arrays and functions are nothing but objects_** in javascript.
-  ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/4a5db691-9da7-473e-9383-e4abca54b390)
+  ![alt text](<images used/Prototypical Inheritance-1.png>)
 - Javascript uses prototypical inheritance, By this means **_array object/function object gets access to their properties and methods_** of the object through this prototypical inheritance
 
-###### There is a way to see this prototype chain (using double underscore proto)
+- There is a way to see this prototype chain (using double underscore proto i.e; `__proto__`)
 
 **Arrays:**
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/4dacbba0-eba7-462a-b4eb-acfe4ac664e9)
+![alt text](<images used/Prototypical Inheritance-2.png>)
 
 **Functions:**
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/47301e2e-952f-43d5-a86d-22f59dce8b42)
+![alt text](<images used/Prototypical Inheritance-3.png>)
 
 **Object**
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/93e92558-2b2d-4e7d-84ed-5041c00d4f20)
+![alt text](<images used/Prototypical Inheritance-4.png>)
 
-<u>**Let's go through few examples:**</u>
+<ins>**Let's go through few examples:**</ins>
 
 ```js
 // Object 1
@@ -53,7 +53,7 @@ console.log(singleLizard()); // I'm Kiki, the breather of fire
 
 ---
 
-<u>**What if the object gets more complicated:**</u>
+<ins>**What if the object gets more complicated:**</ins>
 
 ```js
 // Updated Object 1, added if condition to the sing method
@@ -135,17 +135,17 @@ lizard.fire; // true
 lizard.fight; // 1
 ```
 
-**_What we were able to do here is, `inherit all the properties and methods of dragon object(Object 1)` + whatever the properties we define in our lizard(Object 2) will stay with us_**
+**_What we were able to do here is, <ins>inherit all the properties and methods of dragon object(Object 1)</ins> + <ins>whatever the properties we define in our lizard(Object 2) will stay with us_</ins>**
 
 ```js
-//isPrototypeOf is being checked in the Dragon Object prototype chain,
+// isPrototypeOf is being checked in the Dragon Object prototype chain,
 // does lizard inherit the properties from dragon?
 dragon.isPrototypeOf(lizard); //true
 ```
 
 ---
 
-<u>**Looping through the object:**</u>
+<ins>**Looping through the object:**</ins>
 
 ```js
 // Object 1
@@ -185,7 +185,7 @@ sing;
 
 ---
 
-<u>**Looping through the object:**</u>
+<ins>**Looping through the object:**</ins>
 
 <b>`using hasOwnProperty`:</b>
 
@@ -226,9 +226,9 @@ name;
 fight;
 ```
 
-<u>**Note:**</u> Never use **_double underscore proto_** 😄
+<ins>**Note:**</ins> Never use **_double underscore proto_** 😄
 
-<u>**Why Prototypical Inheritance is useful:**</u>
+<ins>**Why Prototypical Inheritance is useful:**</ins>
 
 - The fact that objects can share prototypes means that you can have **_objects with properties & methods that are pointing to the same place in memory_**, thus being memory efficient.
 
@@ -238,60 +238,60 @@ fight;
 
 ##### Objects
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/79a8a574-ee80-468f-92e5-a24ff71a12ca)
+![alt text](<images used/Prototypical Inheritance-5.png>)
 
 ##### Functions
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/2857a213-49d3-41bb-a213-1b1b78a085b7)
+![alt text](<images used/Prototypical Inheritance-6.png>)
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/73d39ab0-dbab-4772-9e3e-4a3b7090c395)
+![alt text](<images used/Prototypical Inheritance-7.png>)
 
 **_proto links to prototype_**
 
-- _proto is simply a reference or a pointer to Prototype Object_
-  ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/3f3dfcff-a206-461d-aad6-4bedbd37a0ca)
+_proto is simply a reference or a pointer to Prototype Object_
+![alt text](<images used/Prototypical Inheritance-8.png>)
 
 **_proto links up to the Function()_**
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/4c31909f-514a-4812-8186-f33b90dfdae1)
+![alt text](<images used/Prototypical Inheritance-9.png>)
 
 **WHAT IS HAPPENING**
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/f45ee734-6513-4198-858a-e4c1a96aea8d)
+![alt text](<images used/Prototypical Inheritance-10.png>)
 
 ##### Functions
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/5970a307-c29d-40ec-9914-5fc09f027146)
+![alt text](<images used/Prototypical Inheritance-11.png>)
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/4089d2a4-66ca-41b5-9e4d-11fb1e17bd32)
+![alt text](<images used/Prototypical Inheritance-13.png>)
 
 ##### Arrays
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/66485063-c529-45a8-a5d1-19ce25dacc13)
+![alt text](<images used/Prototypical Inheritance-12.png>)
 
-<u>**One thing to remember is:**</u> **_double underscore proto_** property actually **_lives on the prototype_**
+<ins>**One thing to remember is:**</ins> **_double underscore proto_** `__proto__` property actually <ins>**_lives on the prototype_**</ins>
 
 ---
 
-Safe way to create own prototypes is by using Object.create()
+Safe way to <ins>**create own prototypes**</ins> is by using <ins>**_Object.create()_**</ins>
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/e281f985-1bd1-4516-a110-b0ad66fde5a4)
+![alt text](<images used/Prototypical Inheritance-14.png>)
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/12437a00-af2d-40c3-be35-067f53c50621)
+![alt text](<images used/Prototypical Inheritance-15.png>)
 
-**_In Functions, The only time when we use prototypes is when we call constructor functions._**
+**_In Functions, <ins>The only time when we use prototypes is when we call constructor functions.</ins>_**
 
-- Constructor functions usually start with a capital letter and they contain the prototype that we use
+- `Constructor` functions usually **start with a capital letter** and they contain the prototype that we use
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/c6aecbca-bc7b-49e1-8050-868d6c3f2091)
+![alt text](<images used/Prototypical Inheritance-16.png>)
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/31b14a56-03e6-4fc2-b817-a706144cb6e8)
+![alt text](<images used/Prototypical Inheritance-17.png>)
 
 ```js
 typeof Object; //'function'
 ```
 
-<u>**One thing to remember is:**</u> Every function has a prototype property and it references to an object used to attach properties that will be inherited by objects further down the prototype chain. The last object in the chain is this built in object (Object.prototype)
+<ins>**One thing to remember is:**</ins> Every function has a prototype property and it references to an object used to attach properties that will be inherited by objects further down the prototype chain. The last object in the chain is this built in object (Object.prototype)
 
-<u>**Another thing to remember is:**</u> **_Object_** is a function because it has the prototype and now Object.prototype is what we call the base object
+<ins>**Another thing to remember is:**</ins> **_Object_** is a function because it has the prototype and now Object.prototype is what we call the base object
 
 **WHAT IS HAPPENING**
 ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/7254867f-2f2f-4a56-bb64-788456650e9a)
@@ -301,12 +301,12 @@ typeof Object; //'function'
 **Only Functions have prototypes**
 ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/dd881eb1-6840-4cf9-840b-eea18ffe0b88)
 
-<u>**Summary:**</u>
+<ins>**Summary:**</ins>
 Using prototypes, we avoid repeating ourselves. We avoid adding the same code over and over and over and being inefficient with our memory.
 
 ---
 
-<u><b>Interview Question:</b></u> Difference between proto and prototype
+<ins><b>Interview Question:</b></ins> Difference between proto and prototype
 
 `__proto__`:
 
@@ -317,7 +317,7 @@ Using prototypes, we avoid repeating ourselves. We avoid adding the same code ov
 
 `prototype:`
 
-- prototype is a **_property of a function object_**, <u>specifically a constructor function</u>, that is used to set the prototype of new objects created with that constructor function
+- prototype is a **_property of a function object_**, <ins>specifically a constructor function</ins>, that is used to set the prototype of new objects created with that constructor function
 - Ex: if you have a constructor function `MyConstructor`, MyConstructor.prototype will be the object that new instances created with new MyConstructor will have in their `__proto__`
 
 ```js

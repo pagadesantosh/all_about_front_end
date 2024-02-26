@@ -2,42 +2,48 @@
 
 ```js
 // noob
-
 let hungry = true;
 let eat;
 
 if (hungry === true) {
-  eat = "yes";
+  console.log((eat = 'yes'));
 } else {
-  eat = "no";
+  console.log((eat = 'no'));
 }
 ```
 
 ```js
 // pro
-
 let hungry = true;
-let eat = hungry ? "yes" : "no";
+let eat = hungry ? console.log('yes') : console.log('no');
 ```
 
 ---
 
-#### 2. Number to string/ String to Number
+#### 2. Number to string (or) String to Number
 
 ```js
 //noob
 let num = 15;
+let str = num.toString(); // num to string
+console.log('string', str); // string 15
+console.log('typeof', typeof str); //typeof string
 
-let s = num.toString(); // num to string
-let n = Number(s); // string to Number
+let num1 = Number(str); // string to Number
+console.log('number', num1); // number 15
+console.log('typeof', typeof num1); // typeof number
 ```
 
 ```js
 // pro
-
 let num = 15;
-let s = num + ""; // num to string
-let n = +s; // string to Number
+let str = num + ''; // num to string
+console.log('string', str); //string 15
+console.log('typeof', typeof str); //typeof string
+
+let num1 = +str; // string to Number
+console.log('number', num1); //number 15
+console.log('typeof', typeof num1); // typeof number
 ```
 
 ---
@@ -47,18 +53,42 @@ let n = +s; // string to Number
 ```js
 // noobs
 
-for(let i=0; i<arraySize; i++){
- filledArray[i]{'hello':'goodbye'}
+let arraySize = 5;
+let filledArray = [];
+for (let i = 0; i < arraySize; i++) {
+  filledArray[i] = { hello: 'goodbye' };
 }
+console.log(filledArray);
 
+/*
+[
+  ({
+    hello: 'goodbye',
+  },
+  {
+    hello: 'goodbye',
+  },
+  {
+    hello: 'goodbye',
+  },
+  {
+    hello: 'goodbye',
+  },
+  {
+    hello: 'goodbye',
+  })
+];
+*/
 ```
 
 ```js
 // pro
-
+let arraySize = 5;
 let filledArray = new Array(arraySize)
   .fill(null)
-  .map(() => ({ hello: "goodbye" }));
+  .map(() => ({ hello: 'goodbye' }));
+
+console.log(filledArray);
 ```
 
 ---
@@ -67,25 +97,40 @@ let filledArray = new Array(arraySize)
 
 ```js
 //noobs
-
-let dynamic = "value";
-
+let dynamic = 'value';
 let user = {
   id: 1,
 };
 
-user[dynamic] = "other value";
+user[dynamic] = 'other value';
+console.log(user);
+
+/*
+{
+    "id": 1,
+    "value": "other value"
+}
+*/
 ```
 
 ```js
 //pro
 
-let dynamic = "value";
+let dynamic = 'value';
 
 let user = {
   id: 1,
-  [dynamic]: "other value",
+  [dynamic]: 'other value',
 };
+
+console.log(user);
+
+/*
+{
+    "id": 1,
+    "value": "other value"
+}
+*/
 ```
 
 ---
@@ -94,7 +139,6 @@ let user = {
 
 ```js
 //noob
-
 let array = [100, 23, 23, 23, 23, 67, 45];
 
 let outputArray = [];
@@ -113,21 +157,20 @@ for (let j = 0; j < array.length; j++) {
   flag = false;
 }
 
-console.log(outputArray); //outputArray = [100, 23, 67, 45]
+console.log(outputArray); //[100, 23, 67, 45]
 ```
 
 ```js
 //pro
-
 let array = [100, 23, 23, 23, 23, 67, 45];
 
 // 1 way
 let outputArray = [...new Set(array)];
 
 // 2nd way
-let outputArray = Array.from(new Set(array));
+// let outputArray = Array.from(new Set(array));
 
-console.log(outputArray); //outputArray = [100, 23, 67, 45]
+console.log(outputArray); //[100, 23, 67, 45]
 ```
 
 ---
@@ -136,8 +179,7 @@ console.log(outputArray); //outputArray = [100, 23, 67, 45]
 
 ```js
 //noob
-
-let arr = ["value1", "value2", "value3"];
+let arr = ['value1', 'value2', 'value3'];
 
 let newObj = {};
 
@@ -146,13 +188,30 @@ for (let i = 0; i <= arr.length; i++) {
     newObj[i] = arr[i];
   }
 }
+console.log(newObj);
+/*
+{
+    "0": "value1",
+    "1": "value2",
+    "2": "value3"
+}
+*/
 ```
 
 ```js
 // pro
-let arr = ["value1", "value2", "value3"];
+let arr = ['value1', 'value2', 'value3'];
 
 let newObj = { ...arr };
+console.log(newObj);
+
+/*
+{
+    "0": "value1",
+    "1": "value2",
+    "2": "value3"
+}
+*/
 ```
 
 ---
@@ -161,7 +220,6 @@ let newObj = { ...arr };
 
 ```js
 // noob
-
 let numbers = {
   one: 1,
   two: 2,
@@ -180,15 +238,14 @@ console.log(keys); // ['one', 'two']
 
 ```js
 // pro
-
 let numbers = {
   one: 1,
   two: 2,
 };
 
-let keys = Object.keys(numbers); //[ 'one', 'two' ]
-let values = Object.values(numbers); // [ 1, 2 ]
-let entries = Object.entries(numbers); // [['one' : 1], ['two' : 2]]
+let keys = console.log(Object.keys(numbers)); //[ 'one', 'two' ]
+let values = console.log(Object.values(numbers)); // [ 1, 2 ]
+let entries = console.log(Object.entries(numbers)); // [['one' : 1], ['two' : 2]]
 ```
 
 ---
@@ -250,10 +307,10 @@ console.log(age); // { Rahul: 22, max: 18 }
 
 ```js
 const obj = {
-  name: "Rahul",
+  name: 'Rahul',
   age: 16,
-  address: "Earth",
-  profession: "Developer",
+  address: 'Earth',
+  profession: 'Developer',
 };
 
 console.log(Object.keys(obj)); // name, age, address, profession
@@ -278,7 +335,7 @@ const size = 5;
 
 const defaultValue = 0;
 
-const arr = new Array(5).fill(defaultValue);
+const arr = new Array(size).fill(defaultValue);
 
 console.log(arr); // [0, 0, 0, 0, 0]
 ```
@@ -289,12 +346,12 @@ console.log(arr); // [0, 0, 0, 0, 0]
 
 ```js
 //falsy
-false, 0, "", null, undefined, NaN;
+false, 0, '', null, undefined, NaN;
 ```
 
 ```js
 //truthy
-"Values", "0", {}, [];
+'Values', '0', {}, [];
 ```
 
 ---
@@ -303,10 +360,10 @@ false, 0, "", null, undefined, NaN;
 
 ```js
 // Double equal - Checks if the value is matched, ignores the Datatype
-console.log("0" == 0); //true
+console.log('0' == 0); //true
 
 //triple equal - Checks both value and datatype
-console.log("0" === 0); //false
+console.log('0' === 0); //false
 ```
 
 ---
@@ -328,13 +385,13 @@ function downloadData({ url, resourceId, searchTest, pageNo, limit } = {}) {
 }
 
 // In this case you need to remember the order
-downloadData({ resourceId: 2, url: "/posts", searchText: "WebDev" });
+downloadData({ resourceId: 2, url: '/posts', searchText: 'WebDev' });
 ```
 
 ---
 
 #### 17. null vs undefined vs not defined
 
-- null is an assigned value
-- undefined is missing initialization
-- not defined is (ex: let a = 1 is in the code and you are logging b which is not defined)
+- `null` is an **assigned** value
+- `undefined` is <ins>**missing** **initialization**</ins>
+- `not defined` is (ex: let a = 1 is in the code and you are **logging b** which is not defined)

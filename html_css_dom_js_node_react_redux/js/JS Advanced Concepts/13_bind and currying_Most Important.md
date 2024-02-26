@@ -1,8 +1,9 @@
 ### 13. bind and currying
 
 - we **can** reuse the function and pass any second parameter (Ex: 4 in the first case, 10 in the second case)
-  ![alt text](<images used/bind & currying-1.png>)
-![alt text](<images used/compressed Images/bind & currying-1.png>)
+  ![alt text](<images used/compressed Images/bind & currying-1.png>)
+![alt text](<images used/compressed Images/bind & currying-2.png>)
+
 ---
 
 #### Examples

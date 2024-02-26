@@ -10,5 +10,5 @@
 
 - ##### In the below picture, `Object 5` and `Object 7, 8` are not being referenced to any, <ins>so they will be garbage collected.</ins>
 
-![alt text](<images used/Mark & Sweep algorithm-1.png>)
-![alt text](<images used/Mark & Sweep algorithm-2.png>)
+![alt text](<images used/compressed Images/Mark & Sweep algorithm-1.png>)
+![alt text](<images used/compressed Images/Mark & Sweep algorithm-2.png>)

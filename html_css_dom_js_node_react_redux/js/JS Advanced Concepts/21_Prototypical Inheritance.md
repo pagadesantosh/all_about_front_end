@@ -1,17 +1,17 @@
 - As we know that **_arrays and functions are nothing but objects_** in javascript.
-  ![alt text](<images used/Prototypical Inheritance-1.png>)
+  ![alt text](<images used/compressed Images/Prototypical Inheritance-1.png>)
 - Javascript uses prototypical inheritance, By this means **_array object/function object gets access to their properties and methods_** of the object through this prototypical inheritance
 
 - There is a way to see this prototype chain (using double underscore proto i.e; `__proto__`)
 
 **Arrays:**
-![alt text](<images used/Prototypical Inheritance-2.png>)
+![alt text](<images used/compressed Images/Prototypical Inheritance-2.png>)
 
 **Functions:**
-![alt text](<images used/Prototypical Inheritance-3.png>)
+![alt text](<images used/compressed Images/Prototypical Inheritance-3.png>)
 
 **Object**
-![alt text](<images used/Prototypical Inheritance-4.png>)
+![alt text](<images used/compressed Images/Prototypical Inheritance-4.png>)
 
 <ins>**Let's go through few examples:**</ins>
 
@@ -238,34 +238,34 @@ fight;
 
 ##### Objects
 
-![alt text](<images used/Prototypical Inheritance-5.png>)
+![alt text](<images used/compressed Images/Prototypical Inheritance-5.png>)
 
 ##### Functions
 
-![alt text](<images used/Prototypical Inheritance-6.png>)
+![alt text](<images used/compressed Images/Prototypical Inheritance-6.png>)
 
-![alt text](<images used/Prototypical Inheritance-7.png>)
+![alt text](<images used/compressed Images/Prototypical Inheritance-7.png>)
 
 **_proto links to prototype_**
 
 _proto is simply a reference or a pointer to Prototype Object_
-![alt text](<images used/Prototypical Inheritance-8.png>)
+![alt text](<images used/compressed Images/Prototypical Inheritance-8.png>)
 
 **_proto links up to the Function()_**
-![alt text](<images used/Prototypical Inheritance-9.png>)
+![alt text](<images used/compressed Images/Prototypical Inheritance-9.png>)
 
 **WHAT IS HAPPENING**
-![alt text](<images used/Prototypical Inheritance-10.png>)
+![alt text](<images used/compressed Images/Prototypical Inheritance-10.png>)
 
 ##### Functions
 
-![alt text](<images used/Prototypical Inheritance-11.png>)
+![alt text](<images used/compressed Images/Prototypical Inheritance-11.png>)
 
-![alt text](<images used/Prototypical Inheritance-13.png>)
+![alt text](<images used/compressed Images/Prototypical Inheritance-13.png>)
 
 ##### Arrays
 
-![alt text](<images used/Prototypical Inheritance-12.png>)
+![alt text](<images used/compressed Images/Prototypical Inheritance-12.png>)
 
 <ins>**One thing to remember is:**</ins> **_double underscore proto_** `__proto__` property actually <ins>**_lives on the prototype_**</ins>
 
@@ -273,36 +273,39 @@ _proto is simply a reference or a pointer to Prototype Object_
 
 Safe way to <ins>**create own prototypes**</ins> is by using <ins>**_Object.create()_**</ins>
 
-![alt text](<images used/Prototypical Inheritance-14.png>)
+![alt text](<images used/compressed Images/Prototypical Inheritance-14.png>)
 
-![alt text](<images used/Prototypical Inheritance-15.png>)
+![alt text](<images used/compressed Images/Prototypical Inheritance-15.png>)
 
 **_In Functions, <ins>The only time when we use prototypes is when we call constructor functions.</ins>_**
 
 - `Constructor` functions usually **start with a capital letter** and they contain the prototype that we use
 
-![alt text](<images used/Prototypical Inheritance-16.png>)
+![alt text](<images used/compressed Images/Prototypical Inheritance-16.png>)
 
-![alt text](<images used/Prototypical Inheritance-17.png>)
+![alt text](<images used/compressed Images/Prototypical Inheritance-17.png>)
 
 ```js
 typeof Object; //'function'
 ```
 
-<ins>**One thing to remember is:**</ins> Every function has a prototype property and it references to an object used to attach properties that will be inherited by objects further down the prototype chain. The last object in the chain is this built in object (Object.prototype)
+<ins>**One thing to remember is:**</ins>
 
-<ins>**Another thing to remember is:**</ins> **_Object_** is a function because it has the prototype and now Object.prototype is what we call the base object
+- Every `function` **has** a `prototype` property and **_it references to an object_** used to attach properties **_that will be inherited by objects_** further down the prototype chain. The last object in the chain is this built in object (Object.prototype)
+
+<ins>**Another thing to remember is:**</ins>
+
+- **_Object_** is a function because it has the prototype and now <ins>**_Object.prototype is what we call the base object_**</ins>
 
 **WHAT IS HAPPENING**
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/7254867f-2f2f-4a56-bb64-788456650e9a)
-
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/56ef4b9c-fdc1-43c5-a988-8ba77a3c76be)
+![alt text](<images used/Prototypical Inheritance-18.png>) ![alt text](<images used/Prototypical Inheritance-19.png>) 
 
 **Only Functions have prototypes**
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/dd881eb1-6840-4cf9-840b-eea18ffe0b88)
+![alt text](<images used/Prototypical Inheritance-20.png>)
 
 <ins>**Summary:**</ins>
-Using prototypes, we avoid repeating ourselves. We avoid adding the same code over and over and over and being inefficient with our memory.
+Using `prototypes`, we **avoid** ***repeating*** ourselves. 
+- We avoid adding the same code over and over and over and being inefficient with our memory.
 
 ---
 
@@ -311,13 +314,43 @@ Using prototypes, we avoid repeating ourselves. We avoid adding the same code ov
 `__proto__`:
 
 - `__proto__` is a property of an object **_that points to the prototype of the constructor function_** which created that object.
+
+```js
+// Define a constructor function
+function Person(name) {
+  this.name = name;
+}
+
+// Add a method to the prototype of the constructor function
+Person.prototype.greet = function() {
+  console.log(`Hello, my name is ${this.name}`);
+};
+
+// Create an instance of Person
+let person1 = new Person('Alice');
+
+// Using the instance, call the method defined in the prototype
+person1.greet(); // Outputs: Hello, my name is Alice
+
+// `__proto__` is a property of an object (that points to the prototype of the constructor function_** which created that object)
+console.log(person1.__proto__ === Person.prototype); // Outputs: true
+
+// The above line confirms that person1.__proto__ points to the object that is Person.prototype
+
+// Using standard functions instead of __proto__
+console.log(Object.getPrototypeOf(person1) === Person.prototype); // Outputs: true
+```
+
+
+
+
 - It is a part of the internal prototype chain that Javascript uses to look up properties and methods
 - is the actual object that is used in the lookup chain to resolve methods
-- Direct use of proto is discouraged, Instead the standard functions Object.setPrototypeOf and Object.getPrototypeOf are recommended
+- ***Direct use of proto is discouraged***, Instead the standard functions `Object.setPrototypeOf` and `Object.getPrototypeOf` are recommended
 
 `prototype:`
 
-- prototype is a **_property of a function object_**, <ins>specifically a constructor function</ins>, that is used to set the prototype of new objects created with that constructor function
+- prototype is a **_property of a function object_**, <ins>specifically a constructor function</ins>, that is ***used to set the prototype of new objects created with that constructor function***
 - Ex: if you have a constructor function `MyConstructor`, MyConstructor.prototype will be the object that new instances created with new MyConstructor will have in their `__proto__`
 
 ```js
@@ -332,8 +365,7 @@ console.log(newInstance.__proto__ === MyConstructor.prototype); //true
 ```
 
 #### Refer below screenshot from browser console
-
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/a16d60d1-1fad-4cfa-8c8e-114d8f1f5deb)
+![alt text](<images used/Prototypical Inheritance-21.png>)
 
 ---
 
@@ -436,7 +468,6 @@ console.log(musician.alive); //true
 - Also if you expand the Javascript Object (you would find out the proto is nothing but getter and setter)
 - This is the old way of setting the prototype
 
-### ADD Screenshot here
 
 ---
 
@@ -501,7 +532,7 @@ const car = {
 };
 
 const luxuryCar = {};
-Object.setPrototypeOf(luxury, car); // car object is the prototype
+Object.setPrototypeOf(luxuryCar, car); // car object is the prototype
 luxuryCar.seatMaterial = 'leather';
 console.log(luxuryCar); //{seats: "leather"}
 console.log(luxuryCar.doors); // 2

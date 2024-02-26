@@ -21,45 +21,45 @@
 
 ##### <ins>Refer below screenshot:</ins>
 
-![alt text](<images used/Hoisting-1.png>)
+![alt text](<images used/compressed Images/Hoisting-1.png>)
 
 ##### <ins>Refer below screenshot:</ins>
 
-- ***Functional declarations*** **can** be accessed before `initialization`
-- ***variable*** declaration if **accessed** before will return **undefined**.
-![alt text](<images used/Hoisting-2.png>)
+- **_Functional declarations_** **can** be accessed before `initialization`
+- **_variable_** declaration if **accessed** before will return **undefined**.
+  ![alt text](<images used/compressed Images/Hoisting-2.png>)
 
 ##### <ins>Reference Error: sing is not defined</ins>
 
 - Because it is not hoisted
-  ![alt text](<images used/Hoisting-3.png>)
+  ![alt text](<images used/compressed Images/Hoisting-3.png>)
 
 ##### <ins>if var teddy is replaced with let teddy, it will error out</ins>
 
 - because let and const are moved to the top
-![alt text](<images used/Hoisting-4.png>)
+  ![alt text](<images used/compressed Images/Hoisting-4.png>)
 
 ##### <ins>functional expressions declared with var</ins>
 
 - Function is only going to be run after it was defined
 - logging **only sing2 variable** will **result in undefined**.
 - e.g. in below invoking the function sing2() **_beforehand will result in TypeError_** not defined
-![alt text](<images used/Hoisting-5.png>)
+  ![alt text](<images used/compressed Images/Hoisting-5.png>)
 
 - if you move the function invocation line below, then it will work as per the expectations.
 
-![alt text](<images used/Hoisting-6.png>)
+![alt text](<images used/compressed Images/Hoisting-6.png>)
 
 ##### <ins>Below Hoisting Example:</ins>
 
 - This returns undefined because of the function execution context
 - **_Every time we run a function, `a new execution context gets created` and we have to go through the creation phase and execution phase_**
 
-![alt text](<images used/Hoisting-7.png>)
+![alt text](<images used/compressed Images/Hoisting-7.png>)
 
 ##### <ins>Above Code is converted into below code by JS engine by reading the code, that is why we see undefined logged.</ins>
 
-![alt text](<images used/Hoisting-8.png>)
+![alt text](<images used/compressed Images/Hoisting-8.png>)
 
 ---
 

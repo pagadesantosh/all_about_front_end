@@ -1,11 +1,11 @@
 ### 16. Pass By Reference vs Pass By Value
 
-![alt text](<images used/Pass by Value and Pass By reference-1.png>)
+![alt text](<images used/compressed Images/Pass by Value and Pass By reference-1.png>)
 
 <ins>**Pass By Value**</ins>: `Primitives` follow this **pass by value**, which are only changed when a new value is assigned to them in memory.
 
 e.g. If we have variables a & b (then <ins>**_they really don't know each other_**</ins>)
-![alt text](<images used/Pass by Value and Pass By reference-2.png>)
+![alt text](<images used/compressed Images/Pass by Value and Pass By reference-2.png>)
 
 **_Summary:_**
 
@@ -17,7 +17,7 @@ e.g. If we have variables a & b (then <ins>**_they really don't know each other_
 
 - If you assign one of the object to another and If you change the reference of one object, then the other object also updates
 
-![alt text](<images used/Pass by Value and Pass By reference-3.png>)
+![alt text](<images used/compressed Images/Pass by Value and Pass By reference-3.png>)
 
 ```js
 //output:
@@ -72,7 +72,7 @@ let x = true;
 
 ##### After assigning 'c' variable equal to 'a' (let c = a), <ins>_even if we change the 'c' value it doesn't effect the 'a' value because values are pointed out to separate memory location_</ins> here.
 
-## ![alt text](<images used/Pass by Value and Pass By reference-4.png>)
+## ![alt text](<images used/compressed Images/Pass by Value and Pass By reference-4.png>)
 
 ### Pass By Reference:
 

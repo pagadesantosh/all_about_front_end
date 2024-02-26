@@ -28,19 +28,19 @@
 - the Last function after creating its own execution context (printName()), it returns the string output and this gets returned to findMyName function and this gets returned to sayMyName function and then eventually call stack gets popped off and we return onto the screen the string output.
   <br/>
 
-![alt text](<images used/Execution Context-1.png>)
+![alt text](<images used/compressed Images/Execution Context-1.png>)
 
-![alt text](<images used/Execution Context-2.png>)
+![alt text](<images used/compressed Images/Execution Context-2.png>)
 
 ##### <ins>Global Execution Context:</ins>
 
 - <ins>After creating GEC, JS engines creates two things.</ins>
 - First thing is **_global object_**, and the other thing is **_this keyword_** in Javascript.
 
-![alt text](<images used/Execution Context-3.png>)
+![alt text](<images used/compressed Images/Execution Context-3.png>)
 
 **_Global Object means Window_**
-![alt text](<images used/Execution Context-4.png>)
+![alt text](<images used/compressed Images/Execution Context-4.png>)
 
 - We **can** **add** `variables/functions` and many more to our `global object` (e.g. let a = "saiteja" will be part of window.a)
 

@@ -4,7 +4,7 @@
 
 ##### <ins>Example:</ins>
 
-![alt text](<images used/Memory Leaks.png>)
+![alt text](<images used/compressed Images/Memory Leaks.png>)
 
 ##### <ins> 3 Common Memory leaks:</ins>
 

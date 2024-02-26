@@ -7,4 +7,4 @@
 ##### <u>:Refer Example Screenshot</u>
 
 - Below is not the same case for functional declarations
-![alt text](<images used/IIFE.png>)
+  ![alt text](<images used/compressed Images/IIFE.png>)

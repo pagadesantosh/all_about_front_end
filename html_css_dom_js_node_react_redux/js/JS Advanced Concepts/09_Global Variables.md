@@ -8,4 +8,4 @@
 ##### <u>Refer Screenshot:</u>
 
 - **_This is because everything is on Global Execution context and they overwrite each other if there's any duplicates_**
-  ![alt text](<images used/Global Variables.png>)
+  ![alt text](<images used/compressed Images/Global Variables.png>)

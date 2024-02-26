@@ -14,25 +14,25 @@
 
 ##### <ins>Animation:</ins>
 
-![alt text](<images used/Call Stack.png>)
+![alt text](<images used/compressed Images/Call Stack.png>)
 
 ##### <ins>Example Scenario:</ins>
 
-![alt text](<images used/CallStack memory allocation.png>)
+![alt text](<images used/compressed Images/CallStack memory allocation.png>)
 
 ##### <ins>Following shows us how Call Stack work behind the scenes:</ins>
 
 <ins>Below is the code:</ins>
-![alt text](<images used/CallStack behind the scenes.png>)
+![alt text](<images used/compressed Images/CallStack behind the scenes.png>)
 
 **Global Execution Context**: (anonymous)
-![alt text](<images used/Global Execution Context.png>)
+![alt text](<images used/compressed Images/Global Execution Context.png>)
 
 **After calculate() function is invoked**, it is added to the top of the Call Stack
-![alt text](<images used/Function invocation added to callstack.png>)
+![alt text](<images used/compressed Images/Function invocation added to callstack.png>)
 
 **After subtractTwo() function is invoked**, it is added to the top of the call stack
-![alt text](<images used/Function invocation added to callstack-1.png>)
+![alt text](<images used/compressed Images/Function invocation added to callstack-1.png>)
 
 **Note:** <ins>**_We can get Maximum call stack size exceeded_**</ins> in one of the scenarios like **Recursion** which means a function calling itself
-![alt text](<images used/Maximum call stack exceeded.png>)
+![alt text](<images used/compressed Images/Maximum call stack exceeded.png>)

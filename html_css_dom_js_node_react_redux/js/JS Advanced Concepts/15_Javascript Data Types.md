@@ -17,5 +17,5 @@
 
 <b><u>Note:</u></b> typeof function(){} returns function but underneath the hood, **_functions are just objects_**
 
-![alt text](<images used/Javascript Data Types.png>)
+![alt text](<images used/compressed Images/Javascript Data Types.png>)
 <b><u>Note:</u></b> Primitives are immutable (in order to change them, remove the primitive type and assign with a new value )

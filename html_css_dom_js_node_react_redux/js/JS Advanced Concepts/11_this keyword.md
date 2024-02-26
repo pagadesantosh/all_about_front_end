@@ -22,7 +22,7 @@ b();
 ```
 
 - **_Inside an object, if there is any function property_**, then <ins>**this keyword refers to its object**</ins>.
-  ![alt text](<images used/this keyword-1.png>)
+  ![alt text](<images used/compressed Images/this keyword-1.png>)
 - anotherFunc is invoked inside sing() method property, and when we log `this` it logs <ins>**_Window object_**</ins>
 
 - this keyword is **_dynamically scoped_**. It doesn't matter where it's written, **_it matters on how the function is called_**.
@@ -31,14 +31,14 @@ b();
 
 - **_Arrow functions has a lexical `this` behavior_** unlike normal functions (so it lexically bind this)
 - In our below case (whatever the object is surrounding this while the main object is)
-  ![alt text](<images used/this keyword-2.png>)
+  ![alt text](<images used/compressed Images/this keyword-2.png>)
 
 ##### <u>Before ES6, by applying `bind`, we can change the context of `this`:</u>
 
 - **_return the anotherFunc and bind to this_**
 - as we are returning this piece of code outside the functional expression code, `this keyword mentioned in the bind` refers to the object
 
-![alt text](<images used/this keyword-3.png>)
+![alt text](<images used/compressed Images/this keyword-3.png>)
 
 ##### <u>Before ES6, using reference variable:</u>
 
@@ -46,7 +46,7 @@ b();
 - e.g. `var self = this;`
 - At the time the above code is ran, **_self start maintaining that reference to the object_** so that **we can use self** going forward **_(instead of this)_**
 
-![alt text](<images used/this keyword-4.png>)
+![alt text](<images used/compressed Images/this keyword-4.png>)
 
 ---
 
@@ -98,7 +98,7 @@ customer1.fetchBalance();
 - So javascript looks for the **customer1 in the global memory**, it finds one
 - we are looking for addMoney (javascript doesn't finds it inside the customer1 object)
 - It goes to the **proto** property of **customer1** object
-- **proto** property takes the javascript up to the **Prototype** of the **createCustomer** Function and here in the Prototype ***we find the addMoney*** it execute it.
+- **proto** property takes the javascript up to the **Prototype** of the **createCustomer** Function and here in the Prototype **_we find the addMoney_** it execute it.
 
 ##### Next we are executing the addMoney()
 

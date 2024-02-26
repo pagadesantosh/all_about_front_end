@@ -6,7 +6,7 @@
 ##### <u>Below Example:</u>
 
 - All of these functions has access to the global scope (**_in our case it is var x='x'_** which is declared on the global scope)
-  ![alt text](<images used/Scope Chain-1.png>)
+  ![alt text](<images used/compressed Images/Scope Chain-1.png>)
 
 - `eval` and `width` are **not** a **good** idea to optimize our code because **you can change how scope works internally** with these two things which makes difficult.
 
@@ -16,7 +16,7 @@
 
 - any variable that is <ins>**declared inside the curly brackets with let and const**</ins> can be accessed <ins>**_only in the block scope_**</ins>, _<ins>**whereas in this case var acts like a function scope**</ins>_
 
-![alt text](<images used/Scope Chain-2.png>)
+![alt text](<images used/compressed Images/Scope Chain-2.png>)
 
 - if `var` is replaced with `let`, <ins>**_then it acts as a block scope_**</ins> and we will get reference error.
-  ![alt text](<images used/Scope Chain-3.png>)
+  ![alt text](<images used/compressed Images/Scope Chain-3.png>)

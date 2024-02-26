@@ -7,7 +7,7 @@
 
 - Written in `C++` programming language
 - When we provide the JS files, there will be lexical analysis happening (e.g. refer below screenshot)
-  ![alt text](<images used/Javascript Engine.png>)
+  ![alt text](<images used/compressed Images/Javascript Engine.png>)
 
 #### <ins>**_Our JS code is broken into tokens (ex: parser is one of the token we can refer to)_**</ins>
 

@@ -1,13 +1,13 @@
 ### 18. Functions are first class citizens:
 
-**_1. Functions can be assigned to variables and properties of objects_**
+**_1. Functions <ins>can be assigned to variables</ins> and properties of objects_**
 
 ```js
 //1
 var func = function () {};
 ```
 
-**_2. We can also pass functions as arguments into a function._**
+**_2. We can also <ins>pass functions as arguments</ins> into a function._**
 
 ```js
 //2
@@ -20,7 +20,7 @@ a(function () {
 });
 ```
 
-**_3. You can return functions as values from other functions_**
+**_3. You can <ins>return functions as values</ins> from other functions_**
 
 ```js
 //3

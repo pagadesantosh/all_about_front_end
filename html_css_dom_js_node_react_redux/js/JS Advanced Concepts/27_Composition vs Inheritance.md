@@ -1,7 +1,7 @@
 ### Composition:
 
-- is smaller pieces that are combined to create something bigger
-- Lot of people prefer composition over inheritance
+- is **_smaller pieces that are combined to create something bigger_**
+- Lot of people <ins>**prefer composition**</ins> over inheritance
 
 ```js
 // Amazon shopping
@@ -11,11 +11,14 @@ const user = {
   cart: [],
   purchases: [],
 };
+
 const amazonHistory = [];
+
 const compose =
   (f, g) =>
   (...args) =>
     f(g(...args));
+
 purchaseItem(
   emptyCart,
   buyItem,
@@ -69,8 +72,7 @@ function emptyCart(user) {
   */
 ```
 
-----
-
+---
 
 ### Inheritance:
 
@@ -103,17 +105,16 @@ class Ogre extends Character{
     }
 }
 
-````
-
+```
 
 #### Inheritance is a super class that is extended to smaller pieces that add or overwrite things.
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/ff817528-1a70-4bf1-84b0-2d1a46fa061a)
+
+![text](<images used/Inheritance.png>)
 
 #### Smaller pieces combined to something bigger.
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/b1d55e65-9c15-4354-8cda-31a6adf8907b)
-
------
+![alt text](<images used/Composition.png>)
+---
 
 Example usage on how to convert the Inheritance logic to much reusability for future proof
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/458009e5-278d-4382-a714-9e1ff7082f2a)
+[text](<27_Composition vs Inheritance.md>) ![text](<images used/Inheritance1.png>)

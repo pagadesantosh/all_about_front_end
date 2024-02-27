@@ -1,8 +1,6 @@
 #### 1. Nullish Coalescing Operator
-
-- If the provided argument is <strong>null or undefined</strong> then it is considered as false.
-- If the provided argument is 0 then it takes the argument whereas for Logical OR <strong>||</strong> and for <strong>Ternary, <i>0 is considered as false</i> </strong>
-- Same goes with empty string (it is not considered as false) for Nullish Coalescing wherease for other scenarios it is considered as false.
+- In JavaScript, the nullish coalescing operator (??) ***returns the right-hand side operand*** <ins>***when the left-hand side operand is*** `null` or `undefined`</ins>, and otherwise returns the left-hand side operand.
+- If the provided argument is 0 then it is considered as 0 instead of returning the right-hand side operand
 
 ##### Example:
 

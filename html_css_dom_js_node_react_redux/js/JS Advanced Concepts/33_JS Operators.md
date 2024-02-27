@@ -259,9 +259,9 @@ if ("toString" in obj) {
 
 #### 11. yield operator
 
-- to create iterable objects and control the flow of execution in a program.
+- to create `iterable` `objects` and control the flow of execution in a program.
 
-- Useful when working with async code
+- Useful when working with `async` code
 
 - used in conjunction with the generator function, which is a special kind of function that can be paused and resumed multiple times.
 

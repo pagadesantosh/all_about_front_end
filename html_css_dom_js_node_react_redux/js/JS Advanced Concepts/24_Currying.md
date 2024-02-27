@@ -2,7 +2,7 @@
 
 - is the technique of **_translating the evaluation of a function_** that takes **_multiple arguments_** into evaluating a **_sequence of functions each with a single argument_**.
 
-- Currying is a process in functional programming in which we can transform a function with multiple arguments into a sequence of nesting functions. It returns a new function that expects the next argument inline
+- `Currying` is a process in `functional programming` in which <ins>**_we can transform a function with multiple arguments into a sequence of nesting functions_**</ins>. It returns a new function that expects the next argument inline
 
 **Example**
 
@@ -28,9 +28,11 @@ console.log(multiplyBy5(4)); // 20
 
 - Partially apply a function
 - Process of producing a function with a smaller number of parameters
-- Means, taking a function, applying some of its arguments into the function (remembers those parameters) and then it uses closures to later on be called with all the rest of the arguments.
+- Means, taking a function, applying some of its arguments into the function (remembers those parameters) and then it uses `closures` to later on be called with all the rest of the arguments.
 
-Ex: Instead of taking 3 or more arguments, we are giving one param once, and rest of the params for the 2nd invocation. (Call the function once and apply the rest of the arguments to it. For the 2nd call I expect all the arguments)
+**Ex**: Instead of taking 3 or more arguments, we are giving one param once, and rest of the params for the 2nd invocation. (Call the function once and apply the rest of the arguments to it.)
+
+- #### For the 2nd call, I expect all the arguments
 
 ```js
 //curried function
@@ -47,8 +49,8 @@ partialMultiplyBy5(4, 10); // 40*5 is 200
 
 <u>**_Summary_**</u>:
 
-- Currying means I expect argument at a time.
-- Partial means I expect all the arguments at second call.
+- `Currying` means <ins>**_I expect argument at a time_**</ins>.
+- `Partial` means <ins>**_I expect all the arguments at second call_**</ins>.
 
 ---
 
@@ -114,4 +116,4 @@ console.log(sum(1)(2)(3)(5)(7)());
 
 ## </details>
 
-----
+---

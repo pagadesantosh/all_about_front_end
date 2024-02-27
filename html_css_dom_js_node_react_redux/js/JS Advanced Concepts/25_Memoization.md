@@ -1,9 +1,9 @@
 ### Memoization:
 
-- In order to understand how Dynamic Programming works, we need to understand what caching means.
-- Caching is a way to store values so you can use them later on.
-- Memoization is a specific form of caching that we're going to be talking about because we use this a lot in Dynamic Programming.
-- In simpler terms, Memoization is returning the cached value
+- In order to understand how `Dynamic Programming` works, we need to understand what `caching` means.
+- `Caching` is a way to **_store values so you can use them later on_**.
+- `Memoization` is a specific **form of caching** that we're going to be talking about because we use this a lot in Dynamic Programming.
+- In simpler terms, <ins>**_Memoization is returning the cached value_**</ins>
 
 ```js
 //normal func
@@ -48,7 +48,7 @@ const memoize = (n) => {
   };
 };
 
-const memoized = memoize()
-console.log(memoized(5))  // Takes Time
-console.log(memoized(5)) // Returns from the cache
+const memoized = memoize();
+console.log(memoized(5)); // Takes Time
+console.log(memoized(5)); // Returns from the cache
 ```

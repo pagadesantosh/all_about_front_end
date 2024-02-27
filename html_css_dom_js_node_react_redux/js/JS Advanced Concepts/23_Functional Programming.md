@@ -9,12 +9,12 @@
 
 ### **Goals of FP are same as OOP** 😊
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/23627125-b30a-4abc-ba22-af667b3248fc)
+![alt text](<images used/FP-1.png>)
 
 - In FP it all comes down to the concept of pure functions
 - All **_objects_** created in FP are **_immutable_**
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/7d3653a5-3dfe-4818-a372-b14c5ea5309e)
+![alt text](<images used/FP-2.png>)
 
 - To give a sample example on **Immutability**, **_once something is created, it cannot be changed_**
 - We avoid things like **_shared state_**, and we **_adhere_** to this **_principle of pure functions_**
@@ -79,7 +79,7 @@ console.log(array, array2, array3);
 - **_Make the Functions predictable_**. If we understand with 100% certainty what our functions do, it makes our code predictable.
 - At the end of the day, **_FP is about making your code predictable_**
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/770e3409-2bba-462c-a1e0-7f272c063dea)
+![alt text](<images used/FP-3.png>)
 
 ---
 
@@ -120,9 +120,9 @@ console.log(array, array2, array3);
 ### Immutability:
 
 - Not changing the data (not changing the state)
-- Instead the idea of making copies of the state and returning a new state every time.
+- Instead the <ins>**_idea of making copies of the state and returning a new state every time_**</ins>.
 
-- With object oriented programming, there is a high chance of mutating the data
+- With `object oriented programming`, there is a **high chance of mutating the data**
 
 ```js
 const obj = { name: 'Saiteja' };
@@ -134,7 +134,7 @@ function clone(obj) {
 obj.name = 'Gatadi'; // we can mutate the name to anything else here..
 ```
 
-- With functional programming we can achieve the immutability
+- With `functional programming` we can ***achieve the immutability***
 
 ```js
 const obj = { name: 'Saiteja' };
@@ -151,4 +151,5 @@ function updateName(obj) {
 const updatedObj = updateName(obj);
 console.log(obj, updatedObj); // {name: 'Saiteja', name:'Gatadi'}
 ```
------
+
+---

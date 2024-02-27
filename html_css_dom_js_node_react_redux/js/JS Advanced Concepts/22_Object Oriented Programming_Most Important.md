@@ -21,7 +21,7 @@ const sam = createElf('Sam', 'fire');
 sam.attack(); // 'attack with fire'
 ```
 
-<u>**Summary**</u>: We avoided repetitive code, but there is still a problem here.
+<ins>**Summary**</ins>: We avoided repetitive code, but there is still a problem here.
 
 - What if we had 1000 createElf invocations which would require space in our memory to store the same data especially for attack method which is same and we would be seeing 1000 attack functions in different places in memory for each createElf function invocation
 
@@ -74,11 +74,11 @@ console.log(sam.name); // 'sam'
 ```
 
 **removing new keyword results in TypeError, as we cannot read properties (ex: name, weapon in our case)**
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/a35d0688-ea9a-4e82-9438-9c40b33d24f7)
+![alt text](<images used/Object Oriented Programming-1.png>)
 
 **If you remember, prototype becomes useful with these native constructor functions**
 **_e.g. refer screenshot_**
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/44058523-0d6e-4254-89fb-38f396a20070)
+![alt text](<images used/Object Oriented Programming-2.png>)
 
 So that is the reason we can now do prototype for our constructor function CreateElf
 
@@ -125,7 +125,7 @@ console.log(sam.attack()); // 'attack with fire'
 
 #### Few Examples
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/debb46b6-dc24-416b-a465-d109f73ed47b)
+![alt text](<images used/Object Oriented Programming-3.png>)
 
 ---
 
@@ -163,7 +163,14 @@ function Person(name, age) {
 }
 
 const person1 = new Person('Xavier', 55);
-console.log(person1); // PPerson {name: 'Xavier', age: 55}
+console.log(person1);
+
+/*
+{
+    "name": "Xavier",
+    "age": 55
+}
+*/
 ```
 
 ```js
@@ -172,7 +179,7 @@ const person = {
   name: 'Karen',
   age: 40,
   hi() {
-    console.log('hi' + this.name); //this refers to te object person
+    console.log('hi' + this.name); //this refers to be object person
   },
 };
 ```
@@ -269,4 +276,142 @@ console.log(shrek.makeFort()); //strongest fort in the world made
 
 ### 4 Pillars of OOPS
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/66b8e12b-fcc9-4bb1-8b12-e057da64872a)
+![alt text](<images used/Object Oriented Programming-4.png>)
+
+#### 1. Polymorphism
+
+```js
+class Animal {
+  makeSound() {
+    console.log('Some animal sound!');
+  }
+}
+
+class Dog extends Animal {
+  makeSound() {
+    console.log('Woof!');
+  }
+}
+
+class Cat extends Animal {
+  makeSound() {
+    console.log('Meow!');
+  }
+}
+
+const dog = new Dog();
+const cat = new Cat();
+
+dog.makeSound(); // Outputs: Woof!
+cat.makeSound(); // Outputs: Meow!
+```
+
+---
+
+#### 2. Abstraction
+
+```js
+class Shape {
+  constructor() {
+    if (this.constructor === Shape) {
+      throw new Error(
+        'Abstract class "Shape" cannot be instantiated directly.'
+      );
+    }
+  }
+
+  area() {
+    throw new Error('You have to implement the method area!');
+  }
+}
+
+class Circle extends Shape {
+  constructor(radius) {
+    super();
+    this.radius = radius;
+  }
+
+  area() {
+    return Math.PI * this.radius * this.radius;
+  }
+}
+
+const circle = new Circle(5);
+console.log(circle.area()); // Outputs: 78.53981633974483
+```
+---
+
+#### 3. Encapsulation
+
+```js
+class BankAccount {
+  #balance;
+
+  constructor(initialBalance) {
+    this.#balance = initialBalance;
+  }
+
+  deposit(amount) {
+    if (amount > 0) {
+      this.#balance += amount;
+      console.log(`Deposited ${amount}, balance is now ${this.#balance}`);
+    }
+  }
+
+  withdraw(amount) {
+    if (amount <= this.#balance) {
+      this.#balance -= amount;
+      console.log(`Withdrew ${amount}, balance is now ${this.#balance}`);
+    } else {
+      console.log('Insufficient funds');
+    }
+  }
+
+  getBalance() {
+    return this.#balance;
+  }
+}
+
+const account = new BankAccount(1000);
+account.deposit(500); // Deposited 500, balance is now 1500
+account.withdraw(200); // Withdrew 200, balance is now 1300
+console.log(account.getBalance()); // Outputs: 1300
+// account.#balance; // SyntaxError: Private field '#balance' must be declared in an enclosing class
+```
+
+#### ii)
+```js
+// WITHOUT USING # syntax
+function BankAccount(initialBalance) {
+  // The 'balance' variable is private because it's not exposed directly.
+  let balance = initialBalance;
+
+  // Public methods have access to the private 'balance' variable due to closures.
+  return {
+    deposit: function (amount) {
+      if (amount > 0) {
+        balance += amount;
+        console.log(`Deposited ${amount}, balance is now ${balance}`);
+      }
+    },
+    withdraw: function (amount) {
+      if (amount <= balance) {
+        balance -= amount;
+        console.log(`Withdrew ${amount}, balance is now ${balance}`);
+      } else {
+        console.log('Insufficient funds');
+      }
+    },
+    getBalance: function () {
+      return balance;
+    },
+  };
+}
+
+const account = BankAccount(1000);
+account.deposit(500); // Deposited 500, balance is now 1500
+account.withdraw(200); // Withdrew 200, balance is now 1300
+console.log(account.getBalance()); // Outputs: 1300
+// balance is not accessible from here, it's private
+```
+---

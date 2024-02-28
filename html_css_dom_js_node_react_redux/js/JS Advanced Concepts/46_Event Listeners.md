@@ -18,7 +18,7 @@
 </html>
 ```
 
-<img width="264" alt="image" src="https://user-images.githubusercontent.com/42731246/214374781-db0285d5-a323-4b30-9a08-40bc66a48691.png">
+![alt text](<images used/Event Listeners-1.png>)
 
 ```js
 const grandparent = document.querySelector(".grandparent")
@@ -31,7 +31,8 @@ grandparent.addEventListener("click", (e) => {
 })
 ```
 
-<img width="818" alt="image" src="https://user-images.githubusercontent.com/42731246/214396837-b94b5699-3f06-447f-a230-ff516ba43f72.png">
+![alt text](<images used/Event Listeners-2.png>)
+
 
 ---
 
@@ -185,7 +186,7 @@ Document Bubble
 
 ---
 
-#### Example -2 (Suppose if we want to stop propagation after Parent)
+#### Example 2 (Suppose if we want to stop propagation after Parent)
 
 - In this case, we need to add e.stopPropagation(), so that it would stop the entire (Capturing and Bubble phases)
 

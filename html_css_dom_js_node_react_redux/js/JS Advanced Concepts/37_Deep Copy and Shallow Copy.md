@@ -1,6 +1,6 @@
 #### Deep Copy
 
-If x and y variables point out to two different locations after copying then there is no connection between x and y variables
+If `x` and `y` variables **point out to two different locations after copying** then there is <ins>**_no connection between x and y variables_**</ins>
 
 <i>On Primitive Types, we can make Deep Copy</i>
 
@@ -17,21 +17,21 @@ If x and y variables point out to two different locations after copying then the
 #### Shallow Copy
 
 ```js
-let arr1 = [2, 3, 4]
-console.log(arr1)
-arr2 = arr1
-arr2.push(5)
-console.log(arr2)
-console.log(arr1)
+let arr1 = [2, 3, 4];
+console.log(arr1);
+arr2 = arr1;
+arr2.push(5);
+console.log(arr2);
+console.log(arr1);
 ```
 
 <details>
 <summary>Solution</summary>
 
 ```js
-;[2, 3, 4]
-;[2, 3, 4, 5]
-;[2, 3, 4, 5]
+[2, 3, 4];
+[2, 3, 4, 5];
+[2, 3, 4, 5];
 ```
 
 </details>
@@ -52,14 +52,14 @@ console.log(arr1)
 
 ```js
 function question1() {
-  const arr1 = [1, 2, 3, 4]
-  const arr2 = arr1
-  arr2.push(10)
-  console.log("Array 2 is " + arr2)
-  console.log("Array 1 is " + arr1)
+  const arr1 = [1, 2, 3, 4];
+  const arr2 = arr1;
+  arr2.push(10);
+  console.log('Array 2 is ' + arr2);
+  console.log('Array 1 is ' + arr1);
 }
 
-question1()
+question1();
 ```
 
 <details>
@@ -67,7 +67,7 @@ question1()
 
 ```js
 // Change this line to look like below in the above function
-const arr2 = [...arr1]
+const arr2 = [...arr1];
 ```
 
 </details>
@@ -79,16 +79,16 @@ const arr2 = [...arr1]
 ```js
 function question2() {
   const user1 = {
-    name: "Vasanth",
-    channel: "uncommon_geeks",
-  }
-  const user2 = user1
-  user2.name = "coolVasanth"
-  console.log(user2)
-  console.log(user1)
+    name: 'Vasanth',
+    channel: 'uncommon_geeks',
+  };
+  const user2 = user1;
+  user2.name = 'coolVasanth';
+  console.log(user2);
+  console.log(user1);
 }
 
-question2()
+question2();
 ```
 
 <details>
@@ -96,8 +96,8 @@ question2()
 
 ```js
 // Change this line to look like below in the above function
-const user2 = { ...user1 } // Approach 1
-const user2 = Object.assign({}, user1) // Approach 2
+const user2 = { ...user1 }; // Approach 1
+const user2 = Object.assign({}, user1); // Approach 2
 ```
 
 </details>
@@ -109,20 +109,20 @@ const user2 = Object.assign({}, user1) // Approach 2
 ```js
 function question3() {
   const user1 = {
-    name: "Vasanth",
-    channel: "uncommon_geeks",
+    name: 'Vasanth',
+    channel: 'uncommon_geeks',
     location: {
-      city: "Bengaluru",
-      state: "karnataka",
+      city: 'Bengaluru',
+      state: 'karnataka',
     },
-  }
-  const user2 = user1
-  user2.location.city = "Mysuru"
-  console.log(user2)
-  console.log(user1)
+  };
+  const user2 = user1;
+  user2.location.city = 'Mysuru';
+  console.log(user2);
+  console.log(user1);
 }
 
-question3()
+question3();
 ```
 
 <details>
@@ -130,7 +130,7 @@ question3()
 
 ```js
 // Change this line to look like below in the above function
-const user2 = JSON.parse(JSON.stringify(user1))
+const user2 = JSON.parse(JSON.stringify(user1));
 ```
 
 </details>
@@ -145,13 +145,13 @@ const user2 = JSON.parse(JSON.stringify(user1))
 function question4() {
   const testObject1 = {
     sampleDate: new Date(),
-  }
-  const testObject2 = JSON.parse(JSON.stringify(testObject1)) // Do not use this liner as it prints different dataTypes
-  console.log(testObject1) // Prints date as an object
-  console.log(testObject2) // Prints a String
+  };
+  const testObject2 = JSON.parse(JSON.stringify(testObject1)); // Do not use this liner as it prints different dataTypes
+  console.log(testObject1); // Prints date as an object
+  console.log(testObject2); // Prints a String
 }
 
-question4()
+question4();
 ```
 
 <strong><u>Note:</u></strong> If you want to use JSON.parse(JSON.stringify(object)) in order to convert from Shallow to Deep Copy on those object which contains <strong> Date </strong>, then the Date would be converted into <strong>string</strong> (instead of keeping it as a object)
@@ -165,13 +165,13 @@ function question5() {
   const testObject1 = {
     sampleFunction: console.log,
     sampleUndefined: undefined,
-  }
-  const testObject2 = JSON.parse(JSON.stringify(testObject1))
-  console.log(testObject1) // {sampleFunction: [Function: log], sampleUndefined: undefined}
-  console.log(testObject2) // {}
+  };
+  const testObject2 = JSON.parse(JSON.stringify(testObject1));
+  console.log(testObject1); // {sampleFunction: [Function: log], sampleUndefined: undefined}
+  console.log(testObject2); // {}
 }
 
-question5()
+question5();
 ```
 
 <strong><u>Note:</u></strong> If you want to use JSON.parse(JSON.stringify(object)) in order to convert from Shallow to Deep Copy on those object keys which contains <strong>functions</strong> or which contains <strong>undefined</strong>, then do not use JSON.parse(JSON.stringify(object))
@@ -186,13 +186,13 @@ function question6() {
     sampleFunction: question2,
     sampleInfinity: -Infinity,
     sampleNaN: NaN,
-  }
-  const testObject2 = testObject1
-  console.log(testObject1) // prints {sampleFunction, [Function: question2], sampleInfinity: -Infinity, sampleNaN: NaN }
-  console.log(testObject2) // prints {sampleInfinity: null, sampleNaN: null }
+  };
+  const testObject2 = testObject1;
+  console.log(testObject1); // prints {sampleFunction, [Function: question2], sampleInfinity: -Infinity, sampleNaN: NaN }
+  console.log(testObject2); // prints {sampleInfinity: null, sampleNaN: null }
 }
 
-question6()
+question6();
 ```
 
 <strong><u>Note:</u></strong> If you want to use JSON.parse(JSON.stringify(object)) in order to convert from Shallow to Deep Copy on those object keys which contains <strong>functions</strong> or which contains <strong>Infinity</strong> or which contains <strong>NaN</strong>, then do not use JSON.parse(JSON.stringify(object))

@@ -42,7 +42,7 @@ customer2.fetchSalary();
 
 ---
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/f12174f7-b46f-4928-8c9c-182ce60fa3cc)
+![text](<images used/Using Object.setPrototype-1.png>)
 
 **Object.setPrototypeOf** : Allows us to change proto reference of the first argument and it assigns it reference to the second argument
 
@@ -52,4 +52,4 @@ Object.setPrototypeOf(salariedUserFunctions, functionsBundle);
 
 For Ex: First argument is salariedUserFunctions, second argument is functionsBundle, so `salariedFunctions Proto will be referenced to the functionsBundle`
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/84f3df96-12ce-43c7-a40f-605d0582f761)
+![text](<images used/Using Object.setPrototype-2.png>)

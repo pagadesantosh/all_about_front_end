@@ -14,16 +14,16 @@
 
 ```js
 if (true) {
-  var varVariable = "This is true"
+  var varVariable = 'This is true';
 }
-console.log(varVariable)
+console.log(varVariable);
 
 if (true) {
-  let letVariable = "This is true"
-  console.log(letVariable)
+  let letVariable = 'This is true';
+  console.log(letVariable);
 }
 
-console.log(letVariable)
+console.log(letVariable);
 ```
 
 <details>
@@ -43,11 +43,11 @@ Reference Error: 'letVariable' is not defined. // outside
 
 ```js
 if (true) {
-  var varVariable = "This is true"
+  var varVariable = 'This is true';
 }
 
-var varVariable = "This is false"
-console.log(varVariable)
+var varVariable = 'This is false';
+console.log(varVariable);
 ```
 
 <details>
@@ -64,9 +64,9 @@ This is false
 ### Example 3
 
 ```js
-let letVariable = "This is true"
-let letVariable = "This is false"
-console.log(letVariable)
+let letVariable = 'This is true';
+let letVariable = 'This is false';
+console.log(letVariable);
 ```
 
 <details>
@@ -83,7 +83,7 @@ Uncaught SyntaxError: Identifier 'letVariable' is already been declared
 ### Example 4
 
 ```js
-console.log(varVariable)
+console.log(varVariable);
 ```
 
 <details>
@@ -100,8 +100,8 @@ Uncaught Reference Error: 'varVariable' is not defined.
 ### Example 5
 
 ```js
-console.log(varVariable)
-var varVariable = "5"
+console.log(varVariable);
+var varVariable = '5';
 ```
 
 <details>
@@ -116,14 +116,14 @@ undefined
 ### Example 6
 
 ```js
-console.log(varVariable)
-var varVariable = "5"
-console.log(varVariable)
+console.log(varVariable);
+var varVariable = '5';
+console.log(varVariable);
 ```
 
 <details>
 <summary>Solution</summary>
-
+undefined
 5
 
 </details>
@@ -133,9 +133,9 @@ console.log(varVariable)
 ### Example 7
 
 ```js
-console.log(letVariable)
-let letVariable = "5"
-console.log(letVariable)
+console.log(letVariable);
+let letVariable = '5';
+console.log(letVariable);
 ```
 
 <details>
@@ -150,11 +150,11 @@ Uncaught Reference Error: 'letVariable' is not defined.
 ### Example 8 (without console.log)
 
 ```js
-const constVariable = "6"
-let letVariable = "5"
+const constVariable = '6';
+let letVariable = '5';
 
-letVariable = "7"
-constVariable = "7"
+letVariable = '7';
+constVariable = '7';
 ```
 
 <details>
@@ -169,11 +169,11 @@ Uncaught Type Error: Assignment to constant variable.
 ### Example 9 (const as object)
 
 ```js
-const constVariable = { name: "Bob" }
+const constVariable = { name: 'Bob' };
 
-constVariable.name = "Teja"
+constVariable.name = 'Teja';
 
-console.log(constVariable)
+console.log(constVariable);
 ```
 
 <details>
@@ -181,7 +181,7 @@ console.log(constVariable)
 
 ```js
 {
-  name: "Teja"
+  name: 'Teja';
 }
 ```
 

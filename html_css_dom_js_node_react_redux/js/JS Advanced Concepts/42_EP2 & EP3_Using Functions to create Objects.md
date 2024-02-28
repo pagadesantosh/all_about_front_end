@@ -50,18 +50,27 @@ console.log(customer1.accountBalance)
 
 ```
 
-![image](https://user-images.githubusercontent.com/42731246/215371199-2dd3dc04-c636-46dd-8455-145724482b8b.png)
+<!-- HERE 1 -->
+
+![alt text](<images used/Using Function to create objects-1.png>)
 
 <strong>return of the customer points out to the Global memory </strong>
-![image](https://user-images.githubusercontent.com/42731246/215371372-1413d3d9-1ec9-41c4-8a69-8a88817ea01c.png)
+
+<!-- HERE 2 -->
+
+![alt text](<images used/Using Function to create objects-2.png>)
 
 <strong>Flaw with this approach is it creates copies of the `addMoney function` </strong>which is not a good idea if there are lakhs of customers
 
-![image](https://user-images.githubusercontent.com/42731246/215371513-7f14aba3-ab96-4e1e-b351-174e8e5d9645.png)
+<!-- HERE 3 -->
+
+![alt text](<images used/Using Function to create objects-3.png>)
 
 - Instead of having copies of addMoney function in every object <strong>if they can somehow referece to a very common source of this addMoney function</strong> so that we can avoid having multiple copies in every object and have that function in one place.
 
-![image](https://user-images.githubusercontent.com/42731246/215371865-ce57fe9e-82b2-4c5f-b21b-1f81b5958bfc.png)
+<!-- HERE 4 -->
+
+![alt text](<images used/Using Function to create objects-4.png>)
 
 ---
 
@@ -95,21 +104,33 @@ customer1.fetchBalance();
 
 - Whenever we use Object.create(), it always returns the empty object. (in our case it is customer which is empty object)
 - Object.create() attaches the proto of the object returned with the argument
-  ![image](https://github.com/saiteja-gatadi1996/Infinite-scroll-of-Images-API---React/assets/42731246/3f88cd66-d3db-4ea5-a743-36feb89b814e)
+
+<!-- HERE 5 -->
+
+![alt text](<images used/Using Function to create objects-5.png>)
 
 - We are passing functionsBundle as the argument to the Object.create(), so the proto points to the functionsBundle (see below)
 
-![image](https://user-images.githubusercontent.com/42731246/215372673-57360878-8893-4a9d-bafb-ce4508e65b2f.png)
+<!-- HERE 6 -->
+
+![alt text](<images used/Using Function to create objects-6.png>)
 
 - Adding properties to the createCustomerObject and we are doing a return
-  ![image](https://user-images.githubusercontent.com/42731246/215372788-df672cb8-6424-4af3-ae43-f87a54ea0bef.png)
+
+<!-- HERE 7 -->
+
+![alt text](<images used/Using Function to create objects-7.png>)
 
 - this return keyword says that we are returning the customer object to the customer1 and this proto referencing to the functionsBundle
 
-![image](https://user-images.githubusercontent.com/42731246/215373096-c7b35bf1-f73e-4c6b-8a87-29f0ba44d708.png)
+<!-- HERE 8 -->
+
+![alt text](<images used/Using Function to create objects-8.png>)
 
 ---
 
 - Whenever we do customer1.addMoney(), it checks in the customer1 object and as it doesn't find there it goes to the proto way up to the functionsBundle and here it finds the addMoney function and it executes
 
-![image](https://user-images.githubusercontent.com/42731246/215373320-d292ff7b-4ff1-4e4b-8685-ce5e1407f0a6.png)
+<!-- HERE 9 -->
+
+![alt text](<images used/Using Function to create objects-9.png>)

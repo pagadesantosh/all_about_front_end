@@ -1,4 +1,6 @@
-- It is important to be aware that React may sometimes trigger useEffect twice, which can lead to unintended behaviour in your application.
+## Preventing Double Execution of useEffect
+
+- It is important to be aware that React may sometimes trigger useEffect twice, which can lead to unintended behavior in your application.
 
 - Usually when the dependencies changes the useEffect will trigger.
 
@@ -22,7 +24,7 @@ function Example() {
 ```
 
 - In the above code example it sets the state to its current value + 1, this effect will be triggered again and again causing infinite loop
--         One way to fix this is functional form of setState (allows us to update the state based on its previous value)
+- One way to fix this is functional form of setState (allows us to update the state based on its previous value)
 
 ```js
 // pro way of setting the state
@@ -31,7 +33,7 @@ function Example() {
 function Example() {
   const [count, setCount] = useState(0);
   useEffect(() => {
-    setCount(count + 1);
+    setCount((prevCount) => prevCount + 1);
   }, []);
 
   return <div>{count}</div>;

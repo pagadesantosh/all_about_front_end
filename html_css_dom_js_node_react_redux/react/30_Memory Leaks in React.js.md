@@ -1,6 +1,10 @@
-- A memory leak is an unintentional form of memory consumption whereby the developer fails to free an allocacted block of memory when no longer required. <u>Overtime, this can lead to increased memory usage and degraded performance.</u>
+- A memory leak is an **unintentional form of memory consumption** whereby the <ins>***developer fails to free an allocated block of memory when no longer required***</ins>. 
+<br/>
+- <ins>Overtime, this can lead to increased memory usage and degraded performance.</ins>
+<br/>
 
-- A memory leak can usually occur <u><strong>when we have objects or data that is no longer required but which are still being referenced by the application</strong></u>, preventing them from garbage collected.
+- A memory leak can usually occur <ins><strong>when we have objects or data that is no longer required but which are still being referenced by the application</strong></ins>, preventing them from garbage collected.
+<br/>
 
 - In React you will see the error in the console when there is a memory leak in your project
 
@@ -8,13 +12,16 @@
 
 <strong> Below are the few common causes of memory leaks in React.js:</strong>
 
+
 ##### 1. Event listeners:
 
-- If you attach event listeners to elements within your React components, <u>but fail to remove them when the component unmounts, it can lead to memory leaks.</u>
+- If you attach event listeners to elements within your React components, <ins>*but fail to remove them when the component unmounts, it can lead to memory leaks*.</ins>
+<br/>
 
-- Make sure to write the cleanup functions such as in the useEffect hook or in class componentWillUnmount lifecycle method.
+- **Make sure to write the cleanup functions such as in the useEffect hook** or in class componentWillUnmount lifecycle method.
 
 ```js
+// cleanup Function
 useEffect(() => {
   document.addEventListener("click", handleClick);
   return () => {
@@ -22,11 +29,12 @@ useEffect(() => {
   };
 }, []);
 ```
+<br/>
 
 ##### 2. Subscription based API's:
 
 - Example such as Websocket connections
-- <u>It is crucial to unsubscribe or close these subscriptions when they're no longer needed.</u>
+- <ins>It is crucial to unsubscribe or close these subscriptions when they're no longer needed.</ins>
 - Failing to unsubscribe can keep references active and cause memory leaks
 
 ```js
@@ -41,18 +49,23 @@ useEffect(() => {
   };
 }, []);
 ```
+<br/>
 
 ##### 3. Improper closure usage:
 
-- If unintentionally retain references to objects which should be garbage collected.
+- If unintentionally retain references to objects which should be garbage collected could lead to Memory Leaks.
+<br/>
 
-- Example, if you use closure inside event handlers and capture variables from the component's scope, <u>those captured variables can keep the entire component and its associated objects in memory</u>.
+- Example, **if you use closure inside event handlers and capture variables from the component's scope**, <ins>those captured variables can keep the entire component and its associated objects in memory</ins>.
+<br/>
 
 - Make sure to have a look at the variables that are captured in closures and consider using the <strong>useCallback</strong> hook to memoize function properly.
 
+<br/>
+
 ##### 4. Large data sets or Large state:
 
-- If data is not cleanedup properly then <u>it is not a good idea to store unnecessary large data</u>
+- If data is not cleaned up properly then <ins>it is not a good idea to store unnecessary large data</ins>
 
 ```js
 useEffect(() => {
@@ -63,7 +76,7 @@ useEffect(() => {
   fetchData();
 
   return () => {
-    setData([]); //settin the empty res
+    setData([]); //setting the empty res
   };
 }, []);
 ```
@@ -80,11 +93,11 @@ useEffect(() => {
 
 - What if the user has slow internet or if user want to leave the current page and decides to go to the new page before the data is rendered on the screen.
 
-- As in this case, the request for API would have already been made <u>as on page mount the useEffect runs the code and the browser expecting the response which when received would lead us to call setState on a component that's no longer mounted</u>
+- As in this case, the request for API would have already been made <ins>as on page mount the useEffect runs the code and the browser expecting the response which when received would lead us to call setState on a component that's no longer mounted</ins>
 
 - If this process is repeated several times can lead to serious issues as useless data is preserved in our memory.
 
-<strong><u>Solution</u>:</strong>: Boolean Flag approach
+<strong><ins>Solution</ins></strong>: Boolean Flag approach
 
 ```js
 import React, { useState, useEffect } from "react";
@@ -121,7 +134,7 @@ const App = () => {
 };
 ```
 
-###### In the above code, when isMounted is true the state is updated and the function is returned. Else if the action is unmounted before completion, then the cleanup function will be returned. <u>This ensures that when a new effect is to be executed the previous effect will be first taken care of </u>
+###### In the above code, when isMounted is true the state is updated and the function is returned. Else if the action is unmounted before completion, then the cleanup function will be returned. <ins>This ensures that when a new effect is to be executed the previous effect will be first taken care of </ins>
 
 ---
 
@@ -129,7 +142,7 @@ const App = () => {
 
 - We have to cancel the api request the moment our component unmounts, ensuring we don't get any data from the API.
 
-<u>AbortController represents a controller object <strong>that allows you to abort one or more Web requests as and when desired</strong></u>
+<ins>AbortController represents a controller object <strong>that allows you to abort one or more Web requests as and when desired</strong></ins>
 
 ```js
 import { useState, useEffect } from 'react';
@@ -164,7 +177,7 @@ const Example = function() {
 
 ##### Scenario 3: Too many re-renders error:
 
-- This happens after you have reached an infinite render loop, <u>typically caused by the code that in a useEffect hook unconditionally calls state setters</u>.
+- This happens after you have reached an infinite render loop, <ins>typically caused by the code that in a useEffect hook unconditionally calls state setters</ins>.
 
 <img src="https://miro.medium.com/v2/resize:fit:828/format:webp/1*QBRmcIJXO_JF9-O5-BUnlg.png">
 
@@ -187,7 +200,7 @@ const Example = () => {
 };
 ```
 
-##### Issue is immediately calling the setCounter function in the onClick event handler. <u>The function is invoked immediately on page load and not when the event is triggered</u>
+##### Issue is immediately calling the setCounter function in the onClick event handler. <ins>The function is invoked immediately on page load and not when the event is triggered</ins>
 
 ```js
 // Solution to above problem

@@ -16,7 +16,7 @@
 
 - <strong>Unnecessary re-render</strong> - re-render a Component that is propagated through the app via different re-renders mechanism due to mistake or inefficient app architecture. For example: If a user types in an input field and the <strong>entire page re-renders on every keystroke, the page has been re-rendered unnecessarily.</strong>
 
-<strong><u>Note:</u></strong> If re-renders happen too often on very heavy components this could lead to user experience appearing "laggy", visible delays in interaction, or app becoming completely un-responsive.
+<strong><ins>Note:</ins></strong> If re-renders happen too often on very heavy components this could lead to user experience appearing "laggy", visible delays in interaction, or app becoming completely un-responsive.
 
 ---
 
@@ -29,7 +29,7 @@ There are four reasons why a component would re-render itself
 3. context changes
 4. hooks changes
 
-<strong><u>Note:</u></strong> re-renders doesn't happen when the component's props change.
+<strong><ins>Note:</ins></strong> re-renders doesn't happen when the component's props change.
 
 #### i) Re-renders reason during state changes:
 
@@ -43,7 +43,7 @@ There are four reasons why a component would re-render itself
 - Or, When a component re-renders, it also re-renders all its children.
 - It always goes "down" the tree
 
-<strong><u>Note:</u></strong> The re-render of a child doesn't trigger the re-render of a parent.
+<strong><ins>Note:</ins></strong> The re-render of a child doesn't trigger the re-render of a parent.
 
 ##### Refer this below article for more details: https://www.developerway.com/posts/react-elements-children-parents
 
@@ -51,9 +51,9 @@ There are four reasons why a component would re-render itself
 
 #### iii) context changes re-render reason:
 
-- When the value in Context Provider changes, all components that use this Context will re-render, even they don't use the changed portion of the data directly.
+- When the value in Context Provider changes, all components that use this Context will re-render, **even they don't use the changed portion of the data directly.**
 
-<strong><u>Note:</u></strong> Those re-renders can not be prevented with memoization directly, but there a few workarounds that can simulate it.
+<strong><ins>Note:</ins></strong> Those re-renders can not be prevented with memoization directly, but there a few workarounds that can simulate it.
 
 ##### see below for details: https://www.developerway.com/posts/react-re-renders-guide#part7
 
@@ -77,7 +77,7 @@ There are four reasons why a component would re-render itself
 
 - In order for props to change, they need to be updated by the parent component (means the parent would have to re-render) which will trigger the re-render of the child component regardless of its props.
 
-<strong><u>Note:</u></strong> Only when memoization techniques are used (React.memo, useMemo), then props change becomes important
+<strong><ins>Note:</ins></strong> Only when memoization techniques are used (React.memo, useMemo), then props change becomes important
 
 <img src="https://www.developerway.com/assets/react-re-renders-guide/part2-props-myth.png">
 
@@ -85,7 +85,7 @@ There are four reasons why a component would re-render itself
 
 #### 3. Preventing re-renders with composition:
 
-<strong><u>Note:</u></strong> Creating components inside render function of another component is an anti-pattern that can be the biggest performance killer.
+<strong><ins>Note:</ins></strong> Creating components inside render function of another component is an anti-pattern that can be the biggest performance killer.
 
 - On every re-render React will re-mount this component (destroy and re-create it from scratch) which is going to be much slower than a normal re-render.
 
@@ -121,11 +121,11 @@ There are four reasons why a component would re-render itself
 
 - The difference here is that <strong>state is used on an element that wraps a slow portion of the render tree, so it can't be extracted that easily.</strong>
 
-- <u>Example</u>: onScroll or onMouseMove callbacks attached to the root element of a component.
+- <ins>Example</ins>: onScroll or onMouseMove callbacks attached to the root element of a component.
 
-- In this situation, <strong>state management and components that use the state can be extracted into a smaller component <u>and the slow component can be passed to it as children</u></strong>.
+- In this situation, <strong>state management and components that use the state can be extracted into a smaller component <ins>and the slow component can be passed to it as children</ins></strong>.
 
-- From the smaller component perspective <u>children are just prop, so they will not be affected by state change and therfore <strong>won't re-render</strong></u>
+- From the smaller component perspective <ins>children are just prop, so they will not be affected by state change and therfore <strong>won't re-render</strong></ins>
 
 <img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/0*l1BBLSoOIX2J6zoY.png">
 
@@ -133,11 +133,11 @@ Additional resources to read: https://www.developerway.com/posts/react-elements-
 
 #### iii) preventing re-renders with composition by using components as props :
 
-- Same as previous pattern, with the same behaviour: it encapsulates the <u>state insided a smaller component</u>, <u><strong>and heavy components are passed to it as props.</strong></u>
+- Same as previous pattern, with the same behaviour: it encapsulates the <ins>state insided a smaller component</ins>, <ins><strong>and heavy components are passed to it as props.</strong></ins>
 
 - props are not effected by the state change, so heavy components won't re-render.
 
-<u>Note:</u> Can be useful when a heavy component is independent from the state, but can't be extracted as children as a group.
+<ins>Note:</ins> Can be useful when a heavy component is independent from the state, but can't be extracted as children as a group.
 
 <img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/0*WHjnrlmsU3o7ULQx.png">
 
@@ -147,7 +147,7 @@ Additional sources to read: https://www.developerway.com/posts/react-elements-ch
 
 #### 4. Preventing re-renders with React.memo:
 
-- Wrapping a component in React.memo will stop the downstream chain of re-renders (so usually when the trigger happens up the render tree it stops the downstream chain of re-renders) but <u><strong>only until unless this component's props has changed.</strong></u>
+- Wrapping a component in React.memo will stop the downstream chain of re-renders (so usually when the trigger happens up the render tree it stops the downstream chain of re-renders) but <ins><strong>only until unless this component's props has changed.</strong></ins>
 
 - Useful when rendering a heavy component that is not dependent on the source of re-renders (i.e. state, changed data)
 
@@ -155,15 +155,15 @@ Additional sources to read: https://www.developerway.com/posts/react-elements-ch
 
 #### i) React.memo : component with props
 
-- All props that are <u><strong>not primitive values</strong></u> have to be memoized for React.memo to work
+- All props that are <ins><strong>not primitive values</strong></ins> have to be memoized for React.memo to work
 
 <img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/0*SQMGpLxH85yY_VJp.png">
 
 #### ii) React.memo : component as props or children
 
-- React.memo has to be <u>applied to the elements passed as children/props</u>.
+- React.memo has to be <ins>applied to the elements passed as children/props</ins>.
 
-- Memoizing the parent component <u>will not work</u>. When children and props are objects so they will change with every re-render.
+- Memoizing the parent component <ins>will not work</ins>. When children and props are objects so they will change with every re-render.
 
 <strong>Additional resources to read:</strong> https://www.developerway.com/posts/react-elements-children-parents
 
@@ -171,15 +171,15 @@ Additional sources to read: https://www.developerway.com/posts/react-elements-ch
 
 #### 5. Improving re-renders perfomance with useMemo/useCallback :
 
-<u>Note</u>: Memoizing props (ex: using useMemo/useCallback on props) <strong>will not prevent re-renders of a child component. </strong>
+<ins>Note</ins>: Memoizing props (ex: using useMemo/useCallback on props) <strong>will not prevent re-renders of a child component. </strong>
 
-- If a parent component re-renders, <u>it will trigger re-render of a child component regardless of its props.</u>
+- If a parent component re-renders, <ins>it will trigger re-render of a child component regardless of its props.</ins>
 
 <img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/0*USxxXcRT8eYhtJd7.png">
 
 #### i) Necessary useMemo/useCallback
 
-- If a <strong>child component is wrapped in React.memo, <u>all props that are not primitive values have to be memoized</u></strong>.
+- If a <strong>child component is wrapped in React.memo, <ins>all props that are not primitive values have to be memoized</ins></strong>.
 
 <img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/0*1UZHlMEo0JGq2HNw.png">
 
@@ -189,13 +189,13 @@ Additional sources to read: https://www.developerway.com/posts/react-elements-ch
 
 #### ii) useMemo for expensive calculations
 
-- One of the main use cases for useMemo is to <strong><u>avoid expensive calculations on every re-render.</strong></u>
+- One of the main use cases for useMemo is to <strong><ins>avoid expensive calculations on every re-render.</strong></ins>
 
 - But useMemo (consumes a bit of memory and makes initial render slightly slower), so it should not be used for every calculation.
 
 - In React, mounting and updating components will be the most expensive calculations
 
-- Typical use case for useMemo would be to <u>memoize React elements</u>. <strong><u>Usually parts of an existing render tree or results of generated render tree, like map function that returns new elements</strong></U>.
+- Typical use case for useMemo would be to <ins>memoize React elements</ins>. <strong><ins>Usually parts of an existing render tree or results of generated render tree, like map function that returns new elements</strong></ins>.
 
 <img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/0*mOw-pFnAJUxzVs8g.png">
 
@@ -203,13 +203,13 @@ Additional sources to read: https://www.developerway.com/posts/react-elements-ch
 
 - key attribute can affect the performance of lists in React.
 
-<u>Note:</u> Just providing key attribute doesn't improve lists performance.
+<ins>Note:</ins> Just providing key attribute doesn't improve lists performance.
 
 - To prevent re-renders of list elements you need to wrap them in React.memo and follow all the best practices.
 
 - Value in a key should be string, that is consistent between re-renders for every element in the list.
 
-<u>It is okay to use array's index as key if the list is static i.e elements are not added/removed/inserted/re-ordered</u>
+<ins>It is okay to use array's index as key if the list is static i.e elements are not added/removed/inserted/re-ordered</ins>
 
 - Using array's index as key on dynamic lists can lead to bugs if <strong>items have state or any uncontrolled elements(like form inputs)</strong>
 
@@ -219,7 +219,7 @@ Additional sources to read: https://www.developerway.com/posts/react-elements-ch
 
 <strong>Additonal resources to read:</strong> https://www.developerway.com/posts/react-key-attribute
 
-#### iv) Randomnly generated values should never be used as values in key attribute in lists.
+#### iv) Randomly generated values should never be used as values in key attribute in lists.
 
 - They will lead to React re-mounting items on every re=render.
 - This will lead to very poor performance of the list
@@ -233,7 +233,7 @@ Additional sources to read: https://www.developerway.com/posts/react-elements-ch
 
 ##### i) Memoizing Provider value:
 
-- If the Context Provider is not placed at the very root of the app (there is a possibility it can re-render itself because fo changes in its ancestors). <u>It's value should be memoized</u>
+- If the Context Provider is not placed at the very root of the app (there is a possibility it can re-render itself because fo changes in its ancestors). <ins>It's value should be memoized</ins>
 
 <img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/0*tY1UXl68-axvgXLq.png">
 
@@ -241,7 +241,7 @@ Additional sources to read: https://www.developerway.com/posts/react-elements-ch
 
 - If in Context there is a combination of data and API (getters and setters) they can be split into different Providers under the same component.
 
-- So, the components that use API only <u>won't re-render when the data changes</u>
+- So, the components that use API only <ins>won't re-render when the data changes</ins>
 
 <img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/0*qiZUtLGHm6TzokmT.png">
 
@@ -249,15 +249,15 @@ Additional sources to read: https://www.developerway.com/posts/react-elements-ch
 
 ##### iii) Splitting data into chunks
 
-- If Context manages a few independent data chunks, they can be split into smaller providers under the same provider. <u>That way only consumers of changed chunk will re-render</u>
+- If Context manages a few independent data chunks, they can be split into smaller providers under the same provider. <ins>That way only consumers of changed chunk will re-render</ins>
 
 <img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/0*DCZY6dWjNgidwAV2.png">
 
 ##### iv) Context selectors for preventing Context re-renders
 
-<u>There is no way to prevent a component that uses a portion of Context value from re-rendering, even if the used piece of data hasn't changed even with useMemo hook</u>
+<ins>There is no way to prevent a component that uses a portion of Context value from re-rendering, even if the used piece of data hasn't changed even with useMemo hook</ins>
 
-<strong><u>Context Selectors however could be faked with the use of higher-order components and React.memo</u></strong>
+<strong><ins>Context Selectors however could be faked with the use of higher-order components and React.memo</ins></strong>
 
 <img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*n0B_Pda0XZ0kL3mdggDvZQ.png">
 

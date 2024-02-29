@@ -36,6 +36,8 @@ console.log(areAnagrams('listen', 'silent')); // true
 console.log(areAnagrams('hello', 'world')); // false
 ```
 
+<ins>**Time Complexity**</ins>: O(n)
+
 ---
 
 - **Approach taken for n number of anagrams**
@@ -101,3 +103,5 @@ console.log(
 ```
 
 ![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/17433ff5-4263-438f-9f9d-b61b2968794a)
+
+**Time Complexity**:  O(n * m log m), 

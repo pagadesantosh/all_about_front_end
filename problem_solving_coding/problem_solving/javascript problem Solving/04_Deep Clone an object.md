@@ -41,3 +41,5 @@ const deepClonedObject = deepClone(obj2);
 console.log('deepClonedObj', deepClonedObject);
 console.log('Testing deepClonedObj', obj2.c === deepClonedObject.c); //false, because references are not same
 ```
+
+<ins>**Time Complexity**</ins>: O(n)

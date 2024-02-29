@@ -4,7 +4,7 @@
 
 - used in situations **_where you need to directly interact with an element for things that can't be done declaratively_** (i.e., through React's state and props system)
 
-- <u>**Accessing DOM Nodes:**</u>
+- <ins>**Accessing DOM Nodes:**</ins>
 
   - This is useful for **_managing focus_**, **_text selection_**, **_media playback_**, **_triggering imperative animations_**, and integrating with third-party DOM libraries.
 
@@ -32,12 +32,12 @@ function MyComponent() {
 
 **1. Creating a Ref**: In the parent component, you create a ref using useRef hook.
 
-**2. Passing the Ref to a Child:**: You pass this ref <u>**_down to a child component as a prop_**.</u>
+**2. Passing the Ref to a Child:**: You pass this ref <ins>**_down to a child component as a prop_**.</ins>
 
-**3. Forwarding the Ref in the Child Component:** The child component uses the React.forwardRef function <u>**_to forward this ref to a particular DOM element_**</u>
+**3. Forwarding the Ref in the Child Component:** The child component uses the React.forwardRef function <ins>**_to forward this ref to a particular DOM element_**</ins>
 
 **4. Accessing the Ref in the Parent Component:**
-The <u>**_parent component can then interact with the DOM node_**</u> or component instance <u>**_referenced by the ref as if it were directly part of the parent_**.</u>
+The <ins>**_parent component can then interact with the DOM node_**</ins> or component instance <ins>**_referenced by the ref as if it were directly part of the parent_**.</ins>
 
 ```js
 import React, { useRef, useEffect } from 'react';
@@ -66,5 +66,5 @@ const App = () => {
 export default App;
 ```
 
-<u>**Note**</u>:
+<ins>**Note**</ins>:
 The FancyButton component forwards the ref to the button element, allowing the parent component (App) to interact with the button DOM node.

@@ -16,6 +16,9 @@ console.log(hasAllUniqueCharsSet('hello')); // false
 console.log(hasAllUniqueCharsSet('abcde')); // true
 ```
 
+<ins>**Time Complexity**</ins>: O(n)
+- **Reasoning**: Constructing a `Set` from a `string` iterates through each character of the string once to determine if it is unique, making it O(n) where n is the length of the string.
+
 ---
 
 - <strong>Approach Taken for indexOf:</strong>
@@ -41,3 +44,6 @@ function hasAllUniqueCharsIndexOf(str) {
 console.log(hasAllUniqueCharsIndexOf('hello')); // false
 console.log(hasAllUniqueCharsIndexOf('abcde')); // true
 ```
+
+<ins>**Time Complexity**</ins>: O(n^2)
+**Reasoning**: For each character in the string, the `indexOf` and `lastIndexOf` methods search through the entire string to find the first and last occurrence of that character, respectively. Since these searches are performed for every character, the overall time complexity is O(n^2), where n is the length of the string.

@@ -38,12 +38,10 @@
 - **Reduced Memory Usage:**
 
   - By rendering only the visible items, <ins>**_virtualization significantly reduces the number of DOM elements in the document_**</ins>, leading to better memory management and improved performance.
-
 <br/>
 
 - **Faster Rendering**:
   - <ins>Rendering a **_smaller subset of items allows for faster rendering_**, as the browser spends less time processing and painting DOM elements</ins>.
-
 <br/>
 
 - **Smooth Scrolling**: 

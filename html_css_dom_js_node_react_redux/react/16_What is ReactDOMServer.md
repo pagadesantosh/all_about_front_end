@@ -72,8 +72,29 @@ Now in your client application, in your src/index.js, instead of calling **React
 //has the additional ability to attach event listeners to existing markup once React loads.
 ReactDOM.hydrate(<App />, document.getElementById('root'));
 ```
+---
 
-<u>**Points to remember:**</u>
+### Additional Tips for Using ReactDOMServer and SSR
+
+**Code Splitting**: Use dynamic import() statements to split your code and reduce the initial load time. 
+  - Tools like `React Loadable` or `React.lazy with Suspense` can help manage code splitting in React.
+
+**Data Fetching**: 
+- For server-rendered apps, fetch necessary data before rendering your components. This ensures that the server-rendered HTML includes all the required data.
+
+
+**Static Routing**: 
+- Consider **using a static router on the server side**. 
+- Libraries like React Router offer a StaticRouter for this purpose, which doesn't change the URL in the browser but still allows for route matching.
+
+**CSS Management**: 
+  - Ensure that your CSS is also handled correctly in server-side rendering. 
+  - You might need to use tools or libraries to inline critical CSS or load stylesheets differently to prevent FOUC (Flash Of Unstyled Content).
+
+
+-----
+
+<ins>**Points to remember:**</ins>
 
 - All the node.js code needs to be transpiled by Babel, as server-side node.js code does not know anything about JSX nor ES modules
 
@@ -81,7 +102,6 @@ ReactDOM.hydrate(<App />, document.getElementById('root'));
 npm i @babel/register @babel/preset-env @babel/preset-react ignore-styles
 ```
 
-<u>**Create an entry point in server/index.js**</u>
 
 ```js
 require('ignore-styles');
@@ -92,6 +112,13 @@ require('@babel/register')({
 
 require('./server');
 ```
+-----
+
+
+
+
+--- 
+
 
 **Build the React application, so that the build/ folder is populated and run this:**
 

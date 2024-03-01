@@ -1,5 +1,5 @@
-- useCallback hook was introduced in React to memoize callbacks.
-- The problem with callbacks in React <strong><u>that functions are recreated every time when a component is re-rendered</strong></u> eve though they have the same logic.
+- useCallback hook was <ins>**introduced in React to memoize callbacks**</ins>.
+- The problem with callbacks in React <strong><ins>that functions are recreated every time when a component is re-rendered</strong></ins> eve though they have the same logic.
 
 ```js
 import React, { useState } from "react";
@@ -13,7 +13,7 @@ const Avocado = () => {
 
   return (
     <>
-      <Addvocado add={addAvocado} />
+      <Addavocado add={addAvocado} />
       <div>{Array(count).fill("🥑").join(",")}</div>
     </>
   );
@@ -21,7 +21,7 @@ const Avocado = () => {
 
 // Another component
 
-const Addvocado = ({ add }) => {
+const Addavocado = ({ add }) => {
   console.log("component re-rendered");
   return (
     <>
@@ -31,7 +31,7 @@ const Addvocado = ({ add }) => {
 };
 ```
 
-##### Everytime we click the button, the button gets re-rendered even though no state or visual changes are happening for the Addvocado component
+##### Everytime we click the button, the button gets re-rendered even though no state or visual changes are happening for the Addavocado component
 
 ```js
 const avocados01 = () => ["🥑", "🥑", "🥑"];
@@ -43,9 +43,9 @@ avocados01 === avocados01; // returns true
 
 ##### This is because whenever we create a new function we create a new instance and they never be same.
 
-#### Here Memoizing callbacks comes into picture. <u>By always returning the same function we can prevent un-necessary re-renders</u>
+#### Here Memoizing callbacks comes into picture. <ins>By always returning the same function we can prevent un-necessary re-renders</ins>
 
-- We need to fix the component to make it only render the button once. To fix this, <u>we need to wrap the inline function with the useCallback hook like below:</u>
+- We need to fix the component to make it only render the button once. To fix this, <ins>we need to wrap the inline function with the useCallback hook like below:</ins>
 
 ```js
 import React, { useState } from "react";
@@ -63,7 +63,7 @@ const Avocado = () => {
 
   return (
     <>
-      <Addvocado add={memoizedAddAvocado} />
+      <Addavocado add={memoizedAddAvocado} />
       <div>{Array(count).fill("🥑").join(",")}</div>
     </>
   );
@@ -71,7 +71,7 @@ const Avocado = () => {
 
 // Wrapping our Another component with React.memo
 
-const Addvocado = React.memo(({ add }) => {
+const Addavocado = React.memo(({ add }) => {
   console.log("component re-rendered");
   return (
     <>

@@ -1,10 +1,13 @@
 ### Event Pooling in React
 
-- They SyntheticEvent is pooled.
-- This means that the SyntheticEvent object will be reused and **_all properties will be nullified after the event callback has been invoked_**.
+- Event pooling is an **optimization strategy used by React <ins>to reduce memory overhead**</ins>. Here's how it works:
+- **Object Reuse**: 
+  - <ins>***Instead of creating a new event object for each event***</ins>, <ins>*React reuses objects from a pool of SyntheticEvent objects*</ins>. 
+  - After an event handler has been called, <u>***the event object is "nullified" and returned to the pool, ready to be used for the next event***</u>. 
+  - This process significantly reduces the number of garbage collections and improves performance, especially in high-load or high-interaction applications.
+<br/>
 
-<u>**Points to remember:**</u>
-
-- You cannot access the event in an asynchronous way
-- **If we want to access the event properties in an asynchronous way**, <u>we should call event.persist() on the event</u>,
-- By doing above <u>**_will remove the synthetic event from the pool_**</u> and allow references to the event to be retained by user code.
+- **Accessing Event Properties**: 
+  - Because of this pooling and reuse, ***if you want to access an event's properties in an asynchronous way*** (e.g., in a callback or a promise resolution), <ins>***you need to call event.persist() to remove the event from the pool***</ins> and allow your code to retain a reference to the event. 
+  - <ins>Without calling event.persist(), **properties of the event object may be nullified or incorrect when accessed asynchronously**, since the object could have been reused for another event.</ins>
+<br/>

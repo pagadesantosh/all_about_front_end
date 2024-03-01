@@ -1,6 +1,6 @@
 ### Fragments
 
-- Fragments <u>**_allows to group a list_**</u> of children without adding extra nodes to the DOM
+- Fragments <ins>**_allows to group a list_**</ins> of children ***without adding extra nodes to the DOM***
 
 ```js
 function ComponentA(){

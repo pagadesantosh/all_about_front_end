@@ -38,3 +38,8 @@
 - Fiber **_introduced a more robust mechanism for handling errors_** in the application.
 - Error boundaries are components that can catch javascript errors anywhere in a component tree and log those errors, display a fallback UI or take other actions
 - Prior to Fiber, <u>_unhandled errors could corrupt the internal state of React_</u> and cause the entire application to crash.
+
+-----
+
+- Implementing React Fiber in a project doesn't require any explicit actions from developers to take advantage of its benefits **because Fiber is an internal re-architecture of React's reconciliation algorithm**. 
+- It's <ins>***part of React's core, starting from version 16 onwards</ins>***. This means if you're using React version 16 or higher, you're already using Fiber under the hood. However, to effectively leverage the benefits and features that Fiber provides, such as incremental rendering, concurrency, task prioritization, time slicing, and error boundaries, you can follow these guidelines:

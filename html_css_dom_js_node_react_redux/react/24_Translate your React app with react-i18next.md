@@ -10,25 +10,28 @@ npm install react-i18next i18next --save
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-// Translations
 const resources = {
   en: {
     translation: {
-      'welcome.title': 'Welcome to React and react-i18next',
+      'welcome.title': 'Welcome to React',
+    },
+  },
+  nl: { // Adding Dutch translations
+    translation: {
+      'welcome.title': 'Welkom bij React',
     },
   },
 };
 
-i18n
-  .use(initReactI18next) // passes i18n down to react-i18next
-  .init({
-    resources,
-    lng: 'en',
-    keySeparator: false, // we do not use keys in form messages.welcome
-    interpolation: {
-      escapeValue: false, // react already safes from xss
-    },
-  });
+i18n.use(initReactI18next).init({
+  resources,
+  lng: 'en', // Default language can be 'en' for English or 'nl' for Dutch
+  fallbackLng: 'en', // Specifies default language to use if the current language doesn't have the translation
+  keySeparator: false, // Using simple translation keys
+  interpolation: {
+    escapeValue: false, // Not needed for React as it escapes by default
+  },
+});
 
 export default i18n;
 ```
@@ -53,5 +56,18 @@ import { useTranslation } from 'react-i18next';
 function MyComponent() {
   const { t, i18n } = useTranslation();
   return <h1>{t('welcome.title')}</h1>;
+}
+```
+
+```js
+function LanguageSwitcher() {
+  const { i18n } = useTranslation();
+
+  return (
+    <div>
+      <button onClick={() => i18n.changeLanguage('en')}>English</button>
+      <button onClick={() => i18n.changeLanguage('nl')}>Dutch</button>
+    </div>
+  );
 }
 ```

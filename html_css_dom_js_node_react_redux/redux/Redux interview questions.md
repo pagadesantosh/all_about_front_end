@@ -1,37 +1,38 @@
-1. #### What is Redux?
-
+## 1.  What is Redux?
+   
 - Redux **is a predictable state container** for JavaScript applications. *(Yes, it can be used with any other JavaScript framework or library)*. 
 - It ***helps you write applications that <ins>behave consistently</ins>, run in different environments*** (client, server, and native), and are easy to test.
 -  With Redux, **<ins>the entire state of your application is kept in a store</ins>**, **and <ins>each component can access any state *without having to send down props* from one component to another</ins> that it needs from this store**.
 
-- ##### There are three building parts: `actions`, `store`, and `reducers`.
+- ##### There are `three` building parts: `actions`, `store`, and `reducers`.
 
-**Benefits and limitations of Redux**
+#### Benefits and limitations of Redux:
 
-**1. State transfer**
+**1. <ins>State transfer**</ins>
 
 - State is stored together in a single place called the ‘store.’ 
 - While you do not need to store all the state variables in the ‘store,’ it is especially important to when state is being shared by multiple components or in a more complex architecture. 
 - It also allows you to call state data from any component easily.
 
-**2. Predictability**
+**2. <ins>Predictability**</ins>
 
 - Redux is **predictable state container for Javascript apps.**
 - Because reducers are pure functions, the same result will always be produced when a same state and action are passed in.
 
-**3. Maintainability**
+**3. <ins>Maintainability**</ins>
 
 - Redux provides a strict structure for how the code and state should be managed, which makes the architecture easy to replicate and scale for somebody who has previous experience with Redux.
 
-**4. Ease of testing and debugging**
+**4. <ins>Ease of testing and debugging**</ins>
 
 Redux makes it easy to test and debug your code since it offers powerful tools such as Redux DevTools in which you can time travel to debug, track your changes, and much more to streamline your development process.
 
--------
 
-2. #### Explain pros and cons of Redux?
+-----
 
-**Pros using redux**:
+## 2. Explain pros and cons of Redux?
+
+### Pros using redux:
 - Central store (any component can access any state from the store)
 - Store **<ins>persists the state of a component</ins> *even after the component has unmounted***.
 - ***Prevents unnecessary re-renders***, as when the state changes <ins>**it returns new state which uses shallow copy.**</ins>
@@ -39,29 +40,35 @@ Redux makes it easy to test and debug your code since it offers powerful tools s
 - **History of state is maintained** which helps in implementing features like undo very easily.
 
 
-**Cons using redux:**
+### Cons using redux:
 - No encapsulation. Any component can access the data which can cause security issues.
 - Boilerplate code. Restricted design.
 - ***As state is immutable in redux, the reducer updates the state by returning a new state every time*** which can cause excessive use of memory.
 
 -----
 
-3. Explain the concept of a `thunk` in Redux.
+## 3. Explain the concept of a `thunk` in Redux.
 - Redux Thunk is a middleware that **lets you call action creators <ins>that return a function instead of an action object</ins>**. 
 - The `primary` use of Redux Thunk is to ***handle asynchronous operations*** within the Redux ecosystem
 - It **provides a way to delay the dispatch of an action, or to dispatch only if a certain condition is met**. 
 - This capability is particularly useful for complex synchronous logic, such as conditional dispatching of actions, or for asynchronous processes like API calls.
 
+<br/>
 
-**Asynchronous Actions**: In standard Redux, action creators return an action object, and these actions are immediately dispatched by the store.** Redux Thunk extends this model by allowing action creators to return a function**. This function can perform asynchronous operations (e.g., API requests) and dispatch actions based on the outcome of those operations.
+- <ins>**Asynchronous Actions**</ins>: In standard Redux, action creators return an action object, and these actions are immediately dispatched by the store.** Redux Thunk extends this model by allowing action creators to return a function**. This function can perform asynchronous operations (e.g., API requests) and dispatch actions based on the outcome of those operations.
+<br/>
 
-**Conditional Dispatching**: Redux Thunk **allows for conditional dispatching of actions within its returned function**. This is useful when you want to dispatch actions only if certain conditions are met, avoiding unnecessary updates to the state or API calls.
+- <ins>**Conditional Dispatching**</ins>: Redux Thunk **allows for conditional dispatching of actions within its returned function**. This is useful when you want to dispatch actions only if certain conditions are met, avoiding unnecessary updates to the state or API calls.
+<br/>
 
-**Complex Synchronous Logic**: Beyond asynchronous actions, **Thunks can be used to encapsulate complex synchronous logic that needs access to the dispatch method or the current state of the store**. <ins>This keeps the logic outside of components, making them cleaner and focusing them on the UI</ins> rather than on how the state is managed or updated.
+- <ins>**Complex Synchronous Logic**</ins>: Beyond asynchronous actions, **Thunks can be used to encapsulate complex synchronous logic that needs access to the dispatch method or the current state of the store**. <ins>This keeps the logic outside of components, making them cleaner and focusing them on the UI</ins> rather than on how the state is managed or updated.
+<br/>
 
-**Access to `Dispatch` and `GetState`**: The functions returned by thunk action creators **receive the store's dispatch and getState methods as arguments**. This allows the action creators to dispatch other actions or access the current state of the Redux store as needed during asynchronous operations or complex logic.
+- <ins>**Access to `Dispatch` and `GetState`**</ins>: The functions returned by thunk action creators **receive the store's dispatch and getState methods as arguments**. This allows the action creators to dispatch other actions or access the current state of the Redux store as needed during asynchronous operations or complex logic.
 
-#### Example of a Redux Thunk Action Creator
+-----
+
+## 4. Example of a Redux Thunk Action Creator
 
 ```js
 function fetchUserData(userId) {
@@ -110,100 +117,30 @@ function App() {
 export default App;
 
 ```
+------
 
-
-
-------------
-4. Explain the purpose of `Redux middleware`.
-
-5. How does Redux handle `asynchronous actions`?
-
-6. Discuss the use of the `compose` function in Redux.
-
-7. How would you `test` Redux-connected components?
-
-8. Discuss the role of the `initialState` in a Redux reducer.
-
-9. Discuss the concept of `middleware chaining` in Redux.
-
-10. What is the purpose of the `Redux DevTools` extension?
-
-11. How do you handle `side effects` in Redux applications?
-
-12. Discuss the significance of the `payload` in a Redux action.
-
-13. Explain the need for the `connect` function in React-Redux.
-
-14. Discuss the principles of `normalizing state` shape in Redux.
-
-15. Describe the role of the `Redux store` in a React application.
-
-16. Explain the significance of the `action type` in a Redux action.
-
-17. Discuss the use of `memoization` in React-Redux applications.
-
-18. Describe the role of the `Provider` component in React-Redux.
-
-19. How does the Redux store `subscribe` to changes in the state?
-
-20. Discuss the role of `selectors` in optimizing Redux state access.
-
-21. Explain the purpose of the `applyMiddleware` function in Redux.
-
-22. How can you handle `optimistic updates` in a Redux application?
-
-23. What is the purpose of the `combineReducers` function in Redux?
-
-24. Explain the concept of `immutability` and its importance in Redux.
-
-25. `Compare` Redux and Context API in React for state management.
-    
-26. How would you `integrate` Redux with React Router for navigation?
-
-27. How can you `handle forms` in a Redux-powered React application?
-
-28. Explain the concept of `time-travel debugging`with Redux DevTools.
-
-29. Discuss the concept of `middleware` in Redux and provide examples.
-
-30. Discuss the difference between `actions` and `action creators` in Redux.
-
-31. Explain the purpose of the `redux-persist library` in a Redux application.
-
-32. How can you handle `authentication` and `authorization` in a Redux app?
-
-33. How would you `optimize` the performance of a React-Redux application?
-
-34. Explain the `difference` between the terms `"action"` and `"reducer"` in Redux.
-    
-
-35. How can you `avoid` `unnecessary re-rendering` in a React-Redux application?
-
-36. Explain the purpose of the `createSelector` function from the Reselect library.
-
-37. Discuss the `benefits` and `drawbacks` of using Redux in a small-scale application.
-
-38. Discuss the `advantages` and `disadvantages` of using Redux in a large-scale application.
-
-
-39. #### What are redux core concepts?
+## 5. What are redux core concepts?
+   
 
 ![alt text](<images used/redux-components.jpg>)
 
-#### **1. Actions in Redux**
+### **1. <ins>Actions in Redux**</ins>
 - Actions **are plain JavaScript objects** that represent the payloads of information that send data from your application to your store.
 - They are the **only source of information for the store**
 - Actions must have a `type` property that indicates the <ins>type of action being performed</ins>. `Types` should typically be **defined as string constants**. 
 - Once an action is created, it is dispatched to the store to trigger updates to the state.
 
-#### Key concepts related to actions in Redux:
+##### Key concepts related to actions in Redux:
 
-1. **Action Creators**: These are **functions that create or return an action**. <ins>Instead of directly dispatching an action object, you often use action creators to encapsulate the process of creating an action</ins>.
+1. <ins>**Action Creators**</ins>: 
+   - These are **functions that create or return an action**. <ins>Instead of directly dispatching an action object, you often use action creators to encapsulate the process of creating an action</ins>.
 <br/>
-2. **Action Types**: These are usually **defined as string constants** and help identify the action that needs to be performed. Defining them as constants helps avoid typos and provides an easy way to manage all actions in larger applications.
+1. <ins>**Action Types**</ins>: 
+   - These are usually **defined as string constants** and help identify the action that needs to be performed. Defining them as constants helps avoid typos and provides an easy way to manage all actions in larger applications.
 <br/>
 
-3. **Dispatching an Action**: This is the <ins>**process of sending an action to the Redux store to invoke state changes**</ins>. The store's dispatch function is used for this purpose.
+1. <ins>**Dispatching an Action**</ins>: 
+   - This is the <ins>**process of sending an action to the Redux store to invoke state changes**</ins>. The store's dispatch function is used for this purpose.
 <br/>
 
 ```js
@@ -221,36 +158,36 @@ function addTodo(text) {
 dispatch(addTodo('Learn Redux'));
 ```
 
-#### **2. Reducers**: 
+### **2. <ins>Reducers**:</ins> 
 
 - Reducers in Redux are **pure functions** that take the `current state` of an application and an `action` as arguments, and ***return a new state***. 
 - The term "reducer" comes from the concept of a reducing function in functional programming, which is used to reduce a collection of values down to a single value
 
-The key principles of reducers in Redux are:
+#### The key principles of reducers in Redux are:
 
-1. **Pure Functions**: 
+1. <ins>**Pure Functions**:</ins> 
    - Reducers **must** be pure functions. 
    - This means they **should not produce side effects**, such as API calls or routing transitions, and they should not modify the state passed to them. 
    - Instead, **they should return a new object if any changes are made**.
 <br/>
 
-2. **State Shape**: 
+2. <ins>**State Shape**:</ins> 
    - The state shape (structure) is determined by the reducers. 
    - You can have multiple reducers, each managing its own part of the global state. 
    - The Redux <ins>**combineReducers helper function can be used to combine them into a single root reducer**</ins>.
 <br/>
 
-3. **Handling Actions**: 
+3. <ins>**Handling Actions**:</ins> 
    - Reducers **specify how the application's state changes in response to actions**. 
    - <ins>**They use the action's type**</ins> to determine how to transform the current state into a new state.
 <br/>
 
-4. **Immutability**: 
+4. <ins>**Immutability**:</ins> 
    - When changing the state, reducers must return a new object or array rather than modifying the existing state. 
    - This immutability principle ensures that Redux can efficiently track changes and update the UI.
 <br/>
 
-5. **Initialization and Resetting:**
+5. <ins>**Initialization and Resetting:**</ins>
    -  Reducers can set up the initial state and handle actions that reset the state back to the initial state.
 
 
@@ -277,7 +214,7 @@ function todoReducer(state = initialState, action) {
 }
 ```
 
-#### **3. Store in Redux**
+### **3. <ins>Store in Redux**</ins>
 
 - A Store ***is an object that holds the whole state tree of your application***. 
 - Whenever the `store` is updated, <ins>it will update the React components subscribed to it.</ins> 
@@ -300,7 +237,7 @@ const store = createStore(rootReducer)
  )
 ```
 
-#### Dispatching Actions 
+### **4. <ins>Dispatching Actions</ins>** 
 
 - ##### This dispatch call sends an action to the store,
 
@@ -312,14 +249,14 @@ store.dispatch({
 
 ```
 
-#### Subscribing to changes 
+### **5. <ins>Subscribing to changes:</ins>**
 - used to subscribe data/state from the Store.
 
 ```js
 store.subscribe()
 ```
 
-#### Middleware
+### **6. <ins>Middleware**</ins>
 
 - Middlewares are **used to dispatch async functions**. 
 - We configure Middleware's while creating a store.
@@ -329,42 +266,41 @@ store.subscribe()
 const store = createStore(reducers, initialState, middleware);
 ```
 
-
-
 ----
 
-40.   What do you understand by "Single source of truth" in Redux?
 
+## 6.  What do you understand by "Single source of truth" in Redux?
+  
 - refers to the principle that the <ins>***state of your whole application is stored in an object tree within a single store***</ins>. 
 
 - This means that instead of having multiple, possibly inconsistent sources of state scattered throughout your application, there is one central place where the state is managed and stored. 
   
-1. **Predictability**: 
+1. <ins>**Predictability**</ins>: 
    - Because there is only one place where the state is stored, it becomes much easier to track changes, debug, and understand how state changes over time
    - This predictability is crucial for large applications, making them easier to maintain.
    <br/>
 
-2. **Maintainability**:
+2. <ins>**Maintainability**</ins>:
    - With all state changes flowing through a centralized store, it's easier to impose rules on how state can be updated, ensuring consistency across the application. 
    - This centralized control aids in maintaining and scaling the application.
    <br/>
 
-3. **Debugging**: 
+3. <ins>**Debugging**:</ins> 
    - The single state tree makes it possible to implement powerful debugging tools, such as logging every state change, traveling back and forth in time to understand how state mutations lead to bugs, and even rehydrating state from a previous session.
    <br/>
 
-4. **Serialization**: 
+4. <ins>**Serialization**:</ins> 
    - Having the entire application state in one place **makes it possible to serialize the state (e.g., to localStorage) and deserialize it later**, potentially enabling features like undo/redo or saving the state of the application to be resumed later.
    <br/>
 
-5. **Simplifies Data Flow**: 
+5. <ins>**Simplifies Data Flow**:</ins> 
    - The single source of truth simplifies data flow in the application by **adhering to unidirectional data flow**, <ins>*where state flows down from the store to the UI components*</ins>, and actions flow up from the components to update the state.
 
    <br/>
 
------
+------
 
-41.  What are the features of Workflow in Redux?
+## 7. What are the features of Workflow in Redux?
 
 
 - When using Redux with React, **states will no longer need to be lifted up**. Everything is handled by Redux. 
@@ -374,48 +310,471 @@ const store = createStore(reducers, initialState, middleware);
 - The store can be thought of as a "middleman" for all state changes in the application.
 - With Redux involved, <ins>components don't communicate directly with each other</ins>. **Rather, all state changes must go through the single source of truth**, the store.
 
+-----
 
-### Redux has three core principles:
+## 8. Redux has three core principles:
 
-1. **Single Source of Truth**: 
+1. <ins>**Single Source of Truth**:</ins> 
    -    The state of your whole application is stored in an object tree within a single store.
 
-2. **State Is Read-Only**: 
+2. <ins>**State Is Read-Only**:</ins> 
    - The only way to change the state is to dispatch an action, an object describing what happened.
-3. **Changes Are Made With Pure Functions**: 
+3. <ins>**Changes Are Made With Pure Functions**:</ins> 
    - To specify how the state tree is transformed by actions, you write pure reducers.
 
 
-The following are details of how Redux works:
+### The following are details of how Redux works:
 - When UI Event triggers (OnClick, OnChange, etc) it can dispatch Actions based on the event.
 - Reducers process Actions and return a new state as an Object.
 - The new state of the whole application goes into a single Store.
 - Components can easily subscribe to the Store.
 
------
+-------
 
-4.  What is difference between presentational component and container component in react redux?
-5.  Explain the role of Reducer?
-6.  How to split the reducers?
-7.  How to create action creators react with redux?
-8.  How to set the dataflow using react with redux?
-9.  What are the three principles that Redux follows?
-10. How can I represent "side effects" such as AJAX calls? Why do we need things like "action creators", "thunks", and "middleware" to do async behavior?    
-11. What is the '@' (at symbol) in the Redux @connect decorator?
-12. What is the difference between React State vs Redux State?
-13. What is the best way to access redux store outside a react component?
-14. How to add multiple middleware to redux?
-15. How to set initial state in Redux? 
-16. What is the purpose of the constants in Redux?
-17. What are the differences between redux-saga and redux-thunk?
-18. Explain Redux form with an example?
-19. How to reset state in redux?
-20. Why are Redux state functions called as reducers?
-21. What are the differences between call and put in redux-saga?
-22. What is the mental model of `redux-saga`?
-23. How `Relay` is different from Redux?
-24. When would `bindActionCreators` be used in react/redux?
-25. What is `mapStateToProps` and `mapDispatchToProps`?
-26. What is `reselect` and how it works?
-27. What are the different ways to dispatch actions in Redux?
-28. How to use Redux for Error Handling?
+## 9.  What is difference between presentational component and container component in react redux?
+    
+- ***Represent a <ins>pattern for organizing code</ins>*** that helps in managing complexity, particularly in large applications. 
+- This pattern helps in separating the concerns between how things look (UI) and how things work (logic and state management). 
+
+##### Here's a breakdown of the differences:
+
+
+###<ins>**Container Components**:</ins> 
+   
+- **Purpose**: 
+  - Container components are **concerned with how things work**. They provide the `data` and `behavior` to presentational or other container components.
+<br/>
+
+- **State**: 
+  - They are **more likely to maintain state and handle state updates**. They connect to the Redux store and dispatch actions to update the store based on user interactions.
+<br/>
+
+- **Redux**: 
+  - They use Redux-specific functions like `connect` (in React-Redux bindings) to read from a Redux store and dispatch actions. With the introduction of hooks in React, container components might also use hooks like `useSelector` and `useDispatch` for a similar purpose.
+<br/>
+
+- **Reusability**: 
+  - They are **less reusable since they are tightly coupled** with the business logic and data fetching mechanisms.
+
+<ins>**Example**</ins>: A TodoListContainer component that fetches todo items from the Redux store and passes them to a TodoList presentational component to render.
+
+
+
+
+
+
+### <ins>**Presentational Components**:</ins> 
+
+- **Purpose**: 
+  - Are primarily **concerned with how things look**. They render the UI based on the props passed to them.
+<br/>
+
+- **State**: 
+  - They **usually don't manage state** (except for local UI state) and **receive data and callbacks exclusively via `props`**.
+<br/>
+
+- **Redux**: 
+  - They are unaware of Redux. **They don't dispatch actions or directly interact with the Redux store**.
+<br/>
+
+- **Reusability**: 
+  -  Since they focus on the UI without embedding business logic, they tend to be more reusable across different parts of the application or even in different applications..
+
+<ins>**Example**</ins>: Button component that receives a label and an onClick callback as props.
+
+
+- #### It's worth noting that with the advent of React Hooks (useState, useEffect, useContext, useReducer, and custom hooks), the distinction between presentational and container components <ins>*has become less clear and less necessary*</ins>.
+
+----
+10.  How to split the reducers?
+
+- In Redux, splitting reducers is a common practice to manage the complexity of handling a large state object. 
+- This process is known as `"reducer composition"` and is **facilitated by the combineReducers utility function provided by Redux**. 
+- The <ins>***idea is to create multiple smaller reducer functions, each managing its own slice of the state, and then combine them into one root reducer</ins>***. Each of these smaller reducers is responsible for updating a specific piece of state based on the action dispatched.
+
+#### Here's a step-by-step guide on how to split reducers:
+
+### 1. <ins>Create Individual Reducers</ins>
+
+```js
+// todosReducer.js
+function todosReducer(state = [], action) {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return [...state, action.payload];
+    case 'REMOVE_TODO':
+      return state.filter(todo => todo.id !== action.payload);
+    // Add other cases as needed
+    default:
+      return state;
+  }
+}
+
+// visibilityFilterReducer.js
+function visibilityFilterReducer(state = 'SHOW_ALL', action) {
+  switch (action.type) {
+    case 'SET_VISIBILITY_FILTER':
+      return action.payload;
+    // Add other cases as needed
+    default:
+      return state;
+  }
+}
+```
+### 2. <ins>Combine Reducers</ins>
+
+
+
+```js
+import { combineReducers } from 'redux';
+import todosReducer from './todosReducer';
+import visibilityFilterReducer from './visibilityFilterReducer';
+
+const rootReducer = combineReducers({
+  todos: todosReducer,
+  visibilityFilter: visibilityFilterReducer,
+});
+
+export default rootReducer;
+
+```
+
+### 3. <ins>Create the Redux Store</ins>
+
+```js
+import { createStore } from 'redux';
+import rootReducer from './reducers'; // The combined reducers
+
+const store = createStore(rootReducer);
+```
+
+----
+
+#### 11. How to create action creators with redux?
+
+- Action creators in Redux **are functions that create (or return) action objects**.    
+- `Actions` are plain JavaScript objects that describe "what happened" in your application
+- These objects must have a type property indicating the type of action being performed, **and they can optionally have a payload property or any other fields** you deem necessary to describe the action.    
+    
+#### Step 1: Define Action Types    
+  - First, define constants for your action types to avoid typos and simplify changes later on.
+
+```js
+// actionTypes.js
+export const ADD_TODO = 'ADD_TODO';
+export const REMOVE_TODO = 'REMOVE_TODO';
+
+```
+#### Step 2: Create Action Creators
+- Create functions that return an action object. Each function corresponds to a specific action in your application.
+
+```js
+// actions.js
+import { ADD_TODO, REMOVE_TODO } from './actionTypes';
+
+// Action creator for adding a todo
+export function addTodo(text) {
+  return {
+    type: ADD_TODO,
+    payload: { text }
+  };
+}
+
+// Action creator for removing a todo
+export function removeTodo(id) {
+  return {
+    type: REMOVE_TODO,
+    payload: { id }
+  };
+}
+```
+
+#### Step 3: Dispatch Actions in Components
+
+- In your React components, use the useDispatch hook from react-redux to dispatch actions created by your action creators. This is assuming you're using functional components and the hooks API.
+
+
+```js
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addTodo } from './actions';
+
+function TodoInput() {
+  const [input, setInput] = useState('');
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+    dispatch(addTodo(input));
+    setInput('');
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
+      <button type="submit">Add Todo</button>
+    </form>
+  );
+}
+```
+
+#### Step 4: Connect Redux State and Dispatch to Your Components
+- For components that need to access the Redux state or dispatch actions, use the useSelector hook to access the state and the useDispatch hook to dispatch actions.
+
+- If you're using class components, you would use the connect function instead to provide state and dispatch props to your components.
+
+
+```js
+import React from 'react';
+import { useSelector } from 'react-redux';
+
+function TodoList() {
+  const todos = useSelector(state => state.todos);
+
+  return (
+    <ul>
+      {todos.map(todo => (
+        <li key={todo.id}>{todo.text}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+
+
+----
+    
+## 12.  How to set the dataflow using react with redux?
+    
+#### 1. Install Redux and React-Redux
+```js
+npm install redux react-redux
+```
+
+#### 2. Create Action Creators
+```js
+// actions/todoActions.js
+export const addTodo = (todo) => {
+  return {
+    type: 'ADD_TODO',
+    payload: todo,
+  };
+};
+
+export const removeTodo = (todoId) => {
+  return {
+    type: 'REMOVE_TODO',
+    payload: todoId,
+  };
+};
+```
+
+#### 3. Create Reducers
+```js
+// reducers/todosReducer.js
+const initialState = {
+  todos: [],
+};
+
+function todosReducer(state = initialState, action) {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return {...state, todos: [...state.todos, action.payload]};
+    case 'REMOVE_TODO':
+      return {...state, todos: state.todos.filter(todo => todo.id !== action.payload)};
+    default:
+      return state;
+  }
+}
+
+export default todosReducer;
+```
+
+#### 4. Combine Reducers
+
+```js
+// reducers/index.js
+import { combineReducers } from 'redux';
+import todosReducer from './todosReducer';
+
+const rootReducer = combineReducers({
+  todos: todosReducer,
+});
+
+export default rootReducer;
+```
+
+#### 5. Create the Redux Store
+
+```js
+// store.js
+import { createStore } from 'redux';
+import rootReducer from './reducers';
+
+const store = createStore(rootReducer);
+
+export default store;
+```
+
+#### 6. Provide the Redux Store to React
+
+```js
+// index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import App from './App';
+import store from './store';
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
+```
+
+#### 7. Connect React Components to the Redux Store
+- Use the connect function or the useSelector and useDispatch hooks in your components to access and modify the Redux store.
+
+
+```js
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addTodo } from './actions/todoActions';
+
+function TodoApp() {
+  const todos = useSelector(state => state.todos.todos);
+  const dispatch = useDispatch();
+
+  const handleAddTodo = (todo) => {
+    dispatch(addTodo(todo));
+  };
+
+  // Render your component UI here
+}
+```
+
+```js
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addTodo } from './actions/todoActions';
+
+class TodoApp extends Component {
+  handleAddTodo = (todo) => {
+    this.props.addTodo(todo);
+  };
+
+  // Render your component UI here
+}
+
+const mapStateToProps = (state) => ({
+  todos: state.todos.todos,
+});
+
+const mapDispatchToProps = {
+  addTodo,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoApp);
+```
+
+----------------
+
+    
+13. How can I represent "side effects" such as AJAX calls? Why do we need things like "action creators", "thunks", and "middleware" to do async behavior?    
+    
+14. What is the '@' (at symbol) in the Redux @connect decorator?
+15. What is the difference between React State vs Redux State?
+16. What is the best way to access redux store outside a react component?
+17. How to add multiple middleware to redux?
+18. How to set initial state in Redux? 
+19. What is the purpose of the constants in Redux?
+20. What are the differences between redux-saga and redux-thunk?
+21. Explain Redux form with an example?
+22. How to reset state in redux?
+23. Why are Redux state functions called as reducers?
+24. What are the differences between call and put in redux-saga?
+25. What is the mental model of `redux-saga`?
+26. How `Relay` is different from Redux?
+27. When would `bindActionCreators` be used in react/redux?
+28. What is `mapStateToProps` and `mapDispatchToProps`?
+29. What is `reselect` and how it works?
+30. What are the different ways to dispatch actions in Redux?
+31. How to use Redux for Error Handling?
+32. Explain the purpose of `Redux middleware`.
+
+33. How does Redux handle `asynchronous actions`?
+
+34. Discuss the use of the `compose` function in Redux.
+
+35. How would you `test` Redux-connected components?
+
+36. Discuss the role of the `initialState` in a Redux reducer.
+
+37. Discuss the concept of `middleware chaining` in Redux.
+
+38. What is the purpose of the `Redux DevTools` extension?
+
+39. How do you handle `side effects` in Redux applications?
+
+40. Discuss the significance of the `payload` in a Redux action.
+
+41. Explain the need for the `connect` function in React-Redux.
+
+42. Discuss the principles of `normalizing state` shape in Redux.
+
+43. Describe the role of the `Redux store` in a React application.
+
+44. Explain the significance of the `action type` in a Redux action.
+
+45. Discuss the use of `memoization` in React-Redux applications.
+
+46. Describe the role of the `Provider` component in React-Redux.
+
+47. How does the Redux store `subscribe` to changes in the state?
+
+48. Discuss the role of `selectors` in optimizing Redux state access.
+
+49. Explain the purpose of the `applyMiddleware` function in Redux.
+
+50. How can you handle `optimistic updates` in a Redux application?
+
+51. What is the purpose of the `combineReducers` function in Redux?
+
+52. Explain the concept of `immutability` and its importance in Redux.
+
+53. `Compare` Redux and Context API in React for state management.
+    
+54. How would you `integrate` Redux with React Router for navigation?
+
+55. How can you `handle forms` in a Redux-powered React application?
+
+56. Explain the concept of `time-travel debugging`with Redux DevTools.
+
+57. Discuss the concept of `middleware` in Redux and provide examples.
+
+58. Discuss the difference between `actions` and `action creators` in Redux.
+
+59. Explain the purpose of the `redux-persist library` in a Redux application.
+
+60. How can you handle `authentication` and `authorization` in a Redux app?
+
+61. How would you `optimize` the performance of a React-Redux application?
+
+62. Explain the `difference` between the terms `"action"` and `"reducer"` in Redux.
+   
+
+62. How can you `avoid` `unnecessary re-rendering` in a React-Redux application?
+
+63. Explain the purpose of the `createSelector` function from the Reselect library.
+
+64. Discuss the `benefits` and `drawbacks` of using Redux in a small-scale application.
+
+65. Discuss the `advantages` and `disadvantages` of using Redux in a large-scale application.

@@ -1071,7 +1071,76 @@ export default App;
 --- 
 
 20. How to reset state in redux?
-    
+
+- To reset the state in Redux, **you typically dispatch an action that tells the Redux reducer to reset the state to its initial value** or to a specific state. 
+
+#### 1. Define a Reset Action Type:
+```js
+// actions/types.js
+export const RESET_STATE = 'RESET_STATE';
+```
+
+#### 2. Create a Reset Action Creator:
+
+```js
+// actions/index.js
+import { RESET_STATE } from './types';
+
+export const resetState = () => ({
+  type: RESET_STATE,
+});
+```
+
+#### 3. Handle the Reset Action in Reducers:
+
+```js
+import { RESET_STATE } from '../actions/types';
+
+const initialState = {
+  // initial state values
+};
+
+function myReducer(state = initialState, action) {
+  switch (action.type) {
+    case RESET_STATE:
+      return initialState;
+    // handle other actions
+    default:
+      return state;
+  }
+}
+```
+#### 4. Dispatch the Reset Action::
+- Whenever you want to reset the state, dispatch the resetState action. This can be done from anywhere in your app where you have access to the Redux store's dispatch function.
+
+
+```js
+import { resetState } from './actions';
+
+// Dispatch the reset action
+store.dispatch(resetState());
+```
+
+#### Global Approach for Multiple Reducers:
+- If you're using multiple reducers and **want a global way to reset the state**, <ins>***you can wrap your root reducer with a higher-order reducer that handles the reset action, instead of modifying each reducer individually***</ins>.
+
+
+```js
+const rootReducer = combineReducers({
+  // your reducers
+});
+
+const resettableRootReducer = (state, action) => {
+  if (action.type === RESET_STATE) {
+    state = undefined;
+  }
+  return rootReducer(state, action);
+};
+```
+
+
+----
+
 21. What are the differences between call and put in redux-saga?
 22. What is the mental model of `redux-saga`?
 23. How `Relay` is different from Redux?

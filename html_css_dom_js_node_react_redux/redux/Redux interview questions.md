@@ -386,7 +386,7 @@ const store = createStore(reducers, initialState, middleware);
 - #### It's worth noting that with the advent of React Hooks (useState, useEffect, useContext, useReducer, and custom hooks), the distinction between presentational and container components <ins>*has become less clear and less necessary*</ins>.
 
 ----
-10.  How to split the reducers?
+## 10.  How to split the reducers?
 
 - In Redux, splitting reducers is a common practice to manage the complexity of handling a large state object. 
 - This process is known as `"reducer composition"` and is **facilitated by the combineReducers utility function provided by Redux**. 
@@ -450,7 +450,7 @@ const store = createStore(rootReducer);
 
 ----
 
-#### 11. How to create action creators with redux?
+## 11. How to create action creators with redux?
 
 - Action creators in Redux **are functions that create (or return) action objects**.    
 - `Actions` are plain JavaScript objects that describe "what happened" in your application
@@ -694,87 +694,79 @@ export default connect(mapStateToProps, mapDispatchToProps)(TodoApp);
 15. What is the difference between React State vs Redux State?
 16. What is the best way to access redux store outside a react component?
 17. How to add multiple middleware to redux?
-18. How to set initial state in Redux? 
-19. What is the purpose of the constants in Redux?
-20. What are the differences between redux-saga and redux-thunk?
-21. Explain Redux form with an example?
-22. How to reset state in redux?
-23. Why are Redux state functions called as reducers?
-24. What are the differences between call and put in redux-saga?
-25. What is the mental model of `redux-saga`?
-26. How `Relay` is different from Redux?
-27. When would `bindActionCreators` be used in react/redux?
-28. What is `mapStateToProps` and `mapDispatchToProps`?
-29. What is `reselect` and how it works?
-30. What are the different ways to dispatch actions in Redux?
-31. How to use Redux for Error Handling?
-32. Explain the purpose of `Redux middleware`.
-
-33. How does Redux handle `asynchronous actions`?
-
-34. Discuss the use of the `compose` function in Redux.
-
-35. How would you `test` Redux-connected components?
-
-36. Discuss the role of the `initialState` in a Redux reducer.
-
-37. Discuss the concept of `middleware chaining` in Redux.
-
-38. What is the purpose of the `Redux DevTools` extension?
-
-39. How do you handle `side effects` in Redux applications?
-
-40. Discuss the significance of the `payload` in a Redux action.
-
-41. Explain the need for the `connect` function in React-Redux.
-
-42. Discuss the principles of `normalizing state` shape in Redux.
-
-43. Describe the role of the `Redux store` in a React application.
-
-44. Explain the significance of the `action type` in a Redux action.
-
-45. Discuss the use of `memoization` in React-Redux applications.
-
-46. Describe the role of the `Provider` component in React-Redux.
-
-47. How does the Redux store `subscribe` to changes in the state?
-
-48. Discuss the role of `selectors` in optimizing Redux state access.
-
-49. Explain the purpose of the `applyMiddleware` function in Redux.
-
-50. How can you handle `optimistic updates` in a Redux application?
-
-51. What is the purpose of the `combineReducers` function in Redux?
-
-52. Explain the concept of `immutability` and its importance in Redux.
-
-53. `Compare` Redux and Context API in React for state management.
     
-54. How would you `integrate` Redux with React Router for navigation?
+    
+18. What are the differences between redux-saga and redux-thunk?
+19. Explain Redux form with an example?
+20. How to reset state in redux?
+    
+21. What are the differences between call and put in redux-saga?
+22. What is the mental model of `redux-saga`?
+23. How `Relay` is different from Redux?
+24. When would `bindActionCreators` be used in react/redux?
+25. What is `mapStateToProps` and `mapDispatchToProps`?
+26. What is `reselect` and how it works?
+27. What are the different ways to dispatch actions in Redux?
+28. How to use Redux for Error Handling?
+29. Explain the purpose of `Redux middleware`.
 
-55. How can you `handle forms` in a Redux-powered React application?
+30. How does Redux handle `asynchronous actions`?
 
-56. Explain the concept of `time-travel debugging`with Redux DevTools.
+31. Discuss the use of the `compose` function in Redux.
 
-57. Discuss the concept of `middleware` in Redux and provide examples.
+32. How would you `test` Redux-connected components?
 
-58. Discuss the difference between `actions` and `action creators` in Redux.
+33. Discuss the concept of `middleware chaining` in Redux.
 
-59. Explain the purpose of the `redux-persist library` in a Redux application.
+34. What is the purpose of the `Redux DevTools` extension?
 
-60. How can you handle `authentication` and `authorization` in a Redux app?
 
-61. How would you `optimize` the performance of a React-Redux application?
 
-62. Explain the `difference` between the terms `"action"` and `"reducer"` in Redux.
+35. Discuss the significance of the `payload` in a Redux action.
+
+36. Explain the need for the `connect` function in React-Redux.
+
+37. Discuss the principles of `normalizing state` shape in Redux.
+
+
+
+38. Discuss the use of `memoization` in React-Redux applications.
+
+39. Describe the role of the `Provider` component in React-Redux.
+
+40. How does the Redux store `subscribe` to changes in the state?
+
+41. Discuss the role of `selectors` in optimizing Redux state access.
+
+42. Explain the purpose of the `applyMiddleware` function in Redux.
+
+43. How can you handle `optimistic updates` in a Redux application?
+
+
+
+44. Explain the concept of `immutability` and its importance in Redux.
+
+45. `Compare` Redux and Context API in React for state management.
+    
+46. How would you `integrate` Redux with React Router for navigation?
+
+47. How can you `handle forms` in a Redux-powered React application?
+
+48. Explain the concept of `time-travel debugging`with Redux DevTools.
+
+49. Discuss the concept of `middleware` in Redux and provide examples.
+
+50. Explain the purpose of the `redux-persist library` in a Redux application.
+
+51. How can you handle `authentication` and `authorization` in a Redux app?
+
+52. How would you `optimize` the performance of a React-Redux application?
    
 
-62. How can you `avoid` `unnecessary re-rendering` in a React-Redux application?
+53. How can you `avoid` `unnecessary re-rendering` in a React-Redux application?
 
-63. Explain the purpose of the `createSelector` function from the Reselect library.
+54. Explain the purpose of the `createSelector` function from the Reselect library.
 
-64. Discuss the `benefits` and `drawbacks` of using Redux in a small-scale application.
+55. Discuss the `benefits` and `drawbacks` of using Redux in a small-scale application.
 
-65. Discuss the `advantages` and `disadvantages` of using Redux in a large-scale application.
+56. Discuss the `advantages` and `disadvantages` of using Redux in a large-scale application.

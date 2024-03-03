@@ -688,16 +688,388 @@ export default connect(mapStateToProps, mapDispatchToProps)(TodoApp);
 ----------------
 
     
-13. How can I represent "side effects" such as AJAX calls? Why do we need things like "action creators", "thunks", and "middleware" to do async behavior?    
+## 13. How can I represent "side effects" such as AJAX calls? Why do we need things like "action creators", "thunks", and "middleware" to do async behavior?    
     
-14. What is the '@' (at symbol) in the Redux @connect decorator?
-15. What is the difference between React State vs Redux State?
-16. What is the best way to access redux store outside a react component?
-17. How to add multiple middleware to redux?
-    
-    
-18. What are the differences between redux-saga and redux-thunk?
+- Side effects means that **code is no longer purely a function of its inputs, and the interactions with the outside world** are known as "side effects".
+- Redux is inspired by functional programming, and out of the box, **has no place for side effects to be executed**. In particular, `reducer` functions **must always be pure functions** of (state, action) => newState.
+- However, <ins>**Redux's middleware (eg. Redux Thunk, Redux Saga) makes it possible to intercept dispatched actions and add additional complex behavior** around them, including side effects.</ins>
+  
+----------------
+
+## 14. What is the '@' (at symbol) in the Redux @connect decorator?
+
+- `Decorators` make it possible to ***annotate and modify classes and properties <ins>at design time***</ins>.
+
+
+#### Without a decorator
+
+```js
+import React from 'react'
+import * as actionCreators from './actionCreators'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+function mapStateToProps(state) {
+  return { todos: state.todos }
+}
+
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(actionCreators, dispatch) }
+}
+
+class MyApp extends React.Component {
+  // ...define your main app here
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyApp)
+```
+
+
+#### With decorator
+```js
+import React from 'react'
+import * as actionCreators from './actionCreators'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+// mapStateToProps is a function that maps the state from the Redux store to the props of the component. 
+function mapStateToProps(state) {
+  return { todos: state.todos }
+}
+
+// mapDispatchToProps does a similar thing but for dispatching actions.
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(actionCreators, dispatch) }
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
+export default class MyApp extends React.Component {
+  // ...define your main app here
+}
+```
+
+
+----
+
+## 15. What is the difference between React State vs Redux State?
+
+- `React state` is **stored locally within a component**. When it needs to be shared with other components, it is passed down through props. 
+
+
+- When using `Redux`, **state is stored globally in the Redux store**. Any component that needs access to a value may subscribe to the store and gain access to that value.
+
+
+
+
+------
+
+## 16. What is the best way to access redux store outside a react component?
+
+- Accessing the Redux store outside a React component is **commonly needed for dispatching actions** or **accessing the state in non-component files**, such as in middleware, services, or helpers
+
+#### Step 1: Create and Export the Store 
+
+```js
+import { createStore, applyMiddleware } from 'redux';
+import rootReducer from './reducers';
+import thunk from 'redux-thunk';
+
+const store = createStore(
+  rootReducer,
+  applyMiddleware(thunk)
+);
+
+export default store;
+```
+
+#### Step 2: Import and Use the Store
+```js
+import store from './path/to/your/store';
+
+// Dispatching an action
+store.dispatch({ type: 'ACTION_TYPE' });
+
+// Accessing the state
+const currentState = store.getState();
+```
+
+<ins>**Good To Know:**</ins>
+- **Singleton Pattern**: 
+  - By `exporting` and `importing` the `store`, **you're essentially using it as a singleton**. 
+  - This ensures that the same store instance is used <ins>***throughout your application, maintaining consistency in your application's state management***</ins>.
+
+----
+
+## 17. How to add multiple middleware to redux?
+- In Redux, <ins>**middleware allows you to write logic that can be inserted into the dispatch process of actions**</ins> before they reach the reducer. 
+- This is useful for `logging actions`, `performing asynchronous tasks`, and more
+- To add multiple middleware to Redux, <ins>**you use the applyMiddleware function from Redux in combination with the createStore function**</ins>.
+  
+
+#### Step 1: Import the Middleware and Redux Methods: 
+
+```js
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
+```
+
+#### Step 2: Combine Middleware: 
+- Use `applyMiddleware()` to combine your middleware.
+- You can pass all the middleware you want to use as arguments to this function.
+- **If you have more than one middleware, <ins>just separate them with commas**</ins>
+
+```js
+const middleware = applyMiddleware(thunk, logger);
+```
+
+#### Step 3: Apply Middleware to the Store: 
+- When creating the Redux store with `createStore`, **you can now apply the combined middleware**. 
+- The `createStore` function takes up to three arguments: the `rootReducer`, the `initialState`, and the `enhancer` (in this case, the middleware).
+
+```js
+const store = createStore(
+  rootReducer,
+  initialState,
+  middleware
+);
+```
+
+#### Step 4: If you are using Redux DevTools Extension: 
+- You might want to **compose the middleware with the dev tools extension**. 
+- In that case, you would use the `compose` function from Redux like so:
+
+```js
+import { createStore, applyMiddleware, compose } from 'redux';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+  rootReducer,
+  initialState,
+  composeEnhancers(
+    applyMiddleware(thunk, logger)
+  )
+);
+```    
+----------
+
+## 18. What are the differences between redux-saga and redux-thunk?
+
+
+- `redux-saga` and `redux-thunk` are both middleware libraries for Redux, a state management library for JavaScript applications, most commonly used with React. 
+-  They are used to handle side effects in your Redux application, such as asynchronous actions like fetching data from an API or complex synchronous operations.
+
+
+
+
+
+
+
+#### **1. Redux Thunk**
+- Redux Thunk is a middleware that lets you call action creators that <ins>**return a function instead of an action object**</ins>.
+- **That function receives the store's dispatch method**, <ins>which is then used to dispatch regular synchronous actions inside the body of the function once the asynchronous operations have completed.</ins>
+
+
+![alt text](<images used/redux-thunk-image.jpeg>)
+
+```js
+npm i --save react-redux redux redux-logger redux-saga redux-thunk
+```
+
+- `Thunk` **is a function** <ins>***which optionally takes some parameters and returns another function***</ins>, it takes `dispatch` and `getState` functions and both of these are supplied by Redux Thunk middleware.
+
+
+```js
+// Action Creators with redux-thunk
+function fetchData() {
+  return (dispatch) => {
+    dispatch({ type: 'FETCH_DATA_BEGIN' });
+    return fetch('https://api.example.com/data')
+      .then(response => response.json())
+      .then(json => dispatch({ type: 'FETCH_DATA_SUCCESS', payload: json }))
+      .catch(error => dispatch({ type: 'FETCH_DATA_FAILURE', error }));
+  };
+}
+
+// Using the thunk in a component
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
+const MyComponent = () => {
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
+  
+  return <div>Content</div>;
+};
+```
+
+#### **2. redux saga**
+- uses ES6 generators to make asynchronous flow easy to read, write, and test. Sagas are implemented as generator functions that yield objects to the redux-saga middleware
+- In saga, we can test our asynchronous flows easily and our actions stay pure. It organized complicated asynchronous actions easily and make then very readable and the saga has many useful tools to deal with asynchronous actions.
+
+
+![alt text](<images used/redux flow.png>)
+
+```js
+// Sagas
+import { call, put, takeEvery } from 'redux-saga/effects';
+
+function* fetchData(action) {
+  try {
+    const data = yield call(() => fetch('https://api.example.com/data').then(res => res.json()));
+    yield put({type: 'FETCH_DATA_SUCCESS', payload: data});
+  } catch (e) {
+    yield put({type: 'FETCH_DATA_FAILURE', message: e.message});
+  }
+}
+
+/*
+  Starts fetchData on each dispatched `FETCH_DATA_BEGIN` action.
+  Allows concurrent fetches of data.
+*/
+function* mySaga() {
+  yield takeEvery('FETCH_DATA_BEGIN', fetchData);
+}
+
+export default mySaga;
+
+// Setting up the Saga middleware
+import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import rootReducer from './reducers';
+import mySaga from './sagas';
+
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
+  rootReducer,
+  applyMiddleware(sagaMiddleware)
+);
+
+sagaMiddleware.run(mySaga);
+```
+
+
+#### Key Differences in Usage:
+**Thunk Approach**: 
+- In `redux-thunk`, the asynchronous logic is placed inside the action creator itself. 
+- The **action creator returns a function that performs the async operation and then dispatches actions based on the outcome**.
+
+**Saga Approach:** 
+- In `redux-saga`, the asynchronous logic is separated from action creators. 
+- Sagas listen for actions dispatched to the store and then perform side effects. 
+- Sagas use yield to make asynchronous calls easy to read and write in a synchronous-like fashion.
+-------
+
 19. Explain Redux form with an example?
+
+- Redux Form is a **library for managing form state in Redux**. 
+- It provides a way to handle form inputs and submissions using Redux, with form validation and submission capabilities. 
+- Redux Form <ins>***works by storing form state in the Redux store, allowing you to easily connect your forms to Redux***</ins>
+- It utilizes `higher-order components` and `decorators` **to connect your forms to the Redux store**.
+
+
+#### Step 1: Setup Redux Form
+
+```js
+import { createStore, combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
+
+const rootReducer = combineReducers({
+  // ...your other reducers here
+  form: formReducer // <--- Mounted at 'form'
+});
+
+const store = createStore(rootReducer);
+```
+#### Step 2: Create a Form Component
+
+- Use `reduxForm()` to connect your form component to Redux Form. 
+- Define your form fields using the Field component and specify the validation logic.
+
+```js
+import React from 'react';
+import { Field, reduxForm } from 'redux-form';
+
+// Validation function
+const validate = values => {
+  const errors = {};
+  if (!values.username) {
+    errors.username = 'Required';
+  } else if (values.username.length > 15) {
+    errors.username = 'Must be 15 characters or less';
+  }
+  if (!values.email) {
+    errors.email = 'Required';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address';
+  }
+  return errors;
+};
+
+// Custom input component
+const renderField = ({ input, label, type, meta: { touched, error } }) => (
+  <div>
+    <label>{label}</label>
+    <div>
+      <input {...input} type={type} />
+      {touched && error && <span>{error}</span>}
+    </div>
+  </div>
+);
+
+// Form component
+let SimpleForm = props => {
+  const { handleSubmit, pristine, reset, submitting } = props;
+  return (
+    <form onSubmit={handleSubmit}>
+      <Field name="username" type="text" component={renderField} label="Username" />
+      <Field name="email" type="email" component={renderField} label="Email" />
+      <div>
+        <button type="submit" disabled={submitting}>Submit</button>
+        <button type="button" disabled={pristine || submitting} onClick={reset}>
+          Clear Values
+        </button>
+      </div>
+    </form>
+  );
+};
+
+// Connecting the form component to Redux Form
+SimpleForm = reduxForm({
+  form: 'simple', // a unique identifier for this form
+  validate, // validation function
+})(SimpleForm);
+
+export default SimpleForm;
+```
+
+#### Step 3: Use the Form in Your Application
+
+```js
+import React from 'react';
+import SimpleForm from './SimpleForm'; // Import your form component
+
+const App = () => (
+  <div>
+    <h2>Simple Form Example</h2>
+    <SimpleForm />
+  </div>
+);
+
+export default App;
+```
+
+**Explanation**:
+- **Redux Form Reducer**: The form reducer is mounted on the form key of your root reducer to manage form states.
+- **Form Component**: You create a form component and decorate it with reduxForm(), passing configuration options such as the form's name and validation function.
+- **Field Component:** Use the Field component to define inputs in your form, specifying the name of the field, the type of input, and the component to render the field.
+- **Validation**: Validation logic is defined in a function that receives the form's values, checks for errors, and returns an object with any errors found.
+
+--- 
+
 20. How to reset state in redux?
     
 21. What are the differences between call and put in redux-saga?

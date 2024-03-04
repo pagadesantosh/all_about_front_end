@@ -1534,6 +1534,73 @@ console.log(getNumberOfUsers(state)); // Output: 2 (cached result, no recomputat
 ----
 
 27. What are the different ways to dispatch actions in Redux?
+
+#### 1. Direct Dispatch in Store
+
+```js
+store.dispatch({ type: 'INCREMENT' });
+```
+
+#### 2. `connect` Higher-Order Component with `mapDispatchToProps`
+
+```js
+import { connect } from 'react-redux';
+import { increment } from './actionCreators';
+
+function mapDispatchToProps(dispatch) {
+  return {
+    increment: () => dispatch(increment()),
+  };
+}
+
+connect(null, mapDispatchToProps)(MyComponent);
+```
+
+#### Using bindActionCreators:
+- If you have multiple actions, bindActionCreators can be used in mapDispatchToProps to automatically bind many action creators to dispatch.
+```js
+import { bindActionCreators } from 'redux';
+import * as actionCreators from './actions';
+
+const mapDispatchToProps = (dispatch) => bindActionCreators(actionCreators, dispatch);
+
+export default connect(null, mapDispatchToProps)(MyComponent);
+```
+
+
+
+#### 3. Redux Hooks
+```js
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { increment } from './actionCreators';
+
+function MyComponent() {
+  const dispatch = useDispatch();
+
+  return (
+    <button onClick={() => dispatch(increment())}>Increment</button>
+  );
+}
+```
+
+#### 4. Middleware
+```js
+const asyncIncrement = () => (dispatch) => {
+  setTimeout(() => {
+    dispatch({ type: 'INCREMENT' });
+  }, 1000);
+};
+```
+
+```js
+function* incrementAsync() {
+  yield delay(1000);
+  yield put({ type: 'INCREMENT' });
+}
+```
+
+-----
 28. How to use Redux for Error Handling?
 29. Explain the purpose of `Redux middleware`.
 

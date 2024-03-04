@@ -1141,7 +1141,7 @@ const resettableRootReducer = (state, action) => {
 
 ## 21. What are the differences between call and put in redux-saga?
 
-### 1. <ins>Purpose and Functionality:</ins>
+### 1. <ins>Purposes and Functionality:</ins>
 
 ### `call`
 

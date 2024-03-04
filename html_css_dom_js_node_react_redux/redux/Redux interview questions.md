@@ -963,7 +963,7 @@ sagaMiddleware.run(mySaga);
 - Sagas use yield to make asynchronous calls easy to read and write in a synchronous-like fashion.
 -------
 
-19. Explain Redux form with an example?
+## 19. Explain Redux form with an example?
 
 - Redux Form is a **library for managing form state in Redux**. 
 - It provides a way to handle form inputs and submissions using Redux, with form validation and submission capabilities. 
@@ -1070,7 +1070,7 @@ export default App;
 
 --- 
 
-20. How to reset state in redux?
+## 20. How to reset state in redux?
 
 - To reset the state in Redux, **you typically dispatch an action that tells the Redux reducer to reset the state to its initial value** or to a specific state. 
 
@@ -1137,16 +1137,402 @@ const resettableRootReducer = (state, action) => {
   return rootReducer(state, action);
 };
 ```
+----
+
+## 21. What are the differences between call and put in redux-saga?
+
+### 1. <ins>Purpose and Functionality:</ins>
+
+### `call`
+
+- This effect is used to create a description object that **instructs the middleware to `call` <ins>a given function</ins> with the specified arguments**. 
+
+- The call effect <ins>**waits for the called function to return a result or throw an error before proceeding with the saga's execution**</ins>. 
+- **It's a blocking effect, <ins>*meaning the saga is paused until the call completes*</ins>**.
+
+### `put`
+
+-  This effect creates a description object that **instructs the middleware to `dispatch` <ins>an action</ins> to the Redux store**
+- It is <ins>**used for triggering state changes or actions in response to certain events**</ins> or operations within a saga. 
+- Unlike call, <ins>**put is a non-blocking effect**</ins>, meaning the saga does not wait for the action to be processed by reducers or other middleware before continuing its execution.
+
+
+
+### 2. <ins>Usage:</ins>
+
+### `call`
+- It is **primarily used for calling asynchronous functions** (e.g., API calls, data fetching operations) **without blocking the main execution thread**. 
+- <ins>**Example usage**</ins>: 
+```js
+// api.fetchUser is the function to call with userId as its argument.
+yield call(api.fetchUser, userId)
+```
+
+### `put`
+-  Used for **dispatching actions to the Redux store**, typically to update the state based on the results of an asynchronous operation or other logic within a saga. 
+- <ins>**Example usage**</ins>: 
+```js
+// api.fetchUser is the function to call with userId as its argument.
+yield put({ type: 'FETCH_USER_SUCCESS', user: userData })
+```
+### 3. <ins>Effect on Saga Execution:</ins>
+
+### `call`
+
+-  **Pauses the saga's execution until the called function resolves**, making it suitable for operations where the saga needs to wait for the completion of an asynchronous task.
+
+### `put`
+- Does not pause the saga's execution, allowing the saga to continue running after dispatching an action. This behavior is useful for scenarios where the saga does not need to wait for the effects of the dispatched action to proceed.
+
+-----
+
+## 22. What is the mental model of `redux-saga`?
+- `Redux-Saga` uses an ES6 feature called `Generators` to make asynchronous flows easy to read, write, and test. 
+- By using sagas, you essentially create separate threads in your application that are **solely responsible for side effects, while keeping the UI and the state management logic clean and separate**.
+- `redux-saga` is a redux middleware, which means this thread can be `started`, `paused` and `cancelled` from the main application with normal Redux actions, it has access to the full Redux application state and it can dispatch Redux actions as well.
+- Redux-Saga **provides built-in support for task cancellation**, which is a powerful feature for managing complex asynchronous flows. 
+- Sagas **can <ins>spawn tasks that can be later cancelled if certain actions</ins> are dispatched to the store**. 
+- This is **particularly useful <ins>for avoiding race conditions</ins>** and **managing resource cleanup**.
+- By using sagas, you **centralize the logic for handling side effects in your application**
+- This separation of concerns makes your application's logic more modular, easier to understand, and simpler to test, as the side effect handling is abstracted away from the UI and state management.
+
+```js
+npm install --save redux-saga
+```
+
+#### Step 1: Setup Actions
+
+```js
+// Action Types
+export const FETCH_USER_REQUEST = 'FETCH_USER_REQUEST';
+export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
+export const FETCH_USER_FAILURE = 'FETCH_USER_FAILURE';
+
+// Action Creators
+export const fetchUserRequest = () => ({
+  type: FETCH_USER_REQUEST,
+});
+
+export const fetchUserSuccess = (user) => ({
+  type: FETCH_USER_SUCCESS,
+  payload: user,
+});
+
+export const fetchUserFailure = (error) => ({
+  type: FETCH_USER_FAILURE,
+  payload: error,
+});
+```
+
+#### Step 2: Create the Saga
+
+```js
+import { call, put, takeLatest } from 'redux-saga/effects';
+import { FETCH_USER_REQUEST, fetchUserSuccess, fetchUserFailure } from './actions';
+
+// Simulate an API call
+const fetchUserData = async () => {
+  const response = await fetch('https://jsonplaceholder.typicode.com/users/1');
+  if (!response.ok) {
+    throw new Error('Failed to fetch user');
+  }
+  return await response.json();
+};
+
+// Worker Saga
+function* fetchUserSaga() {
+  try {
+    const user = yield call(fetchUserData);
+    yield put(fetchUserSuccess(user));
+  } catch (error) {
+    yield put(fetchUserFailure(error.message));
+  }
+}
+
+// Watcher Saga
+function* watchFetchUser() {
+  yield takeLatest(FETCH_USER_REQUEST, fetchUserSaga);
+}
+
+export default watchFetchUser;
+```
+
+#### Step 3: Setup the Redux Store
+```js
+import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import rootReducer from './reducers'; // Assume this is your root reducer
+import watchFetchUser from './sagas';
+
+// Create the saga middleware
+const sagaMiddleware = createSagaMiddleware();
+
+// Mount it on the Redux store
+const store = createStore(
+  rootReducer,
+  applyMiddleware(sagaMiddleware)
+);
+
+// Then run the saga
+sagaMiddleware.run(watchFetchUser);
+
+export default store;
+```
+-----
+
+
+## 23. When would `bindActionCreators` be used in react/redux?
+
+- `bindActionCreators` is a utility function provided by Redux that **wraps action creators with the dispatch function**, making it easier to invoke them directly without needing to call dispatch each time. 
+    
+```js
+export const updateUser = (user) => ({
+  type: 'UPDATE_USER',
+  payload: user,
+});
+
+export const deleteUser = (userId) => ({
+  type: 'DELETE_USER',
+  payload: userId,
+});
+```
+
+```js
+//MyComponent.jsx
+import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from './actions';
+
+function MyComponent({ updateUser, deleteUser }) {
+  return (
+    <div>
+      <button onClick={() => updateUser({ id: 1, name: 'John Doe' })}>
+        Update User
+      </button>
+      <button onClick={() => deleteUser(1)}>
+        Delete User
+      </button>
+    </div>
+  );
+}
+
+const mapDispatchToProps = (dispatch) => {
+  //to bind all action creators from the actions.js file to the Redux dispatch function
+  return bindActionCreators(actionCreators, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(MyComponent);
+```
+### **Conclusion**:
+- **bindActionCreators** is a helpful utility in Redux for scenarios where you want to simplify the process of dispatching actions, especially in React components. 
+
+
+- Without `bindActionCreators`, **you would need to manually wrap each action creator with the dispatch function in your mapDispatchToProps function** or within your components. This can lead to repetitive and cumbersome code, especially as the number of actions increases.
+
+#### Without bindActionCreators
+
+```js
+// actions.js
+export const increment = () => ({ type: 'INCREMENT' });
+export const decrement = () => ({ type: 'DECREMENT' });
+
+// CounterComponent.js
+import React from 'react';
+import { connect } from 'react-redux';
+import { increment, decrement } from './actions';
+
+function CounterComponent({ increment, decrement }) {
+  return (
+    <div>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+    </div>
+  );
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  increment: () => dispatch(increment()),
+  decrement: () => dispatch(decrement()),
+});
+
+export default connect(null, mapDispatchToProps)(CounterComponent);
+```
+
+#### With bindActionCreators
+```js
+import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { increment, decrement } from './actions';
+
+function CounterComponent({ increment, decrement }) {
+  return (
+    <div>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+    </div>
+  );
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  increment,
+  decrement,
+}, dispatch);
+
+export default connect(null, mapDispatchToProps)(CounterComponent);
+```
+----
+
+
+
+### 24. What is `mapStateToProps` and `mapDispatchToProps`?
+
+- `react-redux` package provides 3 functions `connect`, `mapStateToProps` and `mapDispatchToProps`. 
+- `connect` is a higher order function that takes in both `mapStateToProps` and `mapDispatchToProps` **as parameters**.
+
+#### mapStateToProps
+
+- <ins>**pulls in the state of a specific reducer state object** from **global store**</ins> and maps it to the props of component
+
+#### mapDispatchToProps
+- mapDispatchToProps **allows to dispatch state changes** to your store.
+
+
+```js
+// actions.js
+export const addTodo = (todo) => ({
+  type: 'ADD_TODO',
+  payload: todo,
+});
+```
+
+```js
+// reducers.js
+const initialState = {
+  todos: [],
+};
+
+const todoReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return {
+        ...state,
+        todos: [...state.todos, action.payload],
+      };
+    default:
+      return state;
+  }
+};
+
+export default todoReducer;
+```
+
+```js
+// TodoComponent.jsx
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { addTodo } from './actions';
+
+const TodoComponent = ({ todos, addTodo }) => {
+  const [newTodo, setNewTodo] = useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!newTodo.trim()) return;
+    addTodo(newTodo);
+    setNewTodo('');
+  };
+
+  return (
+    <div>
+      <h2>Todos</h2>
+      <ul>
+        {todos.map((todo, index) => (
+          <li key={index}>{todo}</li>
+        ))}
+      </ul>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={newTodo}
+          onChange={(e) => setNewTodo(e.target.value)}
+          placeholder="Add a new todo"
+        />
+        <button type="submit">Add Todo</button>
+      </form>
+    </div>
+  );
+};
+
+// EXAMPLE
+const mapStateToProps = (state) => ({
+  todos: state.todos,
+});
+
+// EXAMPLE
+const mapDispatchToProps = {
+  addTodo,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoComponent);
+```
+-----
+
+
+## 26. What is `reselect` and how it works?
+- `reselect` is a simple library <ins>***for creating memoized, composable selector functions***</ins>
+
+
+#### How reselect Works?
+1. **Memoization**: 
+   - reselect selectors **remember their inputs** (the arguments passed to them) **and outputs** (the result of the selector's computation). 
+   - If a selector is called multiple times with the same inputs, **it will return the cached output without recomputing**. 
+   - This can significantly improve performance, especially for expensive calculations.
+<br/>
+
+2. **Composability**: 
+   - Selectors created with reselect can be composed together. 
+   - This means you can create "base" selectors that extract slices of state and then compose them into more complex selectors that perform further calculations or transformations on that data.
+<br/>
+
+3. **Encapsulation**: 
+   - By encapsulating the state shape and logic for deriving data from the state, selectors make your application more maintainable. 
+   - Components don't need to know about the structure of the Redux store or how data is calculated—they just use selectors to get the data they need.
+
+
+```js
+import { createSelector } from 'reselect';
+
+// Assuming our Redux state has a property 'users' which is an array of user objects
+const getUsers = (state) => state.users;
+
+const getActiveUsers = createSelector(
+  [getUsers], // Input selector
+  (users) => users.filter(user => user.isActive) // Computation to get active users
+);
+
+const getNumberOfActiveUsers = createSelector(
+  [getActiveUsers], // Input selector
+  (activeUsers) => activeUsers.length // Computation to count active users
+);
+
+
+// Assuming our Redux state looks something like this:
+const state = {
+  users: [{ id: 1, name: 'John' }, { id: 2, name: 'Jane' }],
+};
+
+// This will compute the number of users
+console.log(getNumberOfUsers(state)); // Output: 2
+
+// On subsequent calls with the same state, Reselect will return the cached result
+console.log(getNumberOfUsers(state)); // Output: 2 (cached result, no recomputation)
+```
 
 
 ----
 
-21. What are the differences between call and put in redux-saga?
-22. What is the mental model of `redux-saga`?
-23. How `Relay` is different from Redux?
-24. When would `bindActionCreators` be used in react/redux?
-25. What is `mapStateToProps` and `mapDispatchToProps`?
-26. What is `reselect` and how it works?
 27. What are the different ways to dispatch actions in Redux?
 28. How to use Redux for Error Handling?
 29. Explain the purpose of `Redux middleware`.

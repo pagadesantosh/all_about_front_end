@@ -17,7 +17,7 @@
 ```
 
 **for the above code, we would see that critical.css is loaded after 20ms**
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/0f6f1ab0-4b89-490e-81bd-62918cc5f4de)
+![alt text](<imagesUsed/Load CSS Async-1.png>)
 
 ---
 
@@ -41,11 +41,11 @@
 <link rel="stylesheet" href="critical.css" />
 ```
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/dff65be0-9fe8-46e5-8289-0cb9d89cb9a0)
+![alt text](<imagesUsed/Load CSS Async-2.png>)
 
 ---
 
-**we can also use preload to load css asynchronoulsy**
+### **we can also use `preload` to load css asynchronously**
 
 ```html
 <!-- PRELOAD and ASYNC -->

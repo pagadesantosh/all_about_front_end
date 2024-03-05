@@ -25,9 +25,8 @@
 
 **The greater the number of nodes, the longer the following events in the CRP will take**
 
-![alt text](image-1.png)
-![alt text](image.png)
-
+![alt text](imagesUsed/image-1.png) 
+![alt text](imagesUsed/image.png)
 ---
 
 #### CSS Object Model(CSSOM)
@@ -97,7 +96,7 @@
 
 ---
 
-#### Styles (CSS)::
+#### Styles (CSS):
 
 - **<u>Render-blocking:</u>**
 

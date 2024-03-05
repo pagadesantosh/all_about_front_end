@@ -6,5 +6,4 @@
 
 ## Is the component easily i18n-able? How can you change the design to cater for i18n? Does your component support RTL languages?
 
-## How do you send data from a web page to a server without a page refresh?
 

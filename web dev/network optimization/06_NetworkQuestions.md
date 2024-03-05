@@ -13,8 +13,6 @@ What are HTTP methods? List all HTTP methods that you know, and explain them.
 
 ## What is domain pre-fetching and how does it help with performance?
 
-## What is a CDN and what is the benefit of using one?
-
 ## Does the component deal with race conditions in network/async requests? E.g. a new network request is fired before the response for the previous request is returned.
 
 ## What if the request timeout or errored out? How can you recover from it gracefully?

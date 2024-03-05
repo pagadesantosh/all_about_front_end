@@ -1,6 +1,8 @@
-**loading="lazy"** is the attribute you need to provide to lazily load the images.
+## Lazy Loading
 
-- What it does when it encounters the loading attribute with the lazy value, so if that particular image is `not in the viewport` of the user, then it is `not downloaded`.
+- `loading="lazy"` is the attribute you need to provide to lazily load the images.
+
+- What it does when it encounters the loading attribute with the lazy value, so if that particular image is `not in the viewport` of the user, then it is **not downloaded**.
 - The moment you are `about to arrive` on that image then only the `network call happens` and the `image gets downloaded`.
 
 - **Real Time scenario**: Infinite scrolling, ex: as the user scrolls the network api gets called to download that image
@@ -47,7 +49,7 @@
 - So basically if we are scrolling and we encounter that particular element we can take a decision to load other items as well.
 - So whenever your browser basically scroll intersect with that particular sentinel, you will get a callback and based on that callback you can take some certain decision
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/a6b774a6-b4b2-4496-ae37-37b683270960)
+![alt text](<imagesUsed/Lazy Load of Images-1.png>)
 
 - From the above image it is clear that, we don't want to load all the images right ?
 - We just want to load first two images or three images and once you basically have these three images in your viewport and you want to load more images let's say..
@@ -74,3 +76,40 @@ observer.observe(TARGET_ELEMENT);
 ----
 
 ### Content Visibility
+- Anything that is not visible in my viewport, I will lazy rendering of that particular thing. 
+- By just adding `content-visibility: auto`, rendering time has been reduced significantly
+
+![alt text](<imagesUsed/Lazy Load of Images-2.png>)
+
+
+```js
+.story{
+  content-visibility: auto;
+  contain-intrinsic-size: 1000px; /*size of the content which is going to be loaded*/
+}
+```
+
+-----
+
+### Serving Critical CSS
+
+- Only the CSS that is critical that we should load and rest we can load afterwards.
+
+
+#### Load Critical CSS synchronously
+
+```js
+// block your rendering until it is downloaded, your web page is not going to render
+<link rel="stylesheet" href="critical.css"/>
+```
+
+#### Load Critical CSS asynchronously with low priority
+
+
+- media type `"print"` says that this is not critical, load this once your web page is loaded, your JS is ready to execute just on load in that particular case.
+- `all` means available for everyone or for all the use cases in the CSS, it is going to download and make it available for your next rendering and next set of things which are available below the fold
+
+```js
+// 
+<link rel="stylesheet" href="full.css" media='print' onload="this.media='all'"/>
+```

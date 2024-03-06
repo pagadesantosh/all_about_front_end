@@ -26,7 +26,7 @@ function throttle(func, limit) {
   };
 }
 
-let isThrottled = throttle(updateLayout, 100);
+let isThrottled = throttle(updateLayout, 300);
 
 window.addEventListener('resize', () => {
   isThrottled();
@@ -37,28 +37,53 @@ window.addEventListener('resize', () => {
 
 - A function doesn't get called until after a specified amount of time has passed since it was last invoked.
 
-- Ex: execute this function only if 100 milliseconds have passed without it being called
+- Ex: execute this function only if 300 milliseconds have passed without it being called
+
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javascript Coding</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Hello Javascript</h1>
+    <input type="text" id="searchInput" placeholder="Search here.." />
+    <script src="index.js"></script>
+  </body>
+</html>
+```
+
+
+
+
 
 ```js
-function searchQuery(query) {
-  console.log(`Searching for: ${query}`);
-}
-
+// Debounce function
 function debounce(func, delay) {
-  //maintain a variable (ex: timer)
   let timer;
-
-  //return another function with args
   return function (...args) {
     clearTimeout(timer);
-    //mutate that variable
     timer = setTimeout(() => {
       func.apply(this, args);
     }, delay);
   };
 }
 
-const debouncedSearch = debounce(searchQuery, 100);
-let inputState = 'Hello';
-debouncedSearch(inputState);
+// Function that performs the search
+function searchQuery(query) {
+  console.log(`Searching for: ${query}`);
+}
+
+// Create a debounced version of the search function
+const debouncedSearch = debounce(searchQuery, 300);
+
+// Function to attach event listeners after the page loads
+const input = document.getElementById('searchInput');
+input.addEventListener('input', function (event) {
+  debouncedSearch(event.target.value);
+});
 ```

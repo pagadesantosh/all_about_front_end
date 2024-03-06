@@ -57,10 +57,6 @@ window.addEventListener('resize', () => {
 </html>
 ```
 
-
-
-
-
 ```js
 // Debounce function
 function debounce(func, delay) {

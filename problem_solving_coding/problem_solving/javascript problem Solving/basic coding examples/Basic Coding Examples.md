@@ -408,38 +408,7 @@ console.log(add(1, 2, 3, 4, 5, 6, 7)); // 28
 
 ---
 
-## 13. React Router Basic Example:
-
-<details>
-<summary>Solution</summary>
-
-```js
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import './styles.css';
-import Register from './Register';
-import Login from './Login';
-
-export default function App() {
-  return (
-    <div className='App'>
-      <Router>
-        <Routes>
-          <Route exact path='/' element={() => <div>Welcome Page</div>} />
-          <Route path='/register' element={Register} />
-          <Route path='/login' element={Login} />
-        </Routes>
-      </Router>
-    </div>
-  );
-}
-```
-
-</details>
-
----
-
-## 14. Palindrome
+## 13. Palindrome
 
 <details>
 <summary>Solution</summary>
@@ -475,7 +444,7 @@ console.log(isPalindrome('malayalam')); // should return true
 
 ---
 
-## 15. Count the 'a' passed in the array of items
+## 14. Count the 'a' passed in the array of items
 
 <details>
 <summary>Solution</summary>

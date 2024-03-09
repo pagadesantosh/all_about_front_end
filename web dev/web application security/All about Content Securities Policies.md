@@ -1,3 +1,7 @@
+### Q) What is CSP?
+- The Content Security Policy (CSP) is a security standard introduced to prevent `cross-site scripting (XSS)`, `clickjacking`, and other `code injection` attacks resulting from the execution of malicious content in the trusted web page context.
+---
+
 ### Q) How does CSP enhance web security?
 
 - by defining and enforcing rules that dictate which resources (scripts, styles, images, etc.) a browser is allowed to load and execute on a page.
@@ -11,14 +15,34 @@
 
 <img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*bEBO2LgAzaknFVbn7uOqtQ.png">
 
+
+- The term `"space-delimited"` in the context of CSP directives means that within the directive, individual values (in this case, the sources from which content like scripts can be loaded) are separated by spaces. 
+
+
+<ins>**For example:**</ins>
+
+```js
+Content-Security-Policy: script-src 'self' https://www.example.com;
+```
+
+- `script-src` is the name of the directive.
+- `'self'` `https://www.example.com` are the sources listed for this directive.
+- The space between `'self'` and `https://www.example.com` delimits or separates these two sources.
+- This particular directive is <ins>***telling the browser that it can only execute scripts that come from the same origin as the document ('self')***</ins> or from `https://www.example.com`. Each source in the list is separated by a space, which is what `"space-delimited"` refers to.
+
 ---
 
 ### Q) What is Cross-site scripting(XSS) attacks?
 
-- <u>_XSS attacks exploit the browser’s trust of the content received from the server_.</u>
-- Malicious scripts are executed by the victim’s browser because the browser trusts the source of the content, even when it’s not coming from where it seems to be coming from.
-- If your team has been considering adding a CSP to your site, **_they’re a powerful tool for protecting against XSS and click-jacking_**, adding an additional layer of defence and improving your overall site security posture.
-- A complete data transmission security strategy includes not only enforcing HTTPS for data transfer, but also marking all cookies with the secure attribute and providing automatic redirects from HTTP pages to their HTTPS counterparts.
+- <ins>_XSS attacks exploit the browser’s trust of the content received from the server_.</ins>
+<br/>
+
+- **Malicious scripts are executed by the victim’s browser** because the browser trusts the source of the content, even when it’s not coming from where it seems to be coming from.
+<br/>
+
+- If your team has been considering adding a CSP to your site, <ins>**_they’re a powerful tool for protecting against XSS and click-jacking_**</ins>, adding an additional layer of defense and improving your overall site security posture.
+<br/>
+- <ins>A complete data transmission security strategy includes not only enforcing HTTPS for data transfer, but also marking all cookies with the `secure` attribute and providing automatic redirects from HTTP pages to their HTTPS counterparts</ins>.
 
 <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*aztfUE9iCcpVki4U0UuG1g.png">
 
@@ -28,7 +52,7 @@
 
 ### Q) Explain the main directives in CSP.
 
-- **_Directives are rules in CSP_** that define **_what types of content are allowed_**.
+- <ins>**_Directives are rules in CSP_** that define **_what types of content are allowed_**</ins>.
 - `default-src`, `script-src`, `style-src`, etc.
 - default-src: (sets the default source for content),
 - style-src: defines valid sources for styles
@@ -81,7 +105,14 @@ or
 />
 ```
 
-#### NOTE that <u>dynamic policies might have implications on the security of your application</u>, and careful consideration should be given to avoid unintentionally weakening security.
+### Breakdown of the CSP Policy
+`default-src` `'self'` `'unsafe-eval';`:  **Only allow resources (such as fonts, scripts, etc.) from the same origin** as your site, and allow the use of eval() for JavaScript..
+
+`style-src` `'self'` `'unsafe-inline'`;: This **allows the use of inline styles and stylesheets loaded from the same origin**. This is necessary for dynamically generated styles or for styles injected by React components.
+
+`script-src` `'self'`` https://maps.googleapis.com` `'unsafe-inline'` `'unsafe-eval';`: This directive specifies that <ins>***scripts can be loaded from the same origin, from the Google Maps API, and allows for inline scripts and usage of eval()***</ins>. The inclusion of Google Maps is essential for your map-based features to function correctly.
+
+#### NOTE that <ins>dynamic policies might have implications on the security of your application</ins>, and careful consideration should be given to avoid unintentionally weakening security.
 
 ---
 
@@ -126,7 +157,7 @@ or
 
 ### What is the purpose of the `strict-dynamic` directive in CSP?
 
-- **_allows dynamic script execution <u>while still preventing inline script execution_</u>**.
+- **_allows dynamic script execution <ins>while still preventing inline script execution_</ins>**.
 - It enables trusted scripts to be executed dynamically,
 - providing a way to include scripts from trusted sources **without resorting to unsafe inline scripts**.
 
@@ -144,7 +175,7 @@ or
 
 - `self` refers to the same origin (domain and protocol)
 - `'unsafe-inline'` allows the use of inline scripts/styles.
-- Using `'self'` <u>_is more secure than allowing 'unsafe-inline'_</u>, but it restricts inline code.
+- Using `'self'` <ins>_is more secure than allowing 'unsafe-inline'_</ins>, but it restricts inline code.
 
 ---
 
@@ -159,14 +190,14 @@ or
 ### What is the impact of CSP on inline event handlers?
 
 - CSP **restricts the use of inline event handlers** like onclick and onload
-- It <u>**_encourages developers to move event handling logic to external scripts_**</u> rather than embedding it directly in HTML.
+- It <ins>**_encourages developers to move event handling logic to external scripts_**</ins> rather than embedding it directly in HTML.
 
 ---
 
 ### How does CSP impact the use of eval and new Function in JavaScript?
 
 - CSP discourages the use of `eval` and `new Function` as they are **_considered unsafe practices_**.
-- Policies restricting `'unsafe-eval'` <u>can prevent the execution of dynamically generated code using these methods</u>.
+- Policies restricting `'unsafe-eval'` <ins>can prevent the execution of dynamically generated code using these methods</ins>.
 
 ---
 
@@ -195,7 +226,7 @@ or
 7. `self`: Restricts content to the same origin, enhances security.
 8. **Risks** of `'unsafe-inline'` and `'unsafe-eval'`: Allows potentially insecure script execution, increasing vulnerability to attacks.
 9. `nonce`: Random value for script/style tags, enhances security, ensures trust.
-10. `report-uri/report-to`: <u>**_Reports policy violations to specified endpoint_**</u>, aids security monitoring.
+10. `report-uri/report-to`: <ins>**_Reports policy violations to specified endpoint_**</ins>, aids security monitoring.
 11. `CSP Violation Report Significance:` Provides insights into policy breaches, aids security improvements.
 12. `Challenges in CSP Implementation`: Balancing security with functionality, addressing potential issues, optimizing performance.
 13. `CSP for XSS Prevention`: Restricts script sources, mitigates cross-site scripting risks, strengthens security.

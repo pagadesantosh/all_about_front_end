@@ -10,17 +10,17 @@
 function firstDuplicate(str) {
   const obj = {};
 
-  for (let i of str) {
+  for (let char of str) {
     //initially obj is empty, so obj[0] is undefined, and this if condition doesn't get satisfied
-    if (obj[i]) {
-      return i;
+    if (obj[char]) {
+      return char;
     }
     //obj: {index1 is a: true, index2 is b: true, index3 is c: true, index4 is a, so obj[a] is true and if condition is true which return i (ex: a in our case)}
-    obj[i] = true;
+    obj[char] = true;
   }
 
   return null;
 }
 
-console.log(firstDuplicate('abca'));
+console.log(firstDuplicate('abca')); //a
 ```

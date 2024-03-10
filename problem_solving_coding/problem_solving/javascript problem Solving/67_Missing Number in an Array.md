@@ -16,10 +16,10 @@ let missingNumber = function (nums) {
 }
 
 // One Line Solution:
-let missingNumber = (nums) =>
-(nums.length \* (nums.length + 1)) / 2 - nums.reduce((acc, num) => num + acc)
+let missingNumber = (inputArr) =>
+  (inputArr.length * (inputArr.length + 1)) / 2 -
+  inputArr.reduce((acc, currentValue) => acc + currentValue);
 
-console.log(missingNumber([3, 0, 1])) // 2
-console.log(missingNumber([9, 6, 4, 2, 3, 5, 7, 0, 1])) // 8
-
+console.log(missingNumber([3, 0, 1])); // 2
+console.log(missingNumber([9, 6, 4, 2, 3, 5, 7, 0, 1])); // 8
 ```

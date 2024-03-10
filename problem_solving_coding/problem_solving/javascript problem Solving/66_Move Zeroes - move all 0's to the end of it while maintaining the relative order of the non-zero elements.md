@@ -35,10 +35,11 @@ function moveZeroes(nums) {
       lastNonZeroFoundAt++;
     }
   }
+  return nums;
 }
 
 // Example usage
+// Example usage
 const nums = [1, 0, 0, 2, 3];
-moveZeroes(nums);
-console.log(nums); // [1, 2, 3, 0, 0]
+console.log(moveZeroes(nums)); // [1, 2, 3, 0, 0]
 ```

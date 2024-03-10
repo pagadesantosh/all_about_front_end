@@ -27,6 +27,7 @@ function memoizeOne(func, isEqual = areArraysEqual) {
   return function (...args) {
     // Cache Check (if condition): Checks if: 1. The function was called before (isCacheSet), 2. The this context hasn't changed (lastContext === this), 3. The previous arguments (lastArgs) are equal to the current arguments (args) using isEqual.
     if (isCacheSet && lastContext === this && isEqual(lastArgs, args)) {
+      console.log('CachedResult', ...args, 'is', cachedResult)
       // If all conditions are true, returns the cached result (cachedResult) without calling the original function.
       return cachedResult;
     }
@@ -42,7 +43,7 @@ function memoizeOne(func, isEqual = areArraysEqual) {
 }
 
 function add(a, b) {
-  console.log('Computing...');
+  console.log(`Computing...${a}, ${b} is ${a + b}`);
   return a + b;
 }
 
@@ -50,9 +51,9 @@ function add(a, b) {
 const memoizedAdd = memoizeOne(add);
 
 // Calling memoizedAdd with same arguments
-console.log(memoizedAdd(1, 2)); // Outputs: "Computing..." 3
-console.log(memoizedAdd(1, 2)); // Outputs: 3 (No "Computing..." as the result is cached)
+memoizedAdd(1, 2); // Outputs: Computing...1, 2 is 3
+memoizedAdd(1, 2); // Outputs: CachedResult 1 2 is 3
 
 // Calling with different arguments resets the cache
-console.log(memoizedAdd(2, 3)); // Outputs: "Computing..." 5
+memoizedAdd(2, 3); // Outputs: Computing...2, 3 is 5
 ```

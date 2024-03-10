@@ -3,12 +3,12 @@
 **Approach Taken**
 
 1. to implement memoization, three conditions has to be satisfied,
-   i) isCacheSet && lastContext === this && parameters of lastArgs should match with currentArgs
-   ii) isCached and lastContext will be set to true for the very first time
-   iii) for third condition we are looping using every condition
-   iv) if all three are true, simply return cachedResult
-   v) otherwise mutate the cachedResult = funcYouWantToMemoize.call(this, ...args)
-   vi) mutate the lastArgs = args, mutate the lastContext = this, isCacheSet = true
+2. isCacheSet && lastContext === this && parameters of lastArgs should match with currentArgs
+3. isCached and lastContext will be set to true for the very first time
+4. for third condition we are looping using every condition
+5. if all three are true, simply return cachedResult
+6. otherwise mutate the cachedResult = funcYouWantToMemoize.call(this, ...args)
+7. mutate the lastArgs = args, mutate the lastContext = this, isCacheSet = true
 
 ```js
 function areArraysEqual(a, b) {

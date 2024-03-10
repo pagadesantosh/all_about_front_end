@@ -1,24 +1,23 @@
 ## undefinedToNull
 
 ```js
-function undefinedToNull(arg) {
-  // anything that is primitives (ex: strings, numbers, boolean)
-  if (typeof arg !== 'object' || arg === null) {
-    return arg ?? null;
+function undefinedToNull(input) {
+  // check for primitives, ex: for non object, null
+  if (typeof input !== 'object' || input === null) {
+    // The nullish coalescing operator returns the right-hand side operand (null in this case) when its left-hand side operand (input) is null or undefined. 
+    //If input has any other value, including false, 0, "" (empty string), or any falsy value other than null or undefined, it will return input.
+    return input ?? null;
   }
 
-  //Ex: key is a, value is undefined
-  for (const [key, value] of Object.entries(arg)) {
+  //core logic is performing for of loop on Object.entries(input)
+  for (let [key, value] of Object.entries(input)) {
     if (value === undefined) {
-      //mutate the key with null
-      arg[key] = null;
+      input[key] = null;
     } else {
-      //recursively call the same function and this will execute the primitives logic of first if condition
-      arg[key] = undefinedToNull(value);
+      input[key] = undefinedToNull(input[key]);
     }
   }
-
-  return arg;
+  return input
 }
 
 console.log(undefinedToNull({ a: undefined, b: 'BFE.dev' }));

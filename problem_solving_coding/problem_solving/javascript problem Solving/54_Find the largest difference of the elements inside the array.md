@@ -14,7 +14,7 @@ largestDiff([1]);
 **Approach Taken**
 
 1. accept the arrayParam
-2. Math.max(...arrayParam) for max, same Math.min(...arrayParam) for min
+2. get the max and min values from an array using for loop
 3. return Math.abs(max-min)
 
 ```js

@@ -24,7 +24,7 @@ const data = {
   },
 };
 
-// Output: {P1: 2, P4: 3, P3: 3, P2: 2: P5: 2}
+// Output: {P1: 2, P4: 3, P3: 3, P5: 2, P2: 2}
 ```
 
 **Approach taken:**

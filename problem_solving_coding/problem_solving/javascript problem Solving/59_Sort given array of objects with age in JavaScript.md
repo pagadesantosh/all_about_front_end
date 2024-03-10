@@ -37,3 +37,18 @@ for (let i = 0; i < arr.length; i++) {
 
 console.log(sortedAges); // [26, 28, 32]
 ```
+
+### Solution 2
+
+```js
+const arr = [
+  { name: 'Prathi', age: 32, place: 'Pune' },
+  { name: 'Raj', age: 26, place: 'Mumbai' },
+  { name: 'Arun', age: 28, place: 'Delhi' },
+];
+
+// Extract ages and sort them
+const sortedAges = arr.map(person => person.age).sort((a, b) => a - b);
+
+console.log(sortedAges); // Output: [26, 28, 32]
+```

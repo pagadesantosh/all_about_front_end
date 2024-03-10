@@ -24,29 +24,36 @@ console.log('shuffle', shuffle(myArray));
 #### Simple Solution, which returns all the permutations of shuffled array
 
 ```js
-function generatePermutations(arr, n = arr.length, result = [], current = []) {
-  //if the maintained current array length is same as the passedArgArray length then store it into resultArray (ex: result.push([...current]))
-  if (current.length === n) {
-    result.push([...current]);
+function generatePermutations(
+  inputArr,
+  n = inputArr.length,
+  currentArr = [],
+  resultArr = []
+) {
+  // logic 1, based on one condition we need to push to resultArr
+  if (currentArr.length === n) {
+    resultArr.push([...currentArr]);
     return;
   }
 
-  for (let i = 0; i < arr.length; i++) {
-    if (!current.includes(arr[i])) {
-      current.push(arr[i]);
-      //recursively calling the function
-      generatePermutations(arr, n, result, current);
-      current.pop();
+  for (let i = 0; i < inputArr.length; i++) {
+    // logic 2, based on one condition we need to push to currentArr
+    if (!currentArr.includes(inputArr[i])) {
+      currentArr.push(inputArr[i]);
+      //core logic is recursion
+      generatePermutations(inputArr, n, currentArr, resultArr);
+      //logic 3, currentArr.pop()
+      currentArr.pop();
     }
   }
 
-  return result;
+  // never forget to return something in your functions
+  return resultArr;
 }
 
 // Example usage:
 const myArray = [1, 2, 3, 4];
 const permutations = generatePermutations(myArray);
-
-console.log('All possible permutations:');
-permutations.forEach((perm) => console.log(perm));
+console.log('Total Permutations for [1,2,3,4] are ', permutations.length);
+permutations.forEach((permutation) => console.log(permutation));
 ```

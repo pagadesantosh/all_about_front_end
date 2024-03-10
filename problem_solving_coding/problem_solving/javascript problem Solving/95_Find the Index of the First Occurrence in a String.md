@@ -6,23 +6,22 @@
 - return -1 (on outside the for loop)
 
 ```js
-function strStr(haystack, needle) {
-  if (needle === '') return 0; // Edge case: empty needle
+function strStr(inputStr, slicedStr) {
+  if (slicedStr === '') return 0; // Edge case: empty needle
 
-  const n = haystack.length; //ex: "sadbutsad".length is 9
-  const m = needle.length; //ex: "sad".length is 3
+  const inputStrLength = inputStr.length;
+  const slicedStrLength = slicedStr.length;
 
-  for (let i = 0; i <= n - m; i++) {
-    //"sadbutsad".substring(0, 0+3) === "sad"
-    if (haystack.substring(i, i + m) === needle) {
-      return i; // Found the needle
+  for (let i = 0; i <= inputStrLength - slicedStrLength; i++) {
+    if (inputStr.substring(i, i + slicedStrLength) === slicedStr) {
+      return i;
     }
   }
-
-  return -1; // Needle not found
+  return -1;
 }
 
 // Example usage
 console.log(strStr('sadbutsad', 'sad')); // Output: 0
+console.log(strStr('butsad', 'sad')); // Output: 3
 console.log(strStr('leetcode', 'leeto')); // Output: -1
 ```

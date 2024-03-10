@@ -19,16 +19,24 @@ largestDiff([1]);
 
 ```js
 function largestDiff(nums) {
-  // If the array has 0 or 1 elements, return 0
   if (nums.length <= 1) {
     return 0;
   }
 
-  // Find the max and min values in the array
-  let max = Math.max(...nums);
-  let min = Math.min(...nums);
+  // Initialize max and min with the first element
+  let max = nums[0];
+  let min = nums[0];
 
-  // Return the absolute difference between max and min
+  // Iterate through the array to find the max and min
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] > max) {
+      max = nums[i];
+    }
+    if (nums[i] < min) {
+      min = nums[i];
+    }
+  }
+
   return Math.abs(max - min);
 }
 

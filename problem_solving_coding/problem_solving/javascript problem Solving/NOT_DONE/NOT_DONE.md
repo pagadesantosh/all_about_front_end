@@ -1,20 +1,20 @@
-1	Dependent async tasks
-2	Create pausable auto incrementor
-3	Implement LRU cache
-4	Create a toggle function
-5	Create a sampling function
-6	Make function sleep
-7	Remove cycle from the object
-8	Filter multidimensional array
-9	Count element in multidimensional array
-10	In-memory filesystem library
-11	Basic implementations of streams API
-12	Create a memoizer function
-13	Method chaining - part 1
-14	Method chaining - part 2
-15	Implement clearAllTimeout
-16	Implement clearAllInterval
-17	Create a fake setTimeout
+1. Dependent async tasks
+2. Create pausable auto incrementor
+3. Implement LRU cache
+4. Create a toggle function
+5. Create a sampling function
+6. Make function sleep
+7. Remove cycle from the object
+8. Filter multidimensional array
+9. Count element in multidimensional array
+10. In-memory filesystem library
+11. Basic implementations of streams API
+12. Create a memoizer function
+13. Method chaining - part 1
+14. Method chaining - part 2
+15. Implement clearAllTimeout
+16. Implement clearAllInterval
+17. Create a fake setTimeout
 18	Currying - problem 1
 19	Currying - problem 2
 20	Currying - problem 3

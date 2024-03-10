@@ -1,28 +1,33 @@
 
 ```js
-let findPermutations = (string) => {
-  if (!string || typeof string !== 'string') {
-    return 'Please enter a string';
-  } else if (string.length < 2) {
-    return string;
+function findPermutations(inputStr) {
+  //below condition for inputStr is called in recursion
+  if (inputStr.length < 2) {
+    return inputStr;
   }
 
-  let permutationsArray = [];
+  // Output in array format
+  let permutationArray = [];
 
-  for (let i = 0; i < string.length; i++) {
-    let char = string[i];
+  // for loop based on string.length
+  for (let i = 0; i < inputStr.length; i++) {
+    // get each and every char
+    let char = inputStr[i];
 
-    if (string.indexOf(char) != i) continue;
+    // your inputString should not produce duplicates (use indexOf)
+    if (inputStr.indexOf(char) !== i) continue;
 
-    let remainingChars =
-      string.slice(0, i) + string.slice(i + 1);
+    // get the remainingChars using slice by removing the current character
+    let remainingChars = inputStr.slice(0, i) + inputStr.slice(i + 1);
 
+    //recursion
     for (let permutation of findPermutations(remainingChars)) {
-      permutationsArray.push(char + permutation);
+      permutationArray.push(char + permutation);
     }
   }
-  return permutationsArray;
-};
+  //return array outside to 1st for loop
+  return permutationArray;
+}
 
 console.log(findPermutations('aabc'));
 ```

@@ -1480,7 +1480,7 @@ true;
 
 ---
 
-### 63. Point to remeber
+### 63. Point to remember
 
 - an empty array [] is considered a "truthy" value, ![] becomes !true, which evaluates to false.
 
@@ -1491,3 +1491,28 @@ true;
 - For the empty array [], this conversion process effectively **turns it into an empty string ""**
 - JavaScript then converts the empty string "" to a number, which results in 0.
 - Final Comparison: Now the comparison is between 0 and 0, which is true
+
+
+### 64. 
+
+```js
+const object1 = {
+  a: 10,
+  b: 20,
+  c: function () {
+    console.log(this.a + this.b);
+  },
+};
+const result = object1.c;
+result();
+```
+
+
+<details>
+<summary>Solution</summary>
+
+```js
+NaN
+```
+Reason: this points to window and this.a is undefined (so undefined + undefined) results NaN
+</details>

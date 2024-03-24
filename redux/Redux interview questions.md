@@ -122,7 +122,7 @@ export default App;
 ## 5. What are redux core concepts?
    
 
-![alt text](<images used/redux-components.jpg>)
+![alt text](/redux/images_used/redux-components.jpg)
 
 ### **1. <ins>Actions in Redux**</ins>
 - Actions **are plain JavaScript objects** that represent the payloads of information that send data from your application to your store.
@@ -870,7 +870,7 @@ const store = createStore(
 - **That function receives the store's dispatch method**, <ins>which is then used to dispatch regular synchronous actions inside the body of the function once the asynchronous operations have completed.</ins>
 
 
-![alt text](<images used/redux-thunk-image.jpeg>)
+![alt text](/redux/images_used/redux-thunk-image.jpeg)
 
 ```js
 npm i --save react-redux redux redux-logger redux-saga redux-thunk
@@ -911,7 +911,7 @@ const MyComponent = () => {
 - In saga, we can test our asynchronous flows easily and our actions stay pure. It organized complicated asynchronous actions easily and make then very readable and the saga has many useful tools to deal with asynchronous actions.
 
 
-![alt text](<images used/redux flow.png>)
+![alt text](/redux/images_used/redux_flow.png)
 
 ```js
 // Sagas

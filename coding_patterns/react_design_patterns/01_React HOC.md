@@ -77,4 +77,4 @@ export default function App() {
 
 ### Project Structure
 
-[!Alt text](/coding_patterns/react_design_patterns/images_used/HOC.png)
+![Alt text](/coding_patterns/react_design_patterns/images_used/HOC.png)

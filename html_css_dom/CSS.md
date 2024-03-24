@@ -92,7 +92,7 @@ div.a {
 }
 ```
 
-![alt text](<images used/text-indent.png>)
+![alt text](/html_css_dom/images_used/text-indent.png)
 
 ## 18. Other Text Properties
 
@@ -141,11 +141,11 @@ span.c {
 }
 ```
 
-![alt text](<images used/display inline vs block vs inline-block.png>)
+![alt text](/html_css_dom/images_used/display_inline_vs_block_vs_inline-block.png)
 
 #### display inline-block doesn't starts in a new line but respects width and height
 
-![alt text](<images used/display inline-block respects width and height.png>)
+![alt text](/html_css_dom/images_used/display_inline-block_respects_width_and_height.png)
 
 ## 21. Box-sizing
 

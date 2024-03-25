@@ -45,7 +45,7 @@ console.log(arr1);
 #### <i>Deep copy refers to that it is disconnected from original variable after copying.</i>
 
 
-![alt text](/js/JS_Advanced_Concepts/images_used/Deepy_Copy_and_Shallow%20Copy.jpg)
+![alt text](/js/JS_Advanced_Concepts/images_used/Deep_Copy_and_Shallow_Copy.jpg)
 
 ---
 

@@ -23,3 +23,6 @@ array=[4,5,6]
 10) event driven programming in node.js ?
 11) npm ?
 12) How does function is being executed in Javascript?
+
+
+**Verdict**: Selected

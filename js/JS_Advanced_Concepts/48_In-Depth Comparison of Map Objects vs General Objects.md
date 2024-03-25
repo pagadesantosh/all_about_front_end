@@ -12,7 +12,8 @@ map.set(function () {}, 'functionKey');
 map.set('name', 'stringKey');
 ```
 <!-- HERE 1 -->
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/cd57ce5e-84f0-42de-93aa-417c94508f00)
+![alt text](/js/JS_Advanced_Concepts/images_used/Map_vs_Object-1.png)
+
 
 ```js
 let obj = {};
@@ -21,7 +22,7 @@ obj[function () {}] = 'functionKey'; //General object considers its key as a str
 ```
 <!-- HERE 2 -->
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/5b1ef7bc-b666-4a88-9c4b-6fb292577d4f)
+![alt text](/js/JS_Advanced_Concepts/images_used/Map_vs_Object-2.png)
 
 ---
 

@@ -481,8 +481,6 @@ index.js:14 There are 1 'a's in name Elizabeth
 */
 ```
 
-![alt text](<images used/image.png>)
-
 </details>
 
 ---

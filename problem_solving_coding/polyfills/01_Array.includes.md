@@ -7,6 +7,13 @@
 includes(searchElement, fromIndex);
 ```
 
+```js
+// Realtime example usage
+const arr = [1,2,3]
+console.log(arr.includes(3)) //true
+console.log(arr.includes(4)) //false
+```
+
 <strong>Approach Taken:</strong>
 
 First two lines are core logics

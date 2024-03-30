@@ -8,6 +8,12 @@ If no elements are matched, it returns -1
 findIndex(callbackFn, thisArg);
 ```
 
+```js
+// Realtime example usage
+const arr = [1,2,3]
+console.log(arr.finIndex((item)=>item===3)) //2, because we are returning index
+```
+
 <strong>Approach Taken:</strong>
 
 1. const findIndexArr = Object(this)

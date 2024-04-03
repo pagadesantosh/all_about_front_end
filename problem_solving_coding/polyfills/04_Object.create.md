@@ -37,6 +37,9 @@ console.log('newObj1 Key', newObj1.key);
 console.log('newObj1 sayHello', newObj1.sayHello());
 ```
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/c47e3ec6-5e28-4e7b-a72d-46f725f19064)
+  ![alt text](/problem_solving_coding/polyfills/imagesUsed/Object_Create_1.png)
+  ![alt text](/problem_solving_coding/polyfills/imagesUsed/Object_Create_2.png)
 
-![image](https://github.com/saiteja-gatadi1996/interview_prep/assets/42731246/3d79a21f-39fd-43d3-871a-a1ecd9e3a5c3)
+### new keyword usage:
+
+- The `new` keyword is used to create an instance of function F. Because F is a constructor function (albeit an empty one), using new F() ***creates a new object***.

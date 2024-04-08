@@ -5,6 +5,8 @@
 
 ### Using IIFE Pattern:
 ```js
+//IIFE
+
 const UserAuth = (function () {
   const users = []; // Private
 
@@ -68,6 +70,8 @@ UserAuth.authenticate('john_doe', '123456'); // User john_doe authenticated succ
 - This approach naturally provides scope and encapsulation without needing to use an immediately invoked function expression (IIFE) as in the traditional Module Pattern. Each file in an ES6 module acts as a separate module scope.
 
 ```js
+//ES6
+
 let users = []; // This is now scoped to the module, effectively private
 
 function findUser(username) { // Also private to the module

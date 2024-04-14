@@ -687,6 +687,10 @@ View Answer
 
 ### 9.  difference between `<p>`, `<span>` and `<label>` tags when to use which tag.
 
+
+<details>
+
+
   `<p>` Tag
   - is used to ***define paragraphs*** in an HTML document. 
   - It **represents a block of text** that is separated from adjacent blocks by vertical white spaces and possibly first-line indentation, which is the default styling for paragraphs in most browsers.
@@ -727,6 +731,10 @@ View Answer
 <label for="nameInput">Name:</label>
 <input type="text" id="nameInput" name="name">
 ```
+<summary>
+View Answer
+</summary>
+</details>
 
 
 ---

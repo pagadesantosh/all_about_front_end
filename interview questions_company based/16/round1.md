@@ -510,9 +510,227 @@ View Answer
 
 -----
 
-7. Code example of communication between 2 parents which use the same child
-8. What are semantic tags? write down sample HTML for a blog page with sidebar and list of blogs, tell some semantic tags you have worked on?
-9.  difference between `<p>`, `<span>` and `<label>` tags when to use which tag.
+### 7. Code example of communication between 2 parents which use the same child
+
+<details>
+
+- can be managed using a combination of state lifting and callbacks
+
+
+### Step 1: Setup the Child Component
+
+```js
+// Child component that receives messages and callbacks from both parent components
+function SharedChild({ messageFromParentOne, messageFromParentTwo, sendMessageToParentOne, sendMessageToParentTwo }) {
+    return (
+        <div>
+            <h1>Child Component</h1>
+            <p>Message from Parent One: {messageFromParentOne}</p>
+            <p>Message from Parent Two: {messageFromParentTwo}</p>
+            <button onClick={() => sendMessageToParentOne("Hello from Child to Parent One!")}>
+                Send to Parent One
+            </button>
+            <button onClick={() => sendMessageToParentTwo("Hello from Child to Parent Two!")}>
+                Send to Parent Two
+            </button>
+        </div>
+    );
+}
+```
+
+### Step 2: Setup the Parent Components
+
+- Both parent components will manage their own state and pass down props to the child. 
+- They'll also provide functions that the child can call:
+
+```js
+import React, { useState } from 'react';
+
+// ParentOne component that interacts with the child and ParentTwo
+function ParentOne({ sendToParentTwo }) {
+    const [message, setMessage] = useState("");
+
+    return (
+        <div>
+            <h1>Parent One</h1>
+            <SharedChild
+                messageFromParentOne="Parent One says hi!"
+                messageFromParentTwo={message}
+                sendMessageToParentOne={(msg) => setMessage(msg)}  // Updates state based on child interaction
+                sendMessageToParentTwo={sendToParentTwo}  // Sends a message to ParentTwo
+            />
+        </div>
+    );
+}
+
+// ParentTwo component that also interacts with the child and receives messages from ParentOne
+function ParentTwo() {
+    const [message, setMessage] = useState("");
+
+    return (
+        <div>
+            <h1>Parent Two</h1>
+            <SharedChild
+                messageFromParentOne={message}
+                messageFromParentTwo="Parent Two says hello!"
+                sendMessageToParentOne={(msg) => setMessage(msg)}  // Updates state based on child interaction
+                sendMessageToParentTwo={(msg) => setMessage(msg)}  // Reflects the message back to its own UI for demo purposes
+            />
+        </div>
+    );
+}
+```
+
+### Step 3: Main App Component
+
+```js
+// App component that manages both ParentOne and ParentTwo
+function App() {
+    const [parentTwoMessage, setParentTwoMessage] = useState("");
+
+    return (
+        <div>
+            <ParentOne sendToParentTwo={(msg) => setParentTwoMessage(msg)} />
+            <ParentTwo />
+        </div>
+    );
+}
+```
+<summary>
+View Answer
+</summary>
+</details>
+
+----
+
+### 8. What are semantic tags? write down sample HTML for a blog page with sidebar and list of blogs, tell some semantic tags you have worked on?
+
+<details>
+
+   - Semantic HTML tags <ins>**provide meaningful information about the contents of those tags**</ins> beyond just how they appear on the page
+   - They help with `accessibility`, `search engine optimization`, and make the code easier to read and understand for other developers. 
+   - Using semantic tags correctly can also `enhance` the user experience by making web content **more accessible to users with disabilities**.
+
+#### Common Semantic Tags in HTML5:
+
+`<article>`: Defines independent, self-contained content.
+`<aside>`: Indicates content that's tangentially related to the content around it, often used for sidebars.
+`<details>`: Specifies additional details that the user can view or hide.
+`<figcaption>`: Represents a caption or legend associated with a figure.
+`<figure>`: Used to encapsulate media, typically with a caption, and is referenced as a single unit.
+`<footer>`: Represents the footer for its nearest sectioning content or sectioning root.
+`<header>`: Represents introductory content or navigational links for its nearest sectioning content or root.
+`<main>`: Specifies the main content of a document.
+`<mark>`: Indicates text that is marked or highlighted for reference or notation purposes.
+`<nav>`: Represents a section of a page that links to other pages or parts within the page, a section meant for navigation.
+`<section>`: Represents a standalone section — which doesn't have a more specific semantic element to represent it — within a document.
+`<summary>`: Specifies a visible heading for a `<details>` element; the summary can be clicked to view/hide the details.
+
+
+#### Sample HTML for a Blog Page with Sidebar:
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Page</title>
+</head>
+<body>
+    <header>
+        <h1>My Blog</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main>
+            <article>
+                <h2>Blog Post Title</h2>
+                <p>Posted on <time datetime="2023-04-01">April 1, 2023</time></p>
+                <p>This is the content of the blog post. It's full of insightful details and information...</p>
+            </article>
+            <article>
+                <h2>Another Blog Post</h2>
+                <p>Posted on <time datetime="2023-04-02">April 2, 2023</time></p>
+                <p>Another fascinating post on our blog covering a different but equally interesting topic...</p>
+            </article>
+        </main>
+        <aside>
+            <h3>Related Posts</h3>
+            <ul>
+                <li><a href="#post3">Blog Post 3</a></li>
+                <li><a href="#post4">Blog Post 4</a></li>
+                <li><a href="#post5">Blog Post 5</a></li>
+            </ul>
+        </aside>
+    </div>
+
+    <footer>
+        <p>Copyright © 2023 Blog Name</p>
+    </footer>
+</body>
+</html>
+```
+
+<summary>
+View Answer
+</summary>
+</details>
+
+----
+
+### 9.  difference between `<p>`, `<span>` and `<label>` tags when to use which tag.
+
+  `<p>` Tag
+  - is used to ***define paragraphs*** in an HTML document. 
+  - It **represents a block of text** that is separated from adjacent blocks by vertical white spaces and possibly first-line indentation, which is the default styling for paragraphs in most browsers.
+
+##### Usage: 
+- Use the `<p>` tag whenever you need to structure textual content into separate paragraphs. 
+- It is suitable for longer text that needs to be organized into distinct sections, such as descriptions, articles, or any form of written content.
+
+```html
+<p>This is a paragraph of text. Here, you can include several sentences that make up a complete thought or section of content.</p>
+```
+---
+
+`<span>` Tag
+  - is used for **grouping inline-elements** or styling a part of a text within a different element without causing a line break. 
+  - It is an inline container used to **mark up a part of a text**, or a part of a document.
+
+##### Usage: 
+  - Use when you need to apply specific styling or identify a part of a text within another block or inline element. 
+
+
+```html
+<p>This is a paragraph with <span style="color: red;">some words in red</span> to emphasize them without altering the structural flow of the paragraph.</p>
+```
+
+---
+
+`<label>` Tag:
+
+  - is used to define a label for an `<input>` element. 
+  - This tag **improves the usability of the form elements** by making them more **accessible to screen readers** and by allowing users to click on the label text to focus/control the associated input field.
+
+##### Usage: 
+  - whenever you define forms that include elements like text boxes, radio buttons, checkboxes, etc. The for attribute of the `<label>` should be the same as the id attribute of the input it is labeling to establish a linkage.
+
+
+```html
+<label for="nameInput">Name:</label>
+<input type="text" id="nameInput" name="name">
+```
+
+
+---
+
 10. what are block, inline elements what are the differences
 11. `meta` tag to achieve responsiveness with syntax
 12. Positions and movement of an element with each position (relative, absolute, fixed and sticky)

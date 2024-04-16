@@ -12,7 +12,7 @@
 
 ---
 
-###Mid-Level Frontend Developer
+### Mid-Level Frontend Developer
 
 - Design and implement a draggable and resizable component using HTML, CSS, and JavaScript.
 - Build a star rating widget that allows users to rate a product or service.
@@ -26,7 +26,7 @@
 
 ---
 
-###Senior Frontend Developer
+### Senior Frontend Developer
 
 - Develop a full-fledged e-commerce product catalog with sorting and filtering options.
 - Implement a drag-and-drop file upload system with file previews and validation.

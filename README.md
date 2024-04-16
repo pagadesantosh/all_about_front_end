@@ -48,28 +48,42 @@
 
 - Problem solving, Polyfills and machine coding has became the compulsory interview rounds.
 
-- So, If you have time for your next Frontend interview then I would highly recommend you people to solve atleast 2 to 3 polyfills, problems and machine coding challenges everyday (in parallel) including with your below preparation syllabus.
+------
 
-Note: If your target is less than 20 LPA, then you should be atleast (okay to good) in problem solving skills
+- So, If you have time for your next Frontend interview then I would highly recommend you people to solve atleast 2 to 3 polyfills, 2 to 3 problems and 1 to 2 machine coding challenges everyday (in parallel) including with your below preparation syllabus.
+
+-----
+
+### Category_1 (15 LPA to 20 LPA)
 
 1. Folder js ---> JS Advanced concepts (60)
 2. Folder js --> Coding outputs
 3. Folder Html_css_dom
 4. Folder React
 5. Folder Redux
-6. Folder Web_dev
+6. Folder Web_dev (basics)
 7. Folder interview_questions_company_based
 
-Note: If you are looking for 20+ to 30 LPA job then you have to add below (this takes time) considering you completed above ones 😊
+### Category_2 (20 LPA to 30 LPA)
 
-1. problem_solving_coding entire folder
-2. Coding patterns entire folder 
-3. Node.js (atleast basics)
-4. CI CD pipeline basics with Docker .yml scripts configuration (Currently not present in my repositories)
+- Including above ones + Below ones
+**Expectations** - Advance to Expertise level
+
+1. Folder--> problem_solving_coding entire folder
+2. Folder--> Coding patterns entire folder 
+
+-----
+
+### Category_3 (Backend + Database)
+
+- If you are more into Frontend and have good experience on backend then you can expect the following
+
+1. Folder---> Node.js
+2. CI CD pipeline basics with Docker .yml scripts configuration (Currently not present in my repositories)
 
 --------
 
-Other main resources that help you to achieve great package 
+### Other main resources that help you to achieve great package 
 
 1.https://github.com/krishnakiriti04/react-interview-questions
 

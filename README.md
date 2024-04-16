@@ -63,14 +63,14 @@
 6. Folder Web_dev (basics)
 7. Folder interview_questions_company_based
 
+----
+
 ### Category_2 (20 LPA to 30 LPA)
 
 #### You should know above ones + You should be very good with below ones
 
-- **Expectations as percurrent market** - Advance to Expertise level
-
-1. Folder--> problem_solving_coding entire folder
-2. Folder--> Coding patterns entire folder 
+1. Folder--> problem_solving_coding
+2. Folder--> Coding patterns 
 
 -----
 
@@ -88,7 +88,7 @@
 1. Directly jump on **interview questions_company based** folder 
  - There are a total of 650 interview questions and it will give you a high level overview of questions that are being asked as per current market.
 2. Javascript advanced concepts folder
-3. other main resources
+3. Other main resources
 
 ------
 

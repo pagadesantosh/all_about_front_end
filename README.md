@@ -46,7 +46,9 @@
 
 ------------------
 
-If you have time for your next Frontend interview then start with
+- Problem solving, Polyfills and machine coding has became the compulsory interview rounds.
+
+- So, If you have time for your next Frontend interview then I would highly recommend you people to solve atleast 2 to 3 polyfills, problems and machine coding challenges everyday (in parallel) including with your below preparation syllabus.
 
 Note: If your target is less than 20 LPA, then you should be atleast (okay to good) in problem solving skills
 
@@ -58,7 +60,7 @@ Note: If your target is less than 20 LPA, then you should be atleast (okay to go
 6. Folder Web_dev
 7. Folder interview_questions_company_based
 
-Note: If you are looking for 20+ to 30 LPA job then you have to add below for sure (this takes time)
+Note: If you are looking for 20+ to 30 LPA job then you have to add below (this takes time) considering you completed above ones 😊
 
 1. problem_solving_coding entire folder
 2. Coding patterns entire folder 
@@ -77,10 +79,10 @@ Other main resources that help you to achieve great package
 
 -------
 
+Note: Please make sure that there will be atleast one machine coding round for sure.
 
-
-Note: Please make sure that there will be machine coding round for sure..
-
-You can prepare it on your own or have a look at 43 solved machine coding challenges if you want to speed up the things.
+- You can prepare it on your own or have a look at my 43 solved machine coding challenges if you want to speed up the things. 
+- I'm selling it for money due to the only reason that these challenges are developed with time constraint in mind. 
+- You can easily complete any challenge on the given day in less than a hour and impress your interviewer.
 
 https://topmate.io/saiteja_gatadi/828485

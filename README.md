@@ -65,8 +65,9 @@
 
 ### Category_2 (20 LPA to 30 LPA)
 
-- Including above ones + Below ones
-**Expectations** - Advance to Expertise level
+#### You should know above ones + You should be very good with below ones
+
+- **Expectations as percurrent market** - Advance to Expertise level
 
 1. Folder--> problem_solving_coding entire folder
 2. Folder--> Coding patterns entire folder 

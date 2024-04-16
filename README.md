@@ -83,6 +83,14 @@
 3. Docker .yml scripts configuration (Currently not present in my repository)
 
 --------
+### Category_4: Interview within couple of weeks
+
+1. Directly jump on **interview questions_company based** folder 
+ - There are a total of 650 interview questions and it will give you a high level overview of questions that are being asked as per current market.
+2. Javascript advanced concepts folder
+3. other main resources
+
+------
 
 ### Other main resources that help you to achieve great package 
 
@@ -91,6 +99,12 @@
 2.https://github.com/krishnakiriti04/javascript-interview-questions
 
 3.https://github.com/lydiahallie/javascript-questions
+
+-------
+
+
+
+
 
 -------
 

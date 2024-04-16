@@ -83,6 +83,7 @@
 3. Docker .yml scripts configuration (Currently not present in my repository)
 
 --------
+
 ### Category_4: Interview within couple of weeks
 
 1. Directly jump on **interview questions_company based** folder 
@@ -91,6 +92,8 @@
 3. Other main resources
 
 ------
+
+### Category 5: Others
 
 ### Other main resources that help you to achieve great package 
 
@@ -102,12 +105,6 @@
 
 -------
 
-
-
-
-
--------
-
 #### <ins>Please make sure that there will be atleast one machine coding round for sure.</ins>
 
 - You can prepare it on your own or have a look at my 43 solved machine coding challenges if you want to speed up the things. 
@@ -115,3 +112,12 @@
 - You can easily complete any challenge on the given day in less than a hour and impress your interviewer.
 
 https://topmate.io/saiteja_gatadi/828485
+
+-------
+
+### WANT MORE PACKAGE ?
+
+- If you are looking for 30+ LPA then have a look at the overview of topics you need to prepare.
+- Original Credits goes to Ayush Singh, I just added a few extra cards.
+
+https://paper-manuscript-d60.notion.site/ab61f1418a3e473b88cc766f46dc4b86?v=c13c6af26bce40ccb0d50145bb2af035

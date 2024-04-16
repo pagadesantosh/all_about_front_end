@@ -111,5 +111,3 @@
 9. Build gaming application like Snake Game, Tic Tac Toe, Connect Four
 
 10. Building a custom mocks of famous libraries like Redux, Immer, Lodash functions focussing heavily on JS.
-
-Go through my One stop frontend resource - interview doc, high quality resources, to question patterns here : https://lnkd.in/gMG_6QEw

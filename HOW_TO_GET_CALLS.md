@@ -1,4 +1,4 @@
-## How to build a perfect linkedin `So that recruiters reach out to you`
+### How to build a perfect linkedin profile so that recruiters reach out to you
 
 https://www.linkedin.com/in/saitejagatadi
 

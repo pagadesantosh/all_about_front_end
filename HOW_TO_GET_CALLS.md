@@ -13,4 +13,5 @@ https://www.linkedin.com/in/saitejagatadi
 - Similarly there are a lot of things that actually matters
 - If you have time (there is one YouTube video related to this)
 
-#### Danny Thompson YouTube channel (Playlist name: LinkedIn series)
+#### Danny Thompson YouTube channel
+**Playlist Link**: https://youtube.com/playlist?list=PL54X5yR8qizsMpvTCqUIEFMeEp-chvcxk&si=uoBLryQdhjdY1w0F

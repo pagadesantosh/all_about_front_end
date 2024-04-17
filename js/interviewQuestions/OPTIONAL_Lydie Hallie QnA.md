@@ -1,1 +1,0 @@
-[![GitHub Streak](https://streak-stats.demolab.com/?user=saiteja-gatadi1996)](https://git.io/streak-stats)

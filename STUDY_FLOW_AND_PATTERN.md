@@ -39,9 +39,9 @@
 ### Category_4: Interview within couple of weeks
 
 1. Directly jump on **interview questions_company based** folder 
- - There are a total of 650 interview questions and it will give you a high level overview of questions that are being asked as per current market.
+    - There are a total of 650 interview questions and it will give you a high level overview of questions that are being asked as per current market.
 2. Javascript advanced concepts folder
-3. Other main resources
+3. Other main resources (Category 5)
 
 ------
 

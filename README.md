@@ -76,7 +76,7 @@
 
 ### Category_3 (Backend + Database)
 
-- If you are more into Frontend and have good experience on backend then you can should go through following
+- If you are more into Frontend and have good experience on backend then you should go through following
 
 1. Folder---> Node.js
 2. CI CD pipeline basics 

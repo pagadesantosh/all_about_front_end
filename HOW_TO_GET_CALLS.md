@@ -1,4 +1,4 @@
-### How to build a perfect linkedin profile so that recruiters reach out to you
+## How to build a perfect linkedin profile so that recruiters reach out to you
 
 https://www.linkedin.com/in/saitejagatadi
 
@@ -13,5 +13,5 @@ https://www.linkedin.com/in/saitejagatadi
 - Similarly there are a lot of things that actually matters
 - If you have time (there is one YouTube video related to this)
 
-#### Danny Thompson YouTube channel
+### Danny Thompson YouTube channel
 **Playlist Link**: https://youtube.com/playlist?list=PL54X5yR8qizsMpvTCqUIEFMeEp-chvcxk&si=uoBLryQdhjdY1w0F

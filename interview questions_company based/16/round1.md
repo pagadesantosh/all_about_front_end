@@ -736,11 +736,67 @@ View Answer
 </summary>
 </details>
 
-
 ---
 
-10. what are block, inline elements what are the differences
-11. `meta` tag to achieve responsiveness with syntax
+### 10. What are block, inline elements what are the differences
+
+<details>
+
+#### Block Elements:
+  - Block elements **occupy the entire width** of their containing element, forming a "block." 
+  - This means **they start on a new line** and any content following them also starts on a new line. 
+  - Block elements **can be styled** with `width`, `height`, `margin`, and `padding` properties, which are **fully respected**. 
+
+##### Examples of block elements include:
+
+
+- `<div>`
+- `<p>` (paragraphs)
+- `<h1>`, `<h2>`(headings)
+- `<ul>`, `<ol>` (lists)
+
+
+#### Inline Elements
+- Inline elements **do not start on a new line**; they appear on the same line as the content or elements adjacent to them, as long as there is space. 
+- Inline elements **only occupy as much width as necessary** for their content. 
+- They **cannot** have a `width` and `height` set, and the `top` and `bottom` `margins` and `padding` do not work as they do with block elements (they don't create additional space above or below the element). 
+
+##### Examples of inline elements include:
+
+- `<span>`
+- `<a> `(links)
+- `<img>`
+- `<strong>,` `<em>`
+
+
+
+#### Differences:
+- **Layout**: 
+  - `Block` elements **create a new line** of content, while `inline` elements **do not break the flow** of content within their line.
+- **Width and height**: 
+  - `Block` elements **can have width and height set**, while `inline` elements **cannot** have their width and height set explicitly (they size according to their content).
+- **Margins and padding**: 
+  - `Block` elements **respect all margin and padding** properties. `Inline` elements <ins>***respect left and right margin and padding but not top and bottom***</ins> for altering the box model's height.
+- **Use case**: 
+  - `Block` elements are typically **used for larger sections of content and layout structuring**, whereas `inline` elements are **used for smaller chunks of content** or to style portions of text <ins>***within block elements***</ins>.
+
+<summary>
+View Answer
+</summary>
+</details>
+
+------
+
+### 11. `meta` tag to achieve responsiveness with syntax
+
+- To ensure a webpage is responsive, **meaning it adjusts to fit different screen sizes and orientations**, a commonly used HTML element is the `<meta>` tag <ins>***specifically designed for setting the viewport properties***</ins>. 
+- This `meta` tag informs the browser how to control the page's dimensions and scaling based on the device's screen size.
+
+
+
+
+
+
 12. Positions and movement of an element with each position (relative, absolute, fixed and sticky)
 13. various display properties and what is the differences between them
 14. media queries for specific screens

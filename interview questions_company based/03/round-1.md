@@ -1,4 +1,7 @@
-<i><b><u>API optimization at LLD,HLD,FE, DB levels (explain in detail at every stage)</u></b></i>
+1. <i><b><ins>API optimization at LLD,HLD,FE, DB levels (explain in detail at every stage)</ins></b></i>
+
+
+<details>
 
 #### 1. High Level Design (HLD)
 
@@ -47,22 +50,43 @@ The database layer is crucial for <u>**_optimizing how data is fetched and store
 - **Security**: Ensure API security at all levels, including authentication, authorization and data encryption.
 - **Documentation**: Maintain up-to-date documentation for all API endpoints to facilitate easy consumption
 
+<summary>
+View Answer
+</summary>
+</details>
+
+
+
+
 ---
 
-- Rest vs spread operator
-- Virtual dom working and benefits
-- Closure with example and benefits
-- Call, apply and bind with working example
-- Redux saga usage
-- JWT & refresh token (indepth discussion on Refresh Token VS Access Token)
-- HOC and higher order functions
-- Class vs function based components
-- IIFE and function currying
+2. Rest vs spread operator
+3. Virtual dom working and benefits
+4. Closure with example and benefits
+5. Call, apply and bind with working example
+6. Redux saga usage
+7. JWT & refresh token (indepth discussion on Refresh Token VS Access Token)
+8. HOC and higher order functions
+9. Class vs function based components
+10. IIFE and function currying
+11. output of 15+3+"string"
 
-- output of 15+3+"string"
+    <details>
 
-![image](https://user-images.githubusercontent.com/42731246/164546208-6c84d87e-c3c6-44e4-9966-6ee66e88addb.png)
+    ![image](https://user-images.githubusercontent.com/42731246/164546208-6c84d87e-c3c6-44e4-9966-6ee66e88addb.png)
 
-- output of "string"+15+3
+    <summary>
+    View Answer
+    </summary>
+    </details>
 
-![image](https://user-images.githubusercontent.com/42731246/164546169-bea51e7b-d8cc-4eed-bc61-3d293a5c222b.png)
+12. output of "string"+15+3
+    <details>
+
+    ![image](https://user-images.githubusercontent.com/42731246/164546169-bea51e7b-d8cc-4eed-bc61-3d293a5c222b.png)
+    
+    <summary>
+    View Answer
+    </summary>
+    </details>
+

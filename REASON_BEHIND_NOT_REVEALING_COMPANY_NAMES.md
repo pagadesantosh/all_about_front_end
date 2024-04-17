@@ -6,4 +6,7 @@
 
 - This is the only reason I had to change the folder names to numbers.
 
+- After looking at the questions you will understand that they are actually asked in realtime interviews.
+
+- In realtime interviews you would expect a lot of cross questions on one topic
 

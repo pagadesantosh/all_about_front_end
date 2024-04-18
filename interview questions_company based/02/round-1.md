@@ -62,7 +62,7 @@ function largestIndexDifference(s, char) {
 // Example usage:
 const str = "hello there";
 const char = "e";
-console.log(largestIndexDifference(str, char)); // This would return 8
+console.log(largestIndexDifference(str, char)); // This would return 9
 ```
 
 ---

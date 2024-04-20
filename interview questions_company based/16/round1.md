@@ -789,6 +789,10 @@ View Answer
 
 ### 11. `meta` tag to achieve responsiveness with syntax
 
+
+
+<details>
+
 - To ensure a webpage is responsive, **meaning it adjusts to fit different screen sizes and orientations**, a commonly used HTML element is the `<meta>` tag <ins>***specifically designed for setting the viewport properties***</ins>. 
 - This `meta` tag informs the browser how to control the page's dimensions and scaling based on the device's screen size.
 - Crucial for ensuring that your site adapts to different screen sizes and resolutions, enhancing usability and accessibility on various devices.
@@ -803,10 +807,19 @@ View Answer
 - `initial-scale=1.0`:
   -  sets the initial zoom level when the page is first loaded by the browser.
 
+<summary>
+View Answer
+</summary>
+</details>
+
+
+
 -----
 
 
 ### 12. Positions and movement of an element with each position (static, relative, absolute, fixed and sticky)
+
+<details>
 
 - position property is used to control the layout of an element relative to its container or the viewport
 
@@ -839,9 +852,18 @@ View Answer
 - You <ins>**must specify at least one**</ins> of `top`, `right`, `bottom`, or `left` for sticky positioning to take effect.
 - It <ins>sticks to the nearest scrolling ancestor and the viewport</ins>.
 
+<summary>
+View Answer
+</summary>
+</details>
+
+
+
 ----
 
 ### 13. Various display properties and what is the differences between them
+
+<details>
 
 #### 1. `none`:
 - <ins>**Completely removes**</ins> the element from the document. 
@@ -884,8 +906,16 @@ View Answer
 - `inline-table` makes it inline, 
 - while `table-row` and `table-cell` simulate **rows and cells** respectively.
 
+<summary>
+View Answer
+</summary>
+</details>
+
+
 -----
 ### 14. media queries for specific screens
+
+<details>
 
 - Media queries allowing CSS to **adapt to different conditions** such as `screen resolutions`, `orientations`, and `types`.
 
@@ -929,9 +959,19 @@ View Answer
 @media (orientation: landscape) {
 }
 ```
+<summary>
+View Answer
+</summary>
+</details>
+
+
 -----
 
 ### 15. Recursion and use cases with example 
+
+
+
+<details>
 
 - Recursion is a programming technique in which a function calls itself
 
@@ -945,10 +985,17 @@ function factorial(n) {
     }
 }
 ```
+<summary>
+View Answer
+</summary>
+</details>
+
 
 -------
 
 ### 16. Hoisting
+
+<details>
 
 - is a JavaScript mechanism where `variable` and `function` declarations **are moved to the top** of their containing scope during the compilation phase, <ins>**before the code has been executed**</ins>.
 
@@ -996,9 +1043,18 @@ function hoistingExample() {
 
 hoistingExample();
 ```
+<summary>
+View Answer
+</summary>
+</details>
+
+
 
 ---- 
 ### 17. difference between declaring variables with let and var
+
+<details>
+
 
 #### 1. Scope
 
@@ -1046,9 +1102,23 @@ function testReDeclaration() {
 testReDeclaration();
 ```
 
+
+<summary>
+View Answer
+</summary>
+</details>
+
+
+
+
 ---- 
 
 ### 18. call, apply and bind methods
+
+
+<details>
+
+
 - In JavaScript, `call`, `apply`, and `bind` are methods <ins>**used to control the invocation context (this) of functions**</ins>.
 - They are powerful tools that <ins>**allow you to explicitly define the value of `this` inside the called function**</ins>. 
 
@@ -1107,9 +1177,22 @@ const introduceCarol = introduce.bind(user, 'C++');
 introduceCarol();  // Output: "Hello, I'm Carol. I code in C++."
 ```
 
+<summary>
+View Answer
+</summary>
+</details>
+
+
+
+
+
 ----
 
 ### 19. webComponents
+
+<details>
+
+
 - allowing you to **create reusable custom elements** — with their functionality encapsulated away from the rest of your code — and utilize them in your web apps.
 
 -  it consists of three main technologies, which can be used together to create versatile custom elements with encapsulated functionality that can be reused wherever you like without fear of code collisions.
@@ -1193,10 +1276,19 @@ customElements.define('my-tooltip', TooltipElement);
 // use the custom element in HTML
 <my-tooltip text="More info about the topic">Hover over me</my-tooltip>
 ```
+<summary>
+View Answer
+</summary>
+</details>
+
 
 ----
 
 ### 20. How to embed 2 or more component as a single component, and how to communicate between them
+
+
+<details>
+
 
 - #### Step 1: Create Individual Components
 
@@ -1257,11 +1349,19 @@ function ParentComponent() {
 
 export default ParentComponent;
 ```
-
+<summary>
+View Answer
+</summary>
+</details>
 
 -----
 
 ### 21. What is React Portal?
+
+<details>
+
+
+
 -  Is a feature provided by React **that enables you to <ins>render components in a DOM node that exists outside the DOM hierarchy of the parent component**</ins> .
 - This is <ins>**particularly useful for when you need child components to break out of the DOM tree and be managed independently**</ins>.
 - Typically **used for `modals`, `pop-ups`, and `tooltips`** <ins>**where you don't want to deal with the CSS overflow or z-index issues**</ins> that can occur with deeply nested structures.
@@ -1345,9 +1445,22 @@ function App() {
 
 export default App;
 ```
+
+<summary>
+View Answer
+</summary>
+</details>
+
+
+
 ----
 
 ### 22. How do you efficiently work with Forms in react?
+
+<details>
+
+
+
 
 #### 1. Controlled vs Un-controlled Components:
 
@@ -1407,3 +1520,12 @@ const [formData, setFormData] = useState(() => {
   return computeExpensiveFormState();
 });
 ```
+
+
+<summary>
+View Answer
+</summary>
+</details>
+
+
+

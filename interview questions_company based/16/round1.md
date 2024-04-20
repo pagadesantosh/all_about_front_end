@@ -791,21 +791,619 @@ View Answer
 
 - To ensure a webpage is responsive, **meaning it adjusts to fit different screen sizes and orientations**, a commonly used HTML element is the `<meta>` tag <ins>***specifically designed for setting the viewport properties***</ins>. 
 - This `meta` tag informs the browser how to control the page's dimensions and scaling based on the device's screen size.
+- Crucial for ensuring that your site adapts to different screen sizes and resolutions, enhancing usability and accessibility on various devices.
+
+```html
+// This tag should be placed within the <head> section of your HTML document. 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+
+- `width=device-width` :
+  - instructs the browser to set the width of the viewport to the width of the device's screen, which can vary from device to device.
+- `initial-scale=1.0`:
+  -  sets the initial zoom level when the page is first loaded by the browser.
+
+-----
 
 
+### 12. Positions and movement of an element with each position (static, relative, absolute, fixed and sticky)
+
+- position property is used to control the layout of an element relative to its container or the viewport
+
+#### 1. `static`:
+- Default value.
+- The element is positioned according **to the normal flow** of the document.
+- The `top`, `right`, `bottom`, and `left` properties ***do not affect*** elements with `position: static`.
+
+#### 2. `relative`:
+- The element is positioned relative **to its normal position** in the document flow.
+- **You <ins>can</ins> use** the `top`, `right`, `bottom`, and `left` properties to move the element from its normal position.
+- Other content will not adjust to fit into any gap left by the element.
+
+#### 3. `absolute`:
+- The element is **removed from the normal document flow**, and no space is created for the element in the page layout.
+- It is positioned relative <ins>**to its closest positioned ancestor**</ins> (i.e., the nearest ancestor that is not static).
+- You <ins>**can use**</ins> `top`, `right`, `bottom`, and `left` properties to position the element from the edges of its containing element.
+- If **no** positioned ancestors exist, <ins>**it uses the document body**</ins>, and moves along with page scrolling.
+
+#### 4. `fixed`:
+
+- The element <ins>**is removed**</ins> from the normal document flow, and no space is created for the element in the page layout.
+- It is **positioned relative to the viewport**, which means it will <ins>stay in the same place even if the page is scrolled</ins>.
+- Like absolute, you <ins>**can use**</ins> top, right, bottom, and left properties to position the element from the viewport edges.
+
+#### 5. `sticky`:
+
+- The element is treated as relative until the viewport reaches a specified point, at which it becomes fixed.
+- It essentially <ins>**switches between relative and fixed**</ins>, depending on the scroll position.
+- You <ins>**must specify at least one**</ins> of `top`, `right`, `bottom`, or `left` for sticky positioning to take effect.
+- It <ins>sticks to the nearest scrolling ancestor and the viewport</ins>.
+
+----
+
+### 13. Various display properties and what is the differences between them
+
+#### 1. `none`:
+- <ins>**Completely removes**</ins> the element from the document. 
+- <ins>**It does not take up any space**</ins>; the element is invisible and its space is not reserved.
+- All descendant elements also disappear and are not rendered.
+
+#### 2. `block`:
+
+- The <ins>**element will start on a new line**</ins> and <ins>***extend the full width of its parent container***, **taking up the entire row.**</ins>
+- You <ins>**can set**</ins> `width` and `height`.
+- Examples include `<div>`, `<p>`, and `<section>` tags which are block-level elements by default.
+
+#### 3. `inline`:
+
+- The element **does not start on a new line** and <ins>***only takes up as much width***</ins> as necessary.
+- `Margins` and `paddings` are <ins>**respected** `horizontally`</ins> but **not** `vertically`. 
+  - `Width` and `height` <ins>**cannot**</ins> be set.
+- Examples include `<span>`, `<a>`, and `<img>`tags which are inline elements by default.
+
+#### 4. `inline-block`:
+- Combines features of both inline and block: 
+  - the element **does not start on a new line** <ins>but it can have a `width` and `height` set.</ins>
+- `Margins` and `paddings` <ins>**are respected on all sides**.</ins>
 
 
+#### 5. `flex`:
+
+- It enables a flexible and efficient layout along the primary (main) and cross (secondary) axes, **controlled by flex-direction**.
+- Great for building complex layouts that need to dynamically scale with different screen sizes.
+
+#### 6. `grid`:
+- This property allows you to design complex, responsive layouts **using a two-dimensional** grid-based layout system.
+- It <ins>***provides precise placement and alignment controls***</ins> for child elements (grid items) using `columns`, `rows`, and `gaps`.
+
+#### 7. `table`, `table-row`, `table-cell`:
+
+- These values cause the element to behave like HTML table elements. 
+- It is **useful for mimicking table behavior** with CSS, without using `<table>`, `<tr>`, `<td>`, etc.
+- `table` establishes a `block-level` table, 
+- `inline-table` makes it inline, 
+- while `table-row` and `table-cell` simulate **rows and cells** respectively.
+
+-----
+### 14. media queries for specific screens
+
+- Media queries allowing CSS to **adapt to different conditions** such as `screen resolutions`, `orientations`, and `types`.
 
 
-12. Positions and movement of an element with each position (relative, absolute, fixed and sticky)
-13. various display properties and what is the differences between them
-14. media queries for specific screens
-15. grid and flex-box
-16. Recursion and use cases with example 
-17. Hoisting
-18. difference between declaring variables with let and var
-19. call, apply and bind methods
-20. webComponents (agnostic)
-21. How to embed 2 or more component as a single component, and how to communicate between them
-22. What is React Portal?
-23. How do you efficiently work with Forms in react?
+#### Screen-width:
+```js
+//Basic Syntax
+@media (condition) {
+}
+```
+
+```js
+//Mobile Devices (typically under 600px)
+@media (max-width: 599px) {
+}
+```
+
+```js
+//Tablets (typically 600px to 900px)
+@media (min-width: 600px) and (max-width: 899px) {
+}
+```
+
+```js
+//desktops (typically above 900px)
+@media (min-width: 900px) {
+}
+```
+----
+
+#### Screen Orientation (Portrait or Landscape)
+
+```js
+//portrait
+@media (orientation: portrait) {
+}
+```
+
+```js
+//landscape
+@media (orientation: landscape) {
+}
+```
+-----
+
+### 15. Recursion and use cases with example 
+
+- Recursion is a programming technique in which a function calls itself
+
+```js
+//basic example
+function factorial(n) {
+    if (n === 0) {
+        return 1; // Base case: factorial of 0 is 1
+    } else {
+        return n * factorial(n - 1); // Recursive case
+    }
+}
+```
+
+-------
+
+### 16. Hoisting
+
+- is a JavaScript mechanism where `variable` and `function` declarations **are moved to the top** of their containing scope during the compilation phase, <ins>**before the code has been executed**</ins>.
+
+- This behavior **allows functions and variables to be used before** they are physically declared in the script
+
+```js
+console.log(myVar); // Outputs: undefined (not an error)
+var myVar = 'Hello, world!';
+```
+
+```js
+console.log(myLet); // ReferenceError: Cannot access 'myLet' before initialization
+let myLet = 'Hello, world!';
+```
+
+```js
+console.log(sayHello()); // Outputs: "Hello, world!"
+
+function sayHello() {
+    return "Hello, world!";
+}
+```
+
+```js
+console.log(sayHi()); // TypeError: sayHi is not a function
+
+var sayHi = function() {
+    return "Hi, world!";
+};
+```
+
+```js
+// EXAMPLE
+
+function hoistingExample() {
+    console.log(x); // Outputs: undefined
+    console.log(y); // ReferenceError: Cannot access 'y' before initialization
+    console.log(z); // ReferenceError: z is not defined
+
+    var x = 10;
+    let y = 20;
+    console.log(x); // Outputs: 10
+    console.log(y); // Outputs: 20
+}
+
+hoistingExample();
+```
+
+---- 
+### 17. difference between declaring variables with let and var
+
+#### 1. Scope
+
+- `var`: Declares a variable with **function scope** or **global scope** if declared outside any function. 
+  - This means that a variable <ins>declared with var inside a function is only accessible within that function, but if declared outside, it's available globally.</ins>
+<br/>
+
+- `let`: Introduces **block scope** to JavaScript, **where variables are limited to the block `({})`**, statement, or expression in which they are used. 
+
+```js
+// Here, `varVariable` is accessible outside the if block because var does not have block scope, 
+// whereas `letVariable` throws a ReferenceError because let is block-scoped.
+function testScope() {
+    if (true) {
+        var varVariable = "I am var";
+        let letVariable = "I am let";
+    }
+    console.log(varVariable); // Outputs: "I am var"
+    console.log(letVariable); // ReferenceError: letVariable is not defined
+}
+testScope();
+```
+
+#### 2. Hoisting
+- `var`: Variables declared with `var` **are hoisted to the top of their enclosing function scope or global scope and <ins>initialized with undefined</ins>**, meaning they can be referenced in code before they are declared, but will return undefined.
+<br/>
+
+- `let`: Variables declared with let **are also hoisted to the top of the block, <ins>but are not initialized</ins>**. 
+  - <ins>Accessing them before the declaration **results in a ReferenceError due to the "temporal dead zone" (TDZ)**</ins>, a time during which the variable is in scope but cannot yet be accessed.
+
+#### 3. Re-Declaration
+
+- `var`: **Allows <ins>re-declaring the same variable</ins>** within the same scope without errors.
+- `let`: <ins>**Does not allow re-declaring</ins> the same variable within the same scope**. 
+  - Doing so will result in a SyntaxError.
+
+```js
+function testReDeclaration() {
+    var varVariable = "I am var";
+    var varVariable = "I am the new var"; // No problem here
+
+    let letVariable = "I am let";
+    let letVariable = "I am the new let"; // SyntaxError: Identifier 'letVariable' has already been declared
+}
+testReDeclaration();
+```
+
+---- 
+
+### 18. call, apply and bind methods
+- In JavaScript, `call`, `apply`, and `bind` are methods <ins>**used to control the invocation context (this) of functions**</ins>.
+- They are powerful tools that <ins>**allow you to explicitly define the value of `this` inside the called function**</ins>. 
+
+#### 1. `call()`:
+  - The `call()` method calls a function with a specified this value and <ins>**arguments provided one by one**</ins>.
+
+```js
+function introduce(language, hobby) {
+    // setting `this` to refer to the user object, and passing other arguments in order.
+    console.log(`Hello, I'm ${this.name}. I code in ${language} and I like ${hobby}.`);
+}
+
+const user = {
+    name: 'Alice'
+};
+
+// Here, call() is used to invoke the introduce function, 
+introduce.call(user, 'JavaScript', 'cycling');  // Output: "Hello, I'm Alice. I code in JavaScript and I like cycling."
+```
+
+#### 2. apply()
+
+- Is similar to `call()`, **but it <ins>takes arguments as an array</ins>**, which is <ins>useful ***when you don't know the number of arguments*** in advance</ins>.
+
+```js
+function introduce(language, hobby) {
+    console.log(`Hello, I'm ${this.name}. I code in ${language} and I like ${hobby}.`);
+}
+
+const user = {
+    name: 'Bob'
+};
+
+// apply() is particularly useful when dealing with an array of arguments
+introduce.apply(user, ['Python', 'reading']);  // Output: "Hello, I'm Bob. I code in Python and I like reading."
+```
+
+#### 3. bind()
+
+- The `bind()` method **creates a new function** that, when called, has its this keyword set to the provided value, with a given sequence of arguments.
+- `bind()` is **often used for event handling** and in cases where you want to preset some arguments (partial application). 
+  
+```js
+function introduce(language) {
+    console.log(`Hello, I'm ${this.name}. I code in ${language}.`);
+}
+
+const user = {
+    name: 'Carol'
+};
+
+// It doesn’t immediately call the function; 
+const introduceCarol = introduce.bind(user, 'C++');
+// it instead returns a new function that when called, will execute 
+// the original function with the bound context and arguments.
+introduceCarol();  // Output: "Hello, I'm Carol. I code in C++."
+```
+
+----
+
+### 19. webComponents
+- allowing you to **create reusable custom elements** — with their functionality encapsulated away from the rest of your code — and utilize them in your web apps.
+
+-  it consists of three main technologies, which can be used together to create versatile custom elements with encapsulated functionality that can be reused wherever you like without fear of code collisions.
+
+- #### Custom elements
+  - These allow developers to define their **own custom HTML tags, their APIs, and their behavior**.
+
+- #### Shadow DOM
+  - **Enables encapsulated style and markup**, meaning the styles defined inside a shadow DOM will not leak out, and styles outside will not affect the inside.. 
+  - In this way, you can keep an element's features private, so they can be scripted and styled without the fear of collision with other parts of the document.
+
+- #### HTML templates
+  - The `<template>` and `<slot>` elements enable you to write markup templates that are not displayed in the rendered page until called upon with JavaScript.. 
+  - These can then be reused multiple times as the basis of a custom element's structure.
+
+```js
+// Define the custom element
+
+class TooltipElement extends HTMLElement {
+    constructor() {
+
+        // Always call super first in the constructor to properly set up the element as an HTML element.
+        super();
+
+        // Declare a private variable to hold the tooltip container element. Initially undefined. 
+        this._tooltipContainer; 
+
+        // Initialize a default tooltip text, can be overwritten by attribute.
+        this._tooltipText = 'Default tooltip text'; 
+
+        // Attach a shadow root to this custom element with 'open' mode allowing access from JavaScript outside the component.
+        this.attachShadow({ mode: 'open' }); 
+    }
+
+    connectedCallback() {
+        if (this.hasAttribute('text')) {
+            // Update tooltip text if the 'text' attribute is provided.
+            this._tooltipText = this.getAttribute('text'); 
+        }
+
+        // Create a span element to serve as the tooltip icon.
+        const tooltipIcon = document.createElement('span');
+
+        // Set the content of the tooltip icon to indicate it's a tooltip trigger.
+        tooltipIcon.textContent = ' (?)';
+
+        // Append the tooltip icon to the shadow DOM.
+        this.shadowRoot.appendChild(tooltipIcon); 
+
+        // Create a div element to serve as the tooltip's content container.
+        this._tooltipContainer = document.createElement('div');
+
+        // Set the tooltip's text. 
+        this._tooltipContainer.textContent = this._tooltipText; 
+        this._tooltipContainer.style.cssText = `
+            position: absolute; 
+            background-color: black; 
+            color: white; 
+            padding: 5px;
+            z-index: 10;
+            visibility: hidden;
+        `;
+
+        // Append the tooltip container to the shadow DOM.
+        this.shadowRoot.appendChild(this._tooltipContainer); 
+
+        tooltipIcon.addEventListener('mouseenter', () => {
+            this._tooltipContainer.style.visibility = 'visible';
+        });
+        tooltipIcon.addEventListener('mouseleave', () => {
+            this._tooltipContainer.style.visibility = 'hidden'; 
+        });
+    }
+}
+
+// Define and register the custom element with the browser under the tag 'my-tooltip'.
+customElements.define('my-tooltip', TooltipElement); 
+```
+
+```js
+// use the custom element in HTML
+<my-tooltip text="More info about the topic">Hover over me</my-tooltip>
+```
+
+----
+
+### 20. How to embed 2 or more component as a single component, and how to communicate between them
+
+- #### Step 1: Create Individual Components
+
+```js
+// ComponentA.js
+function ComponentA({ sendDataToParent }) {
+
+  const handleInput = (event) => {
+    // When sendDataToParent is called from ComponentA, it is actually invoking handleDataFromA in the ParentComponent with the input's current value as its parameter
+    sendDataToParent(event.target.value); // Sending data to parent
+  };
+
+  return (
+    <div>
+      <input type="text" onChange={handleInput} placeholder="Enter data here" />
+    </div>
+  );
+}
+
+export default ComponentA;
+```
+
+```js
+// ComponentB.js
+function ComponentB({ data }) {
+  return (
+    <div>
+      <h1>Data received: {data}</h1>
+    </div>
+  );
+}
+
+export default ComponentB;
+```
+- #### Step 2: Create the Parent Component
+
+```js
+import React, { useState } from 'react';
+import ComponentA from './ComponentA';
+import ComponentB from './ComponentB';
+
+function ParentComponent() {
+  const [data, setData] = useState(''); // State to hold data
+
+  const handleDataFromA = (value) => {
+    //This `value` is the actual data received from ComponentA. 
+    // It is dynamically determined by what the user types into the input field in ComponentA
+    setData(value); // Update the state with the new value from ComponentA
+  };
+
+  return (
+    <div>
+      <ComponentA sendDataToParent={handleDataFromA} />
+      <ComponentB data={data} />
+    </div>
+  );
+}
+
+export default ParentComponent;
+```
+
+
+-----
+
+### 21. What is React Portal?
+-  Is a feature provided by React **that enables you to <ins>render components in a DOM node that exists outside the DOM hierarchy of the parent component**</ins> .
+- This is <ins>**particularly useful for when you need child components to break out of the DOM tree and be managed independently**</ins>.
+- Typically **used for `modals`, `pop-ups`, and `tooltips`** <ins>**where you don't want to deal with the CSS overflow or z-index issues**</ins> that can occur with deeply nested structures.
+- you can maintain the parent-child relationship in React components without being bound by the DOM structure. This is especially useful for components like:
+
+- `Modals`: To render modals <ins>**at the end of the document body**</ins> ensures they sit on top of other UI elements.
+- `Tooltips`: <ins>**To avoid being clipped**</ins> by an overflowed container.
+- `Floating menus`: Allows menus <ins>**to exist outside**</ins> restrictive containers.
+
+
+#### How to use:
+
+- You can use the `ReactDOM.createPortal()` method to create a portal. This method takes two arguments:
+
+  - `child`: the child element to render into the DOM node.
+  - `container`: the DOM node to mount the child into.
+
+
+```js
+// Modal.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const Modal = ({ children, isOpen, onClose }) => {
+  if (!isOpen) return null;
+
+  return ReactDOM.createPortal(
+    // This div is the modal content that can be styled as needed
+    <div style={{
+      position: 'fixed',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      zIndex: 1000,
+      backgroundColor: '#FFF',
+      padding: '20px',
+      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+      borderRadius: '8px',
+    }}>
+      {children}
+      <button onClick={onClose} style={{
+        position: 'absolute',
+        top: '10px',
+        right: '10px',
+      }}>Close</button>
+    </div>,
+    // Mounting the modal to the end of body of the document
+    document.body
+  );
+};
+
+export default Modal;
+```
+
+```js
+//App.js
+import React, { useState } from 'react';
+import Modal from './Modal';
+
+function App() {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
+  return (
+    <div>
+      <h1>Click the button below to open the modal</h1>
+      <button onClick={handleOpenModal}>Open Modal</button>
+      <Modal isOpen={modalOpen} onClose={handleCloseModal}>
+        <p>This is a modal! 🎉</p>
+      </Modal>
+    </div>
+  );
+}
+
+export default App;
+```
+----
+
+### 22. How do you efficiently work with Forms in react?
+
+#### 1. Controlled vs Un-controlled Components:
+
+- ##### Controlled Components: 
+  - Every state mutation **has an associated handler function**. 
+  - This means React manages all the state and updates **based on user input**.
+
+  ##### Pros:
+  - Gives you more control over the form's behavior, making things like input validation, handling multiple inputs with a single function, and dynamically changing form values easier.
+  ##### Cons:
+    - Can lead to performance issues in large forms because each keystroke triggers a state update and potentially re-renders the component.
+
+- ##### Un-Controlled Components: 
+  - In uncontrolled components, form data is handled by the DOM itself. 
+  - You use refs to retrieve the form values from the DOM when needed.
+
+  ##### Pros: 
+    - More performant for large forms as it reduces the number of re-renders because the data is only read when needed (e.g., on form submission).
+  ##### Cons:
+    - Less direct control over the form elements which might make validation or conditional rendering more complex.
+
+
+#### 2. Using React.memo or PureComponent
+
+- This prevents the component from re-rendering unless its props have changed, which can **significantly reduce the number of renders in a form** with many inputs.
+
+```js
+const MyInputField = React.memo(function TextField({ value, onChange }) {
+  console.log("TextField rendered!");
+  return <input value={value} onChange={onChange} />;
+});
+
+```
+
+#### 3. Debouncing
+- Use debouncing **to delay handling input changes** until a certain amount of inactivity occurs. This reduces the number of state updates.
+
+```js
+import { useState, useCallback } from 'react';
+import debounce from 'lodash.debounce';
+
+function DebouncedInput() {
+  const [value, setValue] = useState('');
+  const handleChange = useCallback(debounce(setValue, 300), []);
+
+  return <input type="text" onChange={(e) => handleChange(e.target.value)} />;
+}
+```
+
+#### 4. Lazy Initialization of State
+- With lazy initialization, **the function you pass to useState will only run the first time the component renders.** 
+- Subsequent renders **will use the state from the previous render** and will not execute the initialization function again. 
+- This behavior is different from providing a direct value to useState, which would re-compute the initial state on every render, even if it's not used.
+```js
+const [formData, setFormData] = useState(() => {
+  // Compute initial form state here
+  return computeExpensiveFormState();
+});
+```

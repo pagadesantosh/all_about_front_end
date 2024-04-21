@@ -364,8 +364,351 @@ export default App;
 
 ----
 
-8.  HOC and custom hooks implementation?
-9.  Login screen design authentication and authorization.
+### 8.  HOC and custom hooks implementation?
+
+
+#### i) HOC:
+- Higher-Order Components (HOCs) are a **pattern used in React to share common functionality between components without repeating code**. 
+- An HOC is a function that takes a component and returns a new component.
+
+```js
+import React from 'react';
+
+// This is the HOC
+function withLoading(Component) {
+  //The reason for naming the function EnhancedComponent when using a 
+  // higher-order component (HOC) in React is primarily for clarity and better debugging. 
+  // However, it's not strictly necessary to give the function a name, 
+  // and you can indeed return an anonymous function.
+  return function EnhancedComponent({ isLoading, ...props }) {
+    if (isLoading) {
+      return <div>Loading...</div>;
+    }
+    return <Component {...props} />;
+  };
+}
+
+// Example usage of the HOC
+function MyComponent({ data }) {
+  return <div>Data: {data}</div>;
+}
+
+// EnhancedComponent will show a loading spinner when isLoading is true
+const MyComponentWithLoading = withLoading(MyComponent);
+
+export default MyComponentWithLoading;
+```
+```js
+// in App.jsx
+import React from 'react';
+import MyComponentWithLoading from './MyComponentWithLoading'; // Assuming the export is set up
+
+function App() {
+  const [loading, setLoading] = React.useState(true);
+  const [data, setData] = React.useState(null);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setData("Here's some data!");
+      setLoading(false);
+    }, 2000); // Simulate fetching data
+  }, []);
+
+  return (
+    <div>
+      <MyComponentWithLoading isLoading={loading} data={data} />
+    </div>
+  );
+}
+
+export default App;
+```
+
+
+
+
+
+----
+
+#### ii) CUSTOM HOOKS:
+
+```js
+import { useState, useEffect } from 'react';
+
+function useFetch(url) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(url);
+        const json = await response.json();
+        setData(json);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    }
+    
+    fetchData();
+  }, [url]); // Only re-run the effect if url changes
+
+  return { data, loading, error };
+}
+
+export default useFetch;
+```
+
+```js
+// using the custom hook
+
+import React from 'react';
+import useFetch from './useFetch'; // Assuming useFetch is in a file named useFetch.js
+
+function DataFetchingComponent({ url }) {
+  const { data, loading, error } = useFetch(url);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+  
+  return <div>Data: {JSON.stringify(data)}</div>;
+}
+
+export default DataFetchingComponent;
+```
+-----
+
+### 9.  Login screen design authentication and authorization.
+
+#### 1. User Interface Design
+- **Form Components**: Use `controlled components` in React for inputs to handle form data securely.
+- **Responsiveness**: Ensure the login page is `responsive` using CSS frameworks like Bootstrap or TailwindCSS, or by using CSS Grid and Flexbox.
+- **Feedback**: <ins>***Provide immediate input validation feedback***</ins> to enhance user experience (UX). 
+  - Use libraries like `Formik` or `React Hook Form` to manage form state and validation.
+
+#### 2. Authentication Process
+- **API Integration**: 
+  - Discuss how you would **connect the login form to backend services using Axios** to submit user credentials.
+- **JWT (JSON Web Tokens)**: 
+  - Explain the use of JWT **for maintaining user sessions**. 
+  - Describe how the token is stored securely in the browser <ins>(e.g., using HttpOnly cookies or localStorage with proper security measures against XSS attacks).</ins>
+- **Password Handling**: 
+  - Mention the importance of **hashing passwords on the server side** and never transmitting or storing plain-text passwords.
+  
+#### 3. Security Considerations
+- **HTTPS**: 
+  - using HTTPS to secure data transmission between the client and the server.
+- **CORS (Cross-Origin Resource Sharing)**: 
+  - handle CORS in React by configuring the **server to accept requests from specific origins**.
+- **CSRF (Cross-Site Request Forgery) Protection**: 
+  - one strategy is using a**nti-CSRF tokens**.
+
+#### 4. Authorization
+- **Role-Based Access Control (RBAC)**: 
+  - to manage user permissions and access levels within the application.
+- **Protected Routes**: 
+  - Use `React Router` for navigating protected or private routes that require authentication. 
+  - Discuss how to redirect users to the login page if they are not authenticated.
+- **Context API or Redux**: 
+  - Any state management library like Redux **to manage global authentication state across all components**.
+
+#### 5. Session Management
+- **Token Expiry and Renewal**: 
+  - Discuss handling token expiry, <ins>**including automatic renewal of tokens through refresh tokens**</ins> if implemented.
+- **User Logout**: 
+  - Ensure proper logout functionality <ins>**that clears the session and tokens securely from the client-side storage**</ins>.
+
+
+
+#### 6. Error Handling
+- **User Feedback**: 
+  - Implement and explain robust error handling that provides clear, user-friendly error messages **for issues like network errors, wrong credentials, or server downtime**.
+- **Try/Catch**: 
+  - Use try/catch blocks in asynchronous actions to handle exceptions and errors gracefully.
+
+
+#### 7. Testing and Best Practices
+- **Unit Testing**: 
+  - Talk about using `Jest` and `React Testing Library` to write unit tests for components and hooks.
+- **End-to-End Testing**: 
+  - Mention tools like `Cypress` or `Selenium` for end-to-end testing of the authentication flow.
+- **Code Quality**: 
+  - Discuss the importance of coding best practices such as linting with ESLint, formatting with Prettier, and following secure coding guidelines.
+
+
+```js
+//api.js
+import axios from 'axios';
+
+const API_URL = 'https://your-api-url.com/api';
+
+export const loginUser = async (credentials) => {
+  try {
+    const response = await axios.post(`${API_URL}/login`, credentials);
+    return response.data; // This should include the JWT
+  } catch (error) {
+    console.error('Login error', error.response);
+    throw error.response.data;
+  }
+};
+```
+```js
+//authContext.js
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import jwtDecode from 'jwt-decode'; // npm install jwt-decode
+
+const AuthContext = createContext(null);
+
+export const AuthProvider = ({ children }) => {
+  const [authData, setAuthData] = useState(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decoded = jwtDecode(token);
+      if (decoded.exp * 1000 > Date.now()) {
+        return { user: decoded };
+      }
+    }
+    return null;
+  });
+
+  const login = (data) => {
+    localStorage.setItem('token', data.token);
+    setAuthData({ user: jwtDecode(data.token) });
+  };
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    setAuthData(null);
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decoded = jwtDecode(token);
+      if (decoded.exp * 1000 <= Date.now()) {
+        logout();
+      }
+    }
+  }, []);
+
+  return (
+    <AuthContext.Provider value={{ authData, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => useContext(AuthContext);
+```
+
+```js
+//Login.js
+import React, { useState } from 'react';
+import { useAuth } from './AuthContext';
+import { loginUser } from './api';
+
+const Login = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const { login } = useAuth();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const data = await loginUser({ username, password });
+      login(data);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>Username:</label>
+        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+      </div>
+      <div>
+        <label>Password:</label>
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      </div>
+      <button type="submit">Login</button>
+      {error && <p>{error}</p>}
+    </form>
+  );
+};
+
+export default Login;
+```
+
+```js
+//PrivateRoute.js
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import { useAuth } from './AuthContext';
+
+const PrivateRoute = ({ component: Component, roles, ...rest }) => {
+  const { authData } = useAuth();
+
+  return (
+    <Route
+      {...rest}
+      //In the above, `...rest` could include props like 
+      // `path`, `exact`, `strict`, `location`, `sensitive`, etc., 
+      // which are valid `<Route>`props but are not directly 
+      // used in your logic before passing them to <Route>.
+      render={(props) => {
+        // This props object includes several properties such as: `match`, `location`, `history`
+        if (!authData) {
+          // Not logged in
+          return <Redirect to="/login" />;
+        }
+
+        if (roles && !roles.includes(authData.user.role)) {
+          // Role not authorized
+          return <Redirect to="/unauthorized" />;
+        }
+
+        return <Component {...props} />;
+      }}
+    />
+  );
+};
+
+export default PrivateRoute;
+```
+
+```js
+//App.jsx
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import Login from './Login';
+import Dashboard from './Dashboard';
+import AdminPanel from './AdminPanel';
+import PrivateRoute from './PrivateRoute';  // Imported PrivateRoute
+
+const App = () => {
+  return (
+    <Router>
+      <Switch>
+        <Route path="/login" component={Login} />
+        <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/admin" component={AdminPanel} roles={['admin']} />
+        <Redirect from="/" to="/dashboard" />
+      </Switch>
+    </Router>
+  );
+};
+
+export default App;
+```
+
+------
+
 10. Promises.
 11. Normalization techniques in database.
 12. About Micro-frontend and it Pros, cons, communication between MFE, sharing common component between MFE, Design Question

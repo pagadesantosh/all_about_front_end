@@ -103,26 +103,279 @@
   - Use SSL/TLS efficiently as the handshake can be costly. 
   - <ins>**Session resumption can help reduce the time needed to establish secure connections**</ins>.
 
+----
 
----- 
-1. Write HTML to display cards side by side ?
-2. useMemo vs. useCallback ?
-3. About React.lazy?
-4. Next.js basic concepts ?
-5. About common components ?
-6. About performance loading ?
-7.  HOC and custom hooks implementation?
-8.  Login screen design authentication and authorization.
-9.  Promises.
-10. Normalization techniques in database.
-11. About Micro-frontend and it Pros, cons, communication between MFE, sharing common component between MFE, Design Question
-12. About SOLID principles.
-13. How to Implement offers in the E-commerce sites
-14.  useEffect 
+### 3. Write HTML to display cards side by side ?
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Side by Side Cards</title>
+<style>
+  .card-container {
+    display: flex;          
+    justify-content: space-around;
+    align-items: stretch;   
+    padding: 20px;          
+  }
+  .card {
+    width: 30%;            
+    padding: 20px;         
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+    background: white;     
+    margin: 10px;          
+  }
+</style>
+</head>
+<body>
+
+<div class="card-container">
+  <div class="card">
+    <h3>Card 1</h3>
+    <p>This is the first card. It contains some example text to demonstrate the card layout.</p>
+  </div>
+  <div class="card">
+    <h3>Card 2</h3>
+    <p>This is the second card. It continues to provide content similar to what might be seen in a standard card layout.</p>
+  </div>
+  <div class="card">
+    <h3>Card 3</h3>
+    <p>This is the third card. Each card has the same width and padding, aligning neatly in a row.</p>
+  </div>
+</div>
+</body>
+</html>
+
+```
+
+  ![alt text](/interview%20questions_company%20based/16/imagesUsed/displayCards.png)
+
+------
+
+### 4. useMemo vs. useCallback ?
+
+-  both `useMemo` and `useCallback` are hooks that **help you <ins>optimize the performance of your components**</ins> by memorizing expensive calculations or functions. 
+
+#### `useMemo`:
+- is used to <ins>**memorize the results of an expensive calculation**</ins>. 
+- If the <ins>*dependencies of this calculation have not changed*, **React will skip executing it again** and reuse the last returned value</ins>. 
+- This can be helpful in avoiding costly recalculations each time the component re-renders, which is particularly useful if the calculation is dependent on props or state that doesn't change frequently.
+
+```js
+import React, { useMemo, useState } from 'react';
+
+function SortedList({ items }) {
+  // Use useMemo to only re-sort the items when the 'items' array changes
+  // to ensure that the sorting computation is not unnecessarily repeated on every render.
+  const sortedItems = useMemo(() => {
+    console.log("Sorting items");
+    return [...items].sort();
+  }, [items]);
+
+  return (
+    <ul>
+      {sortedItems.map(item => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
+  );
+}
+
+// Usage in another component
+function App() {
+  const [items, setItems] = useState(['orange', 'apple', 'banana']);
+
+  // Function to shuffle the items array
+  // calculates a sorted list based on an input list that only changes when a user performs a specific action
+  const shuffleItems = () => {
+    setItems(items => {
+      const result = [...items];
+      result.sort(() => Math.random() - 0.5);
+      return result;
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={shuffleItems}>Shuffle Items</button>
+      <SortedList items={items} />
+    </div>
+  );
+}
+
+export default App;
+```
+
+- Use `useMemo` <ins>**when you need to memorize the result of a computation or derive new data from props or state.**</ins>
+
+----
+
+#### `useCallback`:
+
+- The `useCallback` hook is used <ins>**to memorize a function instance**</ins>. 
+- This is <ins>**useful when passing callback functions to optimized child components that rely on reference equality to avoid unnecessary renders**</ins>. 
+- If the function’s dependencies don’t change, **React reuses the same function instance** between renders.
+
+```js
+import React, { useCallback, useState } from 'react';
+
+function ExpensiveButton({ onCalculate }) {
+  console.log("Button rendered");
+  return <button onClick={onCalculate}>Calculate</button>;
+}
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  // Use useCallback to prevent unnecessary re-renders of ExpensiveButton
+  const handleCalculate = useCallback(() => {
+    console.log("Calculation performed");
+    setCount(count + 1);
+  }, [count]);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <ExpensiveButton onCalculate={handleCalculate} />
+    </div>
+  );
+}
+
+export default App;
+```
+
+- Use `useCallback` <ins>**when you need to memorize a callback function to pass it as a prop to child components**</ins>, especially when these children are optimized to avoid unnecessary re-renders.
+
+-----
+
+### 5. About React.lazy?
+
+- `React.lazy` **is a function** in React that <ins>**allows you to load components lazily through code splitting**</ins>. 
+- This means that the component will only be loaded when it is needed, rather than loading it up front with the rest of the bundle.
+- This can significantly improve the performance of your application <ins>**by reducing the initial load time**</ins>.
+- `React.lazy` **works with dynamic imports**, a feature that <ins>**allows you to import modules asynchronously**</ins>. 
+- Used in conjunction with the `Suspense` component which allows you to specify a loading indicator while the lazy component is being loaded.
+
+```js
+import React, { Suspense } from 'react';
+
+// Lazily import the ChartComponent
+const LazyChartComponent = React.lazy(() => import('./ChartComponent'));
+
+function App() {
+  return (
+    <div>
+      <h1>Welcome to My App</h1>
+      <Suspense fallback={<div>Loading Chart...</div>}>
+        <LazyChartComponent />
+      </Suspense>
+    </div>
+  );
+}
+
+export default App;
+```
+```js
+import React from 'react';
+
+const ChartComponent = () => {
+  return (
+    <div>
+      <h2>Chart Data</h2>
+      {/* Chart rendering logic here */}
+      <p>This is a complex chart component with significant JS size.</p>
+    </div>
+  );
+};
+
+export default ChartComponent;
+```
+---
+
+### 6. Next.js basic concepts ?
+
+- a popular framework built on top of React **that enables functionality such as `server-side rendering` and `static site generation`**, which are beneficial for performance and SEO. 
+
+
+- #### Static Site Generation (SSG): 
+    - Next.js supports generating a full static website using `getStaticProps` and `getStaticPaths`
+    - These functions **allow you to <ins>fetch data at build time</ins>** and <ins>**render your HTML pages ahead of time**</ins>, which can be served directly from a CDN.
+
+
+- #### Server-Side Rendering (SSR)
+  - You can **render pages on the server** on a per-request basis using `getServerSideProps`. 
+  - This is useful for fetching data per request and **doing operations that require server-side computation** or access to secure environments not suitable for the client-side.
+
+- #### Image Optimization
+  - The `Image` component from **next/image** is an extension of the HTML `<img>` element **designed for automatic image optimization**. 
+
+
+-----
+
+### 7. About common components ?
+- Referred to `shared` or `re-usable` components
+- Promoting `DRY` (Don't Repeat Yourself) principles and improving code maintainability and scalability.
+
+```js
+// RE-USABLE BUTTON COMPONENT
+import React from 'react';
+
+// Button component with customizable properties
+const Button = ({ text, onClick, type = 'primary' }) => {
+  const buttonStyle = type === 'primary' ? 'button-primary' : 'button-secondary';
+  return (
+    <button className={buttonStyle} onClick={onClick}>
+      {text}
+    </button>
+  );
+};
+
+export default Button;
+```
+
+```js
+//App.js
+import React from 'react';
+import Button from './Button';
+
+const App = () => {
+  return (
+    <div>
+      <Button text="Click Me" onClick={() => alert('Clicked!')} type="primary" />
+      <Button text="Submit" onClick={() => alert('Submitted!')} type="secondary" />
+    </div>
+  );
+};
+
+export default App;
+```
+#### Benefits of Common Components:
+
+- **Consistency**: 
+  - Using the same components throughout an application ensures UI/UX consistency, which is crucial for user navigation and satisfaction.
+- **Maintainability**: 
+  - Updates or changes made in a common component propagate throughout the application wherever it is used. This makes maintenance easier and reduces the risk of bugs.
+- **Scalability**: 
+  - As applications grow, having a library of common components **can greatly simplify the process of scaling up**. 
+  - New pages and features can be built more quickly by leveraging existing components.
+
+----
+
+8.  HOC and custom hooks implementation?
+9.  Login screen design authentication and authorization.
+10. Promises.
+11. Normalization techniques in database.
+12. About Micro-frontend and it Pros, cons, communication between MFE, sharing common component between MFE, Design Question
+13. About SOLID principles.
+14. How to Implement offers in the E-commerce sites
+15.  useEffect 
     - explain how we achieve different lifecycle
     - Behavior with different dependency array - null, [], [value]
-15. useRef vs forwardRef
-16. useContext with example, useReducer with example
-17.  Typescript questions
-18.  what is sass and how good you are in it
-19.  I have service which will give data of an employee and hierarchy, we need to display that data in ui exactly like teams organization structure, how you will achieve that?
+16. useRef vs forwardRef
+17. useContext with example, useReducer with example
+18.  Typescript questions
+19.  what is sass and how good you are in it
+20.  I have service which will give data of an employee and hierarchy, we need to display that data in ui exactly like teams organization structure, how you will achieve that?

@@ -14,12 +14,10 @@
     props vs state
     arrays vs lists in react
     how can we decide right key to pass to list item
-    what are different ways of state management?
     which one you choose flux vs redux and why?
     Discuss the importance of routing in web applications and its relevance to React.
  
 ## Others
-    did u use oath
     what is difference between access token and id token
     code review steps you do
     You have an app with so many fields in the form. How do you show to user? How do you prevent repeated clicks of button?
@@ -32,8 +30,5 @@
  
     use of pure component?
     can we make database call directly from react app? is it suggestible to do if possible?
-    what is MFE and what are the uses?
-    
     Have you worked on RestAPI services in backend or are you a pure frontend dev?
     What is synthetic event in react. Have you used in your project? What it will do?
-    Do you have prior experience with MFE? And, why do we need them?

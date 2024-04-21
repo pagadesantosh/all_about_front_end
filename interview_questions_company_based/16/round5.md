@@ -13,8 +13,5 @@
     - If a crash occurs in the real DOM, does it impact the VDOM? Provide an explanation of the VDOM concept.
 
 ## MISC
-- Discuss why routing is essential for React apps.
 - Have you been involved in end-to-end development, including deployments?
-- Tell more on the necessity of lazy loading in React applications.
 - Do you have a knowledge of the Git pipeline?
-- Do you have experience with Micro-Frontend (MFE)?

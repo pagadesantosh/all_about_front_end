@@ -151,7 +151,7 @@
 
 ```
 
-  ![alt text](/interview%20questions_company%20based/16/imagesUsed/displayCards.png)
+  ![alt text](/interview_questions_company_based/16/imagesUsed/displayCards.png)
 
 ------
 

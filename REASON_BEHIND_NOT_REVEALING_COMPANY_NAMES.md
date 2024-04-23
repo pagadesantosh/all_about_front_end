@@ -8,5 +8,5 @@
 
 - After looking at the questions you will understand that they are actually asked in realtime interviews.
 
-- In realtime interviews you would expect a lot of cross questions on one topic
+- In realtime interviews you would expect a lot of cross questions on one topic and this is the one reason you see me writing down the answers of interview questions **in much more detailed way** by explaining what problems it solve and why it was introduced in javascript/react or so on.
 

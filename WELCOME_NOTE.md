@@ -6,4 +6,4 @@
 - I have already started my interview preparation journey for a 45 LPA position. Stay tuned for the content that I will upload on a daily basis.
 - My humble request for each and everyone is to add a testimonial (aka review of this purchase). You can find that in the topmate email you received post purchase.
 
-![alt text](/topmate_purchase.jpeg)
+![alt text](/zz_zz_others/topmate_purchase.jpeg)

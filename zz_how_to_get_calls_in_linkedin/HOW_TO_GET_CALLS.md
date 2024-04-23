@@ -15,3 +15,16 @@ https://www.linkedin.com/in/saitejagatadi
 
 ### Danny Thompson YouTube channel
 **Playlist Link**: https://youtube.com/playlist?list=PL54X5yR8qizsMpvTCqUIEFMeEp-chvcxk&si=uoBLryQdhjdY1w0F
+
+
+Below are the few job InMails I got via linkedin.
+
+![alt text](/zz_how_to_get_calls_in_linkedin/imagesUsed/EA.jpeg)
+![alt text](/zz_how_to_get_calls_in_linkedin/imagesUsed/recro.jpeg)
+![alt text](/zz_how_to_get_calls_in_linkedin/imagesUsed/startup-1.jpeg)
+![alt text](/zz_how_to_get_calls_in_linkedin/imagesUsed/startup-2.jpeg)
+![alt text](/zz_how_to_get_calls_in_linkedin/imagesUsed/startup-3.jpeg)
+![alt text](/zz_how_to_get_calls_in_linkedin/imagesUsed/turing.jpeg)
+![alt text](/zz_how_to_get_calls_in_linkedin/imagesUsed/uae_job.jpeg)
+![alt text](/zz_how_to_get_calls_in_linkedin/imagesUsed/upgrad.jpeg)
+![alt text](/zz_how_to_get_calls_in_linkedin/imagesUsed/usa_job.jpeg)

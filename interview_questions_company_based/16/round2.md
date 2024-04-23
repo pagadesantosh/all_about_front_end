@@ -709,16 +709,94 @@ export default App;
 
 ------
 
-10. Promises.
-11. Normalization techniques in database.
-12. About Micro-frontend and it Pros, cons, communication between MFE, sharing common component between MFE, Design Question
-13. About SOLID principles.
-14. How to Implement offers in the E-commerce sites
-15.  useEffect 
+### 10. Promises.
+
+#### i) Why Promises?
+- Promises in JavaScript are a powerful tool **for managing <ins>asynchronous operations</ins>**.
+
+#### ii) What problems does Promises solve?
+
+- Provide a **cleaner, more robust <ins>alternative**</ins> to older techniques like <ins>**callbacks and events**</ins> for handling asynchronous tasks such as network requests, file operations, or timers
+
+#### Definition
+- A Promise in JavaScript **is an object** <ins>representing the eventual ***completion (or failure)*** of an asynchronous operation</ins>. 
+- It essentially <ins>**promises to give you a result at some point in the future**</ins>, either a successful result or a reason for its failure.
+
+#### States of a Promise
+- A Promise has three states:
+
+  - **Pending**: Initial state, neither fulfilled nor rejected.
+  - **Fulfilled**: The operation completed successfully.
+  - **Rejected**: The operation failed.
+
+#### Creating a Promise
+
+```js
+const myPromise = new Promise((resolve, reject) => {
+    if (true) {
+        resolve('Promise is fulfilled successfully!');
+    } else {
+        reject('Promise was rejected!');
+    }
+});
+```
+
+```js
+// Consuming a Promise
+// To handle the results of a promise, 
+// you can use the .then() and .catch() methods.
+
+.then()
+.catch()
+```
+
+#### Chaining Promises
+- Promises can be chained **to perform a sequence of asynchronous operations <ins>where each subsequent operation starts when the previous one is successful, and its result becomes the input for the next</ins>**.
+
+```js
+new Promise((resolve, reject) => {
+    setTimeout(() => resolve(1), 1000); // Simulate async operation
+})
+.then(result => {
+    console.log(result); // 1
+    return result * 2;
+})
+.then(result => {
+    console.log(result); // 2
+    return result * 2;
+})
+.then(result => {
+    console.log(result); // 4
+    return result * 2;
+});
+```
+
+#### Error Handling:
+
+```js
+new Promise((resolve, reject) => {
+    throw new Error('Something failed!');
+})
+.then(result => {
+    // This won't be called
+})
+.catch(error => {
+    console.error(error.message); // "Something failed!"
+});
+
+```
+
+----
+
+1.  Normalization techniques in database.
+2.  About Micro-frontend and it Pros, cons, communication between MFE, sharing common component between MFE, Design Question
+3.  About SOLID principles.
+4.  How to Implement offers in the E-commerce sites
+5.   useEffect 
     - explain how we achieve different lifecycle
     - Behavior with different dependency array - null, [], [value]
-16. useRef vs forwardRef
-17. useContext with example, useReducer with example
-18.  Typescript questions
-19.  what is sass and how good you are in it
-20.  I have service which will give data of an employee and hierarchy, we need to display that data in ui exactly like teams organization structure, how you will achieve that?
+6.  useRef vs forwardRef
+7.  useContext with example, useReducer with example
+8.   Typescript questions
+9.   what is sass and how good you are in it
+10.  I have service which will give data of an employee and hierarchy, we need to display that data in ui exactly like teams organization structure, how you will achieve that?

@@ -1,6 +1,5 @@
 ## HOW TO STUDY THIS REPO GRACEFULLY 
 
-
 - If you have time for your next Frontend interview then I would highly recommend you people to solve atleast 2 to 3 polyfills, 2 to 3 problems and 1 to 2 machine coding challenges everyday (in parallel) including with your below preparation syllabus.
 
 -----

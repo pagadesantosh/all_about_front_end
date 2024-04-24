@@ -3,7 +3,7 @@
 - The virtual DOM is **only a virtual representation** of the DOM.
 - Every time the ***state of our application changes***, the **_virtual DOM gets updated_** instead of the real DOM.
 
-<u>**Points to remember**</u>:
+<ins>**Points to remember**</ins>:
 
 - When **new elements are added** to the UI, a **virtual DOM**, which is represented as a tree **_is created_**.
 
@@ -20,7 +20,7 @@
   <br/>
 
  - **Efficient Diffing Algorithm**:
-   - The Virtual DOM employs a diffing algorithm that efficiently ***identifies differences between the old and the new Virtual DOM trees***. 
+   - The Virtual DOM employs a diffing algorithm that efficiently <ins>**identifies differences between the old and the new Virtual DOM trees**</ins>. 
    - By pinpointing the exact changes needed, it ***minimizes the operations required to update the real DOM***.
   <br/>
 
@@ -58,4 +58,13 @@
 <img src="https://github.com/krishnakiriti04/react-interview-questions/raw/master/assets/dom.png">
 
 
+----
 
+#### Reduced Direct DOM Manipulation
+- **Direct DOM Manipulation is Slow**: 
+  - Manipulating the actual DOM is expensive in terms of performance. 
+  - **Each change can trigger `reflows` and `repaints`** which are computationally costly operations.
+- **Virtual DOM Minimizes Changes:** 
+  - The Virtual DOM allows <ins>**updates to happen in memory rather than directly in the DOM**</ins>. 
+  - It does this by creating a lightweight representation of the DOM. 
+  - When changes are made, **they are <ins>first applied to the Virtual DOM</ins>**.

@@ -27,4 +27,4 @@
 27. 𝗴𝗶𝘁 𝗰𝗵𝗲𝗿𝗿𝘆-𝗽𝗶𝗰𝗸 [𝗰𝗼𝗺𝗺𝗶𝘁]: Picks a commit from another branch and applies it to the current branch.
 28. 𝗴𝗶𝘁 𝗳𝗲𝘁𝗰𝗵 --𝗽𝗿𝘂𝗻𝗲: Prunes remote tracking branches no longer on the remote.
 29. 𝗴𝗶𝘁 𝗰𝗹𝗲𝗮𝗻 -𝗱𝗳: Removes untracked files and directories from the working directory.
-30. 𝗴𝗶𝘁 𝘀𝘂𝗯𝗺𝗼𝗱𝘂𝗹𝗲 𝘂𝗽𝗱𝗮𝘁𝗲 --𝗶𝗻𝗶𝘁 --𝗿𝗲𝗰𝘂𝗿𝘀𝗶𝘃𝗲: Initializes and updates submodules recursively.
+30. 𝗴𝗶𝘁 𝘀𝘂𝗯𝗺𝗼𝗱𝘂𝗹𝗲 𝘂𝗽𝗱𝗮𝘁𝗲 --𝗶𝗻𝗶𝘁 --𝗿𝗲𝗰𝘂𝗿𝘀𝗶𝘃𝗲: Initializes and updates submodules recursively..

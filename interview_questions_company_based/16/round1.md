@@ -30,8 +30,8 @@ View Answer
 
 ### Design/Development:
 
-1. **Micro Frontends Approach**: 
-   - Utilize the micro frontends architecture, where each main component (header, footer, navigation, content) is developed and deployed as an independent application. 
+1. **Micro Frontend Approach**: 
+   - Utilize the micro frontend architecture, where each main component (header, footer, navigation, content) is developed and deployed as an independent application. 
    - This allows teams to work on each section using the most suitable framework for that component's needs.
 
 2. **Web Components**: 
@@ -82,6 +82,23 @@ View Answer
    - Used mainly in Node.js for server-side development. 
    - It ***allows for synchronous loading*** of modules. 
    - Modules are **loaded using `require()`** and **exported using `module.exports`**.
+   - It is also used for `browser-side` JavaScript, **but that code must be packaged with a transpiler** since browsers don't support CommonJS
+   - Not ideally suitable for browsers due to the reason that browsers perform multiple asynchronous operations and introducing synchronous would block the thread execution.
+
+```js
+// myModule.js
+function sayHello(name) {
+    return `Hello, ${name}!`;
+}
+
+module.exports = sayHello;
+```
+
+```js
+// app.js
+const sayHello = require('./myModule');
+console.log(sayHello('Alice'));  // Outputs: Hello, Alice!
+```
 
 <ins>**Asynchronous Module Definition (AMD):**</ins>
 
@@ -92,12 +109,14 @@ View Answer
 
 <ins>**Universal Module Definition (UMD):**</ins>
 
-- Aims to provide compatibility with both CommonJS and AMD as well as with the traditional global variable method. 
+- Aims to provide compatibility with both `CommonJS` and `AMD` as well as with the traditional global variable method. 
 - It checks the environment and adapts accordingly, allowing the module to be used in different contexts.
 
 <ins>**ES Modules (ESM):**</ins>
   -  The standard module system in modern JavaScript, introduced with ES6 (ECMAScript 2015). 
-  -  It supports static analysis and tree-shaking for more efficient bundling. Modules are imported using the `import` keyword and exported using `export`.
+  -  It supports static analysis and tree-shaking for more efficient bundling. 
+  -  Modules are imported using the `import` keyword and exported using `export`.
+
 <summary>
 View Answer
 </summary>
@@ -108,7 +127,6 @@ View Answer
 ----
 
 ### 4. Unit testing - difference between mock/stub/spy
-
 
 <details>
 

@@ -1,4 +1,4 @@
-## 1. Module Pattern
+## 1. Module Patterns
 - It's a great way to split a larger codebase into multiple smaller, reusable pieces. 
 - Used for creating organized and reusable code. 
 - It helps in encapsulating a set of functions and variables into a single scope, protecting them from the global scope, and thereby reducing the likelihood of naming conflicts.

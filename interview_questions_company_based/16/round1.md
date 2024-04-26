@@ -138,29 +138,34 @@ View Answer
 
 
 ```js
-// FUNCTION TO TEST
-// logger.js
-function logIfTrue(value) {
-  if (value) {
-    console.log('Value is true!');
-  }
+// COMPONENT TO TEST
+import React from 'react';
+
+function ButtonComponent({ onClick }) {
+  return (
+    <button onClick={onClick}>Click me</button>
+  );
 }
+
+export default ButtonComponent;
+
 ```
 
 ```js
 // TEST USING A MOCK:
-// logger.test.js
-import { logIfTrue } from './logger';
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import ButtonComponent from './ButtonComponent';
 
-test('should log message when value is true', () => {
-  // Spy on console.log
-  const logMock = jest.spyOn(console, 'log');
-  logMock.mockImplementation(() => {});
+test('calls onClick prop when clicked', () => {
+  const handleClick = jest.fn();  // Creating a mock function
+  render(<ButtonComponent onClick={handleClick} />);
+  
+  // Simulating a button click
+  fireEvent.click(screen.getByText('Click me'));
 
-  logIfTrue(true);
-
-  expect(logMock).toHaveBeenCalledWith('Value is true!');
-  logMock.mockRestore(); // Restore the original implementation
+  // Checking if the mock function was called exactly once
+  expect(handleClick).toHaveBeenCalledTimes(1);
 });
 ```
 ----
@@ -171,12 +176,27 @@ test('should log message when value is true', () => {
 - Useful in scenarios where you just need <ins>***to make sure that a piece of code can handle the input and produce the correct output***</ins> without really caring about the interaction with the dependency
   
 ```js
-// FUNCTION TO TEST
-// user.js
-async function getUser(id) {
-  return fetch(`https://api.example.com/users/${id}`)
-    .then(response => response.json());
+//DataFetcher Component
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+function DataFetcher() {
+  const [data, setData] = useState('');
+
+  useEffect(() => {
+    axios.get('https://api.example.com/data')
+      .then(response => setData(response.data))
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
+
+  return (
+    <div>
+      {data ? <p>{data}</p> : <p>Loading...</p>}
+    </div>
+  );
 }
+
+export default DataFetcher;
 ```
 
 ```js
@@ -199,6 +219,39 @@ test('should return user data', async () => {
   expect(userData).toEqual(fakeUser);
 });
 ```
+```js
+// TEST CASES for DataFetcher Component
+import React from 'react';
+import { render, screen, waitFor } from '@testing-library/react';
+import DataFetcher from './DataFetcher';
+import axios from 'axios';
+
+jest.mock('axios');
+
+test('loads and displays data', async () => {
+  // Setup the mock
+  axios.get.mockResolvedValue({ data: 'Hello World' });
+
+  render(<DataFetcher />);
+
+  // We use waitFor because the component updates state asynchronously
+  await waitFor(() => {
+    expect(screen.getByText('Hello World')).toBeInTheDocument();
+  });
+});
+
+test('handles loading state', async () => {
+  // Delay the response to test the loading state
+  axios.get.mockImplementation(() => new Promise(resolve => setTimeout(() => resolve({ data: 'Delayed Hello' }), 500)));
+
+  render(<DataFetcher />);
+  expect(screen.getByText('Loading...')).toBeInTheDocument(); // Initial state should be loading
+
+  await waitFor(() => {
+    expect(screen.getByText('Delayed Hello')).toBeInTheDocument();
+  });
+});
+```
 ----
 
 #### Spy:
@@ -207,28 +260,34 @@ test('should return user data', async () => {
 - Unlike mocks, spies generally **do not allow you to set expectations before the code runs**; they record information about interactions to be asserted later.
 
 ```js
-// FUNCTION TO TEST
-// calculator.js
-class Calculator {
-  add(a, b) {
-    return a + b;
-  }
+// ButtonClicker.js
+import React from 'react';
+
+function ButtonClicker({ onButtonClick }) {
+  return (
+    <button onClick={onButtonClick}>Click me</button>
+  );
 }
+
+export default ButtonClicker;
 ```
 
 ```js
 // TEST USING A SPY:
-// calculator.test.js
-import Calculator from './calculator';
+// ButtonClicker.test.js
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import ButtonClicker from './ButtonClicker';
+import * as Utils from './utils';  // Assuming Utils has a method used inside ButtonClicker
 
-test('should call add method correctly', () => {
-  const calc = new Calculator();
-  const spy = jest.spyOn(calc, 'add');
-  const result = calc.add(2, 3);
-
-  expect(spy).toHaveBeenCalledWith(2, 3);
-  expect(result).toBe(5);
-  spy.mockRestore(); // Restore original method
+test('calls utility method when the button is clicked', () => {
+  const spy = jest.spyOn(Utils, 'utilityMethod');  // Spy on the utilityMethod
+  render(<ButtonClicker />);
+  fireEvent.click(screen.getByText('Click me'));
+  // Checking if the spied function was called
+  expect(spy).toHaveBeenCalled();
+  // Restore the original function  
+  spy.mockRestore();  
 });
 ```
 ----

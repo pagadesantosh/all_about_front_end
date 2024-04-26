@@ -263,6 +263,5 @@ export default PaginatedItems;
 - **Virtual DOM**: 
   - React uses a Virtual DOM, a lightweight copy of the actual DOM. 
   - When a component’s state changes, **React creates a new Virtual DOM**, compares it with the previous one, and calculates the most efficient way to update the real DOM.
-<br/>
 - **Components and State**: 
   - When the state or props of a component change, **React re-renders the component and updates the DOM** where necessary.

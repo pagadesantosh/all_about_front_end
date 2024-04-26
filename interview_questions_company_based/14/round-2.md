@@ -4,6 +4,5 @@
 ## cors
 ## database sharding, replication, host key 
 ## Docker ?
-## redux vs useContext
 
 **Verdict**: Selected

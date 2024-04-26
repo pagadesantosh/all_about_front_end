@@ -556,90 +556,89 @@ export const loginUser = async (credentials) => {
 };
 ```
 ```js
-//authContext.js
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import jwtDecode from 'jwt-decode'; // npm install jwt-decode
+import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 
-const AuthContext = createContext(null);
-
-export const AuthProvider = ({ children }) => {
-  const [authData, setAuthData] = useState(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const decoded = jwtDecode(token);
-      if (decoded.exp * 1000 > Date.now()) {
-        return { user: decoded };
-      }
-    }
-    return null;
-  });
-
-  const login = (data) => {
-    localStorage.setItem('token', data.token);
-    setAuthData({ user: jwtDecode(data.token) });
-  };
-
-  const logout = () => {
-    localStorage.removeItem('token');
-    setAuthData(null);
-  };
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const decoded = jwtDecode(token);
-      if (decoded.exp * 1000 <= Date.now()) {
-        logout();
-      }
-    }
-  }, []);
-
-  return (
-    <AuthContext.Provider value={{ authData, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
+const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
+
+export const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const loadUser = async () => {
+            const token = localStorage.getItem('token');
+            if (token) {
+                const decodedToken = jwtDecode(token);
+                // Check if token expired
+                if (decodedToken.exp * 1000 < Date.now()) {
+                    localStorage.removeItem('token');
+                } else {
+                    setUser(decodedToken);
+                }
+            }
+            setLoading(false);
+        };
+        loadUser();
+    }, []);
+
+    const login = async (email, password) => {
+        const response = await axios.post('/api/auth/login', { email, password });
+        const { token } = response.data;
+        localStorage.setItem('token', token);
+        const decoded = jwtDecode(token);
+        setUser(decoded);
+    };
+
+    const logout = () => {
+        localStorage.removeItem('token');
+        setUser(null);
+    };
+
+    return (
+        <AuthContext.Provider value={{ user, login, logout, loading }}>
+            {!loading && children}
+        </AuthContext.Provider>
+    );
+};
 ```
 
 ```js
 //Login.js
 import React, { useState } from 'react';
 import { useAuth } from './AuthContext';
-import { loginUser } from './api';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const { login } = useAuth();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const { login } = useAuth();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const data = await loginUser({ username, password });
-      login(data);
-    } catch (error) {
-      setError(error.message);
-    }
-  };
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            await login(email, password);
+            // Redirect or perform some action after login
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Username:</label>
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-      </div>
-      <div>
-        <label>Password:</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      </div>
-      <button type="submit">Login</button>
-      {error && <p>{error}</p>}
-    </form>
-  );
+    return (
+        <form onSubmit={handleSubmit}>
+            <label>
+                Email:
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            </label>
+            <label>
+                Password:
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            </label>
+            <button type="submit">Login</button>
+        </form>
+    );
 };
 
 export default Login;
@@ -651,32 +650,17 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 
-const PrivateRoute = ({ component: Component, roles, ...rest }) => {
-  const { authData } = useAuth();
+const PrivateRoute = ({ component: Component, ...rest }) => {
+    const { user } = useAuth();
 
-  return (
-    <Route
-      {...rest}
-      //In the above, `...rest` could include props like 
-      // `path`, `exact`, `strict`, `location`, `sensitive`, etc., 
-      // which are valid `<Route>`props but are not directly 
-      // used in your logic before passing them to <Route>.
-      render={(props) => {
-        // This props object includes several properties such as: `match`, `location`, `history`
-        if (!authData) {
-          // Not logged in
-          return <Redirect to="/login" />;
-        }
-
-        if (roles && !roles.includes(authData.user.role)) {
-          // Role not authorized
-          return <Redirect to="/unauthorized" />;
-        }
-
-        return <Component {...props} />;
-      }}
-    />
-  );
+    return (
+        <Route
+            {...rest}
+            render={props =>
+                user ? <Component {...props} /> : <Redirect to="/login" />
+            }
+        />
+    );
 };
 
 export default PrivateRoute;
@@ -685,7 +669,7 @@ export default PrivateRoute;
 ```js
 //App.jsx
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Redirect } from 'react-router-dom';
 import Login from './Login';
 import Dashboard from './Dashboard';
 import AdminPanel from './AdminPanel';
@@ -694,12 +678,12 @@ import PrivateRoute from './PrivateRoute';  // Imported PrivateRoute
 const App = () => {
   return (
     <Router>
-      <Switch>
+      <Routes>
         <Route path="/login" component={Login} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/admin" component={AdminPanel} roles={['admin']} />
         <Redirect from="/" to="/dashboard" />
-      </Switch>
+      </Routes>
     </Router>
   );
 };
@@ -788,15 +772,127 @@ new Promise((resolve, reject) => {
 
 ----
 
-1.  Normalization techniques in database.
-2.  About Micro-frontend and it Pros, cons, communication between MFE, sharing common component between MFE, Design Question
-3.  About SOLID principles.
-4.  How to Implement offers in the E-commerce sites
-5.   useEffect 
+11.  Normalization techniques in database.
+  
+12. About Micro-frontend and it Pros, cons, communication between MFE, sharing common component between MFE, Design Question
+
+----------
+
+
+### 13. About SOLID principles.
+
+- The `SOLID` principles <ins>**are a set of five**</ins> design guidelines 
+- This will help developers create software that is easier to `understand`, `maintain`, and `extend`.
+- can be applied in JavaScript development <ins>**to improve code quality and modularity**</ins>. 
+
+#### 1. Single Responsibility Principle (SRP)
+
+<ins>**Principle**:</ins> 
+  - A class <ins>**should have one, and only one**</ins>, reason to change.
+
+<ins>**Problem it solves**:</ins>  
+  - SRP <ins>**reduces** the complexity of code</ins>, making it easier to maintain and less susceptible to bugs because changes in one part of the system are less likely to affect other parts.
+
+```js
+// Bad practice: 
+// A class that handles both user data management and JSON serialization
+class UserData {
+    constructor(user) {
+        this.user = user;
+    }
+
+    saveUser() {
+        // Save the user data to a database
+    }
+
+    serializeUser() {
+        return JSON.stringify(this.user);
+    }
+}
+
+// Good practice: 
+// Separate classes with single responsibilities
+class UserData {
+    constructor(user) {
+        this.user = user;
+    }
+
+    saveUser() {
+        // Save the user data to a database
+    }
+}
+
+class UserSerializer {
+    static serialize(user) {
+        return JSON.stringify(user);
+    }
+}
+```
+
+
+#### 2. Open/Closed Principle (OCP)
+
+<ins>**Principle**:</ins> 
+  - Software entities should be open for extension, but closed for modification.  
+
+<ins>**Problem it solves**:</ins>  
+  -  This principle helps in <ins>managing future changes and new functionalities in an application **without altering existing code**</ins>, thus reducing the risk of introducing bugs.
+
+```js
+// Bad practice: A function that is modified every time a new shape is added
+function drawShape(shape) {
+    if (shape.type === 'circle') {
+        drawCircle(shape.radius);
+    } else if (shape.type === 'square') {
+        drawSquare(shape.side);
+    }
+}
+
+// Good practice: Use polymorphism to handle different shapes
+class Shape {
+    draw() {}
+}
+
+class Circle extends Shape {
+    constructor(radius) {
+        super();
+        this.radius = radius;
+    }
+
+    draw() {
+        drawCircle(this.radius);
+    }
+}
+
+class Square extends Shape {
+    constructor(side) {
+        super();
+        this.side = side;
+    }
+
+    draw() {
+        drawSquare(this.side);
+    }
+}
+
+function drawShape(shape) {
+    shape.draw();
+}
+```
+
+
+
+
+
+
+-----
+
+1.  How to Implement offers in the E-commerce sites
+2.   useEffect 
     - explain how we achieve different lifecycle
     - Behavior with different dependency array - null, [], [value]
-6.  useRef vs forwardRef
-7.  useContext with example, useReducer with example
-8.   Typescript questions
-9.   what is sass and how good you are in it
-10.  I have service which will give data of an employee and hierarchy, we need to display that data in ui exactly like teams organization structure, how you will achieve that?
+3.  useRef vs forwardRef
+4.  useContext with example, useReducer with example
+5.   Typescript questions
+6.   what is sass and how good you are in it
+7.   I have service which will give data of an employee and hierarchy, we need to display that data in ui exactly like teams organization structure, how you will achieve that?

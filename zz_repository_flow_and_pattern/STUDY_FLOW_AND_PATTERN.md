@@ -1,6 +1,10 @@
 ## HOW TO STUDY THIS REPO GRACEFULLY 
 
-- If you have time for your next Frontend interview then I would highly recommend you people to solve atleast 2 to 3 polyfills, 2 to 3 problems and 1 to 2 machine coding challenges everyday (in parallel) including with your below preparation syllabus.
+- If you have time for your next Frontend interview then I would highly recommend you people to solve 
+  - 2 to 3 polyfills everyday, 
+  - 2 to 3 problems everyday
+  - 1 to 2 machine coding challenges everyday 
+(in parallel) with below preparation syllabus.
 
 -----
 
@@ -38,7 +42,7 @@
 ### Category_4: Interview within couple of weeks
 
 1. Directly jump on **interview questions_company based** folder 
-    - There are a total of 650 interview questions and it will give you a high level overview of questions that are being asked as per current market.
+    - There are a total of 600+ interview questions and it will give you a high level overview of questions that are being asked as per current market.
 2. Javascript advanced concepts folder
 3. Other main resources (Category 5)
 
@@ -56,7 +60,7 @@
 
 -------
 
-#### <ins>Please make sure that there will be atleast one machine coding round for sure.</ins>
+#### <ins>Please make sure that there will be at-least one machine coding round for sure.</ins>
 
 - You can prepare it on your own or have a look at my 43 solved machine coding challenges if you want to speed up the things. 
 - I'm selling it for money due to the only reason that these challenges are developed with time constraint in mind. 

@@ -32,7 +32,7 @@ Read more: https://lnkd.in/dPvCmmZ8
 
 4. Build Performance
 
-Treeshaking
+Tree-shaking
 Code Splitting
 Bundle size analysis
 Caching

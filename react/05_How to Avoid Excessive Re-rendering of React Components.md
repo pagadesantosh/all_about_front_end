@@ -119,7 +119,56 @@ In addition to existing best practices,
 - ***Lazy Loading of Components and Images***: This can significantly reduce the initial load time and improve performance, especially for large applications and assets.
 <br/>
 
+```js
+// WITHOUT useCallback, on every click, ChildComponent re-renders
+import React, { useState, useCallback } from 'react';
 
+const ChildComponent = React.memo(({ onClick }) => {
+  console.log('Child is rendering...');
+  return <button onClick={onClick}>Click me</button>;
+});
+
+export function App() {
+  const [count, setCount] = useState(0);
+
+  const incrementCount = () => {
+    setCount((prevCount)=> prevCount + 1);
+  };
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <ChildComponent onClick={incrementCount} />
+    </div>
+  );
+}
+```
+
+```js
+// WITH useCallback, no matter how many times you click on the button
+// only counts gets incremented whereas ChildComponent rendered only once.
+import React, { useState, useCallback } from 'react';
+
+const ChildComponent = React.memo(({ onClick }) => {
+  console.log('Child is rendering...');
+  return <button onClick={onClick}>Click me</button>;
+});
+
+export function App() {
+  const [count, setCount] = useState(0);
+
+  const incrementCount = useCallback(() => {
+    setCount((prevCount)=> prevCount + 1);
+  },[]);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <ChildComponent onClick={incrementCount} />
+    </div>
+  );
+}
+```
 ---
 
 #### Reference to medium article:

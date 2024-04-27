@@ -18,7 +18,25 @@
     Discuss the importance of routing in web applications and its relevance to React.
  
 ## Others
-    what is difference between access token and id token
+### what is difference between access token and id token
+     
+**Access Token**
+- **Purpose**: 
+  - An access token is **used to grant access to a resource**. 
+  - It acts as a kind of "key" that **allows the holder to access APIs or resources securely**. 
+  - The primary purpose of an access token is to **authorize API requests** made on behalf of the user.
+- **Content**: 
+  - Access tokens usually contain `scopes` and `grants` that specify what actions the application can perform and on what resources. 
+  - They do not necessarily need to be understandable by the client or the resource owner.
+- **Format**: 
+  - The format of an access token can be opaque (such as a random string) or structured (such as `JWT` - JSON Web Tokens), depending on the authorization server. 
+  - In the case of `JWT`, the token can carry a payload of claims, but these are meant for authorization, not for client use.
+  
+- **Usage**: 
+  - It is **used by a client application to make authenticated requests to a server** or `API` that knows how to validate the token and check the permissions (scopes).
+
+
+
     code review steps you do
     You have an app with so many fields in the form. How do you show to user? How do you prevent repeated clicks of button?
 

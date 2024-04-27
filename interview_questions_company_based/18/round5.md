@@ -1,6 +1,6 @@
-### 1. Eventbus communication in react
+### 1. Event bus communication in react
 
-- An Event-Bus is a design pattern that **allows PubSub-style communication between components** while the components remain loosely coupled.
+- An Event Bus is a design pattern that **allows PubSub-style communication between components** while the components remain loosely coupled.
 - A **component can send a message to an Event Bus** without knowing where the message is sent to. 
 - On the other hand, **a component can listen to a message on an Event Bus** and decide what to do with the message without knowing where the message comes from. 
 - With this design, independent components can communicate without knowing each other.

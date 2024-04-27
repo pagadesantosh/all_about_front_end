@@ -32,3 +32,9 @@
 32. How do you update state in class components?
 33. what are refs and how do you update styles for react ?
 34. How do you loop the arrays in react?
+35. OOPS — Inheritance, Abstraction, etc. (Theory + Implementation)
+36. Promises and Async/Await — Difference b/w the two and implementation.
+37. Reducers in React
+38. Context API
+39. Find the 3rd largest element in an array
+40. Media queries and responsive designs

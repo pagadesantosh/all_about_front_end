@@ -15,4 +15,7 @@
 15. React.lazy
 16. SSR and CSR
 17. Generics in TS
-18. tsconfig file
+18. tsconfig file, can you explain the properties and what they are used for?
+19. Promise.allSettled polyfill
+20. Write code for React Routing, Example: Upon click on Home Link it should navigate to Home page
+ 

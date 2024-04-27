@@ -19,3 +19,4 @@
 19. Web accessibility and its benefit
 20. HTML Semantic elements
 21. Redux Middleware and Redux Toolkit
+22. Providing you an API_URL, How you will fetch the API with performance in mind and perform pagination based on the offset value. Write down the dropdown logic for offset (ex: 5, 10, 15...in the multiple of 5).

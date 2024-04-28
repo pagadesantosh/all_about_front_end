@@ -220,21 +220,20 @@ export default App;
 - If the function’s dependencies don’t change, **React reuses the same function instance** between renders.
 
 ```js
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, memo } from 'react';
 
-function ExpensiveButton({ onCalculate }) {
-  console.log("Button rendered");
+const ExpensiveButton = memo(({ onCalculate }) => {
+  console.log('Button rendered');
   return <button onClick={onCalculate}>Calculate</button>;
-}
+});
 
 function App() {
   const [count, setCount] = useState(0);
 
-  // Use useCallback to prevent unnecessary re-renders of ExpensiveButton
   const handleCalculate = useCallback(() => {
-    console.log("Calculation performed");
-    setCount(count + 1);
-  }, [count]);
+    console.log('Calculation performed');
+    setCount((prevCount) => prevCount + 1);
+  }, []);
 
   return (
     <div>
@@ -880,19 +879,486 @@ function drawShape(shape) {
 }
 ```
 
+#### 3. Liskov Substitution Principle (LSP)
+
+<ins>**Principle**:</ins> 
+- `Objects` in a program **should be replaceable** with `instances` of their subtypes without altering the correctness of the program.
+
+<ins>**Problem it solves**:</ins>  
+
+- It ensures that **<ins>a subclass can stand in for its base class without errors**</ins>, leading to enhanced reliability and modularity in code.
+
+```js
+// Bad practice: Subclass changes the behavior of the base class in a way that can lead to errors
+class Bird {
+    fly() {
+        console.log("Flying");
+    }
+}
+
+class Penguin extends Bird {
+    fly() {
+        throw new Error("Cannot fly");
+    }
+}
+
+// Good practice: Correct hierarchy
+class Bird {
+    // Common bird behavior
+}
+
+class FlyingBird extends Bird {
+    fly() {
+        console.log("Flying");
+    }
+}
+
+class Penguin extends Bird {
+    // Penguins cannot fly, no fly method here
+}
+```
 
 
+#### 4. Interface Segregation Principle (ISP)
+<ins>**Principle**:</ins> 
+  - No client should be forced to depend on methods it does not use.
+
+<ins>**Problem it solves**:</ins>  
+- Prevents the design of "fat" interfaces **that have too many responsibilities**, which can lead to `bloated` and `confusing` implementations in classes.
+
+```js
+// Bad practice: An interface with too many responsibilities
+class Worker {
+    work() {}
+    eat() {}
+}
+
+class HumanWorker extends Worker {
+    work() {
+        console.log("Working");
+    }
+
+    eat() {
+        console.log("Eating lunch");
+    }
+}
+
+class RobotWorker extends Worker {
+    work() {
+        console.log("Robot working");
+    }
+
+    eat() {
+        // Robots do not eat, but must implement this method
+    }
+}
+
+// Good practice: Separated interfaces
+class Workable {
+    work() {}
+}
+
+class Eatable {
+    eat() {}
+}
+
+class HumanWorker implements Workable, Eatable {
+    work() {
+        console.log("Working");
+    }
+
+    eat() {
+        console.log("Eating lunch");
+    }
+}
+
+class RobotWorker implements Workable {
+    work() {
+        console.log("Robot working");
+    }
+}
+```
 
 
+#### 5. Dependency Inversion Principle (DIP)
+<ins>**Principle**:</ins> 
+  - High-level modules should not depend on low-level modules. Both should depend on abstractions.
 
+<ins>**Problem it solves**:</ins>  
+- DIP **helps in <ins>reducing the dependencies between the components</ins> of an application**, which simplifies `updates` and `maintenance`. 
+- It `enables` high-level modules to remain unaffected by changes in low-level modules and their implementation.
+
+```js
+// BAD PRACTICE CODE
+
+// Low-level module
+class EmailService {
+    sendEmail(message, recipient) {
+        // Sends email to the recipient
+        console.log(`Sending an email to ${recipient}: ${message}`);
+    }
+}
+
+// High-level module
+// In this example, high-level modules directly depend on low-level modules, 
+// leading to tight coupling and reduced flexibility.
+class NotificationService {
+    constructor() {
+        this.emailService = new EmailService();
+    }
+
+    notify(message, recipient) {
+        this.emailService.sendEmail(message, recipient);
+    }
+}
+
+// Usage
+const notifier = new NotificationService();
+notifier.notify("Hello, your order has been shipped!", "customer@example.com");
+```
+
+----
+
+```js
+// GOOD PRACTICE
+
+// Abstraction
+class MessageService {
+    send(message, recipient) {}
+}
+
+// Low-level module
+class EmailService extends MessageService {
+    send(message, recipient) {
+        // Sends email to the recipient
+        console.log(`Sending an email to ${recipient}: ${message}`);
+    }
+}
+
+// High-level module
+class NotificationService {
+    constructor(messageService) {
+        this.messageService = messageService;
+    }
+
+    notify(message, recipient) {
+        this.messageService.send(message, recipient);
+    }
+}
+
+// Usage
+const emailService = new EmailService();
+const notifier = new NotificationService(emailService);
+notifier.notify("Hello, your order has been shipped!", "customer@example.com");
+```
 -----
 
-1.  How to Implement offers in the E-commerce sites
-2.   useEffect 
+### 14.  How to Implement offers in the E-commerce sites.
+
+#### Key Components:
+- **Offers Management**: Backend system to `create`, `store`, and `manage` offers.
+- **Offers Application Logic**: Logic to determine **which offers are applicable** to the cart.
+- **Frontend Display**: `Show` ***applicable*** offers to users
+
+#### i) Backend Setup
+- First, you need a backend service **that manages offers**. 
+- This can be part of your e-commerce platform. 
+- Offers might be stored in a database with fields like 
+  - `id`, 
+  - `description`, 
+  - `discountType`, 
+  - `discountValue`, 
+  - `criteria`
+
+```js
+// EXAMPLE OF A SIMPLE OFFER
+{
+  "id": "OFF10",
+  "description": "10% off on all electronics",
+  "discountType": "percentage",
+  "discountValue": 10,
+  "criteria": {
+    "category": "electronics"
+  }
+}
+```
+
+---
+
+### ii) Frontend Implementation
+
+- In the frontend, **you'd typically fetch these offers from the backend** and `apply` them based on the cart's contents. 
+
+
+#### Step 1: Fetch and Store Offers
+
+```js
+// Assuming Context API to manage state, 
+// we would fetch offers when the application loads or when the cart contents change.
+
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const fetchOffers = async () => {
+  const response = await axios.get('/api/offers');
+  return response.data;
+};
+
+const OffersContext = React.createContext();
+
+export const OffersProvider = ({ children }) => {
+  const [offers, setOffers] = useState([]);
+
+useEffect(() => {
+  const fetchAndSetOffers = async () => {
+    const offers = await fetchOffers();
+    setOffers(offers);
+  };
+
+  fetchAndSetOffers();
+}, []);
+
+
+  return (
+    <OffersContext.Provider value={offers}>
+      {children}
+    </OffersContext.Provider>
+  );
+};
+```
+----
+
+#### i) Step 2: Assuming we have a CartContext
+- includes functions to 
+  - `add` items to the cart, 
+  - `remove` items, 
+  - `clear` the cart. 
+
+We'll also keep track of the cart items and total items count.
+
+```js
+import React, { createContext, useContext, useReducer } from 'react';
+
+// Define the shape of the cart's state
+const initialState = {
+  items: [],
+  totalItems: 0
+};
+
+// Create the cart context
+const CartContext = createContext(initialState);
+
+// Reducer function to handle actions
+function cartReducer(state, action) {
+  switch (action.type) {
+    case 'ADD_ITEM':
+      // Check if item already exists
+      const existingItem = state.items.find(item => item.id === action.payload.id);
+      if (existingItem) {
+        // Increase the quantity
+        return {
+          ...state,
+          items: state.items.map(item =>
+            item.id === action.payload.id ? { ...item, quantity: item.quantity + 1 } : item
+          ),
+          totalItems: state.totalItems + 1
+        };
+      } else {
+        // Add new item
+        return {
+          ...state,
+          items: [...state.items, { ...action.payload, quantity: 1 }],
+          totalItems: state.totalItems + 1
+        };
+      }
+    case 'REMOVE_ITEM':
+      const itemToRemove = state.items.find(item => item.id === action.payload.id);
+      if (itemToRemove.quantity > 1) {
+        return {
+          ...state,
+          items: state.items.map(item =>
+            item.id === action.payload.id ? { ...item, quantity: item.quantity - 1 } : item
+          ),
+          totalItems: state.totalItems - 1
+        };
+      } else {
+        return {
+          ...state,
+          items: state.items.filter(item => item.id !== action.payload.id),
+          totalItems: state.totalItems - 1
+        };
+      }
+    case 'CLEAR_CART':
+      return initialState;
+    default:
+      throw new Error(`Unhandled action type: ${action.type}`);
+  }
+}
+
+// Create a provider for components that consumes and updates the context
+export const CartProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(cartReducer, initialState);
+
+  const addItem = item => {
+    dispatch({ type: 'ADD_ITEM', payload: item });
+  };
+
+  const removeItem = id => {
+    dispatch({ type: 'REMOVE_ITEM', payload: { id } });
+  };
+
+  const clearCart = () => {
+    dispatch({ type: 'CLEAR_CART' });
+  };
+
+  return (
+    <CartContext.Provider value={{ items: state.items, totalItems: state.totalItems, addItem, removeItem, clearCart }}>
+      {children}
+    </CartContext.Provider>
+  );
+};
+
+// Hook to use cart context
+export const useCart = () => useContext(CartContext);
+```
+
+```js
+// Usage of useCart
+
+import React from 'react';
+import { useCart } from './CartContext';
+
+const AddToCartButton = ({ product }) => {
+  const { addItem } = useCart();
+
+  return <button onClick={() => addItem(product)}>Add to Cart</button>;
+};
+
+export default AddToCartButton;
+```
+----
+
+#### ii) Step 2: Apply Offers to Cart
+- `Create` a function **to apply offers to the items in the cart**. 
+- This function **should check each item** against the offer criteria.
+
+```js
+// function to apply offers to each item in the cart
+const applyOffersToCart = (cart, offers) => {
+
+  // map over each item in the cart to apply any applicable offers
+  const newCart = cart.map(item => {
+
+    // Filter offers to find those that match the item's category
+    const applicableOffers = offers.filter(offer => offer.criteria.category === item.category);
+
+    // Reduce the applicable offers to find the best one based on the discount value
+    const bestOffer = applicableOffers.reduce((best, current) => {
+
+      // Check if the current offer has a higher percentage discount than the best one found so far
+      if (current.discountType === 'percentage' && current.discountValue > (best.discountValue || 0)) {
+        return current; // Return the current offer if it's better
+      }
+      return best; // Otherwise, keep the best offer found so far
+    }, null);
+
+    // If there is a best offer found, apply it to the item
+    if (bestOffer) {
+
+      // Calculate the discount amount. If it's a percentage discount, calculate the discount based on the item's price
+      const discount = bestOffer.discountType === 'percentage' ? 
+        item.price * (bestOffer.discountValue / 100) : // Calculate percentage discount
+        bestOffer.discountValue; // Or use the fixed discount value
+
+      // Return a new item object with the adjusted price and the description of the applied offer
+      return { ...item, price: item.price - discount, appliedOffer: bestOffer.description };
+    }
+
+    // If no offer is applicable, return the item unchanged
+    return item;
+  });
+
+  // Return the updated cart with all applicable discounts applied
+  return newCart;
+};
+```
+
+----
+
+#### Step 3: React Components
+
+- Now, integrate this logic into your React components. 
+
+Here's an example of how you might display this in the cart component.
+
+```js
+import React, { useContext } from 'react';
+import { CartContext, OffersContext } from './contexts';
+
+import { applyOffersToCart } from './utils';  // Ensure this path is correct
+
+const Cart = () => {
+  const { items: cartItems } = useContext(CartContext);  // Destructure to get items directly
+  const offers = useContext(OffersContext);
+
+  // Now `cartItems` should be an array of items as per the CartContext's design
+  const cartWithOffers = applyOffersToCart(cartItems, offers);
+
+  return (
+    <div>
+      {cartWithOffers.map((item, index) => (
+        <div key={index}>
+          <p>{item.name}: ${item.price.toFixed(2)}</p>
+          {item.appliedOffer && <p>Offer Applied: {item.appliedOffer}</p>}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Cart;
+```
+------
+
+### 15.    useEffect 
     - explain how we achieve different lifecycle
     - Behavior with different dependency array - null, [], [value]
-3.  useRef vs forwardRef
-4.  useContext with example, useReducer with example
-5.   Typescript questions
-6.   what is sass and how good you are in it
-7.   I have service which will give data of an employee and hierarchy, we need to display that data in ui exactly like teams organization structure, how you will achieve that?
+ 
+#### 1. componentDidMount Equivalent
+```js
+useEffect(() => {
+  // Code to run on component mount
+}, []); // Empty dependency array, tells React to run the effect once after the initial render
+```
+#### 2. componentDidUpdate Equivalent
+
+```js
+useEffect(() => {
+  // Code to run when dependencies update
+  // Here, the effect runs after the initial render and whenever any value in the dependency array changes
+}, [value]); // Dependency array with specific values
+```
+
+#### 3. componentWillUnmount Equivalent
+```js
+useEffect(() => {
+  return () => {
+    // Cleanup code here.....
+    // Cleanup before the component is removed from the UI, e.g., removing event listeners, cancelling network requests.
+  };
+}, []); // Empty dependency array indicates this runs on unmount
+```
+
+#### 4. No Dependency Array (null):
+```js
+useEffect(() => {
+  // The effect runs after every render of the component.
+});
+```
+
+----
+
+16. useRef vs forwardRef
+17.  Typescript questions
+18.  what is sass and how good you are in it
+19.  I have service which will give data of an employee and hierarchy, we need to display that data in ui exactly like teams organization structure, how you will achieve that?

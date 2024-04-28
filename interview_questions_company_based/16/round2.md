@@ -1,4 +1,7 @@
 ### 1. What are the hooks ?
+
+<details>
+
 - React hooks **are functions** that let you "hook into" React state and lifecycle features from function components. 
 - They were **introduced in React 16.8** <ins>**to enable state management and side-effects**</ins> in functional components, 
 
@@ -47,9 +50,19 @@
 
 10. `useDebugValue`: 
     - Can be used to display a label for custom hooks in React DevTools.
+
+
+<summary>
+View Answer
+</summary>
+</details>
+
+
 ---
 
 ### 2. How to improve the performance of an application ?
+
+<details>
 
 #### 1. HTML:
  - **Minimize DOM depth**: 
@@ -102,10 +115,16 @@
 - **SSL/TLS Optimization**: 
   - Use SSL/TLS efficiently as the handshake can be costly. 
   - <ins>**Session resumption can help reduce the time needed to establish secure connections**</ins>.
+<summary>
+View Answer
+</summary>
+</details>
 
 ----
 
 ### 3. Write HTML to display cards side by side ?
+
+<details>
 
 ```html
 <!DOCTYPE html>
@@ -150,12 +169,17 @@
 </html>
 
 ```
-
-  ![alt text](/interview_questions_company_based/16/imagesUsed/displayCards.png)
+![alt text](/interview_questions_company_based/16/imagesUsed/displayCards.png)
+<summary>
+View Answer
+</summary>
+</details>
 
 ------
 
 ### 4. useMemo vs. useCallback ?
+
+<details>
 
 -  both `useMemo` and `useCallback` are hooks that **help you <ins>optimize the performance of your components**</ins> by memorizing expensive calculations or functions. 
 
@@ -247,10 +271,16 @@ export default App;
 ```
 
 - Use `useCallback` <ins>**when you need to memorize a callback function to pass it as a prop to child components**</ins>, especially when these children are optimized to avoid unnecessary re-renders.
+<summary>
+View Answer
+</summary>
+</details>
 
 -----
 
 ### 5. About React.lazy?
+
+<details>
 
 - `React.lazy` **is a function** in React that <ins>**allows you to load components lazily through code splitting**</ins>. 
 - This means that the component will only be loaded when it is needed, rather than loading it up front with the rest of the bundle.
@@ -292,9 +322,16 @@ const ChartComponent = () => {
 
 export default ChartComponent;
 ```
+<summary>
+View Answer
+</summary>
+</details>
+
 ---
 
 ### 6. Next.js basic concepts ?
+
+<details>
 
 - a popular framework built on top of React **that enables functionality such as `server-side rendering` and `static site generation`**, which are beneficial for performance and SEO. 
 
@@ -312,9 +349,17 @@ export default ChartComponent;
   - The `Image` component from **next/image** is an extension of the HTML `<img>` element **designed for automatic image optimization**. 
 
 
+<summary>
+View Answer
+</summary>
+</details>
+
 -----
 
 ### 7. About common components ?
+
+<details>
+
 - Referred to `shared` or `re-usable` components
 - Promoting `DRY` (Don't Repeat Yourself) principles and improving code maintainability and scalability.
 
@@ -361,10 +406,16 @@ export default App;
   - As applications grow, having a library of common components **can greatly simplify the process of scaling up**. 
   - New pages and features can be built more quickly by leveraging existing components.
 
+<summary>
+View Answer
+</summary>
+</details>
+
 ----
 
 ### 8.  HOC and custom hooks implementation?
 
+<details>
 
 #### i) HOC:
 - Higher-Order Components (HOCs) are a **pattern used in React to share common functionality between components without repeating code**. 
@@ -423,10 +474,6 @@ function App() {
 export default App;
 ```
 
-
-
-
-
 ----
 
 #### ii) CUSTOM HOOKS:
@@ -478,9 +525,17 @@ function DataFetchingComponent({ url }) {
 
 export default DataFetchingComponent;
 ```
+<summary>
+View Answer
+</summary>
+</details>
+
+
 -----
 
 ### 9.  Login screen design authentication and authorization.
+
+<details>
 
 #### 1. User Interface Design
 - **Form Components**: Use `controlled components` in React for inputs to handle form data securely.
@@ -690,9 +745,16 @@ const App = () => {
 export default App;
 ```
 
+<summary>
+View Answer
+</summary>
+</details>
+
 ------
 
 ### 10. Promises.
+
+<details>
 
 #### i) Why Promises?
 - Promises in JavaScript are a powerful tool **for managing <ins>asynchronous operations</ins>**.
@@ -768,6 +830,10 @@ new Promise((resolve, reject) => {
 });
 
 ```
+<summary>
+View Answer
+</summary>
+</details>
 
 ----
 
@@ -779,6 +845,8 @@ new Promise((resolve, reject) => {
 
 
 ### 13. About SOLID principles.
+
+<details>
 
 - The `SOLID` principles <ins>**are a set of five**</ins> design guidelines 
 - This will help developers create software that is easier to `understand`, `maintain`, and `extend`.
@@ -1051,9 +1119,16 @@ const emailService = new EmailService();
 const notifier = new NotificationService(emailService);
 notifier.notify("Hello, your order has been shipped!", "customer@example.com");
 ```
+<summary>
+View Answer
+</summary>
+</details>
+
 -----
 
 ### 14.  How to Implement offers in the E-commerce sites.
+
+<details>
 
 #### Key Components:
 - **Offers Management**: Backend system to `create`, `store`, and `manage` offers.
@@ -1318,12 +1393,21 @@ const Cart = () => {
 
 export default Cart;
 ```
+<summary>
+View Answer
+</summary>
+</details>
+
+
+
 ------
 
 ### 15.    useEffect 
     - explain how we achieve different lifecycle
     - Behavior with different dependency array - null, [], [value]
  
+<details>
+
 #### 1. componentDidMount Equivalent
 ```js
 useEffect(() => {
@@ -1355,6 +1439,10 @@ useEffect(() => {
   // The effect runs after every render of the component.
 });
 ```
+<summary>
+View Answer
+</summary>
+</details>
 
 ----
 

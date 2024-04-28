@@ -16,4 +16,4 @@
 ## If you prefer not to mention the company name, you can refer to it as a service, product, or startup company.
 
 
-![alt text](/xx_community/community.png)
+![alt text](/xx_community/imagesUsed/community.png)

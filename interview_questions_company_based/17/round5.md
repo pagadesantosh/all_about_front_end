@@ -6,7 +6,6 @@
 6. Memoisation concepts in React. What is the second parameter we send in react.memo
 7. What is Virtual DOM
 8. Why use context in react
-9. Redux and the flow. Any Middleware used?
 10. Interfaces & Enum in Typescript
 11. What is micro front end? How many ways is it implemented.
 12. What is webpack used for?

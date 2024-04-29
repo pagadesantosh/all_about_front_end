@@ -10,7 +10,6 @@ Error Boundaries in react
 How to handle the errors in react
 What is tsconfig.json
 React router Dom version
-Webpack
 ESlint
 How to manage the source code [GitLab, GitHub]
 Which version of ECMA is use ES5 or ES6 Features?

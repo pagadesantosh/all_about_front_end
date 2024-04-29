@@ -2,10 +2,8 @@
 2. React versions and difference
 3. React 18 vs 19
 4. New features after react 17
-5. Pure components
 6. Memoization
 7. Life cycle methods
-8. Difference between class and functional components
 9.  Event loop
 10. Pass by value and pass by reference
 11. Redux components, Middleware and principles

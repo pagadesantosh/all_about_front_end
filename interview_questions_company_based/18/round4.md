@@ -5,7 +5,6 @@
 5. Promise vs async/await?
 6. Explain Components - class vs functional
 7. Question on state management - local state , context , redux.
-8. Write a code for class and functional components?
 9. HOC - How do you extend component ?
 10. Explain VDOM - in depth explanation
 11. What are the React Events ? Synthetic Events.
@@ -35,6 +34,5 @@
 35. OOPS — Inheritance, Abstraction, etc. (Theory + Implementation)
 36. Promises and Async/Await — Difference b/w the two and implementation.
 37. Reducers in React
-38. Context API
 39. Find the 3rd largest element in an array
 40. Media queries and responsive designs

@@ -18,8 +18,6 @@ let books = [
 9. what is diff between display none & hidden
 10. what is class and functional comp and difference between them
 11. what is state in a component
-12. communication between components parent to child and child to parent
-13. what is redux and concepts of redux?
 14. how to use map method inside react jsx importance of key property?
 15. optimization techniques in react?
 16. fetch the data from the https://jsonplaceholder.typicode.com/users using React

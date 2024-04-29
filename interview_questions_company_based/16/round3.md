@@ -2,7 +2,6 @@
 
 2. Arrow functions this keyword context with example
 3. Why do we use React over other frameworks(explain about virtual dom and other advantages)
-4. class and functional components ((Which do you prefer and why))
 
 5. what is props drilling, how to overcome the issue (context with example), why do we use it and syntax for creating and using context
 6.  How do you handle list rendering in React while using JSX?

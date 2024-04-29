@@ -1446,7 +1446,306 @@ View Answer
 
 ----
 
-16. useRef vs forwardRef
-17.  Typescript questions
-18.  what is sass and how good you are in it
-19.  I have service which will give data of an employee and hierarchy, we need to display that data in ui exactly like teams organization structure, how you will achieve that?
+### 16. useRef vs forwardRef
+
+<details>
+
+### <ins>useRef</ins>:
+### Why Introduced:
+- `useRef` was introduced as part of the Hooks API in React 16.8 to allow functional components <ins>**to access DOM elements** **that do not cause re-render when updated**</ins>. 
+
+### Problems it Solves:
+
+**i) Accessing DOM elements directly**
+- Sometimes, you need to directly interact with a DOM node for 
+  - `focusing`, 
+  - `measuring` **the node’s dimensions**.
+
+**ii) Storing mutable values:**
+- `useRef` provides a container <ins>**for storing values that can persist through the component lifecycle `without` `triggering` `rerenders` when the data changes, unlike state**.</ins>
+
+### When to Use:
+
+- When you need **to manage a reference to a `DOM` node**.
+- When you want to store a value that persists for the life of the component <ins>**but does not trigger a rerender when updated**.</ins>
+
+### Example:
+
+```js
+function TextInputWithFocusButton() {
+  const inputEl = useRef(null);
+  
+  useEffect(() => {
+    // Directly access the DOM element to set focus
+    inputEl.current.focus();
+  },[]);
+
+  return (
+    <>
+      <input ref={inputEl} type="text" />
+    </>
+  );
+}
+```
+----
+
+### <ins>forwardRef</ins>:
+
+### Why Introduced:
+- was introduced <ins>**to allow refs to be passed through components to a child component**</ins> (usually a DOM element inside the child component). 
+
+### Problem it Solves:
+<ins>**Managing focus, selection, or animations**:</ins>
+   - In complex components like `modals` or `inputs`, managing `focus` or `animations` **often <ins>requires direct access to the DOM node</ins>**, and forwardRef makes this management possible.
+
+
+### When to Use:
+- When you <ins>**need to allow parent components to directly interact with DOM nodes in a child component**</ins>.
+
+### Example:
+```js
+const FancyButton = forwardRef((props, ref) => (
+  <button ref={ref} className="FancyButton">
+    {props.children}
+  </button>
+));
+
+function App() {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (ref.current) {
+      console.log("Button is mounted and can be accessed");
+    }
+  }, []);
+
+  return <FancyButton ref={ref}>Click me!</FancyButton>;
+}
+```
+
+### Summary:
+- Use `useRef` <ins>**when you need a reference within a component**</ins> or you need to store a mutable value that doesn’t cause re-renders.
+- Use `forwardRef` <ins>**when you need to forward a ref from a parent component to a child**</ins>, especially in higher-order components or libraries.
+
+<summary>
+View Answer
+</summary>
+</details>
+
+
+----
+
+
+### 17.  Typescript questions
+
+#### 1. Explain the basic types in TypeScript.
+
+<details>
+
+`Boolean`: **True** or **false** value.
+`Number`: Floating point values.
+`String`: Textual data type.
+`Array`: Collection of data either in the form Type[] or Array<Type>.
+`Tuple`: An `array` with `fixed` number of elements whose types are `known`.
+`Enum`: A way of giving more friendly names to sets of numeric values.
+`Any`: A catch-all type **that can be anything**.
+`Void`: **Absence of a type**, used in `function` returns to indicate no value is returned.
+`Null` and `Undefined`: Same as in JavaScript but used with other types in a union to allow those types as well.
+`Never`: Represents type for values that **never occur** (e.g., a function that throws an error).
+<summary>
+View Answer
+</summary>
+</details>
+
+----
+
+#### 2. What are Interfaces in TypeScript and how are they used?
+
+<details>
+
+   - **Define the structure of an object**, 
+   - enforcing certain properties or methods to be present in the object. 
+   - They are used to define custom types without creating classes. 
+   - Interfaces can include properties and method definitions, and they can be extended or implemented by classes. 
+   - This is particularly useful for defining contracts within your code as well as contracts with code outside of your project.
+   - 
+<summary>
+View Answer
+</summary>
+</details>
+
+
+----
+
+#### 3. What is the difference between `interface` and `type` in TypeScript?
+
+<details>
+- `Interface`: 
+  - An interface can be `merged` (open-ended) and `extended`. 
+  - It is typically **used when defining shapes for objects**, especially when it comes to the integration with classes.
+<br/>
+
+- `Type`: 
+  - The type alias **cannot be reopened to add new properties and `isn’t` extendable**. 
+  - It is a definition of a type that could be a `primitive`, `union`, `intersection`, `tuple`, or any other type. 
+  - type is more versatile than interface and can be used for a broader set of type definitions.
+<summary>
+View Answer
+</summary>
+</details>
+
+
+
+-----
+
+
+
+### 18.  What is sass and why it was introduced, what problems does it solve
+
+
+<details>
+
+- Sass (Syntactically Awesome Style Sheets) is a `preprocessor` scripting language that is interpreted or compiled into Cascading Style Sheets (CSS). 
+- It introduces a richer set of features compared to pure CSS, 
+  - such as `variables`, 
+  - nested rules, 
+  - mixins,
+  - functions. 
+  
+`Sass` is available in `two` syntaxes: 
+  - the original syntax called "the indented syntax" 
+  - and the newer "SCSS" (Sassy CSS) which uses `braces` and `semicolons`, much like CSS.
+
+#### Why Was Sass Introduced?
+- Sass was introduced <ins>**to enhance the functionality of CSS to make it more `powerful` and `manageable`**</ins>, especially for `larger`, ***more complex*** style sheets. 
+<br/>
+
+- **DRY Principle**: 
+  - Sass `promotes` the DRY (Don't Repeat Yourself) principle by <ins>**allowing styles to be reused**</ins> through features like `variables` and `mixins`. 
+  - This reduces repetition in CSS and makes maintenance easier.
+<br/>
+
+- **Organized Code**: 
+  - Sass facilitates better organization of CSS code with features like nesting, which aligns with the visual hierarchy of HTML.
+<br/>
+
+- **Advanced Features**: It provides advanced functionalities like loops, conditionals, and arithmetic operations which are not available in plain CSS.
+
+#### What Problems Does Sass Solve?
+
+**1. Code Repetition and Maintenance**: 
+   - Managing `colors`, 
+   - `font stacks`, 
+   - Sass variables allow these elements to be <ins>**defined once and reused throughout the stylesheet**</ins>, simplifying updates and ensuring consistency.
+<br/>
+
+
+
+**2. Complexity in Large Stylesheets:**
+   - For large projects, `CSS` can become **cumbersome** to manage. 
+   - Sass <ins>**allows splitting the code into multiple files**</ins> (partials) and then importing them into a main stylesheet, making the codebase more `modular` and `manageable`.
+<br/>
+
+### Code Example: 
+
+```js
+//variables
+$primary-color: #333;
+body {
+  color: $primary-color;
+}
+```
+
+```js
+// Nesting Selectors within one another to reflect HTML structure
+.nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li { display: inline-block; }
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+}
+```
+<summary>
+View Answer
+</summary>
+</details>
+
+---
+
+### 19.   I have service which will give data of an employee and hierarchy, we need to display that data in ui exactly like teams organization structure, how you will achieve that?
+
+
+<details>
+
+#### 1. Data Retrieval and Management
+**i) Fetch the Data:**
+
+- Use a service API to **retrieve `employee` and `hierarchy` data**. 
+- You should fetch this data in a top-level component or through React context if the data needs to be accessible across multiple components.
+
+**ii) State Management:**
+
+- Consider using React’s built-in state management (useState, useReducer) for smaller applications or libraries like `Redux` or MobX for larger applications, especially if the data is complex and accessed in many parts of your application.
+- Use React Query or SWR for data `fetching`, `caching`, and `synchronization`. 
+- These libraries provide hooks that handle caching, background updates, and stale data, reducing the need to manage these concerns manually.
+
+
+
+#### 2. Component Structure
+
+**i) Building the Tree Structure:**
+
+- Create a `recursive` component that can render itself and its children. 
+- This is particularly **effective for hierarchical data** where each node (employee) may have sub-nodes (subordinates).
+- Each employee component can be responsible for rendering its data and the data of its subordinates.
+
+#### Example Component:
+```js
+const EmployeeNode = ({ employee }) => {
+  return (
+    <div className="employee-node">
+      <div className="employee-details">
+        {employee.name}
+      </div>
+      {employee.subordinates.length > 0 && (
+        <div className="employee-subordinates">
+          {employee.subordinates.map(sub => (
+            <EmployeeNode key={sub.id} employee={sub} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+```
+
+Similarly use other libraries for following:
+
+**Styling**: 
+  - Styled-components, 
+  - Tailwind CSS
+
+**Performance**: 
+  - React-window, 
+  - React-virtualized
+
+
+**Testing**: 
+  - Jest, 
+  - React Testing Library, 
+  - Cypress
+
+
+<summary>
+View Answer
+</summary>
+</details>
+
+-----

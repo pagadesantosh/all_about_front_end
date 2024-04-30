@@ -14,29 +14,28 @@
 ---
 
 #### Keyboard Events
-`onKeyDown`: Triggered when a **key is pressed `down`**.
-`onKeyUp`: Triggered when a **key is `released`**.
+- `onKeyDown`: Triggered when a **key is pressed `down`**.
+- `onKeyUp`: Triggered when a **key is `released`**.
 
 ---
 
 #### Form Events
-`onChange`: Triggered when the value of a `<input>`, `<select>`, or `<textarea>` element **has been changed**.
+- `onChange`: Triggered when the value of a `<input>`, `<select>`, or `<textarea>` element **has been changed**.
 
-`onInput`: Triggered when an `<input>` or `<textarea>` value changes.
-
-`onSubmit`: Triggered when a `form` is **submitted**.
+- `onInput`: Triggered when an `<input>` or `<textarea>` value changes.
+- `onSubmit`: Triggered when a `form` is **submitted**.
 
 --- 
 
 #### UI Events
-`onScroll`: Triggered when an element's scrollbar **is being `scrolled`**.
-`onResize`: Triggered when a window or frame is `resized`.
+- `onScroll`: Triggered when an element's scrollbar **is being `scrolled`**.
+- `onResize`: Triggered when a window or frame is `resized`.
 
 ----
 
 #### Focus Events
-`onFocus`: Triggered when an element **`receives` focus**.
-`onBlur`: Triggered when an element **`loses` focus**.
+- `onFocus`: Triggered when an element **`receives` focus**.
+- `onBlur`: Triggered when an element **`loses` focus**.
 
 -----
 
@@ -287,7 +286,6 @@ including page reloads and restores).
     2 components should automatically rerender after every 30 secs
     3 components should rerender on click of a button
  
-    use of pure component?
-    can we make database call directly from react app? is it suggestible to do if possible?
-    Have you worked on RestAPI services in backend or are you a pure frontend dev?
-    What is synthetic event in react. Have you used in your project? What it will do?
+- use of pure component?
+- can we make database call directly from react app? is it suggestible to do if possible?
+- What is synthetic event in react. Have you used in your project? What it will do?

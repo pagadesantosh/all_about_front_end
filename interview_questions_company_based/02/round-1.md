@@ -1,12 +1,8 @@
 ## Its a written test with the below mentioned sections
 
-#### 1) Aptitude questions - 20
+### 1) Two DSA problems
 
----
-
-#### 2) Two DSA problems
-
-- ##### Find the repeated elements and output them as array
+#### i) Find the repeated elements and output them as array
 
 
 ```javascript
@@ -36,7 +32,9 @@ Let's break this down:
 
 This approach has the advantage of using just one loop, making it potentially more efficient, and the use of Sets ensures that the `duplicates` will only contain unique values.
 
-- ##### Return the largest difference of indices of given character if there is a duplicate else return -1
+----
+
+#### ii) Return the largest difference of indices of given character if there is a duplicate else return -1
 
 ```javascript
 function largestIndexDifference(s, char) {
@@ -67,17 +65,13 @@ console.log(largestIndexDifference(str, char)); // This would return 9
 
 ---
 
-#### 3) 40 React and CSS MCQ questions based on Redux, Memo, snippets
+#### 3) e.preventDefault to prevent event propagation
 
-- Synthetic events
-- e.preventDefault to prevent event propagation
-- Event-pointer: none
-- Which version of useState is used for setting state with calculations
-- useMemo usage
+#### 4) Event-pointer: none
+#### 5) useMemo usage
 
 
-
-- Browser cache
+#### 6) Browser cache
 The best browser cache strategy depends on the specific needs of your website or web application. However, a common and effective strategy is to use a combination of caching mechanisms to balance performance and freshness of content. Here's a general approach:
 
 1. **Browser Caching**: Leverage browser caching by setting appropriate HTTP headers. This allows browsers to store static assets like images, CSS, and JavaScript locally for a specified period. You can control the cache duration using the `Cache-Control` and `Expires` headers.
@@ -104,8 +98,8 @@ Remember that while caching improves performance, it's important to strike a bal
 ------------
 
 
-- Caption to image in html
-To add a caption to an image in HTML, you can use the `<figure>` and `<figcaption>` elements. Here's an example:
+#### 7) Caption to image in html
+- To add a caption to an image in HTML, you can use the `<figure>` and `<figcaption>` elements. Here's an example:
 
 ```html
 <figure>

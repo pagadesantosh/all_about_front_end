@@ -5,7 +5,6 @@
 - Reconciliation
 - Redux steps
 - Imperative vs declarative coding
-- Synthetic events in react
 - Event loop
 - React hooks and why we need them?
 - Why Semicolon is optional in JS?

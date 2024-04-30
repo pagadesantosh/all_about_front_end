@@ -1,4 +1,4 @@
-## Hashedin Interview Questions
+## About
 Role: Software Engineer 2
 Salary Offered - 15 LPA
 Prev Salary - 4 LPA
@@ -19,3 +19,5 @@ Total Years of Exp - 2.9 years
 1. JS output based on promises
 2. CSS flexbox and grid
 3. useThrottle custom hook
+
+**Verdict**: Selected

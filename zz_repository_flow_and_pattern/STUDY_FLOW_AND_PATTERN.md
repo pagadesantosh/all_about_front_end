@@ -11,18 +11,19 @@
 ### Category_1 (15 LPA to 20 LPA)
 
 1. Folder js ---> JS Advanced concepts (60)
-2. Folder js --> Coding outputs
-3. Folder Html_css_dom
-4. Folder React
-5. Folder Redux
-6. Folder Web_dev (basics)
+2. Folder js --> coding outputs
+3. Folder html_css_dom
+4. Folder react
+5. Folder redux
+6. Folder web_dev (basics)
 7. Folder interview_questions_company_based
+8. Folder problem_solving_coding -> 30 problems on Arrays, Objects, Strings 
 
 ----
 
 ### Category_2 (20 LPA to 30 LPA)
 
-#### You should know above ones + You should be very good with below ones
+#### You should know above ones + You should be <ins>very good</ins> with below ones
 
 1. Folder--> problem_solving_coding
 2. Folder--> Coding patterns 
@@ -31,7 +32,7 @@
 
 ### Category_3 (Backend + Database)
 
-- If you are more into Frontend and have good experience on backend then you should go through following
+If you are more into Frontend and have good experience on backend then you should go through following
 
 1. Folder---> Node.js
 2. CI CD pipeline basics 

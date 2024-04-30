@@ -1,8 +1,8 @@
 ## About
-Role: Software Engineer 2
-Salary Offered - 15 LPA
-Prev Salary - 4 LPA
-Total Years of Exp - 2.9 years
+- **Role**: Software Engineer 2
+- **Salary Offered** - 15 LPA
+- **Prev Salary** - 4 LPA
+- **Total Years of Exp** - 2.9 years
 
 
 ### DSA, 
@@ -11,7 +11,7 @@ Total Years of Exp - 2.9 years
 3. add two numbers linked list, 
 4. diameter of a tree
 
-### React machine coding, 
+### React machine coding 
 1. todo app with drag and drop feature, session storage usage
 2. quiz app
 

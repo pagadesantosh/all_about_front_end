@@ -1,15 +1,15 @@
 ### 1. List various events available in React.
 
 #### Mouse Events
-`onClick`: Triggered when a **mouse click** is detected.
-`onDoubleClick`: Triggered when a **double click** is detected.
-`onMouseDown`: Triggered when the **mouse button is `pressed`**.
-`onMouseEnter`: Triggered when the mouse **pointer `enters` the element**.
-`onMouseLeave`: Triggered when the mouse **pointer `leaves` the element**.
-`onMouseMove`: Triggered when the mouse **pointer is `moving` over an element**.
-`onMouseOut`: Triggered when the mouse **pointer `moves` `out` of an element**.
-`onMouseOver`: Triggered when the mouse **pointer `moves` `over` an element**.
-`onMouseUp`: Triggered when a mouse button is **`released over` an element**.
+- `onClick`: Triggered when a **mouse click** is detected.
+- `onDoubleClick`: Triggered when a **double click** is detected.
+- `onMouseDown`: Triggered when the **mouse button is `pressed`**.
+- `onMouseEnter`: Triggered when the mouse **pointer `enters` the element**.
+- `onMouseLeave`: Triggered when the mouse **pointer `leaves` the element**.
+- `onMouseMove`: Triggered when the mouse **pointer is `moving` over an element**.
+- `onMouseOut`: Triggered when the mouse **pointer `moves` `out` of an element**.
+- `onMouseOver`: Triggered when the mouse **pointer `moves` `over` an element**.
+- `onMouseUp`: Triggered when a mouse button is **`released over` an element**.
 
 ---
 
@@ -41,21 +41,21 @@
 -----
 
 #### Drag Events
-`onDrag`: Triggered when an element is **being `dragged`**.
-`onDragEnd`: Triggered when a **drag operation is `completed`**.
-`onDragEnter`: Triggered when a **dragged element `enters` a valid drop target**.
-`onDragExit`: Triggered when an  **element is being dragged `leaves a valid drop` target**.
-`onDragLeave`: Triggered when a **dragged element `leaves` a drop target**.
-`onDragOver`: Triggered when an element is being `dragged over a drop` target.
-`onDragStart`: Triggered when the user **`starts` `dragging`** an element.
-`onDrop`: Triggered when a **dragged element is `dropped`** on a valid drop target.
+- `onDrag`: Triggered when an element is **being `dragged`**.
+- `onDragEnd`: Triggered when a **drag operation is `completed`**.
+- `onDragEnter`: Triggered when a **dragged element `enters` a valid drop target**.
+- `onDragExit`: Triggered when an  **element is being dragged `leaves a valid drop` target**.
+- `onDragLeave`: Triggered when a **dragged element `leaves` a drop target**.
+- `onDragOver`: Triggered when an element is being `dragged over a drop` target.
+- `onDragStart`: Triggered when the user **`starts` `dragging`** an element.
+- `onDrop`: Triggered when a **dragged element is `dropped`** on a valid drop target.
 
 ----
 
 #### Clipboard Events
-`onCopy`: Triggered when the **user initiates a `copy` action** through the browser's user interface.
-`onCut`: Triggered when the **user initiates a `cut` action** through the browser's user interface.
-`onPaste`: Triggered when the **user initiates a `paste`** action through the browser's user interface.
+- `onCopy`: Triggered when the **user initiates a `copy` action** through the browser's user interface.
+- `onCut`: Triggered when the **user initiates a `cut` action** through the browser's user interface.
+- `onPaste`: Triggered when the **user initiates a `paste`** action through the browser's user interface.
 
 --------
 
@@ -64,7 +64,7 @@
 - Both are part of the Web Storage API which provides mechanisms for web applications <ins>**to store data in a web browser**</ins>.
 - They allow the storage of data <ins>**in key-value pairs**</ins> and are more `intuitive` and `flexible` **than cookies**, with a `larger` `capacity`.
 
-#### 1. localStorage
+#### i) localStorage
 
 - provides a way to store data on the client's computer **for <ins>long-term storage**</ins>. 
 - Data stored in localStorage <ins>**has no expiration time**</ins> 
@@ -95,7 +95,7 @@ localStorage.removeItem('username');
 localStorage.clear();
 ```
 
-ii) sessionStorage
+#### ii) sessionStorage
 - sessionStorage is **`similar`** to localStorage in its method of storage, <ins>**but it has a shorter lifetime**</ins>. 
 - Data stored in sessionStorage <ins>**gets cleared when the page session ends**</ins>. 
 - A page session <ins>**lasts as long as the browser is open and survives over page reloads and restores**</ins>. 
@@ -125,7 +125,8 @@ sessionStorage.removeItem('sessionName');
 sessionStorage.clear();
 ```
 **Security**: 
-  - Both are subject to the `same-origin` policy for security but do not transmit data with every server request like cookies, reducing the risk of interception by malicious actors.
+  - Both are subject to the `same-origin` policy for security 
+  - but do not transmit data with every server request like cookies, reducing the risk of interception by malicious actors.
 
 ----
 
@@ -172,8 +173,78 @@ including page reloads and restores).
 
 ----
 
-    - Explore techniques for handling authentication and OAuth tokens on a web application's front-end.
-    - JSX & component composition in React.
+### 4. Explain techniques for handling authentication and OAuth tokens on a web application's front-end.
+
+#### 1. Secure Token Storage
+- **Avoid Local Storage**: 
+  - Storing tokens in local storage or session storage is
+    -  **`vulnerable` to cross-site scripting (XSS) attacks**. 
+  - Instead, <ins>use secure, **HttpOnly cookies**</ins> that are not accessible via JavaScript.
+<br/>
+
+- **Use Secure Cookies**: 
+  - Set cookies with the <ins>**Secure flag**</ins> 
+    - to ensure they are transmitted only over `HTTPS`. 
+  - Also, use the `HttpOnly` flag 
+    - **to prevent `client-side scripts` from accessing the cookie data, `reducing` `XSS` `risks`**.
+
+
+#### 2. Token Refresh Handling
+  - **Refresh Tokens**: 
+    - Implement refresh tokens 
+      - **to renew access tokens** <ins>without **requiring** the user to **re-authenticate** frequently</ins>. 
+    - **<ins>Store refresh tokens securely</ins> on the `server` or in a `HttpOnly` cookie**.
+<br/>
+
+- **Silent Refresh**: 
+  - Use `iframe-based` silent refreshes or background fetches 
+    - to renew access tokens automatically without interrupting the user experience.
+
+#### 3. Use Secure Transmission
+- **HTTPS**: 
+  - Always use HTTPS <ins>**to *encrypt* communications between the *client* and the *server***</ins>. 
+  - This **`protects`** your tokens from being intercepted by attackers during transmission.
+<br/>
+
+- **CORS Policy**: 
+  - Configure Cross-Origin Resource Sharing (CORS) properly 
+    - **to ensure that <ins>only trusted domains can make requests to your API**</ins>, thus protecting against **`CSRF`** attacks.
+
+#### 4. OAuth 2.0 Flows
+- **Authorization Code Flow with PKCE**: 
+  - Prefer the Authorization Code Flow with Proof Key for Code Exchange (PKCE) for single-page applications (SPAs). 
+  - **`PKCE`** **adds an additional layer of security** by ensuring that <ins>**the application that requested the authorization code is the one exchanging it for an access token**</ins>.
+<br/>
+
+- **Token Validation**: 
+  - Ensure that the **tokens received from the authentication server are `validated`, including checking the `signature` and the `claims` of JWT tokens**.
+
+#### 5. Minimize Token Lifespan
+- **Short-lived Access Tokens**: 
+  - Use short-lived access tokens to limit the damage if a token is compromised. 
+  - Typically, access tokens might last anywhere from a few minutes to a few hours.
+- **Longer-lived Refresh Tokens**: 
+  - If using refresh tokens, they can be longer-lived but must be stored and managed securely, **ideally on the server-side**.
+
+
+#### 6. Handling Sensitive Data
+- **Avoid Storing Sensitive Data**: 
+  - Do not store sensitive data in the token or anywhere in the front-end. 
+  - Keep sensitive data on the server-side and fetch it securely when needed.
+- **Token Scoping**: 
+  - Limit the scope of what each token can do. 
+  - For example, **restrict access tokens to specific actions or resources**.
+
+#### 7. Monitoring and Revocation
+- **Token Revocation**: 
+  - Implement mechanisms to revoke tokens when they are no longer needed or if suspicious activity is detected.
+- **Audit and Monitoring**: 
+  - Regularly monitor access patterns and audit logs for suspicious activity.
+  - Implement anomaly detection to identify unusual access patterns or token usage.
+
+---
+
+### 5. JSX & component composition in React.
 
 
 ## React

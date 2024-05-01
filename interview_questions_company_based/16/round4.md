@@ -243,12 +243,248 @@ including page reloads and restores).
 
 ---
 
-### 5. JSX & component composition in React.
+### 5. Component composition in React.
+
+- Component composition is a fundamental concept in React. 
+- It allows you to **build complex UIs from simple, `isolated` pieces called `components`**. 
+- Components can be <ins>**composed into other components</ins>**, similar to how you might compose functions or classes.
+
+```js
+// Simple React Component
+import React from 'react';
+
+// A simple functional component called Greeting
+function Greeting() {
+  // It returns a JSX element displaying a greeting message
+  return <h1>Hello, React!</h1>;
+}
+
+// This line makes the Greeting component available for import in other files
+export default Greeting; 
+```
+
+#### Component Composition Example
+
+```js
+import React from 'react';
+import Greeting from './Greeting';
+
+function App() {
+  // This component uses the Greeting component inside
+  // and adds some additional elements
+  return (
+    <div>
+      <Greeting /> {/* The Greeting component is used here */}
+      <p>This is an example of component composition in React.</p>
+    </div>
+  );
+}
+
+export default App; 
+```
+
+-----
+
+### 6. Describe your strategies which you have followed in your past for enhancing the performance of React applications
+
+- Strategies focus on 
+  - **`optimizing`** rendering, 
+  - managing state **`efficiently`**,
+  - making better use of React's **`built-in`** capabilities. 
 
 
-## React
-    Describe your strategies which you have followed in your past for enhancing the performance of React applications
-    different stages of react app
+#### 1. Minimizing Component Re-renders
+- Reducing **unnecessary** **`re-renders`** is crucial for enhancing performance:
+
+- **`ShouldComponentUpdate`** and **`React.memo`**: 
+  - For **class** components, implement <ins>**shouldComponentUpdate**</ins> to prevent unnecessary re-renders by comparing props or state. 
+  - For **functional** components, <ins>**wrap them with React.memo**</ins> to achieve a similar effect.
+
+```js
+// Using React.memo for a functional component
+const MyComponent = React.memo(({ props }) => {
+  // Component logic
+  return <div>{props.children}</div>;
+});
+```
+
+- **PureComponent**: 
+  - Extending **`React.PureComponent`** in class components **automatically implements** `shouldComponentUpdate` with a <ins>**shallow `prop` and `state` comparison**</ins>.
+
+-----
+
+#### 2. Optimizing Heavy Computations
+
+- **Memoization**: 
+  - Use memoization to cache heavy function outputs. 
+  - Libraries like **`lodash.memoize`** or **`reselect`** for Redux are useful here.
+
+```js
+import { useMemo } from 'react';
+
+const expensiveFunction = (param) => {
+  // Perform heavy calculations
+  return param;
+};
+
+function MyComponent({ param }) {
+  const memoizedValue = useMemo(() => expensiveFunction(param), [param]);
+  return <div>{memoizedValue}</div>;
+}
+```
+----
+
+#### 3. Using Lazy Loading
+
+- Lazy loading **helps in <ins>loading only the components needed at the moment**</ins> rather than loading all components upfront:
+
+- **`React.lazy`** and **`Suspense`**: 
+  - Use **`React.lazy`** <ins>**for dynamic imports of components</ins> that are not immediately required**. 
+  - **`Suspense`** <ins>**allows you to specify a loading state</ins> while waiting for the lazy-loaded component**.
+
+```js
+import React, { Suspense, lazy } from 'react';
+
+const LazyComponent = lazy(() => import('./LazyComponent'));
+
+function App() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LazyComponent />
+    </Suspense>
+  );
+}
+```
+
+---
+
+#### 4. Web Workers
+- **`Offload`** heavy computations to a web worker, keeping the UI thread free from heavy lifting:
+
+```js
+// In a web worker file
+self.onmessage = (e) => {
+  // Move complex calculations to a web worker.
+  const result = performHeavyCalculation(e.data);
+  self.postMessage(result);
+};
+```
+----
+
+#### 5. Optimizing Images and Media
+
+**Image Optimization**: 
+- Use image formats like 
+    - **`WebP`**, 
+    - Implement techniques like <ins>**lazy loading images**</ins>, 
+    - using **`thumbnails`**,
+    - **defining image sizes** to reduce layout shifts and loading times.
+
+----
+
+#### 6. Code Splitting
+
+- **Splitting code <ins>into smaller bundles**</ins> *reduces* <ins>the initial load time:</ins>
+
+```js
+// Using dynamic imports
+// to split your JavaScript code into smaller chunks which can be loaded on demand.
+import('./MyModule.js').then((MyModule) => {
+  // Use MyModule
+});
+```
+---
+
+#### 7. Efficient Data Fetching
+- To reduce wait times and unnecessary updates:
+
+  - Implement debouncing or throttling **for `API` calls <ins>that do not need to be made on every user input change**</ins>. 
+  - This reduces the number of calls made under rapid input conditions.
+
+----
+
+#### 8. Using the Virtual DOM Efficiently
+- Use the **`key`** prop effectively especially in **`lists`** 
+- to allow React to re-use DOM nodes correctly, rather than re-creating them unnecessarily.
+
+----
+
+### 7. different stages of react app
+
+- These stages can be categorized into the 
+  - **`mounting`** phase, 
+  - **`updating`** phase, 
+  - **`unmounting`** phase. 
+
+#### 1. Mounting Phase
+- This is the initial phase of the component lifecycle when an **instance of a component is being `created` and `inserted` into the DOM**:
+<br/>
+
+- **i) `constructor(props)`**: 
+  - This method is called **`before` the component is mounted**. 
+  - It is a good place to **`initialize` state** or **`bind` event handlers**.
+
+```js
+constructor(props) {
+  super(props);
+  this.state = { count: 0 };
+}
+```
+- **ii) `static getDerivedStateFromProps(props, state)`**: 
+  - This method is <ins>**called right before rendering**</ins>, in both the **`mounting`** and **`updating`** phases. 
+  - It is **used <ins>to update the state based on the props</ins>**.
+<br/>
+
+- **iii) `render()`**: 
+  - The only required method in a class component. 
+  - This method **`examines`** **`this.props`** and **`this.state`** and returns one of the following types: 
+    - React elements, 
+    - Arrays and fragments, 
+    - Portals, 
+    - String and numbers, 
+    - Booleans or null.
+
+```js
+render() {
+  return <h1>Hello, {this.props.name}</h1>;
+}
+```
+
+- **iv) `componentDidMount`()**: 
+  - This method is **called after the <ins>component is mounted on the DOM</ins>**. 
+  - It is used for 
+    - DOM manipulation, 
+    - fetching data, 
+    - setting up subscriptions (e.g., timers, network requests).
+
+```js
+componentDidMount() {
+  this.timerID = setInterval(
+    () => this.tick(),
+    1000
+  );
+}
+```
+---
+
+#### 2. Updating Phase
+- This phase <ins>**starts when a component is being re-rendered as a result of changes to either its `props` or `state`</ins>**
+<br/>
+
+- **`static getDerivedStateFromProps(props, state)`**: 
+  - Same as in the mounting phase, 
+  - it is **called `before` <ins>the render method</ins> when new props are being received**. 
+  - Here, it's **used to adjust the state** based on the incoming props before rendering.
+<br/>
+
+- **`shouldComponentUpdate(nextProps, nextState)`**: This method lets React know if a component’s output is not affected by the current change in state or props. It returns true or false to instruct React whether to continue with rendering or not.
+
+
+
+
+
+----
+
     What is JSX . Why do we need it. Does browser understands JSX directly
     do we have alternate for jsx
     props vs state

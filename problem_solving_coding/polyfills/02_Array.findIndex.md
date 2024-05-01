@@ -19,7 +19,7 @@ console.log(arr.finIndex((item)=>item===3)) //2, because we are returning index
 1. const findIndexArr = Object(this)
 2. const findIndexLength = Number(findIndexArr.length) || 0
 3. Initialize the let index = 0
-4. perform a loop using while (ex: while(index < findIndexLength))
+4. perform a basic for loop
 5. if(callbackFunctionParam.call(thisArg, findIndexArr[index], index, findIndexArr )) is true then return index
 6. outside the while loop return -1
 

@@ -416,6 +416,8 @@ import('./MyModule.js').then((MyModule) => {
   - **`updating`** phase, 
   - **`unmounting`** phase. 
 
+
+### <ins>PART 1: Class Components LifeCycle Methods</ins>
 #### 1. Mounting Phase
 - This is the initial phase of the component lifecycle when an **instance of a component is being `created` and `inserted` into the DOM**:
 <br/>
@@ -477,15 +479,148 @@ componentDidMount() {
   - Here, it's **used to adjust the state** based on the incoming props before rendering.
 <br/>
 
-- **`shouldComponentUpdate(nextProps, nextState)`**: This method lets React know if a component’s output is not affected by the current change in state or props. It returns true or false to instruct React whether to continue with rendering or not.
+- **`shouldComponentUpdate(nextProps, nextState)`**: 
+  - If a component’s output is not affected by the current change in state or props.
+  - It returns **`true`** or **`false`** to instruct React whether to continue with rendering or not.
+
+```js
+shouldComponentUpdate(nextProps, nextState) {
+  return this.props.value !== nextProps.value;
+}
+```
+
+- **render()**: 
+  - Called again to **`re-render` the UI** with the **`new` `props`** and/or **`state`**.
+<br/>
+
+- **`getSnapshotBeforeUpdate(prevProps, prevState)`**: 
+  - This method is <ins>**called right before**</ins> the most recently rendered output is committed to the DOM. 
+  - It **`captures`** some **information <ins>from the DOM</ins> that might change `after` the update**.
+<br/>
+
+- **componentDidUpdate(prevProps, prevState, snapshot)**: 
+  - This method is **called immediately `after` updating** occurs. 
+  - It is not called for the initial render. 
+  - Suitable for DOM operations and network calls based on the **`previous`** and **`current`** **`state`**.
+
+```js
+componentDidUpdate(prevProps, prevState) {
+  if (prevState.count !== this.state.count) {
+    console.log("Count has changed.");
+  }
+}
+```
+
+#### 3. Unmounting Phase
+- This final phase is when **a component is being `removed` from the DOM**:
+<br/>
+
+- **`componentWillUnmount()`**: 
+  - This method is **called `before` the component is `unmounted` and `destroyed`**.
+  - It is a **good place to perform cleanup** 
+  - e.g., clearing timers, 
+  - cancelling network requests 
+  - or subscriptions
+  - **to `avoid` memory leaks**.
+
+-----
+
+### <ins>PART 2: Hooks Version LifeCycle Methods</ins>
+
+#### 1. Mounting Phase
+
+- In functional components, the mounting logic is handled by the **`useEffect`** hook
+- with an **`empty`** **`dependency`** **`array`** [ ], 
+- which ensures the <ins>**effect runs only once after the initial render**</ins>.
+
+
+```js
+import React, { useState, useEffect } from 'react';
+
+function Timer() {
+  
+  useEffect(() => {
+    // YOUR NETWORK API CALL HERE....
+  }, []); // Empty array means this effect will only run once after the initial render
 
 
 
+  return (
+    <div>
+      <h1>Hello SaiTeja!</h1>
+    </div>
+  );
+}
+
+export default Timer;
+```
+
+#### 2. Updating Phase
+
+- To replicate the behavior of lifecycle methods **that run on `updates`**, 
+- useEffect can be used **without** an empty dependency array, 
+- or **with <ins>specific dependencies</ins>**.
+
+```js
+import React, { useState, useEffect } from 'react';
+
+function UserProfile({ userId }) {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    async function fetchUserData(id) {
+      const response = await fetch(`https://api.example.com/users/${id}`);
+      const userData = await response.json();
+      setUser(userData);
+    }
+
+    fetchUserData(userId);
+  }, [userId]); // This effect runs on initial mount and whenever userId changes
+
+  return (
+    <div>
+      {user ? (
+        <div>
+          <h1>{user.name}</h1>
+          <p>Email: {user.email}</p>
+        </div>
+      ) : (
+        <p>Loading user data...</p>
+      )}
+    </div>
+  );
+}
+
+export default UserProfile;
+```
+
+#### 3. Unmounting Phase
+- The cleanup or unmounting phase is **also managed by useEffect**, 
+- where you return a function from within the effect. 
+- This function is called when the component unmounts.
+
+```js
+useEffect(() => {
+  const subscription = someSubscription();
+
+  // Cleanup function
+  return () => {
+    subscription.unsubscribe();
+  };
+}, []);
+```
 
 
 ----
 
-    What is JSX . Why do we need it. Does browser understands JSX directly
+#### 8. What is JSX . Why do we need it. Does browser understands JSX directly
+
+JSX (JavaScript XML) is a syntax extension for JavaScript that looks similar to XML or HTML. It is used with React to describe the user interface components and their structure. JSX allows you to write HTML-like code directly within your JavaScript code, making the structure of the visual elements more readable and expressive.
+
+
+
+---
+
     do we have alternate for jsx
     props vs state
     arrays vs lists in react
